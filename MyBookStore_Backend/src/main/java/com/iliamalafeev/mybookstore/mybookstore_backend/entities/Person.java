@@ -1,6 +1,6 @@
 package com.iliamalafeev.mybookstore.mybookstore_backend.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.iliamalafeev.mybookstore.mybookstore_backend.security.entities.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -58,25 +58,25 @@ public class Person {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(mappedBy = "checkoutHolder", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("checkoutHolder")
+    @JsonIgnore
     private List<Checkout> checkouts;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(mappedBy = "discussionHolder", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("discussionHolder")
+    @JsonIgnore
     private List<Discussion> discussions;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(mappedBy = "historyRecordHolder", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("historyRecordHolder")
+    @JsonIgnore
     private List<HistoryRecord> historyRecords;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToOne(mappedBy = "paymentHolder", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("paymentHolder")
+    @JsonIgnore
     private Payment payment;
 
     public Person(String firstName, String lastName, LocalDate dateOfBirth, String email, String password) {

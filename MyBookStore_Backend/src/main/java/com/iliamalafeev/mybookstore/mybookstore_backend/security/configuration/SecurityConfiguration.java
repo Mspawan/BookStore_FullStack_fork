@@ -45,6 +45,7 @@ public class SecurityConfiguration {
                     .requestMatchers("/api/books/secure/**",
                             "/api/checkouts/secure/**",
                             "/api/reviews/secure/**",
+                            "/api/history-records/secure",
                             "/api/messages/secure/**",
                             "/api/admin/secure/**")
                     .authenticated()

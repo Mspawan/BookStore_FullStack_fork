@@ -12,5 +12,6 @@ import lombok.Setter;
 public class CheckoutDTO {
 
     private BookDTO bookDTO;
+
     private Integer daysLeft;
 }

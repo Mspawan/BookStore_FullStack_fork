@@ -49,7 +49,7 @@ public class JwtUtils {
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
-                .setIssuer("MyBookStore_Backend(by_IM_Dev)")
+                .setIssuer("BookStore_Backend(by_IM_Dev)")
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 20))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)

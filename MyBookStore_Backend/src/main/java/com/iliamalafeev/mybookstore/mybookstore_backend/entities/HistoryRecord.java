@@ -1,5 +1,6 @@
 package com.iliamalafeev.mybookstore.mybookstore_backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -20,12 +21,12 @@ public class HistoryRecord {
 
     @ManyToOne
     @JoinColumn(name = "person_email", referencedColumnName = "email")
-    @JsonIgnoreProperties("historyRecords")
+    @JsonIgnore
     private Person historyRecordHolder;
 
     @ManyToOne
     @JoinColumn(name = "book_id", referencedColumnName = "id")
-    @JsonIgnoreProperties("historyRecords")
+    @JsonIgnore
     private Book historyRecordedBook;
 
     @Column(name = "checkout_date")
