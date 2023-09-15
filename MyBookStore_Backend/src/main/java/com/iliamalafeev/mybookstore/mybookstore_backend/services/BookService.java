@@ -2,6 +2,7 @@ package com.iliamalafeev.mybookstore.mybookstore_backend.services;
 
 import com.iliamalafeev.mybookstore.mybookstore_backend.dto.BookDTO;
 import com.iliamalafeev.mybookstore.mybookstore_backend.dto.GenreDTO;
+import com.iliamalafeev.mybookstore.mybookstore_backend.dto.ReviewDTO;
 import com.iliamalafeev.mybookstore.mybookstore_backend.entities.*;
 import com.iliamalafeev.mybookstore.mybookstore_backend.repositories.*;
 import com.iliamalafeev.mybookstore.mybookstore_backend.utils.ErrorsUtil;
@@ -29,10 +30,11 @@ public class BookService {
     private final CheckoutRepository checkoutRepository;
     private final PersonRepository personRepository;
     private final PaymentRepository paymentRepository;
+    private final ReviewRepository reviewRepository;
     private final HistoryRecordRepository historyRecordRepository;
 
     @Autowired
-    public BookService(ModelMapper modelMapper, BookValidator bookValidator, BookRepository bookRepository, GenreRepository genreRepository, CheckoutRepository checkoutRepository, PersonRepository personRepository, PaymentRepository paymentRepository, HistoryRecordRepository historyRecordRepository) {
+    public BookService(ModelMapper modelMapper, BookValidator bookValidator, BookRepository bookRepository, GenreRepository genreRepository, CheckoutRepository checkoutRepository, PersonRepository personRepository, PaymentRepository paymentRepository, ReviewRepository reviewRepository, HistoryRecordRepository historyRecordRepository) {
         this.modelMapper = modelMapper;
         this.bookValidator = bookValidator;
         this.bookRepository = bookRepository;
@@ -40,8 +42,13 @@ public class BookService {
         this.checkoutRepository = checkoutRepository;
         this.personRepository = personRepository;
         this.paymentRepository = paymentRepository;
+        this.reviewRepository = reviewRepository;
         this.historyRecordRepository = historyRecordRepository;
     }
+
+//  <------------------------------------------------------------------------------->
+//  <-------------------- Service Public Methods for controller -------------------->
+//  <------------------------------------------------------------------------------->
 
     public List<BookDTO> findAll() {
 
@@ -235,6 +242,41 @@ public class BookService {
         checkoutRepository.deleteById(checkout.get().getId());
     }
 
+    public boolean isBookReviewedByPerson(String personEmail, Long bookId) {
+
+        Book book = getBookFromRepository(bookId);
+        Optional<Review> review = reviewRepository.findByPersonEmailAndReviewedBook(personEmail, book);
+
+        return review.isPresent();
+    }
+
+    public void reviewBook(String personEmail, Long bookId, ReviewDTO reviewDTO, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            ErrorsUtil.returnReviewError("Some fields are invalid.", bindingResult);
+        }
+
+        Book book = getBookFromRepository(bookId);
+        Optional<Review> review = reviewRepository.findByPersonEmailAndReviewedBook(personEmail, book);
+
+        if (review.isPresent()) {
+            ErrorsUtil.returnBookError("This book is already reviewed by this person", null);
+        }
+
+        Person person = getPersonFromRepository(personEmail);
+        Review newReview = convertToReview(reviewDTO);
+        newReview.setPersonEmail(personEmail);
+        newReview.setPersonFirstName(person.getFirstName());
+        newReview.setPersonLastName(person.getLastName());
+        newReview.setReviewedBook(book);
+
+        reviewRepository.save(newReview);
+    }
+
+//  <-------------------------------------------------------------------------------------------->
+//  <-------------------- Service Private Methods for some code re-usability -------------------->
+//  <-------------------------------------------------------------------------------------------->
+
     private Book getBookFromRepository(Long bookId) {
 
         Optional<Book> book = bookRepository.findById(bookId);
@@ -267,5 +309,9 @@ public class BookService {
 
     private BookDTO convertToBookDTO(Book book) {
         return modelMapper.map(book, BookDTO.class);
+    }
+
+    private Review convertToReview(ReviewDTO reviewDTO) {
+        return modelMapper.map(reviewDTO, Review.class);
     }
 }
