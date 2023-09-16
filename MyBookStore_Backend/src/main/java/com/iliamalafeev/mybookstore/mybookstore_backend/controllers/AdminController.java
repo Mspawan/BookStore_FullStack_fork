@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/admin/secure")
 public class AdminController {
@@ -62,6 +64,12 @@ public class AdminController {
 
         bookService.deleteById(bookId);
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @GetMapping("/open-discussions")
+    public List<DiscussionDTO> findAllUnclosedDiscussions() {
+
+        return discussionService.findAllByClosed(false);
     }
 
     @PostMapping("/close-discussion")

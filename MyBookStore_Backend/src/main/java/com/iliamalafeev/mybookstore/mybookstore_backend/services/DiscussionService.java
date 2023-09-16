@@ -50,6 +50,24 @@ public class DiscussionService {
         return response;
     }
 
+    public List<DiscussionDTO> findAllByClosed(boolean isClosed) {
+
+        List<Discussion> discussions = discussionRepository.findByClosed(isClosed);
+
+        List<DiscussionDTO> response = new ArrayList<>();
+
+        for (Discussion discussion : discussions) {
+            Person person = discussion.getDiscussionHolder();
+            DiscussionDTO discussionDTO = convertToDiscussionDTO(discussion);
+            discussionDTO.setPersonEmail(person.getEmail());
+            discussionDTO.setPersonFirstName(person.getFirstName());
+            discussionDTO.setPersonLastName(person.getLastName());
+            response.add(discussionDTO);
+        }
+
+        return response;
+    }
+
     public void addDiscussion(String personEmail, DiscussionDTO discussionDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
