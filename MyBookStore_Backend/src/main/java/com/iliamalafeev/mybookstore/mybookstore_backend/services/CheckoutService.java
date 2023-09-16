@@ -43,7 +43,7 @@ public class CheckoutService {
 
     public List<CheckoutDTO> getCurrentCheckouts(String personEmail) {
 
-        Person person =getPersonFromRepository(personEmail);
+        Person person = getPersonFromRepository(personEmail);
 
         List<CheckoutDTO> response = new ArrayList<>();
 
