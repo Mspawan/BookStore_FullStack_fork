@@ -1,7 +1,9 @@
 package com.iliamalafeev.mybookstore.mybookstore_backend.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,12 +20,15 @@ public class Discussion {
 
     @ManyToOne
     @JoinColumn(name = "person_email", referencedColumnName = "email")
-    @JsonIgnoreProperties("discussions")
+    @JsonIgnore
     private Person discussionHolder;
 
+    @NotBlank(message = "Discussion title must be present and contain at least 1 character")
+    @Size(max = 100, message = "Discussion title length must not exceed 100 characters")
     @Column(name = "title")
     private String title;
 
+    @NotBlank(message = "Question must be present and contain at least 1 character")
     @Column(name = "question")
     private String question;
 

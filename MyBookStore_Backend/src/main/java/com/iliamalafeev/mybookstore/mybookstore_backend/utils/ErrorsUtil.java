@@ -1,9 +1,6 @@
 package com.iliamalafeev.mybookstore.mybookstore_backend.utils;
 
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.BookException;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.PaymentException;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.PersonException;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.ReviewException;
+import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
@@ -30,6 +27,13 @@ public class ErrorsUtil {
         String bindingResultMessage = bindingResult == null ? "" : buildErrorMessage(bindingResult);
         String message = generalMessage + " " + bindingResultMessage;
         throw new ReviewException(message);
+    }
+
+    public static void returnDiscussionError(String generalMessage, BindingResult bindingResult) {
+
+        String bindingResultMessage = bindingResult == null ? "" : buildErrorMessage(bindingResult);
+        String message = generalMessage + " " + bindingResultMessage;
+        throw new DiscussionException(message);
     }
 
     public static void returnPaymentError(String message) {

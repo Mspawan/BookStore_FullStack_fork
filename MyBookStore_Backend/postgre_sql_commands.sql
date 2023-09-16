@@ -62,8 +62,8 @@ create table discussion (
     person_email varchar(100) not null references person (email) on delete cascade,
     title varchar(100) not null,
     question text not null,
-    admin_email varchar(100) not null,
-    response text not null,
+    admin_email varchar(100),
+    response text,
     closed boolean default false not null
 );
 
