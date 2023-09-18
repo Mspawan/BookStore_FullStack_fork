@@ -27,13 +27,14 @@ export const Navbar = () => {
                     {navLinks.map(
                         
                         (link) => (
-                                
-                            <NavLink className="duration-200 text-lg max-lg:w-full px-3 py-1 max-lg:py-4 hover:lg:bg-teal-100 text-teal-700 whitespace-nowrap hover:shadow-md lg:rounded-md max-lg:text-center"
+
+                            <NavLink className={({ isActive }) => (isActive && "bg-teal-100 shadow-md") + " duration-200 text-lg max-lg:w-full px-3 py-1 max-lg:py-4 hover:lg:bg-teal-100 text-teal-700 whitespace-nowrap hover:shadow-md lg:rounded-md max-lg:text-center"}
                                 to={link.href} key={link.id} onClick={() => setHamburgerMenuClicked(false)}>
-                                
+
                                 {link.title}
 
                             </NavLink>
+                            
                         )
                         
                     )}

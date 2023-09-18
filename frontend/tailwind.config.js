@@ -9,6 +9,12 @@ export default {
       fontFamily: {
         nunito: ['Nunito Sans', 'sans-serif'],
       },
+      boxShadow: {
+        'custom': '0 10px 40px rgba(0, 0, 0, 0.1)'
+      },
+      backgroundImage: {
+        'home-hero-1': "url('assets/images/home-hero-bg-1.svg')",
+      },
       keyframes: {
         'open-menu': {
           '0%': { transform: 'translateX(100%)', background: 'transparent', opacity: 0 },
