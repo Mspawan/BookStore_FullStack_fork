@@ -12,45 +12,46 @@ import { PaymentPage } from "./components/pages/payment/PaymentPage"
 
 export const App = () => {
 
-  return (
+    return (
 
-    <main className="relative h-[3000px]">
+        <main className="relative h-[3000px]">
 
-      <BrowserRouter>
+            <BrowserRouter>
 
-        <Navbar />
+                <Navbar />
 
-        <div className="absolute top-[70px]">
+                {/* <div className="absolute top-[70px]"> */}
 
-          <Routes>
+                <Routes>
 
-            <Route path='/' element={<Navigate to="/home" />} />
+                    <Route path='/' element={<Navigate to="/home" />} />
 
-            <Route path='/home' element={<HomePage />} />
+                    <Route path='/home' element={<HomePage />} />
 
-            <Route path='/search' element={<SearchPage />} />
+                    <Route path='/search' element={<SearchPage />} />
 
-            <Route path='/book/:bookId' element={<BookPage />} />
+                    <Route path='/book/:bookId' element={<BookPage />} />
 
-            <Route path='/reviews/:bookId' element={<ReviewsPage />} />
+                    <Route path='/reviews/:bookId' element={<ReviewsPage />} />
 
-            <Route path='/shelf' element={<ShelfPage />} />
+                    <Route path='/shelf' element={<ShelfPage />} />
 
-            <Route path='/discussions' element={<DiscussionsPage />} />
+                    <Route path='/discussions' element={<DiscussionsPage />} />
 
-            <Route path='/fees' element={<PaymentPage />} />
+                    <Route path='/fees' element={<PaymentPage />} />
 
-            <Route path='/admin' element={<AdminPage />} />
+                    <Route path='/admin' element={<AdminPage />} />
 
-          </Routes>
+                </Routes>
 
-          <Footer />
-        
-        </div>
+                <Footer />
+                
+                {/* </div> */}
 
-      </BrowserRouter>
+            </BrowserRouter>
 
-    </main>
+        </main>
 
-  )
+    )
+
 }

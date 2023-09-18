@@ -10,6 +10,7 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: Nunito Sans, sans-serif;
+  color: rgb(17, 94, 89);
 }
 
 @layer components {
@@ -17,6 +18,19 @@
   .max-container {
     max-width: 1440px;
     margin: 0 auto;
+  }
+
+  .btn-main {
+    @apply rounded-md py-2 px-5 text-lg border border-teal-700 bg-teal-100 whitespace-nowrap duration-200 
+    hover:shadow-lg hover:bg-teal-100 active:shadow-none 
+  }
+
+  .nav-link {
+    @apply duration-200 text-lg max-lg:w-full px-3 py-1 max-lg:py-4 hover:lg:bg-teal-100  whitespace-nowrap hover:shadow-custom lg:hover:shadow-md lg:rounded-md max-lg:text-center
+  }
+
+  .nav-menu {
+    @apply fixed top-[70px] right-0 lg:static flex-1 flex flex-col lg:flex-row gap-1 w-full lg:max-w-[800px] justify-between items-center py-7 lg:py-0 lg:px-7 max-lg:bg-teal-100
   }
 
   /* .input {
