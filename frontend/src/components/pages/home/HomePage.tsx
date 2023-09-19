@@ -5,7 +5,7 @@ export const HomePage = () => {
 
     return (
 
-        <section className="border-red-500 absolute top-[70px] w-full flex flex-col items-center gap-10 lg:px-10">
+        <section className="absolute top-[70px] w-full flex flex-col items-center justify-center gap-10 lg:px-10">
 
             <Quote quoteId={0} />
 

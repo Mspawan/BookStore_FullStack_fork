@@ -1,5 +1,4 @@
-// import beginJourneyHeroBG from "../../../../assets/images/BeginJourneyHeroBG.jpg";
-// import beginJourneyHeroBG from "../../../../assets/images/bg1.jpg";
+import { Link } from "react-router-dom"
 
 export const BeginJourneyHero = () => {
 
@@ -20,15 +19,13 @@ export const BeginJourneyHero = () => {
 
                 </div>
 
-                <button className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800">
+                <Link to={"/search"} type="button" className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800">
                     Explore our books
-                </button>
+                </Link>
 
             </div>
 
-            <div className="border border-green-500 w-7/12 max-lg:w-full max-lg:h-80 bg-home-hero-1 bg-cover bg-no-repeat bg-center">
-                {/* <img className=" object-contain" src={beginJourneyHeroBG} alt="heroBg" width={700} /> */}
-            </div>
+            <div className="border border-green-500 w-7/12 max-lg:w-full max-lg:h-80 bg-home-hero-1 bg-cover bg-no-repeat bg-center" />
 
         </div>
 
