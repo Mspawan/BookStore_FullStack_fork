@@ -1,5 +1,6 @@
 import { Quote } from "../../commons/quote/Quote"
 import { BeginJourneyHero } from "./components/BeginJourneyHero"
+import { Carousel } from "./components/Carousel"
 
 export const HomePage = () => {
 
@@ -10,6 +11,8 @@ export const HomePage = () => {
             <Quote quoteId={0} />
 
             <BeginJourneyHero />
+
+            <Carousel />
         
             Home Page
 
