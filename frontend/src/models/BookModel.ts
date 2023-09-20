@@ -1,4 +1,4 @@
-import { Genre } from "./Genre";
+import { GenreModel } from "./GenreModel";
 
 export class BookModel {
 
@@ -8,10 +8,10 @@ export class BookModel {
     description: string;
     copies: number;
     copiesAvailable: number;
-    genres: Genre[];
+    genres: GenreModel[];
     img: string;
 
-    constructor ( id: number, title: string, author: string, description: string, copies: number, copiesAvailable: number, genres: Genre[], img: string) {
+    constructor ( id: number, title: string, author: string, description: string, copies: number, copiesAvailable: number, genres: GenreModel[], img: string) {
 
         this.id = id;
         this.title = title;
