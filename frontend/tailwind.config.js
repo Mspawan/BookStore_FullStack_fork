@@ -19,10 +19,17 @@ export default {
         'open-menu': {
           '0%': { transform: 'translateX(100%)', background: 'transparent', opacity: 0 },
           '10%': { opacity: 0 },
-          '100%': { transform: 'translateX(0%)', background: 'rgb(204, 251, 241)', opacity: 1} }
+          '100%': { transform: 'translateX(0%)', background: 'rgb(204, 251, 241)', opacity: 1} 
+        },
+
+        'rotate': {
+          '0%': { transform: 'rotate(0deg) scale(1)' },
+          '100%': { transform: 'rotate(360deg) scale(2)' }
+        }
       },
       animation: {
-        'open-menu': 'open-menu 0.5s ease-in-out forwards'
+        'open-menu': 'open-menu 0.5s ease-in-out forwards',
+        'rotate': 'rotate 5s linear infinite alternate '
       }
     },
   },
