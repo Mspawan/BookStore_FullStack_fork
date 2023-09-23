@@ -14,6 +14,8 @@ export default {
       },
       backgroundImage: {
         'home-hero-1': "url('assets/images/home-hero-bg-1.jpg')",
+        'home-hero-2': "url('assets/images/home-hero-bg-2.jpg')",
+        'home-hero-3': "url('assets/images/home-hero-bg-3.jpg')",
       },
       keyframes: {
         'open-menu': {
