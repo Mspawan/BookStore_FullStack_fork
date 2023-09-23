@@ -4,7 +4,7 @@ export const BeginJourneyHero = () => {
 
     return (
 
-        <div className="flex max-lg:flex-col lg:justify-between gap-20 w-full max-container max-lg:px-5 items-stretch mt-10 bg-teal-50 p-5">
+        <section className="flex max-lg:flex-col lg:justify-between gap-20 w-full max-container max-lg:px-5 items-stretch mt-10 bg-teal-50 p-5">
 
             <div className="flex flex-col items-start lg:gap-16 gap-10 lg:w-5/12  max-lg:items-center max-lg:text-center">
 
@@ -27,7 +27,7 @@ export const BeginJourneyHero = () => {
 
             <div className="border border-green-500 w-7/12 max-lg:w-full max-lg:h-80 bg-home-hero-1 bg-cover bg-no-repeat bg-center" />
 
-        </div>
+        </section>
 
     )
 

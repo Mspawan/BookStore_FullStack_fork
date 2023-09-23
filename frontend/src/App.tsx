@@ -14,13 +14,11 @@ export const App = () => {
 
     return (
 
-        <main className="relative h-[3000px]">
+        <main className="relative">
 
             <BrowserRouter>
 
                 <Navbar />
-
-                {/* <div className="absolute top-[70px]"> */}
 
                 <Routes>
 
@@ -45,8 +43,6 @@ export const App = () => {
                 </Routes>
 
                 <Footer />
-                
-                {/* </div> */}
 
             </BrowserRouter>
 
