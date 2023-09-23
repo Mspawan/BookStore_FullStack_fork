@@ -3,10 +3,9 @@ import { BookModel } from "../../../../models/BookModel";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { useFetchBooks } from "../../../../utils/useFetchBooks";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, EffectCoverflow } from 'swiper/modules';
+import { BookCard } from "./BookCard";
 import 'swiper/css/bundle';
-// import 'swiper/css/effect-coverflow';
-import { EffectCoverflow, A11y } from 'swiper/modules';
 
 export const Carousel = () => {
 
@@ -24,41 +23,56 @@ export const Carousel = () => {
 
     return (
 
-        <div className="flex flex-col items-center gap-20 max-container w-full border border-green-500">
+        <div className="flex flex-col items-center gap-20 max-container w-full p-5">
             
-            Carousel
+            <div className="flex flex-col items-center gap-5 text-center">
 
-                <Swiper modules={[Navigation, A11y, EffectCoverflow]}
-                    effect={'coverflow'}
-                    coverflowEffect={{
-                        rotate: 0,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 1.5,
-                        slideShadows: false,
-                    }} 
-                    loop={true} 
-                    navigation={true} 
-                    slidesPerView={3} 
-                    spaceBetween={50} 
-                    className="w-full max-w-[1000px]"
-                >
+                <p className="text-5xl max-lg:text-3xl font-semibold leading-snug ">
+                    Popular books from our collection
+                </p>
 
-                    {books.map((book) => (
+                <p className="text-xl max-lg:text-lg font-light">
+                    They might wery well be a good match for you!
+                </p>
 
-                        <SwiperSlide className="flex items-center justify-center border border-red-500" key={book.id}>
-                            
-                            <div className="border border-black h-[100px] w-[100px]">
+            </div>
 
-                                <p>{book.title}</p>
 
-                            </div>
+            {/* Desktop Carousel */}
 
-                        </SwiperSlide>
+            <Swiper modules={[Navigation, EffectCoverflow]} loop={true} navigation={true} slidesPerView={3} spaceBetween={0} 
+                effect={'coverflow'} coverflowEffect={{ rotate: 0,  stretch: -45, depth: 100, modifier: 1.5, slideShadows: false }} 
+                className="w-full max-w-[1100px] max-lg:hidden"
+            >
 
-                    ))}
+                {books.map((book) => (
 
-                </Swiper>
+                    <SwiperSlide className="flex items-center justify-center py-5" key={book.id}>
+                        
+                        <BookCard book={book} />
+
+                    </SwiperSlide>
+
+                ))}
+
+            </Swiper>
+
+
+            {/* Mobile Carousel */}
+
+            <Swiper modules={[Navigation]} loop={true} navigation={true} slidesPerView={1} spaceBetween={0} className=" w-5/6 lg:hidden">
+
+                {books.map((book) => (
+
+                    <SwiperSlide className="flex items-center justify-center" key={book.id}>
+                        
+                        <BookCard book={book} />
+
+                    </SwiperSlide>
+
+                ))}
+
+            </Swiper>
             
         </div>
 
