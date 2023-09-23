@@ -4,7 +4,7 @@ type QuoteProps = {
     quoteId: number;
 }
 
-export const Quote = ({quoteId}: QuoteProps) => {
+export const Quote = ({ quoteId }: QuoteProps) => {
 
   return (
 
