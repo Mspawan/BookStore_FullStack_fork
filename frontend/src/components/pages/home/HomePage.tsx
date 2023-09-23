@@ -6,15 +6,13 @@ export const HomePage = () => {
 
     return (
 
-        <section className="absolute top-[70px] w-full flex flex-col items-center justify-center gap-10 lg:px-10">
+        <section className="absolute top-[70px] w-full flex flex-col items-center justify-center gap-20 lg:px-10">
 
             <Quote quoteId={0} />
 
             <BeginJourneyHero />
 
             <Carousel />
-        
-            Home Page
 
         </section>
 
