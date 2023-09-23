@@ -12,7 +12,7 @@ export const BeginJourneyHero = () => {
                     Begin your next adventure with one of our finest books
                 </p>
 
-                <div className="text-lg font-light">
+                <div className="text-xl max-lg:text-lg font-light">
 
                     <p>Search through our library to find</p>
                     <p>a book that will keep you up late</p>
