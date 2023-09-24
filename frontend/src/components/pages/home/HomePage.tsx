@@ -1,5 +1,6 @@
 import { Quote } from "../../commons/quote/Quote"
 import { BeginJourneyHero } from "./components/BeginJourneyHero"
+import { BookStoreServices } from "./components/BookStoreServices"
 import { Carousel } from "./components/Carousel"
 import { FavouriteGenresHero } from "./components/FavouriteGenresHero"
 import { GrowingCollectionHero } from "./components/GrowingCollectionHero"
@@ -8,7 +9,7 @@ export const HomePage = () => {
 
     return (
 
-        <div className="absolute top-[70px] w-full flex flex-col items-center justify-center gap-20 lg:px-10">
+        <div className="mt-[70px] w-full flex flex-col items-center justify-center gap-20 lg:px-10">
 
             <Quote quoteId={0} />
 
@@ -23,6 +24,8 @@ export const HomePage = () => {
                 <FavouriteGenresHero />          
 
             </div>
+
+            <BookStoreServices />
 
         </div>
 
