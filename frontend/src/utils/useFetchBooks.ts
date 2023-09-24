@@ -29,7 +29,9 @@ export const useFetchBooks = (setBooks: React.Dispatch<React.SetStateAction<Book
                 }
 
                 setBooks(loadedBooks);
-                setIsLoading(false);            
+                setIsLoading(false);
+                
+                console.log("fetching");
             }
 
             fetchBooks().catch(
