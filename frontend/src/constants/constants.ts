@@ -21,3 +21,11 @@ export const quotes = [
     {id: 8, text: "Reading is an act of civilization; it's one of the greatest acts of civilization because it takes the free raw material of the mind and builds castles of possibilities.", author: "Ben Okri"},
 
 ];
+
+export const genres = [
+
+    {id: 1, value: "sci_fi", name: "Science Fiction"},
+    {id: 2, value: "romance", name: "Romance"},
+    {id: 3, value: "fantasy", name: "Fantasy"},
+
+];
