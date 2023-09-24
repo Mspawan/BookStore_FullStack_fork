@@ -50,7 +50,11 @@
         @apply fixed top-[70px] right-0 lg:static flex-1 flex flex-col lg:flex-row gap-1 w-full lg:max-w-[800px] justify-between items-center py-7 lg:py-0 lg:px-7 max-lg:bg-teal-100
     }
 
-    /* .input {
-        @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-slate-gray max-sm:rounded-full;
-    } */
+    .input {
+        @apply w-full border-2 rounded-md border-teal-600 py-2 px-5 text-lg outline-custom-outline focus:shadow-lg focus:outline-offset-2 duration-200;
+    }
+
+    .dropdown {
+        @apply border-2 rounded-md border-teal-600 bg-teal-50 py-2 px-5 text-lg outline-custom-outline focus:outline-offset-2 duration-200;
+    }
 }
