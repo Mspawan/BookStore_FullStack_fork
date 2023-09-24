@@ -18,6 +18,9 @@ export default {
         'home-hero-3': "url('assets/images/home-hero-bg-3.jpg')",
         'home-hero-4': "url('assets/images/home-hero-bg-4.jpg')"
       },
+      outlineColor: {
+        'custom-outline': "rgba(17, 94, 89, 0.3)"
+      },
       keyframes: {
         'open-menu': {
           '0%': { transform: 'translateX(100%)', background: 'transparent', opacity: 0 },
