@@ -4,7 +4,7 @@ import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner"
 import { useFetchBooks } from "../../../../utils/useFetchBooks";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, EffectCoverflow } from 'swiper/modules';
-import { BookCard } from "./BookCard";
+import { CarouselBookCard } from "./CarouselBookCard";
 import 'swiper/css/bundle';
 
 export const Carousel = () => {
@@ -14,8 +14,6 @@ export const Carousel = () => {
     const [httpError, setHttpError] = useState<string | null>(null);
 
     useFetchBooks(setBooks, setIsLoading, setHttpError);
-
-    console.log(books);
 
     if (isLoading) { return <LoadingSpinner /> }
 
@@ -49,7 +47,7 @@ export const Carousel = () => {
 
                     <SwiperSlide className="flex items-center justify-center py-5" key={book.id}>
                         
-                        <BookCard book={book} />
+                        <CarouselBookCard book={book} />
 
                     </SwiperSlide>
 
@@ -66,7 +64,7 @@ export const Carousel = () => {
 
                     <SwiperSlide className="flex items-center justify-center" key={book.id}>
                         
-                        <BookCard book={book} />
+                        <CarouselBookCard book={book} />
 
                     </SwiperSlide>
 
