@@ -2,7 +2,6 @@ package com.iliamalafeev.mybookstore.mybookstore_backend.repositories;
 
 import com.iliamalafeev.mybookstore.mybookstore_backend.entities.Book;
 import com.iliamalafeev.mybookstore.mybookstore_backend.entities.Genre;
-import jakarta.validation.constraints.NotEmpty;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
