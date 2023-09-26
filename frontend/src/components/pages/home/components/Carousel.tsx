@@ -12,9 +12,9 @@ export const Carousel = () => {
     const [books, setBooks] = useState<BookModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState<string | null>(null);
-    const url = "http://localhost:8080/api/books?page=0&books-per-page=9";
+    const urlPaginationParams = "?page=0&books-per-page=9";
 
-    useFetchBooks(url, 0, setBooks, setIsLoading, setHttpError);
+    useFetchBooks(urlPaginationParams, 0, setBooks, setIsLoading, setHttpError);
 
     if (isLoading) { return <LoadingSpinner /> }
 
