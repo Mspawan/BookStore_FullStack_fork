@@ -1,9 +1,12 @@
 import { useEffect } from "react";
 import { BookModel } from "../models/BookModel";
 
-export const useFetchBooks = (setBooks: React.Dispatch<React.SetStateAction<BookModel[]>>,
+export const useFetchBooks = (url: string, currentPage: number,
+                              setBooks: React.Dispatch<React.SetStateAction<BookModel[]>>,
                               setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
-                              setHttpError: React.Dispatch<React.SetStateAction<string | null>>) => {
+                              setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
+                              setTotalAmountOfBooks?: React.Dispatch<React.SetStateAction<number>>,
+                              setTotlalPages?: React.Dispatch<React.SetStateAction<number>>) => {
 
     useEffect(
 
@@ -11,7 +14,7 @@ export const useFetchBooks = (setBooks: React.Dispatch<React.SetStateAction<Book
 
             const fetchBooks = async () => {
 
-                const url: string = "http://localhost:8080/api/books";
+                // const url: string = "http://localhost:8080/api/books?page=0&books-per-page=5";
 
                 const response = await fetch(url);
 
@@ -21,11 +24,18 @@ export const useFetchBooks = (setBooks: React.Dispatch<React.SetStateAction<Book
 
                 const responseJson = await response.json();
 
+                console.log(responseJson);
+
+                if (setTotalAmountOfBooks) setTotalAmountOfBooks(responseJson.totalElements);
+                if (setTotlalPages) setTotlalPages(responseJson.totalPages);
+
+                const responseBooksContentArray = responseJson.content;
+
                 const loadedBooks: BookModel[] = [];
 
-                for (const key in responseJson) {
+                for (const key in responseBooksContentArray) {
 
-                    loadedBooks.push(responseJson[key]);
+                    loadedBooks.push(responseBooksContentArray[key]);
                 }
 
                 setBooks(loadedBooks);
@@ -43,7 +53,7 @@ export const useFetchBooks = (setBooks: React.Dispatch<React.SetStateAction<Book
                 }
             )
 
-        }, []
+        }, [currentPage]
 
     );
 
