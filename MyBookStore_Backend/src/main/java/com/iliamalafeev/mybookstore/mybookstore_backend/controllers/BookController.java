@@ -44,11 +44,7 @@ public class BookController {
     public Page<BookDTO> findAll(@RequestParam(value = "page", required = true) Integer page,
                                  @RequestParam(value = "books-per-page", required = true) Integer booksPerPage) {
 
-//        if (page != null && booksPerPage != null) {
-            return bookService.findAll(PageRequest.of(page, booksPerPage));
-//        }
-
-//        return bookService.findAll();
+        return bookService.findAll(PageRequest.of(page, booksPerPage));
     }
 
     @GetMapping("/{bookId}")
