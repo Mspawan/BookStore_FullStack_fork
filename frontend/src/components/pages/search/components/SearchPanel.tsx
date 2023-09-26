@@ -2,12 +2,13 @@ import { genres } from "../../../../constants/constants";
 
 type SearchPanelProps = {
     selectedGenre: string,
-    setSelectedGenre: React.Dispatch<React.SetStateAction<string>>,
+    handleGenreChange: (value: string) => void,
     titleQuery: string,
     setTitleQuery: React.Dispatch<React.SetStateAction<string>>,
+    handleSearchClick: () => void
 }
 
-export const SearchPanel = ({ selectedGenre, setSelectedGenre, titleQuery, setTitleQuery }: SearchPanelProps) => {
+export const SearchPanel = ({ selectedGenre, handleGenreChange, titleQuery, setTitleQuery, handleSearchClick }: SearchPanelProps) => {
 
     return (
 
@@ -17,7 +18,7 @@ export const SearchPanel = ({ selectedGenre, setSelectedGenre, titleQuery, setTi
 
             <div className="flex w-full gap-5 max-sm:hidden">
 
-                <select className="dropdown" value={selectedGenre} onChange={event => setSelectedGenre(event.target.value)}>
+                <select className="dropdown" value={selectedGenre} onChange={event => handleGenreChange(event.target.value)}>
 
                     <option disabled value="">Search by genre</option>
 
@@ -31,7 +32,7 @@ export const SearchPanel = ({ selectedGenre, setSelectedGenre, titleQuery, setTi
 
                 <input className="input" placeholder="Search books by title..." value={titleQuery} onChange={event => setTitleQuery(event.target.value)} />
 
-                <button className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800">
+                <button className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800" onClick={() => handleSearchClick()}>
                     Search
                 </button>
 
@@ -46,7 +47,7 @@ export const SearchPanel = ({ selectedGenre, setSelectedGenre, titleQuery, setTi
 
                 <div className="flex w-full justify-between">
 
-                    <select className="dropdown" value={selectedGenre} onChange={event => setSelectedGenre(event.target.value)}>
+                    <select className="dropdown" value={selectedGenre} onChange={event => handleGenreChange(event.target.value)}>
 
                         <option disabled value="">Search by genre</option>
 
@@ -58,7 +59,7 @@ export const SearchPanel = ({ selectedGenre, setSelectedGenre, titleQuery, setTi
 
                     </select>
 
-                    <button className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800">
+                    <button className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800" onClick={() => handleSearchClick()}>
                         Search
                     </button>
                     
