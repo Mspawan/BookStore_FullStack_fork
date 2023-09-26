@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -73,12 +72,13 @@ public class BookService {
         return convertToBookDTO(book);
     }
 
-    public List<BookDTO> findAllByTitle(String titleQuery) {
+    public Page<BookDTO> findAllByTitle(String titleQuery, Pageable pageable) {
 
-        return bookRepository.findByTitleContaining(titleQuery).stream().map(this::convertToBookDTO).collect(Collectors.toList());
+        return bookRepository.findByTitleContainingIgnoreCase(titleQuery, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()))
+                .map(this::convertToBookDTO);
     }
 
-    public List<BookDTO> findAllByGenre(String genreQuery) {
+    public Page<BookDTO> findAllByGenre(String genreQuery, Pageable pageable) {
 
         Optional<Genre> genre = genreRepository.findByDescription(genreQuery);
 
@@ -86,13 +86,13 @@ public class BookService {
             ErrorsUtil.returnBookError("No such genre found", null);
         }
 
-        List<Book> books = bookRepository.findByGenresContains(genre.get());
+        Page<Book> books = bookRepository.findByGenresContains(genre.get(), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 
         if (books.isEmpty()) {
             ErrorsUtil.returnBookError("No books with such genre found", null);
         }
 
-        return books.stream().map(this::convertToBookDTO).toList();
+        return books.map(this::convertToBookDTO);
     }
 
     public void addBook(BookDTO bookDTO, BindingResult bindingResult) {

@@ -58,15 +58,19 @@ public class BookController {
     }
 
     @GetMapping("/search/by-title")
-    public List<BookDTO> findAllByTitle(@RequestParam("title-query") String titleQuery) {
+    public Page<BookDTO> findAllByTitle(@RequestParam(value = "page", required = true) Integer page,
+                                        @RequestParam(value = "books-per-page", required = true) Integer booksPerPage,
+                                        @RequestParam("title-query") String titleQuery) {
 
-        return bookService.findAllByTitle(titleQuery);
+        return bookService.findAllByTitle(titleQuery, PageRequest.of(page, booksPerPage));
     }
 
     @GetMapping("/search/by-genre")
-    public List<BookDTO> findAllByGenre(@RequestParam("genre-query") String genreQuery) {
+    public Page<BookDTO> findAllByGenre(@RequestParam("genre-query") String genreQuery,
+                                        @RequestParam(value = "page", required = true) Integer page,
+                                        @RequestParam(value = "books-per-page", required = true) Integer booksPerPage) {
 
-        return bookService.findAllByGenre(genreQuery);
+        return bookService.findAllByGenre(genreQuery, PageRequest.of(page, booksPerPage));
     }
 
     @GetMapping("/secure/is-checked-out/{bookId}")
