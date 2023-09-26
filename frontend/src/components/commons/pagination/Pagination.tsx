@@ -35,6 +35,8 @@ export const Pagination = ({ currentPage, totalPages, totalAmountOfBooks, setCur
     
     const handleFirstClick = () => {
 
+        window.scrollTo(0, 0);
+
         if (currentPage !== 1) {
 
             setResultRange({ start: 1, end: 5 });
@@ -43,6 +45,8 @@ export const Pagination = ({ currentPage, totalPages, totalAmountOfBooks, setCur
     }
     
     const handlePageButtonClick = (p: number) => {
+
+        window.scrollTo(0, 0);
 
         if (p === 1) handleFirstClick();
         else if (p === totalPages) handleLastClick();
@@ -54,6 +58,8 @@ export const Pagination = ({ currentPage, totalPages, totalAmountOfBooks, setCur
 
     const handleLastClick = () => {
 
+        window.scrollTo(0, 0);
+
         if (currentPage !== totalPages) {
 
             setResultRange({ start: totalAmountOfBooks - (totalAmountOfBooks - ((totalPages * 5 - 4))), end: totalAmountOfBooks });
@@ -63,23 +69,30 @@ export const Pagination = ({ currentPage, totalPages, totalAmountOfBooks, setCur
 
     return (
 
-        <div className="flex gap-5 border border-red-500 p-5">
-            
-            <button className="btn-main" onClick={handleFirstClick}>First</button>
+        <>
 
-            {pageNumbers.map(p =>
+            {totalPages > 0 &&
 
-                <button className={`${currentPage === p && "bg-teal-700 hover:bg-teal-700 text-teal-100 text-xl font-bold"} + btn-main`} 
-                    onClick={() => handlePageButtonClick(p)} key={p}
-                >
-                    {p}
-                </button>
+                <div className="flex gap-5 p-5">
+                    
+                    <button className="btn-main" onClick={handleFirstClick}>First</button>
 
-            )}
+                    {pageNumbers.map(p =>
 
-            <button className="btn-main" onClick={handleLastClick}>Last</button>
+                        <button className={`${currentPage === p && "bg-teal-700 hover:bg-teal-700 text-teal-100 text-xl font-bold"} + btn-main`} 
+                            onClick={() => handlePageButtonClick(p)} key={p}
+                        >
+                            {p}
+                        </button>
 
-        </div>
+                    )}
+
+                    <button className="btn-main" onClick={handleLastClick}>Last</button>
+
+                </div>
+            }
+
+        </>
 
     )
 
