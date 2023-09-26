@@ -10,6 +10,10 @@ import com.iliamalafeev.mybookstore.mybookstore_backend.utils.validators.BookVal
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -53,6 +57,13 @@ public class BookService {
     public List<BookDTO> findAll() {
 
         return bookRepository.findAll().stream().map(this::convertToBookDTO).collect(Collectors.toList());
+    }
+
+    public Page<BookDTO> findAll(Pageable pageable) {
+
+        Page<Book> page = bookRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
+
+        return page.map(this::convertToBookDTO);
     }
 
     public BookDTO findById(Long bookId) {

@@ -12,6 +12,8 @@ import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.Payment
 import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.ReviewException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -39,9 +41,14 @@ public class BookController {
     }
 
     @GetMapping
-    public List<BookDTO> findAll() {
+    public Page<BookDTO> findAll(@RequestParam(value = "page", required = true) Integer page,
+                                 @RequestParam(value = "books-per-page", required = true) Integer booksPerPage) {
 
-        return bookService.findAll();
+//        if (page != null && booksPerPage != null) {
+            return bookService.findAll(PageRequest.of(page, booksPerPage));
+//        }
+
+//        return bookService.findAll();
     }
 
     @GetMapping("/{bookId}")
