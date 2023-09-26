@@ -1,22 +1,28 @@
 import { useEffect } from "react";
 import { BookModel } from "../models/BookModel";
 
-export const useFetchBooks = (url: string, currentPage: number,
+export const useFetchBooks = (urlPaginationParams: string, 
+                              currentPage: number,
                               setBooks: React.Dispatch<React.SetStateAction<BookModel[]>>,
                               setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
                               setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
                               setTotalAmountOfBooks?: React.Dispatch<React.SetStateAction<number>>,
-                              setTotlalPages?: React.Dispatch<React.SetStateAction<number>>) => {
+                              setTotlalPages?: React.Dispatch<React.SetStateAction<number>>,
+                              urlSearchParams?: string) => {
 
     useEffect(
 
         () => {
 
             const fetchBooks = async () => {
+                
+                const baseUrl = `http://localhost:8080/api/books`;
 
-                // const url: string = "http://localhost:8080/api/books?page=0&books-per-page=5";
+                const url: string = baseUrl + (urlSearchParams ? urlSearchParams : "") + urlPaginationParams ;
 
                 const response = await fetch(url);
+
+                console.log(response);
 
                 if (!response.ok) {
                     throw new Error("Ooops, something went wrong!");
@@ -24,7 +30,7 @@ export const useFetchBooks = (url: string, currentPage: number,
 
                 const responseJson = await response.json();
 
-                console.log(responseJson);
+                // console.log(responseJson);
 
                 if (setTotalAmountOfBooks) setTotalAmountOfBooks(responseJson.totalElements);
                 if (setTotlalPages) setTotlalPages(responseJson.totalPages);
@@ -41,7 +47,7 @@ export const useFetchBooks = (url: string, currentPage: number,
                 setBooks(loadedBooks);
                 setIsLoading(false);
                 
-                console.log("fetching");
+                // console.log("fetching");
             }
 
             fetchBooks().catch(
@@ -53,7 +59,7 @@ export const useFetchBooks = (url: string, currentPage: number,
                 }
             )
 
-        }, [currentPage]
+        }, [currentPage, urlSearchParams]
 
     );
 

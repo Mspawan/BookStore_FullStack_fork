@@ -15,15 +15,27 @@ export const SearchPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalAmountOfBooks, setTotalAmountOfBooks] = useState(0);
     const [totalPages, setTotlalPages] = useState(0);
-
-    const [resultRange, setResultRange] = useState({start: 1, end: 5});
-
-    const url = `http://localhost:8080/api/books?page=${currentPage - 1}&books-per-page=5`;
-
     const [selectedGenre, setSelectedGenre] = useState("");
     const [titleQuery, setTitleQuery] = useState("");
+    const [resultRange, setResultRange] = useState({start: 1, end: 5});
+    const [searchParams, setSearchParams] = useState("");
 
-    useFetchBooks(url, currentPage, setBooks, setIsLoading, setHttpError, setTotalAmountOfBooks, setTotlalPages);
+    const handleSearchClick = () => {
+        
+        if (titleQuery !== "") setSearchParams(`/search/by-title?title-query=${titleQuery}`);
+    };
+
+    const handleGenreChange = (value: string) => {
+
+        setTitleQuery("");
+        setSelectedGenre(value);
+        if (value === "") setSearchParams("");
+        if (value !== "") setSearchParams(`/search/by-genre?genre-query=${value}`);
+    };
+    
+    const urlPaginationParams = (searchParams === "" ? "?" : "&") + `page=${currentPage - 1}&books-per-page=5`;
+
+    useFetchBooks(urlPaginationParams, currentPage, setBooks, setIsLoading, setHttpError, setTotalAmountOfBooks, setTotlalPages, searchParams);
 
     if (isLoading) { return <LoadingSpinner /> }
 
@@ -35,25 +47,37 @@ export const SearchPage = () => {
 
             <Quote quoteId={1} />
 
-            <SearchPanel selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre} titleQuery={titleQuery} setTitleQuery={setTitleQuery} />
+            <SearchPanel selectedGenre={selectedGenre} handleGenreChange={handleGenreChange} titleQuery={titleQuery} setTitleQuery={setTitleQuery} handleSearchClick={handleSearchClick} />
 
-            <div className="sm:text-xl flex gap-5 items-center justify-center">
+            {totalAmountOfBooks > 0 ?
+                
+                <>
 
-                Books: 
+                    <div className="sm:text-xl flex gap-5 items-center justify-center">
 
-                <p className="sm:text-3xl max-sm:text-xl text-teal-600">{resultRange.start} - {resultRange.end}</p> 
+                        Books: 
 
-                out of 
+                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">{resultRange.start} - {resultRange.end}</p> 
 
-                <p className="sm:text-3xl max-sm:text-xl text-teal-600">{totalAmountOfBooks}</p>
+                        out of 
 
-            </div>
+                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">{totalAmountOfBooks}</p>
 
-            {books.map(
+                    </div>
+                
+                    {books.map(
 
-                book => <SearchPageBookCard key={book.id} book={book} />
+                        book => <SearchPageBookCard key={book.id} book={book} />
 
-            )}
+                    )}
+
+                </>
+
+                :
+
+                <div>Nothing was found</div>
+
+            }
 
             <Pagination currentPage={currentPage} totalPages={totalPages} totalAmountOfBooks={totalAmountOfBooks} 
                 setCurrentPage={setCurrentPage} setResultRange={setResultRange} 
