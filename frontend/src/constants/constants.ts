@@ -24,8 +24,9 @@ export const quotes = [
 
 export const genres = [
 
-    {id: 1, value: "sci_fi", name: "Science Fiction"},
+    {id: 1, value: "Science Fiction", name: "Science Fiction"},
     {id: 2, value: "romance", name: "Romance"},
-    {id: 3, value: "fantasy", name: "Fantasy"},
+    {id: 3, value: "Fantasy", name: "Fantasy"},
+    {id: 4, value: "", name: "All"},
 
 ];
