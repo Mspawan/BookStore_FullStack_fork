@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { navLinks } from "../../../constants/constants";
 import bookStoreLogo from "../../../assets/images/BookStore_Logo.png";
 import hamburgerMenuLogo from "../../../assets/icons/hamburger-menu.svg";
@@ -39,19 +39,19 @@ export const Navbar = () => {
                         
                     )}
 
-                    <button className="btn-main lg:hidden mt-4 bg-teal-300 px-10 hover:bg-teal-200">
+                    <Link to={"/login"} className="btn-main lg:hidden mt-4 bg-teal-300 px-10 hover:bg-teal-200">
                         
                         Sign In
 
-                    </button>
+                    </Link>
 
                 </div>
 
-                <button className="max-lg:hidden btn-main">
+                <Link to={"/login"} className="max-lg:hidden btn-main">
                     
                     Sign In
                 
-                </button>
+                </Link>
 
                 <button className="rounded-lg p-1 hidden max-lg:block" onClick={() => setHamburgerMenuClicked(!hamburgerMenuClicked)}>
                     

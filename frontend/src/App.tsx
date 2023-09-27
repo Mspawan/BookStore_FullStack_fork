@@ -9,6 +9,8 @@ import { ShelfPage } from "./components/pages/shelf/ShelfPage"
 import { DiscussionsPage } from "./components/pages/discussions/DiscussionsPage"
 import { AdminPage } from "./components/pages/admin/AdminPage"
 import { PaymentPage } from "./components/pages/payment/PaymentPage"
+import { LoginPage } from "./components/pages/login/LoginPage"
+import { RegistrationPage } from "./components/pages/registration/RegistrationPage"
 
 export const App = () => {
 
@@ -39,6 +41,10 @@ export const App = () => {
                     <Route path='/fees' element={<PaymentPage />} />
 
                     <Route path='/admin' element={<AdminPage />} />
+
+                    <Route path='/login' element={<LoginPage />} />
+
+                    <Route path='/register' element={<RegistrationPage />} />
 
                 </Routes>
 
