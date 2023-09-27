@@ -16,10 +16,6 @@ export const Carousel = () => {
 
     useFetchBooks(urlPaginationParams, 0, setBooks, setIsLoading, setHttpError);
 
-    if (isLoading) { return <LoadingSpinner /> }
-
-    if (httpError) { return <div className="container m-5">{httpError}</div> }
-
     return (
 
         <section className="flex flex-col items-center gap-20 max-container w-full max-lg:px-5">
@@ -36,42 +32,65 @@ export const Carousel = () => {
 
             </div>
 
+            {!isLoading ? 
 
-            {/* Desktop Carousel */}
+                <>
 
-            <Swiper modules={[Navigation, EffectCoverflow]} loop={true} navigation={true} slidesPerView={3} spaceBetween={0} 
-                effect={'coverflow'} coverflowEffect={{ rotate: 0,  stretch: -45, depth: 100, modifier: 1.5, slideShadows: false }} 
-                className="w-full max-w-[1100px] max-lg:hidden"
-            >
+                    {!httpError ? 
+                
+                        <>
 
-                {books.map((book) => (
+                            {/* Desktop Carousel */}
 
-                    <SwiperSlide className="flex items-center justify-center py-5" key={book.id}>
-                        
-                        <CarouselBookCard book={book} />
+                            <Swiper modules={[Navigation, EffectCoverflow]} loop={true} navigation={true} slidesPerView={3} spaceBetween={0} 
+                                effect={'coverflow'} coverflowEffect={{ rotate: 0,  stretch: -45, depth: 100, modifier: 1.5, slideShadows: false }} 
+                                className="w-full max-w-[1100px] max-lg:hidden"
+                            >
 
-                    </SwiperSlide>
+                                {books.map((book) => (
 
-                ))}
+                                    <SwiperSlide className="flex items-center justify-center py-5" key={book.id}>
+                                        
+                                        <CarouselBookCard book={book} />
 
-            </Swiper>
+                                    </SwiperSlide>
+
+                                ))}
+
+                            </Swiper>
 
 
-            {/* Mobile Carousel */}
+                            {/* Mobile Carousel */}
 
-            <Swiper modules={[Navigation]} loop={true} navigation={true} slidesPerView={1} spaceBetween={0} className=" w-5/6 lg:hidden">
+                            <Swiper modules={[Navigation]} loop={true} navigation={true} slidesPerView={1} spaceBetween={0} className=" w-5/6 lg:hidden">
 
-                {books.map((book) => (
+                                {books.map((book) => (
 
-                    <SwiperSlide className="flex items-center justify-center" key={book.id}>
-                        
-                        <CarouselBookCard book={book} />
+                                    <SwiperSlide className="flex items-center justify-center" key={book.id}>
+                                        
+                                        <CarouselBookCard book={book} />
 
-                    </SwiperSlide>
+                                    </SwiperSlide>
 
-                ))}
+                                ))}
 
-            </Swiper>
+                            </Swiper>
+
+                        </>
+
+                        :
+
+                        <div>{httpError}</div>
+
+                    }
+
+                </>
+
+                :
+
+                <LoadingSpinner />
+            
+            }
             
         </section>
 

@@ -22,12 +22,15 @@ export const SearchPage = () => {
 
     const handleSearchClick = () => {
         
+        setSelectedGenre("");
+        setHttpError(null);
         if (titleQuery !== "") setSearchParams(`/search/by-title?title-query=${titleQuery}`);
     };
 
     const handleGenreChange = (value: string) => {
 
         setTitleQuery("");
+        setHttpError(null);
         setSelectedGenre(value);
         if (value === "") setSearchParams("");
         if (value !== "") setSearchParams(`/search/by-genre?genre-query=${value}`);
@@ -37,10 +40,6 @@ export const SearchPage = () => {
 
     useFetchBooks(urlPaginationParams, currentPage, setBooks, setIsLoading, setHttpError, setTotalAmountOfBooks, setTotlalPages, searchParams);
 
-    if (isLoading) { return <LoadingSpinner /> }
-
-    if (httpError) { return <div className="mt-[70px]">{httpError}</div> }
-
     return (
 
         <section className="mt-[70px] w-full flex flex-col items-center gap-10 max-container px-5 mb-20">
@@ -49,33 +48,49 @@ export const SearchPage = () => {
 
             <SearchPanel selectedGenre={selectedGenre} handleGenreChange={handleGenreChange} titleQuery={titleQuery} setTitleQuery={setTitleQuery} handleSearchClick={handleSearchClick} />
 
-            {totalAmountOfBooks > 0 ?
-                
+            {!isLoading ? 
+
                 <>
 
-                    <div className="sm:text-xl flex gap-5 items-center justify-center">
+                    {!httpError ? 
+                        
+                        <>
 
-                        Books: 
+                            {totalAmountOfBooks > 0 ?
+                                
+                                <>
 
-                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">{resultRange.start} - {resultRange.end}</p> 
+                                    <div className="sm:text-xl flex gap-5 items-center justify-center">
 
-                        out of 
+                                        Books: 
 
-                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">{totalAmountOfBooks}</p>
+                                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">
+                                            {resultRange.start} - {totalAmountOfBooks <= 5 ? totalAmountOfBooks : resultRange.end}
+                                        </p> 
 
-                    </div>
+                                        out of 
+
+                                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">{totalAmountOfBooks}</p>
+
+                                    </div>
+                                
+                                    {books.map(book => <SearchPageBookCard key={book.id} book={book} />)}
+
+                                </>
+
+                                : <div>Nothing was found</div>
+
+                            }
+
+                        </>
+
+                        : <div>{httpError}</div>
+
+                    }
                 
-                    {books.map(
-
-                        book => <SearchPageBookCard key={book.id} book={book} />
-
-                    )}
-
                 </>
 
-                :
-
-                <div>Nothing was found</div>
+                : <LoadingSpinner />
 
             }
 

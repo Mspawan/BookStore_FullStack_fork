@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { BookModel } from "../../../../models/BookModel"
 
 type BookCardProps = {
@@ -20,9 +21,9 @@ export const CarouselBookCard = ({ book }: BookCardProps) => {
             
             </div>
 
-            <button className="btn-main">
+            <Link to={`/book/${book.id}`} className="btn-main">
                 See Details
-            </button>
+            </Link>
 
         </div>
 

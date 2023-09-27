@@ -22,15 +22,13 @@ export const useFetchBooks = (urlPaginationParams: string,
 
                 const response = await fetch(url);
 
-                console.log(response);
+                const responseJson = await response.json();
+                
+                // console.log(responseJson);
 
                 if (!response.ok) {
-                    throw new Error("Ooops, something went wrong!");
+                    throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
                 }
-
-                const responseJson = await response.json();
-
-                // console.log(responseJson);
 
                 if (setTotalAmountOfBooks) setTotalAmountOfBooks(responseJson.totalElements);
                 if (setTotlalPages) setTotlalPages(responseJson.totalPages);

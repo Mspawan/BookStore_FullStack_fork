@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { BookModel } from "../../../../models/BookModel"
 
 type BookCardProps = {
@@ -44,9 +45,9 @@ export const SearchPageBookCard = ({ book }: BookCardProps) => {
             
             </div>
 
-            <button className="btn-main max-lg:static absolute bottom-10 right-10">
+            <Link to={`/book/${book.id}`} className="btn-main max-lg:static absolute bottom-10 right-10">
                 See Details
-            </button>
+            </Link>
 
         </div>
 
