@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Quote } from "../../commons/quote/Quote"
 import { RegistrationModel } from "../../../models/RegistrationModel";
 import { useRegister } from "../../../utils/useRegister";
+import { FieldErrors } from "../../commons/field_errors/FieldErrors";
 
 export const RegistrationPage = () => {
 
@@ -20,71 +21,13 @@ export const RegistrationPage = () => {
         useRegister(personDetails, setIsLoading, setHttpError, setToken);
     };
 
-
-    // -----------------------------------------------------------
-
-    const extractFieldErrors = (fieldName: string) => {
-
-        const regex = `(?:${fieldName}:\\s([\\w\\s-]*))`;
-
-        const fieldErrorsIterator = httpError?.matchAll(RegExp(regex, "gi"));
-
-        const fieldErrors = [];
-
-        if (fieldErrorsIterator) {
-
-            for (const validationError of fieldErrorsIterator) fieldErrors.push(validationError[0]);
-        }
-
-        return (
-
-            <>
-
-                {fieldErrors.map(
-
-                    error => (
-
-                        <div key={error} className="border border-red-500 p-2 bg-red-100 rounded-md">
-
-                            {error.replace(RegExp(`${fieldName}: `), "")}
-
-                        </div>
-
-                    )
-
-                )}
-
-            </>
-
-        )
-
-    };
-
-    
-    extractFieldErrors("firstName");
-    
-
-    // -----------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
     return (
 
         <div className="mt-[70px] w-full max-container flex flex-col gap-20 items-center justify-center mb-20 px-5">
 
             <Quote quoteId={1} />
             
-            <div className="border border-teal-900 rounded-md bg-teal-50 w-full max-w-lg py-10 px-10 shadow-xl flex flex-col items-center gap-10">
+            <div className="custom-form">
 
                 <p className="text-center text-3xl font-semibold">Register</p>
 
@@ -92,21 +35,21 @@ export const RegistrationPage = () => {
 
                     <div className="flex flex-col gap-1">
 
-                        {httpError && extractFieldErrors("firstName")}
+                        {httpError && <FieldErrors fieldName="firstName" httpError={httpError} />}
                         <input type="text" name="firstName" onChange={handleChange} placeholder="First name" className="input shadow-md"/>
                     
                     </div>
 
                     <div className="flex flex-col gap-1">
 
-                        {httpError && extractFieldErrors("lastName")}
+                        {httpError && <FieldErrors fieldName="lastName" httpError={httpError} />}
                         <input type="text" name="lastName" onChange={handleChange} placeholder="Last name" className="input shadow-md"/>
 
                     </div>
                     
                     <div className="flex flex-col gap-1">
 
-                        {httpError && extractFieldErrors("dateOfBirth")}
+                        {httpError && <FieldErrors fieldName="dateOfBirth" httpError={httpError} />}
 
                         <div className="flex gap-5 items-center whitespace-nowrap pl-1">
 
@@ -120,14 +63,14 @@ export const RegistrationPage = () => {
 
                     <div className="flex flex-col gap-1">
 
-                        {httpError && extractFieldErrors("email")}
+                        {httpError && <FieldErrors fieldName="email" httpError={httpError} />}
                         <input type="text" name="email" onChange={handleChange} placeholder="E-mail" className="input shadow-md"/>
                     
                     </div>
 
                     <div className="flex flex-col gap-1">
 
-                        {httpError && extractFieldErrors("password")}
+                        {httpError && <FieldErrors fieldName="password" httpError={httpError} />}
                         <input type="password" name="password" onChange={handleChange} placeholder="Password" className="input shadow-md"/>
                     
                     </div>
