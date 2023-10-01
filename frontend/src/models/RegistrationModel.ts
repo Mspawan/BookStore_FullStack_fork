@@ -6,7 +6,7 @@ export class RegistrationModel {
     email: string;
     password: string;
 
-    constructor ( firstName: string, lastName: string, dateOfBirth: Date, email: string, password: string) {
+    constructor (firstName: string, lastName: string, dateOfBirth: Date, email: string, password: string) {
 
         this.firstName = firstName;
         this.lastName = lastName;
