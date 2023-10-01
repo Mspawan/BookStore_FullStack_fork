@@ -57,4 +57,8 @@
     .dropdown {
         @apply border-2 rounded-md border-teal-600 bg-teal-50 py-2 px-5 text-lg outline-custom-outline focus:outline-offset-2 duration-200;
     }
+
+    .custom-form {
+        @apply border border-teal-900 rounded-md bg-teal-50 w-full max-w-lg py-10 px-10 shadow-xl flex flex-col items-center gap-10;
+    }
 }
