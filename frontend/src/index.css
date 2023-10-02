@@ -47,7 +47,7 @@
     }
 
     .nav-menu {
-        @apply fixed top-[70px] right-0 lg:static flex-1 flex flex-col lg:flex-row gap-1 w-full lg:max-w-[800px] justify-between items-center py-7 lg:py-0 lg:px-7 max-lg:bg-teal-100
+        @apply fixed top-[70px] right-0 lg:static flex-1 flex flex-col lg:flex-row gap-1 w-full lg:max-w-[800px] justify-center items-center py-7 lg:py-0 lg:px-7 max-lg:bg-teal-100
     }
 
     .input {
