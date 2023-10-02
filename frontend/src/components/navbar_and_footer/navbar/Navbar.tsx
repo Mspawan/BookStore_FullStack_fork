@@ -4,8 +4,11 @@ import bookStoreLogo from "../../../assets/images/BookStore_Logo.png";
 import hamburgerMenuLogo from "../../../assets/icons/hamburger-menu.svg";
 import xMenuLogo from "../../../assets/icons/x-menu.svg";
 import { useState } from "react";
+import { useAuthenticationContext } from "../../../authentication/authenticationContext";
 
 export const Navbar = () => {
+
+    const { authentication, logout } = useAuthenticationContext();
 
     const [hamburgerMenuClicked, setHamburgerMenuClicked] = useState(false);
 
@@ -27,6 +30,17 @@ export const Navbar = () => {
                     {navLinks.map(
                         
                         (link) => (
+                            
+                            link.authRequired ? authentication.isAuthenticated &&
+
+                            <NavLink className={({ isActive }) => (isActive && "bg-teal-100 shadow-custom lg:shadow-md") + " nav-link"}
+                                to={link.href} key={link.id} onClick={() => setHamburgerMenuClicked(false)}>
+
+                                {link.title}
+
+                            </NavLink>
+
+                            :
 
                             <NavLink className={({ isActive }) => (isActive && "bg-teal-100 shadow-custom lg:shadow-md") + " nav-link"}
                                 to={link.href} key={link.id} onClick={() => setHamburgerMenuClicked(false)}>
@@ -39,19 +53,33 @@ export const Navbar = () => {
                         
                     )}
 
-                    <Link to={"/login"} className="btn-main lg:hidden mt-4 bg-teal-300 px-10 hover:bg-teal-200">
-                        
-                        Sign In
+                    {!authentication.isAuthenticated ?
 
-                    </Link>
+                        <Link to={"/login"} className="btn-main lg:hidden mt-4 bg-teal-300 px-10 hover:bg-teal-200">
+                            
+                            Sign In
+
+                        </Link>
+
+                        :
+
+                        <button className="btn-main lg:hidden mt-4 bg-teal-300 px-10 hover:bg-teal-200" onClick={logout}>Log out</button>
+                    }
 
                 </div>
 
-                <Link to={"/login"} className="max-lg:hidden btn-main">
+                {!authentication.isAuthenticated ?
+
+                    <Link to={"/login"} className="max-lg:hidden btn-main">
+                        
+                        Sign In
                     
-                    Sign In
-                
-                </Link>
+                    </Link>
+
+                    :
+
+                    <button className="max-lg:hidden btn-main" onClick={logout}>Log out</button>
+                }
 
                 <button className="rounded-lg p-1 hidden max-lg:block" onClick={() => setHamburgerMenuClicked(!hamburgerMenuClicked)}>
                     

@@ -3,7 +3,7 @@ import { RegistrationModel } from "../models/RegistrationModel";
 export const useRegister = async (registrationModel: RegistrationModel, 
                                   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, 
                                   setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
-                                  setToken: React.Dispatch<React.SetStateAction<string>>) => {
+                                  setAuthentication: React.Dispatch<React.SetStateAction<{ isAuthenticated: boolean; token: string; }>>) => {
 
     const submitRegister = async () => {
 
@@ -32,7 +32,9 @@ export const useRegister = async (registrationModel: RegistrationModel,
 
         const token = responseJson.token;
         
-        setToken(token);
+        setAuthentication({ isAuthenticated: true, token: token });
+
+        localStorage.setItem("authenticationState", JSON.stringify({ isAuthenticated: true, token: token }));
 
         setIsLoading(false);
 
