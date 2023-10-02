@@ -1,26 +1,30 @@
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { Quote } from "../../commons/quote/Quote"
 import { FieldErrors } from "../../commons/field_errors/FieldErrors"
 import { useState } from "react";
 import { LoginModel } from "../../../models/LoginModel";
-import { useLogin } from "../../../utils/useLogin";
+import { useAuthenticationContext } from "../../../authentication/authenticationContext";
+import { FormLoader } from "../../commons/form_loader/FormLoader";
 
 export const LoginPage = () => {
+
+    const { authentication, login } = useAuthenticationContext();
 
     const [personDetails, setPersonDetails] = useState<LoginModel>({ email: "", password: "" });
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState<string | null>(null);
-    const [token, setToken] = useState("");
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
         setPersonDetails({ ...personDetails, [event.target.name]: event.target.value });
     };
 
-    const handleSignInClick = () => {
+    const handleSignInClick = async () => {
 
-        useLogin(personDetails, setIsLoading, setHttpError, setToken);
+        await login(personDetails, setIsLoading, setHttpError);
     };
+    
+    if (authentication.isAuthenticated) return <Navigate to={"/"} />
 
     return (
 
@@ -31,6 +35,8 @@ export const LoginPage = () => {
             <div className="custom-form">
 
                 <p className="text-center text-3xl font-semibold">Sign In</p>
+
+                <FormLoader isLoading={isLoading} />
 
                 <form className="flex flex-col gap-5 w-full">
 
