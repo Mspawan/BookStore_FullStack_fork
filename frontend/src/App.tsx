@@ -11,6 +11,7 @@ import { AdminPage } from "./components/pages/admin/AdminPage"
 import { PaymentPage } from "./components/pages/payment/PaymentPage"
 import { LoginPage } from "./components/pages/login/LoginPage"
 import { RegistrationPage } from "./components/pages/registration/RegistrationPage"
+import { AuthenticationProvider } from "./authentication/AuthenticationProvider"
 
 export const App = () => {
 
@@ -18,39 +19,43 @@ export const App = () => {
 
         <main className="relative">
 
-            <BrowserRouter>
+            <AuthenticationProvider>
 
-                <Navbar />
+                <BrowserRouter>
 
-                <Routes>
+                    <Navbar />
 
-                    <Route path='/' element={<Navigate to="/home" />} />
+                    <Routes>
 
-                    <Route path='/home' element={<HomePage />} />
+                        <Route path='/' element={<Navigate to="/home" />} />
 
-                    <Route path='/search' element={<SearchPage />} />
+                        <Route path='/home' element={<HomePage />} />
 
-                    <Route path='/book/:bookId' element={<BookPage />} />
+                        <Route path='/search' element={<SearchPage />} />
 
-                    <Route path='/reviews/:bookId' element={<ReviewsPage />} />
+                        <Route path='/book/:bookId' element={<BookPage />} />
 
-                    <Route path='/shelf' element={<ShelfPage />} />
+                        <Route path='/reviews/:bookId' element={<ReviewsPage />} />
 
-                    <Route path='/discussions' element={<DiscussionsPage />} />
+                        <Route path='/shelf' element={<ShelfPage />} />
 
-                    <Route path='/fees' element={<PaymentPage />} />
+                        <Route path='/discussions' element={<DiscussionsPage />} />
 
-                    <Route path='/admin' element={<AdminPage />} />
+                        <Route path='/fees' element={<PaymentPage />} />
 
-                    <Route path='/login' element={<LoginPage />} />
+                        <Route path='/admin' element={<AdminPage />} />
 
-                    <Route path='/register' element={<RegistrationPage />} />
+                        <Route path='/login' element={<LoginPage />} />
 
-                </Routes>
+                        <Route path='/register' element={<RegistrationPage />} />
 
-                <Footer />
+                    </Routes>
 
-            </BrowserRouter>
+                    <Footer />
+
+                </BrowserRouter>
+
+            </AuthenticationProvider>
 
         </main>
 
