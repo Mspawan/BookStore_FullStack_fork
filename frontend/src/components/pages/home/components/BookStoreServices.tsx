@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
+import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
 
 export const BookStoreServices = () => {
+
+    const { authentication } = useAuthenticationContext();
 
     return (
 
@@ -22,8 +25,8 @@ export const BookStoreServices = () => {
 
                     </div>
 
-                    <Link to={"/discussions"} type="button" className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800">
-                        Open discussion
+                    <Link to={authentication.isAuthenticated ? "/discussions" : "/login"} type="button" className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800">
+                        {authentication.isAuthenticated ? "Open discussion" : "Sign in to open discussion"}
                     </Link>
 
                 </div>
