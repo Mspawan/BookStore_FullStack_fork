@@ -2,6 +2,7 @@ package com.iliamalafeev.mybookstore.mybookstore_backend.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,7 +18,7 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "person_email")
     private String personEmail;
@@ -37,6 +38,7 @@ public class Review {
     @CreationTimestamp
     private LocalDateTime date;
 
+    @NotNull(message = "Rating must be present")
     @Column(name = "rating")
     private Double rating;
 
