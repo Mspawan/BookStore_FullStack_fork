@@ -1,31 +1,36 @@
 package com.iliamalafeev.mybookstore.mybookstore_backend.services;
 
+import com.iliamalafeev.mybookstore.mybookstore_backend.dto.ReviewDTO;
 import com.iliamalafeev.mybookstore.mybookstore_backend.entities.Book;
 import com.iliamalafeev.mybookstore.mybookstore_backend.entities.Review;
 import com.iliamalafeev.mybookstore.mybookstore_backend.repositories.BookRepository;
 import com.iliamalafeev.mybookstore.mybookstore_backend.repositories.ReviewRepository;
 import com.iliamalafeev.mybookstore.mybookstore_backend.utils.ErrorsUtil;
 import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 @Transactional
 public class ReviewService {
 
+    private final ModelMapper modelMapper;
     private final ReviewRepository reviewRepository;
     private final BookRepository bookRepository;
 
     @Autowired
-    public ReviewService(ReviewRepository reviewRepository, BookRepository bookRepository) {
+    public ReviewService(ModelMapper modelMapper, ReviewRepository reviewRepository, BookRepository bookRepository) {
+        this.modelMapper = modelMapper;
         this.reviewRepository = reviewRepository;
         this.bookRepository = bookRepository;
     }
 
-    public List<Review> findAllByBookId(Long bookId) {
+    public Page<ReviewDTO> findAllByBookId(Long bookId, Pageable pageable) {
 
         Optional<Book> book = bookRepository.findById(bookId);
 
@@ -33,6 +38,12 @@ public class ReviewService {
             ErrorsUtil.returnBookError("Book not found", null);
         }
 
-        return reviewRepository.findByReviewedBook(book.get());
+        Page<Review> reviews = reviewRepository.findByReviewedBook(book.get(), pageable);
+
+        return reviews.map(this::convertToReviewDTO);
+    }
+
+    private ReviewDTO convertToReviewDTO(Review review) {
+        return modelMapper.map(review, ReviewDTO.class);
     }
 }
