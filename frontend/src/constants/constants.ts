@@ -30,3 +30,18 @@ export const genres = [
     {id: 4, value: "", name: "All"},
 
 ];
+
+export const ratings = [
+
+    {id: 1, value: 0.5, name: "0.5 star"},
+    {id: 2, value: 1.0, name: "1 star"},
+    {id: 3, value: 1.5, name: "1.5 stars"},
+    {id: 4, value: 2.0, name: "2 stars"},
+    {id: 5, value: 2.5, name: "2.5 stars"},
+    {id: 6, value: 3.0, name: "3 stars"},
+    {id: 7, value: 3.5, name: "3.5 stars"},
+    {id: 8, value: 4.0, name: "4 stars"},
+    {id: 9, value: 4.5, name: "4.5 stars"},
+    {id: 10, value: 5.0, name: "5 stars"}
+
+];
