@@ -23,8 +23,6 @@ export const useLogin = async (loginModel: LoginModel,
         const response = await fetch(url, requestOptions);
 
         const responseJson = await response.json();
-                    
-        console.log("httpError ---> " + responseJson.message);
 
         if (!response.ok) {
             throw new Error(responseJson.message);

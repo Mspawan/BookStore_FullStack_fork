@@ -23,8 +23,6 @@ export const useFetchBooks = (urlPaginationParams: string,
                 const response = await fetch(url);
 
                 const responseJson = await response.json();
-                
-                // console.log(responseJson);
 
                 if (!response.ok) {
                     throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
@@ -44,8 +42,6 @@ export const useFetchBooks = (urlPaginationParams: string,
 
                 setBooks(loadedBooks);
                 setIsLoading(false);
-                
-                // console.log("fetching");
             }
 
             fetchBooks().catch(

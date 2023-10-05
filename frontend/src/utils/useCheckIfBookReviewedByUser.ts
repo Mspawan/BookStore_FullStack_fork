@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 export const useCheckIfBookReviewedByUser = (bookId: string,
-                                             token: string,
+                                             authentication: { isAuthenticated: boolean; token: string; },
                                              setIsReviewLeft: React.Dispatch<React.SetStateAction<boolean>>,
                                              setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
                                              setHttpError: React.Dispatch<React.SetStateAction<string | null>>) => {
@@ -11,35 +11,32 @@ export const useCheckIfBookReviewedByUser = (bookId: string,
         () => {
 
             const fetchIsBookReviewedByUser = async () => {
-                
-                console.log("------------------------");
-                
-                const url = `http://localhost:8080/api/books/secure/is-reviewed/${bookId}`;
 
-                const requestOptions = {
+                if (authentication.isAuthenticated) {
+                
+                    const url = `http://localhost:8080/api/books/secure/is-reviewed/${bookId}`;
 
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        "Content-type": "application/json"
+                    const requestOptions = {
+
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${authentication.token}`,
+                            "Content-type": "application/json"
+                        }
+                    };
+
+                    const response = await fetch(url, requestOptions);
+
+                    const responseJson = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
                     }
-                };
 
-                const response = await fetch(url, requestOptions);
-
-                const responseJson = await response.json();
-                
-                console.log(responseJson);
-
-                if (!response.ok) {
-                    throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
+                    setIsReviewLeft(responseJson);
                 }
-
-                setIsReviewLeft(responseJson);
+                
                 setIsLoading(false);
-
-                console.log("is book reviewed fetch");
-                console.log("------------------------");
             }
 
             fetchIsBookReviewedByUser().catch(

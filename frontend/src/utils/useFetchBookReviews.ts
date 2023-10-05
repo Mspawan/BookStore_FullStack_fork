@@ -6,9 +6,9 @@ export const useFetchBookReviews = (bookId: string,
                                     setTotalStars: React.Dispatch<React.SetStateAction<number>>,
                                     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
                                     setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
+                                    setTotalAmountOfReviews: React.Dispatch<React.SetStateAction<number>>,
                                     urlPaginationParams?: string,
                                     currentPage?: number,
-                                    setTotalAmountOfReviews?: React.Dispatch<React.SetStateAction<number>>,
                                     setTotlalPages?: React.Dispatch<React.SetStateAction<number>>,
                                     urlSearchParams?: string) => {
 
@@ -17,8 +17,6 @@ export const useFetchBookReviews = (bookId: string,
         () => {
 
             const fetchReviews = async () => {
-
-                console.log("------------------------");
                 
                 const baseUrl = `http://localhost:8080/api/reviews/${bookId}`;
 
@@ -27,19 +25,18 @@ export const useFetchBookReviews = (bookId: string,
                 const response = await fetch(url);
 
                 const responseJson = await response.json();
-                
-                console.log(responseJson);
 
                 if (!response.ok) {
                     throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
                 }
 
-                if (setTotalAmountOfReviews) setTotalAmountOfReviews(responseJson.totalElements);
+                setTotalAmountOfReviews(responseJson.totalElements);
                 if (setTotlalPages) setTotlalPages(responseJson.totalPages);
 
                 const responseReviewsContentArray = responseJson.content;
 
                 const loadedReviews: ReviewModel[] = [];
+
                 let weightedStarReviews: number = 0;
 
                 for (const key in responseReviewsContentArray) {
@@ -55,9 +52,6 @@ export const useFetchBookReviews = (bookId: string,
 
                 setReviews(loadedReviews);
                 setIsLoading(false);
-                
-                console.log("reviews fetch");
-                console.log("------------------------");
             }
 
             fetchReviews().catch(

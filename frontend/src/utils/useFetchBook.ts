@@ -11,16 +11,12 @@ export const useFetchBook = (bookId: string,
         () => {
 
             const fetchBook = async () => {
-
-                console.log("------------------------");
                 
                 const url = `http://localhost:8080/api/books/${bookId}`;
 
                 const response = await fetch(url);
 
                 const responseJson = await response.json();
-                
-                console.log(responseJson);
 
                 if (!response.ok) {
                     throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
@@ -30,9 +26,6 @@ export const useFetchBook = (bookId: string,
 
                 setBook(loadedBook);
                 setIsLoading(false);
-                
-                console.log("book fetch");
-                console.log("------------------------");
             }
 
             fetchBook().catch(
