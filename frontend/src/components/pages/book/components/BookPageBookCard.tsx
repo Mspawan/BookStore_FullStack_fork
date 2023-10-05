@@ -1,21 +1,23 @@
-import { Link } from "react-router-dom"
 import { BookModel } from "../../../../models/BookModel"
+import { ReviewStars } from "../../../commons/review_stars/ReviewStars"
+import { CheckoutBox } from "./CheckoutBox"
 
 type BookCardProps = {
-    book: BookModel | null
+    book: BookModel | null,
+    totalStars: number
 }
 
-export const BookPageBookCard = ({ book }: BookCardProps) => {
+export const BookPageBookCard = ({ book, totalStars }: BookCardProps) => {
 
     if (book === null) return <div>Something went wrong - cannot read the book data</div>
 
     return (
 
-        <div className="flex max-lg:flex-col items-start max-lg:items-center gap-10 p-10 rounded-lg w-full shadow-custom relative" key={book.id}>
+        <div className="flex max-lg:flex-col items-start max-lg:items-center gap-10 p-10 rounded-lg w-full shadow-custom-2 relative" key={book.id}>
 
             <img src={book.img} alt="cover" width={250} height={400} className="shadow-xl "/>
             
-            <div className="flex flex-col gap-10 lg:w-1/3">
+            <div className="flex flex-col gap-10 xl:w-5/12 lg:flex-1">
 
                 <div className="max-lg:text-center">
                 
@@ -34,6 +36,10 @@ export const BookPageBookCard = ({ book }: BookCardProps) => {
 
                 </div>
 
+                <div className="flex max-lg:justify-center">
+                    <ReviewStars ratingProp={totalStars} size={25} />
+                </div>
+
                 <div className="max-lg:text-center">
 
                     {book.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -45,6 +51,12 @@ export const BookPageBookCard = ({ book }: BookCardProps) => {
 
                 </div>
             
+            </div>
+
+            <div className="flex-1">
+            
+                <CheckoutBox bookId={`${book.id}`} copies={book.copies} copiesAvailable={book.copiesAvailable} />
+
             </div>
 
         </div>
