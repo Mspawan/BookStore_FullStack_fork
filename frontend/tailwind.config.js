@@ -10,7 +10,9 @@ export default {
         nunito: ['Nunito Sans', 'sans-serif'],
       },
       boxShadow: {
-        'custom': '0 0 10px rgba(0, 0, 0, 0.3)'
+        'custom': '0 0 10px rgba(0, 0, 0, 0.3)',
+        'custom-2': '0 0 20px rgba(0, 0, 0, 0.2)',
+        'custom-3': '0 0 10px rgba(0, 0, 0, 0.2)',
       },
       backgroundImage: {
         'home-hero-1': "url('assets/images/home-hero-bg-1.jpg')",
