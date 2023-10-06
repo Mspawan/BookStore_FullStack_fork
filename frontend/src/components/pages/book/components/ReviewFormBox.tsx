@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ReviewStars } from "../../../commons/review_stars/ReviewStars"
 import { ratings } from "../../../../constants/constants";
 import { ReviewModel } from "../../../../models/ReviewModel";
+import { FieldErrors } from "../../../commons/field_errors/FieldErrors";
 
 type ReviewFormBoxProps = {
     handleSubmitReviewClick: (review: ReviewModel) => Promise<void>,
@@ -33,7 +34,14 @@ export const ReviewFormBox = ({ handleSubmitReviewClick, userReviewSubmitHttpErr
 
             <p className="w-full text-lg font-semibold text-center">Leave a review here:</p>
 
-            {userReviewSubmitHttpError && <div className="px-5">{userReviewSubmitHttpError}</div>}
+            {userReviewSubmitHttpError && 
+
+                <div className="self-center">
+                    
+                    <FieldErrors fieldName={"rating"} httpError={userReviewSubmitHttpError} />
+                
+                </div>
+            }
 
             <div className="w-full flex gap-3 items-center justify-center">
 

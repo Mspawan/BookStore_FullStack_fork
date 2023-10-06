@@ -94,7 +94,7 @@ export const SearchPage = () => {
 
             }
 
-            <Pagination currentPage={currentPage} totalPages={totalPages} totalAmountOfBooks={totalAmountOfBooks} 
+            <Pagination currentPage={currentPage} totalPages={totalPages} totalAmountOfItems={totalAmountOfBooks} 
                 setCurrentPage={setCurrentPage} setResultRange={setResultRange} 
             />
 

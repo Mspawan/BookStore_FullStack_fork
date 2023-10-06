@@ -5,7 +5,7 @@ type FieldErrorsProps = {
 
 export const FieldErrors = ({ fieldName, httpError } : FieldErrorsProps) => {
 
-    const regex = `(?:${fieldName}:\\s([\\w\\s-]*))`;
+    const regex = `(?:${fieldName}:\\s([\\w.?\\s-]*))`;
 
     const fieldErrorsIterator = httpError?.matchAll(RegExp(regex, "gi"));
 

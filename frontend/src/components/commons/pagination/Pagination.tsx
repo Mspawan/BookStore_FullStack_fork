@@ -1,12 +1,12 @@
 type PaginationProps = {
     currentPage: number,
     totalPages: number,
-    totalAmountOfBooks: number,
+    totalAmountOfItems: number,
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
     setResultRange: React.Dispatch<React.SetStateAction<{ start: number; end: number; }>>
 }
 
-export const Pagination = ({ currentPage, totalPages, totalAmountOfBooks, setCurrentPage, setResultRange }: PaginationProps) => {
+export const Pagination = ({ currentPage, totalPages, totalAmountOfItems, setCurrentPage, setResultRange }: PaginationProps) => {
 
     const pageNumbers = [];
 
@@ -62,7 +62,7 @@ export const Pagination = ({ currentPage, totalPages, totalAmountOfBooks, setCur
 
         if (currentPage !== totalPages) {
 
-            setResultRange({ start: totalAmountOfBooks - (totalAmountOfBooks - ((totalPages * 5 - 4))), end: totalAmountOfBooks });
+            setResultRange({ start: totalAmountOfItems - (totalAmountOfItems - ((totalPages * 5 - 4))), end: totalAmountOfItems });
             setCurrentPage(totalPages);
         }
     }

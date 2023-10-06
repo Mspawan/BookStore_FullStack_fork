@@ -24,7 +24,7 @@ export const BookPage = () => {
     const [isLoadingReviews, setIsLoadingReviews] = useState(true);
     const [reviewsHttpError, setReviewsHttpError] = useState<string | null>(null);
     
-    const urlPaginationParams = `?page=0&reviews-per-page=3`;
+    const urlPaginationParams = `?page=0&reviews-per-page=3&latest=true`;
 
     useFetchBook(bookId, setBook, setIsLoading, setHttpError);
 

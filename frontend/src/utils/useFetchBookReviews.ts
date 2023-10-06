@@ -9,8 +9,7 @@ export const useFetchBookReviews = (bookId: string,
                                     setTotalAmountOfReviews: React.Dispatch<React.SetStateAction<number>>,
                                     urlPaginationParams?: string,
                                     currentPage?: number,
-                                    setTotlalPages?: React.Dispatch<React.SetStateAction<number>>,
-                                    urlSearchParams?: string) => {
+                                    setTotlalPages?: React.Dispatch<React.SetStateAction<number>>) => {
 
     useEffect(
 
@@ -63,7 +62,7 @@ export const useFetchBookReviews = (bookId: string,
                 }
             )
 
-        }, [currentPage, urlSearchParams]
+        }, [currentPage]
 
     );
 
