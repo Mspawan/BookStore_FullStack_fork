@@ -7,6 +7,7 @@ import com.iliamalafeev.mybookstore.mybookstore_backend.entities.*;
 import com.iliamalafeev.mybookstore.mybookstore_backend.repositories.*;
 import com.iliamalafeev.mybookstore.mybookstore_backend.utils.ErrorsUtil;
 import com.iliamalafeev.mybookstore.mybookstore_backend.utils.validators.BookValidator;
+import com.iliamalafeev.mybookstore.mybookstore_backend.utils.validators.ReviewValidator;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class BookService {
 
     private final ModelMapper modelMapper;
     private final BookValidator bookValidator;
+    private final ReviewValidator reviewValidator;
     private final BookRepository bookRepository;
     private final GenreRepository genreRepository;
     private final CheckoutRepository checkoutRepository;
@@ -37,9 +39,10 @@ public class BookService {
     private final HistoryRecordRepository historyRecordRepository;
 
     @Autowired
-    public BookService(ModelMapper modelMapper, BookValidator bookValidator, BookRepository bookRepository, GenreRepository genreRepository, CheckoutRepository checkoutRepository, PersonRepository personRepository, PaymentRepository paymentRepository, ReviewRepository reviewRepository, HistoryRecordRepository historyRecordRepository) {
+    public BookService(ModelMapper modelMapper, BookValidator bookValidator, ReviewValidator reviewValidator, BookRepository bookRepository, GenreRepository genreRepository, CheckoutRepository checkoutRepository, PersonRepository personRepository, PaymentRepository paymentRepository, ReviewRepository reviewRepository, HistoryRecordRepository historyRecordRepository) {
         this.modelMapper = modelMapper;
         this.bookValidator = bookValidator;
+        this.reviewValidator = reviewValidator;
         this.bookRepository = bookRepository;
         this.genreRepository = genreRepository;
         this.checkoutRepository = checkoutRepository;
@@ -263,6 +266,10 @@ public class BookService {
 
     public void reviewBook(String personEmail, Long bookId, ReviewDTO reviewDTO, BindingResult bindingResult) {
 
+        Review newReview = convertToReview(reviewDTO);
+
+        reviewValidator.validate(newReview, bindingResult);
+
         if (bindingResult.hasErrors()) {
             ErrorsUtil.returnReviewError("Some fields are invalid.", bindingResult);
         }
@@ -275,7 +282,7 @@ public class BookService {
         }
 
         Person person = getPersonFromRepository(personEmail);
-        Review newReview = convertToReview(reviewDTO);
+
         newReview.setPersonEmail(personEmail);
         newReview.setPersonFirstName(person.getFirstName());
         newReview.setPersonLastName(person.getLastName());
