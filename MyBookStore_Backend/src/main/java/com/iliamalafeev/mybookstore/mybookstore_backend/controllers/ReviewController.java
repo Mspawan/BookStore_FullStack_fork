@@ -25,10 +25,11 @@ public class ReviewController {
 
     @GetMapping("/{bookId}")
     public Page<ReviewDTO> findAllByBookId(@PathVariable("bookId") Long bookId,
-                                           @RequestParam(value = "page", required = true) Integer page,
-                                           @RequestParam(value = "reviews-per-page", required = true) Integer reviewsPerPage) {
+                                           @RequestParam(value = "page") Integer page,
+                                           @RequestParam(value = "reviews-per-page") Integer reviewsPerPage,
+                                           @RequestParam(value = "latest", defaultValue = "false") boolean latest) {
 
-        return reviewService.findAllByBookId(bookId, PageRequest.of(page, reviewsPerPage));
+        return reviewService.findAllByBookId(bookId, PageRequest.of(page, reviewsPerPage), latest);
     }
 
     @ExceptionHandler

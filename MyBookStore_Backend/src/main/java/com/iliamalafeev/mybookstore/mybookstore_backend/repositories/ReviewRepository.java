@@ -10,6 +10,8 @@ import java.util.Optional;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
+    Page<Review> findAllByReviewedBookOrderByIdDesc(Book book, Pageable pageable);
+
     Page<Review> findByReviewedBook(Book book, Pageable pageable);
 
     Optional<Review> findByPersonEmailAndReviewedBook(String personEmail, Book book);

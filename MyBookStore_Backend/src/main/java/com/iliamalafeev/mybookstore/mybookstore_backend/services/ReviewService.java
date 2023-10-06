@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class ReviewService {
         this.bookRepository = bookRepository;
     }
 
-    public Page<ReviewDTO> findAllByBookId(Long bookId, Pageable pageable) {
+    public Page<ReviewDTO> findAllByBookId(Long bookId, Pageable pageable, boolean latest) {
 
         Optional<Book> book = bookRepository.findById(bookId);
 
@@ -38,7 +39,10 @@ public class ReviewService {
             ErrorsUtil.returnBookError("Book not found", null);
         }
 
-        Page<Review> reviews = reviewRepository.findByReviewedBook(book.get(), pageable);
+        Page<Review> reviews;
+
+        if (latest) reviews = reviewRepository.findAllByReviewedBookOrderByIdDesc(book.get(), pageable);
+        else reviews = reviewRepository.findByReviewedBook(book.get(), pageable);
 
         return reviews.map(this::convertToReviewDTO);
     }
