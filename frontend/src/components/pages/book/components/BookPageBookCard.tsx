@@ -37,7 +37,9 @@ export const BookPageBookCard = ({ book, totalStars }: BookCardProps) => {
                 </div>
 
                 <div className="flex max-lg:justify-center">
+
                     <ReviewStars ratingProp={totalStars} size={25} />
+                    
                 </div>
 
                 <div className="max-lg:text-center">
@@ -55,7 +57,7 @@ export const BookPageBookCard = ({ book, totalStars }: BookCardProps) => {
 
             <div className="flex-1">
             
-                <CheckoutBox bookId={`${book.id}`} copies={book.copies} copiesAvailable={book.copiesAvailable} />
+                <CheckoutBox book={book} />
 
             </div>
 

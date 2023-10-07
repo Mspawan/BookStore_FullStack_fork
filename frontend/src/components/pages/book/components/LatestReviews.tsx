@@ -16,35 +16,55 @@ export const LatestReviews = ({ bookId, reviews, totalAmountOfReviews, isLoading
     return (
 
         <div className="w-full max-container p-5 flex flex-col gap-5">
-            
-            <p className="font-semibold lg:text-3xl max-lg:text-2xl">Latest Reviews: 3 out of {totalAmountOfReviews}</p>
 
-            {!isLoadingReviews ? 
+            {totalAmountOfReviews !== 0 ? 
 
                 <>
 
-                    {!reviewsHttpError ?
+                    {totalAmountOfReviews < 3 ? 
+            
+                        <p className="font-semibold lg:text-3xl max-lg:text-2xl">Latest Reviews: {totalAmountOfReviews} out of {totalAmountOfReviews}</p>
 
-                        <div className="flex flex-col gap-5">
+                        :
 
-                            {reviews.map(
+                        <p className="font-semibold lg:text-3xl max-lg:text-2xl">Latest Reviews: 3 out of {totalAmountOfReviews}</p>
 
-                                (review) => <ReviewCard key={review.id} review={review} />
+                    }
 
-                            )}
+                    {!isLoadingReviews ? 
 
-                            <Link to={`/reviews/${bookId}`} className="btn-main self-start">All reviews</Link>
+                        <>
 
-                        </div>
+                            {!reviewsHttpError ?
 
-                        : <div className="max-container px-5 py-10">{reviewsHttpError}</div>
+                                <div className="flex flex-col gap-5">
+
+                                    {reviews.map(
+
+                                        (review) => <ReviewCard key={review.id} review={review} />
+
+                                    )}
+
+                                    <Link to={`/reviews/${bookId}`} className="btn-main self-start">All reviews</Link>
+
+                                </div>
+
+                                : <div className="max-container px-5 py-10">{reviewsHttpError}</div>
+
+                            }
+
+                        </>
+                        
+                        : <LoadingSpinner />
 
                     }
 
                 </>
-                
-                : <LoadingSpinner />
 
+                :
+
+                <p className="font-semibold text-center lg:text-2xl max-lg:text-xl">No reviews yet. Be the first one to rate this book and leave a comment!</p>
+                
             }
 
         </div>
