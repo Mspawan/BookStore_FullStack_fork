@@ -8,16 +8,17 @@ import { FormLoader } from "../../../commons/form_loader/FormLoader";
 import { ReviewFormBox } from "./ReviewFormBox";
 import { useSubmitReview } from "../../../../utils/useSubmitReview";
 import { ReviewModel } from "../../../../models/ReviewModel";
+import { useCheckOutBook } from "../../../../utils/useCheckOutBook";
+import { BookModel } from "../../../../models/BookModel";
 
-type CheckoutBoxProps = {
-    bookId: string,
-    copies: number,
-    copiesAvailable: number
-}
+type CheckoutBoxProps = { book: BookModel };
 
-export const CheckoutBox = ({ bookId, copies, copiesAvailable }: CheckoutBoxProps) => {
+export const CheckoutBox = ({ book }: CheckoutBoxProps) => {
 
     const { authentication } = useAuthenticationContext();
+    const bookId: string = `${book.id}`;
+
+    const [copiesAvailable, setCopiesAvailable] = useState(book.copiesAvailable);
 
     // Loans count state
     const [currentCheckoutsCount, setCurrentCheckoutsCount] = useState(0);
@@ -28,6 +29,7 @@ export const CheckoutBox = ({ bookId, copies, copiesAvailable }: CheckoutBoxProp
     const [isCheckedOut, setIsCheckedOut] = useState(false);
     const [isLoadingBookCheckedOut, setIsLoadingBookCheckedOut] = useState(true);
     const [isCheckedOutHttpError, setIsCheckedOutHttpError] = useState<string | null>(null);
+    const [checkOutHttpError, setCheckOutHttpError] = useState<string | null>(null);
 
     // User review state
     const [isReviewLeft, setIsReviewLeft] = useState(false);
@@ -40,6 +42,11 @@ export const CheckoutBox = ({ bookId, copies, copiesAvailable }: CheckoutBoxProp
     useCheckIfBookCheckedOutByUser(bookId, authentication, setIsCheckedOut, setIsLoadingBookCheckedOut, setIsCheckedOutHttpError);
 
     useCheckIfBookReviewedByUser(bookId, authentication, setIsReviewLeft, setIsLoadingUserReview, setUserReviewLeftHttpError);
+
+    const handleCheckoutClick = async () => {
+
+        await useCheckOutBook(bookId, authentication, setIsLoadingBookCheckedOut, setCheckOutHttpError, setCopiesAvailable, setIsCheckedOut, setCurrentCheckoutsCount);
+    };
 
     const handleSubmitReviewClick = async (review: ReviewModel) => {
 
@@ -70,7 +77,17 @@ export const CheckoutBox = ({ bookId, copies, copiesAvailable }: CheckoutBoxProp
 
             if (!isCheckedOut) {
 
-                if (currentCheckoutsCount < 5) return <button className="btn-main">Checkout</button>
+                if (currentCheckoutsCount < 5) {
+                    
+                    return <div className="flex flex-col items-center gap-1">
+
+                        {checkOutHttpError && <div className="border border-red-500 py-1 px-2 bg-red-100 rounded-md">{checkOutHttpError}</div>}
+                    
+                        <button className="btn-main" onClick={handleCheckoutClick}>Checkout</button>
+
+                    </div>
+
+                }
 
                 return <p className="text-red-600 text-lg font-semibold">To many books checked out.</p>
             }
@@ -118,7 +135,7 @@ export const CheckoutBox = ({ bookId, copies, copiesAvailable }: CheckoutBoxProp
 
             <div className="flex gap-5 text-lg">
 
-                <p><span className="font-semibold">{copies}</span> copies</p>
+                <p><span className="font-semibold">{book.copies}</span> copies</p>
 
                 <p><span className="font-semibold">{copiesAvailable}</span> available</p>
 
