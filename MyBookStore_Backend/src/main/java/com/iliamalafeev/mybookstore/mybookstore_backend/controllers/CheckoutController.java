@@ -33,7 +33,7 @@ public class CheckoutController {
         return checkoutService.getCurrentCheckoutsCount(extractEmail(token));
     }
 
-    @GetMapping("/secure/checkouts")
+    @GetMapping("/secure/current-checkouts")
     public List<CheckoutDTO> getCurrentCheckouts(@RequestHeader(value = "Authorization") String token) {
 
         return checkoutService.getCurrentCheckouts(extractEmail(token));
