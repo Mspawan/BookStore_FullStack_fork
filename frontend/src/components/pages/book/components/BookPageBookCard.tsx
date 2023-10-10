@@ -13,9 +13,9 @@ export const BookPageBookCard = ({ book, totalStars }: BookCardProps) => {
 
     return (
 
-        <div className="flex max-lg:flex-col items-start max-lg:items-center gap-10 p-10 rounded-lg w-full shadow-custom-2 relative" key={book.id}>
+        <div className="flex max-lg:flex-col items-start max-lg:items-center gap-10 p-10 rounded-lg w-full shadow-custom-2 relative">
 
-            <img src={book.img} alt="cover" width={250} height={400} className="shadow-xl "/>
+            <img src={book.img} alt="cover" width={250} height={400} className="shadow-xl"/>
             
             <div className="flex flex-col gap-10 xl:w-5/12 lg:flex-1">
 
