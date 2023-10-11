@@ -4,13 +4,17 @@ import { CheckoutModel } from "../models/CheckoutModel";
 export const useFetchCurrentCheckouts = (authentication: { isAuthenticated: boolean; token: string; },
                                          setCurrentCheckouts: React.Dispatch<React.SetStateAction<CheckoutModel[]>>,
                                          setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
-                                         setHttpError: React.Dispatch<React.SetStateAction<string | null>>) => {
+                                         setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
+                                         isBookReturned: boolean,
+                                         isCheckoutRenewed: boolean) => {
 
     useEffect(
 
         () => {
 
             const fetchUserCurrentCheckouts = async () => {
+
+                setIsLoading(true);
 
                 if (authentication.isAuthenticated) {
 
@@ -58,7 +62,7 @@ export const useFetchCurrentCheckouts = (authentication: { isAuthenticated: bool
                 }
             )
 
-        }, []
+        }, [isBookReturned, isCheckoutRenewed]
 
     );
 
