@@ -3,7 +3,7 @@ import { Quote } from "../../commons/quote/Quote"
 import { useAuthenticationContext } from "../../../authentication/authenticationContext";
 import { useState } from "react";
 import { HistoryTab } from "./components/HistoryTab";
-import { LoansTab } from "./components/LoansTab";
+import { CheckoutsTab } from "./components/CheckoutsTab";
 
 export const ShelfPage = () => {
 
@@ -37,7 +37,7 @@ export const ShelfPage = () => {
 
                 <div className="w-full">
 
-                    { isHistoryTabSelected ? <HistoryTab /> : <LoansTab /> }
+                    { isHistoryTabSelected ? <HistoryTab /> : <CheckoutsTab /> }
 
                 </div>
 
