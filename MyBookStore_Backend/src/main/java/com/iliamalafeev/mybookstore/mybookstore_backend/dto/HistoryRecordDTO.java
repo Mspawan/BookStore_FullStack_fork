@@ -9,6 +9,8 @@ import java.time.LocalDate;
 @Setter
 public class HistoryRecordDTO {
 
+    private Long id;
+
     private BookDTO bookDTO;
 
     private LocalDate checkoutDate;
