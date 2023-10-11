@@ -9,6 +9,10 @@ import com.iliamalafeev.mybookstore.mybookstore_backend.repositories.HistoryReco
 import com.iliamalafeev.mybookstore.mybookstore_backend.repositories.PersonRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,19 +32,19 @@ public class HistoryRecordService {
         this.personRepository = personRepository;
     }
 
-    public List<HistoryRecordDTO> findAllByPersonEmail(String personEmail) {
+    public Page<HistoryRecordDTO> findAllByPersonEmail(String personEmail, Pageable pageable) {
 
         Person person = personRepository.findByEmail(personEmail).get();
-        List<HistoryRecord> historyRecords = historyRecordRepository.findByHistoryRecordHolder(person);
-        List<HistoryRecordDTO> response = new ArrayList<>();
+        Page<HistoryRecord> historyRecords = historyRecordRepository.findByHistoryRecordHolder(person, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
+        List<HistoryRecordDTO> pageContent = new ArrayList<>();
 
         for (HistoryRecord historyRecord : historyRecords) {
             HistoryRecordDTO historyRecordDTO = convertToHistoryRecordDTO(historyRecord);
             historyRecordDTO.setBookDTO(convertToBookDTO(historyRecord.getHistoryRecordedBook()));
-            response.add(historyRecordDTO);
+            pageContent.add(historyRecordDTO);
         }
 
-        return response;
+        return new PageImpl<>(pageContent, historyRecords.getPageable(), historyRecords.getTotalElements());
     }
 
     private HistoryRecordDTO convertToHistoryRecordDTO(HistoryRecord historyRecord) {
