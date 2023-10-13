@@ -9,6 +9,10 @@ import com.iliamalafeev.mybookstore.mybookstore_backend.utils.ErrorsUtil;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -31,23 +35,23 @@ public class DiscussionService {
         this.personRepository = personRepository;
     }
 
-    public List<DiscussionDTO> findAllByPersonEmail(String personEmail) {
+    public Page<DiscussionDTO> findAllByPersonEmail(String personEmail, Pageable pageable) {
 
         Person person = personRepository.findByEmail(personEmail).get();
 
-        List<Discussion> discussions = discussionRepository.findByDiscussionHolder(person);
+        Page<Discussion> discussions = discussionRepository.findByDiscussionHolder(person, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 
-        List<DiscussionDTO> response = new ArrayList<>();
+        List<DiscussionDTO> pageContent = new ArrayList<>();
 
         for (Discussion discussion : discussions) {
             DiscussionDTO discussionDTO = convertToDiscussionDTO(discussion);
             discussionDTO.setPersonEmail(personEmail);
             discussionDTO.setPersonFirstName(person.getFirstName());
             discussionDTO.setPersonLastName(person.getLastName());
-            response.add(discussionDTO);
+            pageContent.add(discussionDTO);
         }
 
-        return response;
+        return new PageImpl<>(pageContent, discussions.getPageable(), discussions.getTotalElements());
     }
 
     public List<DiscussionDTO> findAllByClosed(boolean isClosed) {

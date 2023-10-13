@@ -7,13 +7,14 @@ import com.iliamalafeev.mybookstore.mybookstore_backend.utils.error_responses.Di
 import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.DiscussionException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/api/discussions/secure")
 public class DiscussionController {
@@ -33,9 +34,11 @@ public class DiscussionController {
     }
 
     @GetMapping
-    public List<DiscussionDTO> findAllByPersonEmail(@RequestHeader("Authorization") String token) {
+    public Page<DiscussionDTO> findAllByPersonEmail(@RequestHeader("Authorization") String token,
+                                                    @RequestParam(value = "page", required = true) Integer page,
+                                                    @RequestParam(value = "discussions-per-page", required = true) Integer discussionsPerPage) {
 
-        return discussionService.findAllByPersonEmail(extractEmail(token));
+        return discussionService.findAllByPersonEmail(extractEmail(token), PageRequest.of(page, discussionsPerPage));
     }
 
     @PostMapping("add-discussion")
