@@ -35,7 +35,9 @@ public class HistoryRecordService {
     public Page<HistoryRecordDTO> findAllByPersonEmail(String personEmail, Pageable pageable) {
 
         Person person = personRepository.findByEmail(personEmail).get();
+
         Page<HistoryRecord> historyRecords = historyRecordRepository.findByHistoryRecordHolder(person, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
+
         List<HistoryRecordDTO> pageContent = new ArrayList<>();
 
         for (HistoryRecord historyRecord : historyRecords) {
