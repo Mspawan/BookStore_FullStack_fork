@@ -42,6 +42,7 @@ export const useSubmitDiscussion = async (authentication: { isAuthenticated: boo
         }
 
         setDiscussionModel({ title: "", question: "" });
+        setHttpError(null);
         setIsLoading(false);
 
         console.log("submit discussion fetch");
@@ -52,6 +53,7 @@ export const useSubmitDiscussion = async (authentication: { isAuthenticated: boo
         
         (error: any) => {
 
+            setDisplaySuccess(false);
             setIsLoading(false);
             setHttpError(error.message);
         }
