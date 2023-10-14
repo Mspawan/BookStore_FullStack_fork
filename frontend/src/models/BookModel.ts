@@ -2,7 +2,7 @@ import { GenreModel } from "./GenreModel";
 
 export class BookModel {
 
-    id: number;
+    id?: number;
     title: string;
     author: string;
     description: string;
@@ -11,7 +11,7 @@ export class BookModel {
     genres: GenreModel[];
     img: string;
 
-    constructor ( id: number, title: string, author: string, description: string, copies: number, copiesAvailable: number, genres: GenreModel[], img: string) {
+    constructor (title: string, author: string, description: string, copies: number, copiesAvailable: number, genres: GenreModel[], img: string, id?: number) {
 
         this.id = id;
         this.title = title;
