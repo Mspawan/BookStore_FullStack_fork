@@ -26,12 +26,12 @@ export const CheckoutsTab = () => {
 
     useFetchCurrentCheckouts(authentication, setCurrentCheckouts, setIsLoadingCheckouts, setHttpError, isBookReturned, isCheckoutRenewed);
 
-    const handleReturnBookClick = (bookId: number) => {
+    const handleReturnBookClick = (bookId: number | undefined) => {
 
         useReturnBook(`${bookId}`, authentication, setIsLoadingReturnBook, setReturnBookHttpError, setIsBookReturned);
     }
 
-    const handleRenewCheckoutClick = (bookId: number) => {
+    const handleRenewCheckoutClick = (bookId: number | undefined) => {
 
         useRenewCheckout(`${bookId}`, authentication, setIsLoadingRenewCheckout, setRenewCheckoutHttpError, setIsCheckoutRenewed);
     }
