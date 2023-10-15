@@ -3,52 +3,84 @@ import { useAuthenticationContext } from "../../../../authentication/authenticat
 import { BookModel } from "../../../../models/BookModel";
 import { FormLoader } from "../../../commons/form_loader/FormLoader";
 import { FieldErrors } from "../../../commons/field_errors/FieldErrors";
-import { genres } from "../../../../constants/constants";
 import { GenreModel } from "../../../../models/GenreModel";
 import { useAddNewBook } from "../../../../utils/useAddNewBook";
+import { useFetchAllGenres } from "../../../../utils/useFetchAllGenres";
+import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 
 export const AddBookTab = () => {
 
     const { authentication } = useAuthenticationContext();
 
     const [newBook, setNewBook] = useState<BookModel>({ title: "", author: "", description: "", copies: 0, copiesAvailable: 0, genres: [], img: "" });
-    const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [httpError, setHttpError] = useState<string | null>(null);
+    const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
+    const [bookSubmitHttpError, setBookSubmitHttpError] = useState<string | null>(null);
     const [displaySuccess, setDisplaySuccess] = useState(false);
+    
+    const [allGenres, setAllGenres] = useState<GenreModel[]>([]);
+    const [isLoadingGenres, setIsLoadingGenres] = useState(true);
+    const [genresHttpError, setGenresHttpError] = useState<string | null>(null);
+
+    useFetchAllGenres(setAllGenres, setIsLoadingGenres, setGenresHttpError);
+
+    async function base64ImgConversion(e: any) {
+
+        const file = e.target.files[0];
+
+        if (file) {
+
+            let reader = new FileReader();
+
+            reader.readAsDataURL(file);
+
+            reader.onload = function () {
+
+                const convertedImg = reader.result?.toString();
+                if (convertedImg) setNewBook({ ...newBook, img: convertedImg });
+            };
+
+            reader.onerror = function (error) {
+                console.log("Error", error)
+            }
+        }
+    }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
 
         setNewBook({ ...newBook, [event.target.name]: event.target.value });
     };
 
-    const handleGenreClick = (genre: string) => {
+    const handleGenreClick = (genre: GenreModel) => {
 
-        if (selectedGenres.length === 0) {
-            setSelectedGenres([...selectedGenres, genre]);
-        } else if (selectedGenres.includes(genre)) {
-            setSelectedGenres(selectedGenres.filter(item => item !== genre));            
+        if (newBook.genres.length === 0) {
+            setNewBook({ ...newBook, genres: [genre] });
+        } else if (newBook.genres.includes(genre)) {
+            setNewBook({ ...newBook, genres: newBook.genres.filter(item => item !== genre) });
         } else {
-            setSelectedGenres([...selectedGenres, genre]);
+            setNewBook({ ...newBook, genres: [...newBook.genres, genre] });
         }
-
-        setNewBook(prev => ({ ...prev, genres: selectedGenres.map(item => new GenreModel(item)) }));
     }
 
     const handleSubmitBookClick = async () => {
 
-        await useAddNewBook(authentication, newBook, setNewBook, setIsLoading, setHttpError, setDisplaySuccess);
+        await useAddNewBook(authentication, newBook, setNewBook, setIsLoadingSubmit, setBookSubmitHttpError, setDisplaySuccess);
     };
-
-    
 
     return (
 
         <div className="custom-form max-w-full">
 
+            {displaySuccess && 
+                
+                <div className="text-lg font-semibold bg-green-200 rounded-md px-5 py-1">
+                    New book is added successfully!
+                </div>
+            
+            }
+
             <p className="text-center text-3xl max-lg:text-2xl font-semibold">Add Book</p>
 
-            <FormLoader isLoading={isLoading} />
+            <FormLoader isLoading={isLoadingSubmit} />
 
             <form className="flex flex-col gap-5 w-full">
 
@@ -56,14 +88,14 @@ export const AddBookTab = () => {
                     
                     <div className="flex flex-col gap-1 lg:w-7/12">
 
-                        {httpError && <FieldErrors fieldName="title" httpError={httpError} />}
+                        {bookSubmitHttpError && <FieldErrors fieldName="title" httpError={bookSubmitHttpError} />}
                         <input type="text" name="title" value={newBook.title} onChange={handleChange} placeholder="Book title" className="input shadow-md"/>
                     
                     </div>
 
                     <div className="flex flex-col gap-1 lg:w-5/12">
 
-                        {httpError && <FieldErrors fieldName="author" httpError={httpError} />}
+                        {bookSubmitHttpError && <FieldErrors fieldName="author" httpError={bookSubmitHttpError} />}
                         <input type="text" name="author" value={newBook.author} onChange={handleChange} placeholder="Author" className="input shadow-md"/>
 
                     </div>
@@ -72,7 +104,7 @@ export const AddBookTab = () => {
 
                 <div className="flex flex-col gap-1">
 
-                    {httpError && <FieldErrors fieldName="description" httpError={httpError} />}
+                    {bookSubmitHttpError && <FieldErrors fieldName="description" httpError={bookSubmitHttpError} />}
                     <textarea rows={3} name="description" value={newBook.description} onChange={handleChange} placeholder="Book description" className="input shadow-md"/>
 
                 </div>
@@ -81,7 +113,7 @@ export const AddBookTab = () => {
                 
                     <div className="flex flex-col gap-1 lg:w-3/12">
 
-                        {httpError && <FieldErrors fieldName="copies" httpError={httpError} />}
+                        {bookSubmitHttpError && <FieldErrors fieldName="copies" httpError={bookSubmitHttpError} />}
 
                         <div className="flex gap-5 items-center whitespace-nowrap pl-1">
 
@@ -95,7 +127,7 @@ export const AddBookTab = () => {
 
                     <div className="flex flex-col gap-1 lg:w-4/12">
 
-                        {httpError && <FieldErrors fieldName="copiesAvailable" httpError={httpError} />}
+                        {bookSubmitHttpError && <FieldErrors fieldName="copiesAvailable" httpError={bookSubmitHttpError} />}
 
                         <div className="flex gap-5 items-center whitespace-nowrap pl-1">
 
@@ -109,32 +141,50 @@ export const AddBookTab = () => {
 
                     <div className="flex flex-col gap-1 lg:w-5/12">
 
-                        {httpError && <FieldErrors fieldName="img" httpError={httpError} />}
-                        <input type="file" name="img" onChange={handleChange} className="input shadow-md text-base"/>
+                        {bookSubmitHttpError && <FieldErrors fieldName="img" httpError={bookSubmitHttpError} />}
+                        <input type="file" name="img" onChange={base64ImgConversion} className="input shadow-md text-base"/>
                     
                     </div>
 
                 </div>
 
-                <div className="flex max-lg:flex-col items-center gap-5 p-5 rounded-md border-2 border-teal-600 bg-white">
+                <div className="flex flex-col gap-1">
 
-                    Select genres: 
+                    {bookSubmitHttpError && <FieldErrors fieldName="genres" httpError={bookSubmitHttpError} />}
 
-                    <div className="grid grid-cols-4 max-lg:grid-cols-2 gap-5">
+                    <div className="flex max-lg:flex-col items-center gap-5 p-5 rounded-md border-2 border-teal-600 bg-white">
 
-                        {genres.map(
+                        Select genres:
 
-                            genre => (
+                        {isLoadingGenres ? <LoadingSpinner /> :
 
-                                <label key={genre.id} className="border-2 border-teal-600 rounded-md p-2 bg-teal-50 flex gap-2 items-center">
+                            <>
 
-                                    <input type="checkbox" onClick={() => handleGenreClick(genre.name)} />
+                                {genresHttpError ? <div>{genresHttpError}</div> : 
+                            
+                                    <div className="grid grid-cols-4 max-lg:grid-cols-2 gap-5">
 
-                                    {genre.name}
+                                        {allGenres.map(
 
-                                </label>
-                            )
-                        )}
+                                            genre => (
+
+                                                <label key={genre.id} className="border-2 border-teal-600 rounded-md p-2 bg-teal-50 flex gap-2 items-center">
+
+                                                    <input type="checkbox" onClick={() => handleGenreClick(genre)} />
+
+                                                    {genre.description}
+
+                                                </label>
+                                            )
+                                        )}
+
+                                    </div>
+
+                                }
+
+                            </>
+
+                        }
 
                     </div>
 
