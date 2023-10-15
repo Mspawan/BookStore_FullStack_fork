@@ -24,14 +24,14 @@ public class BookDTO {
     private String description;
 
     @NotNull(message = "Copies count must not be null")
-    @Min(value = 0, message = "Copies count cannot be below 0")
+    @Min(value = 1, message = "Copies count cannot be below 1")
     private Integer copies;
 
     @NotNull(message = "Available copies count must not be null")
     @Min(value = 0, message = "Available copies count cannot be below 0")
     private Integer copiesAvailable;
 
-    @NotNull(message = "Image must not be null")
+    @NotBlank(message = "Cover image must be present")
     private String img;
 
     @NotEmpty(message = "At least one genre must be assigned")

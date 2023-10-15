@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 public class GenreDTO {
 
+    private Long id;
+
     @NotBlank(message = "Genre description must contain at least 1 character")
     @Size(max = 50, message = "Genre description length must not exceed 50 characters")
     private String description;
