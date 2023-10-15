@@ -1,7 +1,12 @@
 export class GenreModel {
 
+    id: number;
     description: string;
 
-    constructor (description: string) { this.description = description; }
+    constructor (id: number, description: string) {
+
+        this.id = id;
+        this.description = description; 
+    }
     
 }
