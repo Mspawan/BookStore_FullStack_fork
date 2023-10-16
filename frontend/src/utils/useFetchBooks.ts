@@ -8,13 +8,16 @@ export const useFetchBooks = (urlPaginationParams: string,
                               setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
                               setTotalAmountOfBooks?: React.Dispatch<React.SetStateAction<number>>,
                               setTotlalPages?: React.Dispatch<React.SetStateAction<number>>,
-                              urlSearchParams?: string) => {
+                              urlSearchParams?: string,
+                              isBookDeleted?: boolean) => {
 
     useEffect(
 
         () => {
 
             const fetchBooks = async () => {
+
+                setIsLoading(true);
                 
                 const baseUrl = `http://localhost:8080/api/books`;
 
@@ -53,7 +56,7 @@ export const useFetchBooks = (urlPaginationParams: string,
                 }
             )
 
-        }, [currentPage, urlSearchParams]
+        }, [currentPage, urlSearchParams, isBookDeleted]
 
     );
 
