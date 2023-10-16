@@ -54,11 +54,11 @@ public class DiscussionService {
         return new PageImpl<>(pageContent, discussions.getPageable(), discussions.getTotalElements());
     }
 
-    public List<DiscussionDTO> findAllByClosed(boolean isClosed) {
+    public Page<DiscussionDTO> findAllByClosed(Pageable pageable) {
 
-        List<Discussion> discussions = discussionRepository.findByClosed(isClosed);
+        Page<Discussion> discussions = discussionRepository.findByClosed(false, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 
-        List<DiscussionDTO> response = new ArrayList<>();
+        List<DiscussionDTO> pageContent = new ArrayList<>();
 
         for (Discussion discussion : discussions) {
             Person person = discussion.getDiscussionHolder();
@@ -66,10 +66,10 @@ public class DiscussionService {
             discussionDTO.setPersonEmail(person.getEmail());
             discussionDTO.setPersonFirstName(person.getFirstName());
             discussionDTO.setPersonLastName(person.getLastName());
-            response.add(discussionDTO);
+            pageContent.add(discussionDTO);
         }
 
-        return response;
+        return new PageImpl<>(pageContent, discussions.getPageable(), discussions.getTotalElements());
     }
 
     public void addDiscussion(String personEmail, DiscussionDTO discussionDTO, BindingResult bindingResult) {

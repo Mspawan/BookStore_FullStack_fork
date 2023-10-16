@@ -11,12 +11,12 @@ import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.BookExc
 import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.DiscussionException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController
@@ -68,9 +68,10 @@ public class AdminController {
     }
 
     @GetMapping("/open-discussions")
-    public List<DiscussionDTO> findAllUnclosedDiscussions() {
+    public Page<DiscussionDTO> findAllUnclosedDiscussions(@RequestParam(value = "page", required = true) Integer page,
+                                                          @RequestParam(value = "discussions-per-page", required = true) Integer discussionsPerPage) {
 
-        return discussionService.findAllByClosed(false);
+        return discussionService.findAllByClosed(PageRequest.of(page, discussionsPerPage));
     }
 
     @PostMapping("/close-discussion")
