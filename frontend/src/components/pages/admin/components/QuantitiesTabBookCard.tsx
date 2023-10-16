@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { BookModel } from "../../../../models/BookModel"
 import { FormLoader } from "../../../commons/form_loader/FormLoader";
+import { useChangeBookQuantity } from "../../../../utils/useChangeBookQuantity";
+import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
+import { useDeleteBook } from "../../../../utils/useDeleteBook";
 
 type BookCardProps = {
-    book: BookModel
+    book: BookModel,
+    setIsBookDeleted: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const QuantitiesTabBookCard = ({ book }: BookCardProps) => {
+export const QuantitiesTabBookCard = ({ book, setIsBookDeleted }: BookCardProps) => {
+
+    const { authentication } = useAuthenticationContext();
 
     const [totalQuantity, setTotalQuantity] = useState(book.copies);
     const [availableQuantity, setAvailableQuantity] = useState(book.copiesAvailable);
@@ -18,13 +24,12 @@ export const QuantitiesTabBookCard = ({ book }: BookCardProps) => {
 
     const handleChangeQuantityClick = (operation: string) => {
 
-        if (operation === "increase") console.log("increase clicked");
-        else if (operation === "decrease") console.log("decrease clicked");
+        useChangeBookQuantity(`${book.id}`, operation, authentication, setIsLoadingChangeQuantity, setChangeQuantityHttpError, setTotalQuantity, setAvailableQuantity);
     }
 
     const handleDeleteBookClick = () => {
 
-        console.log("delete clicked");
+        useDeleteBook(`${book.id}`, authentication, setIsLoadingDeleteBook, setDeleteBookHttpError, setIsBookDeleted);
     }
 
     return (

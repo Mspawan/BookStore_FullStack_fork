@@ -16,18 +16,17 @@ export const QuantitiesTab = () => {
     const [titleQuery, setTitleQuery] = useState("");
     const [resultRange, setResultRange] = useState({start: 1, end: 5});
     const [searchParams, setSearchParams] = useState("");
+    const [isBookDeleted, setIsBookDeleted] = useState(false);
 
     const handleSearchClick = () => {
 
         setHttpError(null);
-        if (titleQuery !== "") setSearchParams(`/search/by-title?title-query=${titleQuery}`);
+        setSearchParams(`/search/by-title?title-query=${titleQuery}`);
     };
 
     const urlPaginationParams = (searchParams === "" ? "?" : "&") + `page=${currentPage - 1}&books-per-page=5`;
 
-    useFetchBooks(urlPaginationParams, currentPage, setBooks, setIsLoading, setHttpError, setTotalAmountOfBooks, setTotlalPages, searchParams);
-
-    // console.log(totalAmountOfBooks);
+    useFetchBooks(urlPaginationParams, currentPage, setBooks, setIsLoading, setHttpError, setTotalAmountOfBooks, setTotlalPages, searchParams, isBookDeleted);
 
     return (
 
@@ -71,7 +70,7 @@ export const QuantitiesTab = () => {
                                 
                                     {books.map(
                                         
-                                        book => <QuantitiesTabBookCard key={book.id} book={book} />
+                                        book => <QuantitiesTabBookCard key={book.id} book={book} setIsBookDeleted={setIsBookDeleted} />
                                         
                                     )}
 
