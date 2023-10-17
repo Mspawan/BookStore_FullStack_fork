@@ -68,15 +68,26 @@ input[type="checkbox"]:checked {
 }
 
 @layer components {
+
+    .page-container {
+        @apply my-[80px] w-full flex flex-col items-center gap-10
+    }
   
     .max-container {
         max-width: 1440px;
         margin: 0 auto;
     }
 
-    .btn-main {
-        @apply rounded-md py-2 px-5 text-lg border border-teal-700 bg-teal-100 whitespace-nowrap duration-200 
-        hover:shadow-lg hover:bg-teal-100 active:shadow-none 
+    .custom-btn-1 {
+        @apply rounded-md py-2 px-5 text-lg border border-teal-700 bg-teal-100 whitespace-nowrap duration-200 hover:shadow-lg hover:bg-teal-100 active:shadow-none
+    }
+
+    .custom-btn-2 {
+        @apply rounded-md py-2 px-5 text-lg border border-teal-700 bg-teal-800 text-teal-100 whitespace-nowrap duration-200 hover:shadow-lg hover:bg-teal-100 hover:text-teal-800 active:shadow-none
+    }
+
+    .custom-btn-3 {
+        @apply rounded-md py-2 px-10 text-lg border border-teal-700 bg-teal-300 whitespace-nowrap duration-200 hover:shadow-lg hover:bg-teal-200 active:shadow-none
     }
 
     .nav-link {
