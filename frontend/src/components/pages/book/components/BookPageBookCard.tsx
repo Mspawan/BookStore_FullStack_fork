@@ -30,7 +30,7 @@ export const BookPageBookCard = ({ book, totalStars }: BookCardProps) => {
 
                     {book.genres.map(
 
-                        (genre) => <div key={genre.description} className="bg-teal-100 py-2 px-4 rounded-md">{genre.description}</div>
+                        (genre) => <div key={genre.description} className="bg-teal-100 py-1 px-3 rounded-md">{genre.description}</div>
 
                     )}
 

@@ -39,7 +39,7 @@ export const AdminPage = () => {
 
     return (
 
-        <section className="mt-[70px] w-full flex flex-col items-center gap-10">
+        <div className="page-container">
 
             <Quote quoteId={5} />
 
@@ -73,7 +73,7 @@ export const AdminPage = () => {
 
             </div>
 
-        </section>
+        </div>
 
     )
 }

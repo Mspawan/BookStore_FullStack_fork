@@ -4,9 +4,9 @@ export const BeginJourneyHero = () => {
 
     return (
 
-        <section className="flex max-lg:flex-col lg:justify-between gap-20 w-full max-container max-lg:px-5 items-stretch mt-10 bg-teal-50 p-5">
+        <section className="flex max-lg:flex-col lg:justify-between gap-20 w-full max-container items-stretch mt-10 bg-teal-50 p-5">
 
-            <div className="flex flex-col items-start lg:gap-16 gap-10 lg:w-5/12  max-lg:items-center max-lg:text-center">
+            <div className="flex flex-col items-start lg:gap-16 gap-10 lg:w-5/12 max-lg:items-center max-lg:text-center">
 
                 <p className="text-5xl max-lg:text-3xl font-semibold leading-snug ">
                     Begin your next adventure with one of our finest books
@@ -19,7 +19,7 @@ export const BeginJourneyHero = () => {
 
                 </div>
 
-                <Link to={"/search"} type="button" className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800">
+                <Link to={"/search"} type="button" className="custom-btn-2">
                     Explore our books
                 </Link>
 

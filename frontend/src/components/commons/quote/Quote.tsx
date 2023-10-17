@@ -8,7 +8,7 @@ export const Quote = ({ quoteId }: QuoteProps) => {
 
   return (
 
-    <div className="text-teal-800 flex flex-col items-center gap-5 mt-4 max-lg:mt-6 w-full">
+    <div className="flex flex-col items-center gap-5 mt-1 max-lg:mt-6 w-full text-teal-800">
 
         <div className="flex gap-5">
             

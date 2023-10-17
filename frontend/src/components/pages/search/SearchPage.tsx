@@ -42,21 +42,21 @@ export const SearchPage = () => {
 
     return (
 
-        <section className="mt-[70px] w-full flex flex-col items-center gap-10 max-container px-5 mb-20">
+        <div className="page-container max-w-[1440px] mx-auto px-5">
 
             <Quote quoteId={1} />
 
             <SearchPanel selectedGenre={selectedGenre} handleGenreChange={handleGenreChange} titleQuery={titleQuery} setTitleQuery={setTitleQuery} handleSearchClick={handleSearchClick} />
 
-            {!isLoading ? 
+            {isLoading ? <LoadingSpinner /> :
 
                 <>
 
-                    {!httpError ? 
+                    {httpError ? <div>{httpError}</div> :
                         
                         <>
 
-                            {totalAmountOfBooks > 0 ?
+                            {totalAmountOfBooks <= 0 ? <div>Nothing was found</div> :
                                 
                                 <>
 
@@ -78,19 +78,13 @@ export const SearchPage = () => {
 
                                 </>
 
-                                : <div>Nothing was found</div>
-
                             }
 
                         </>
 
-                        : <div>{httpError}</div>
-
                     }
                 
                 </>
-
-                : <LoadingSpinner />
 
             }
 
@@ -98,7 +92,7 @@ export const SearchPage = () => {
                 setCurrentPage={setCurrentPage} setResultRange={setResultRange} 
             />
 
-        </section>
+        </div>
 
     )
 

@@ -26,7 +26,7 @@ export const RegistrationPage = () => {
 
     return (
 
-        <div className="mt-[70px] w-full max-container flex flex-col gap-20 items-center justify-center mb-20 px-5">
+        <div className="page-container px-5">
 
             <Quote quoteId={1} />
             

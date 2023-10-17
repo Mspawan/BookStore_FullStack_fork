@@ -55,33 +55,25 @@ export const Navbar = () => {
 
                     {!authentication.isAuthenticated ?
 
-                        <Link to={"/login"} className="btn-main lg:hidden mt-4 bg-teal-300 px-10 hover:bg-teal-200">
-                            
-                            Sign In
-
-                        </Link>
+                        <Link to={"/login"} className="custom-btn-3 lg:hidden mt-4">Sign In</Link>
 
                         :
 
-                        <button className="btn-main lg:hidden mt-4 bg-teal-300 px-10 hover:bg-teal-200" onClick={logout}>Log out</button>
+                        <button className="custom-btn-3 lg:hidden mt-4" onClick={logout}>Log out</button>
                     }
 
                 </div>
 
                 {!authentication.isAuthenticated ?
 
-                    <Link to={"/login"} className="max-lg:hidden btn-main">
-                        
-                        Sign In
-                    
-                    </Link>
+                    <Link to={"/login"} className="custom-btn-1 max-lg:hidden">Sign In</Link>
 
                     :
 
-                    <button className="max-lg:hidden btn-main" onClick={logout}>Log out</button>
+                    <button className="custom-btn-1 max-lg:hidden" onClick={logout}>Log out</button>
                 }
 
-                <button className="rounded-lg p-1 hidden max-lg:block" onClick={() => setHamburgerMenuClicked(!hamburgerMenuClicked)}>
+                <button className="p-1 hidden max-lg:block" onClick={() => setHamburgerMenuClicked(!hamburgerMenuClicked)}>
                     
                     <img src={hamburgerMenuClicked ? xMenuLogo : hamburgerMenuLogo} alt="menu" width={40} height={40} />
 

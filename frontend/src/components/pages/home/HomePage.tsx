@@ -9,7 +9,7 @@ export const HomePage = () => {
 
     return (
 
-        <div className="mt-[70px] w-full flex flex-col items-center justify-center gap-20 lg:px-10">
+        <div className="page-container lg:px-10">
 
             <Quote quoteId={0} />
 

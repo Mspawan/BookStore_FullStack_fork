@@ -15,7 +15,7 @@ export const ShelfPage = () => {
 
     return (
 
-        <section className="mt-[70px] w-full flex flex-col items-center gap-10">
+        <div className="page-container">
 
             <Quote quoteId={2} />
 
@@ -43,7 +43,7 @@ export const ShelfPage = () => {
 
             </div>
 
-        </section>
+        </div>
 
     )
 

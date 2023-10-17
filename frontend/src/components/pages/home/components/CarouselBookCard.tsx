@@ -21,7 +21,7 @@ export const CarouselBookCard = ({ book }: BookCardProps) => {
             
             </div>
 
-            <Link to={`/book/${book.id}`} className="btn-main">
+            <Link to={`/book/${book.id}`} className="custom-btn-1">
                 See Details
             </Link>
 

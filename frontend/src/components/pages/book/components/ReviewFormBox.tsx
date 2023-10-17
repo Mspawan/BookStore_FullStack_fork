@@ -67,7 +67,7 @@ export const ReviewFormBox = ({ handleSubmitReviewClick, userReviewSubmitHttpErr
 
             </div>
 
-            <button className="btn-main self-center py-1 px-3 bg-teal-800 text-teal-100 hover:text-teal-800" onClick={handleSubmit}>
+            <button className="custom-btn-2 self-center" onClick={handleSubmit}>
                 Submit a review
             </button>
             

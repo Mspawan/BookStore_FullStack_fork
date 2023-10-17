@@ -60,7 +60,7 @@ export const QuantitiesTabBookCard = ({ book, setIsBookDeleted }: BookCardProps)
             
             </div>
 
-            <div className="flex-1 border-2 border-teal-800 rounded-md p-4 flex flex-col gap-3 items-center">
+            <div className="flex-1 w-full border-2 border-teal-800 rounded-md p-4 flex flex-col gap-3 items-center">
 
                 <p className="text-xl font-semibold">Manage book options</p>
 

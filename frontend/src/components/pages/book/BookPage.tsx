@@ -32,35 +32,31 @@ export const BookPage = () => {
 
     return (
 
-        <section className="mt-[70px] w-full flex flex-col items-center gap-10 pb-10">
+        <div className="page-container">
 
             <Quote quoteId={6} />
 
-            {!isLoading ? 
+            {isLoading ? <LoadingSpinner /> :
 
                 <>
 
-                    {!httpError ? 
+                    {httpError ? <div className="max-container px-5 py-10">{httpError}</div> :
 
                         <div className="max-container px-5 pt-10 pb-3">
 
                             <BookPageBookCard book={book} totalStars={totalStars} />
 
                         </div>
-                        
-                        : <div className="max-container px-5 py-10">{httpError}</div>
 
                     }
 
                 </>
-                
-                : <LoadingSpinner />
             
             }
 
             <LatestReviews bookId={bookId} reviews={reviews} totalAmountOfReviews={totalAmountOfReviews} isLoadingReviews={isLoadingReviews} reviewsHttpError={reviewsHttpError} />
 
-        </section>
+        </div>
 
     )
 

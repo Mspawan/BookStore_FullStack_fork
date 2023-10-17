@@ -15,7 +15,7 @@ export const DiscussionsPage = () => {
 
     return (
 
-        <section className="mt-[70px] w-full flex flex-col items-center gap-10">
+        <div className="page-container">
 
             <Quote quoteId={2} />
 
@@ -43,7 +43,7 @@ export const DiscussionsPage = () => {
 
             </div>
 
-        </section>
+        </div>
 
     )
 

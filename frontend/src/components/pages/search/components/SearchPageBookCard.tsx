@@ -26,7 +26,7 @@ export const SearchPageBookCard = ({ book }: BookCardProps) => {
 
                     {book.genres.map(
 
-                        (genre) => <div key={genre.description} className="bg-teal-100 py-2 px-4 rounded-md">{genre.description}</div>
+                        (genre) => <div key={genre.description} className="bg-teal-100 py-1 px-3 rounded-md">{genre.description}</div>
 
                     )}
 
@@ -45,7 +45,7 @@ export const SearchPageBookCard = ({ book }: BookCardProps) => {
             
             </div>
 
-            <Link to={`/book/${book.id}`} className="btn-main max-lg:static absolute bottom-10 right-10">
+            <Link to={`/book/${book.id}`} className="custom-btn-1 max-lg:static lg:absolute bottom-10 right-10">
                 See Details
             </Link>
 

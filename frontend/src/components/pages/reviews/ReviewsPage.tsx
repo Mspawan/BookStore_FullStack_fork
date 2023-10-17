@@ -25,11 +25,9 @@ export const ReviewsPage = () => {
 
     useFetchBookReviews(bookId, setReviews, setTotalStars, setIsLoadingReviews, setReviewsHttpError, setTotalAmountOfReviews, urlPaginationParams, currentPage, setTotlalPages);
 
-    console.log(totalPages);
-
     return (
 
-        <section className="mt-[70px] w-full flex flex-col items-center gap-10">
+        <div className="page-container">
 
             <Quote quoteId={7} />
 
@@ -87,7 +85,7 @@ export const ReviewsPage = () => {
                 setCurrentPage={setCurrentPage} setResultRange={setResultRange} 
             />
 
-        </section>
+        </div>
 
     )
 

@@ -10,13 +10,13 @@ export const PaymentPage = () => {
 
     return (
 
-        <section className="mt-[70px] w-full flex flex-col items-center gap-10">
+        <div className="page-container">
 
             <Quote quoteId={4} />
 
             Payment Page
 
-        </section>
+        </div>
 
     )
 

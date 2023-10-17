@@ -83,7 +83,7 @@ export const CheckoutBox = ({ book }: CheckoutBoxProps) => {
 
                         {checkOutHttpError && <div className="border border-red-500 py-1 px-2 bg-red-100 rounded-md">{checkOutHttpError}</div>}
                     
-                        <button className="btn-main" onClick={handleCheckoutClick}>Checkout</button>
+                        <button className="custom-btn-1" onClick={handleCheckoutClick}>Checkout</button>
 
                     </div>
 
@@ -96,7 +96,7 @@ export const CheckoutBox = ({ book }: CheckoutBoxProps) => {
 
         }
 
-        return <Link to={'/login'} className="btn-main">Sign in</Link>
+        return <Link to={'/login'} className="custom-btn-1">Sign in</Link>
     }
 
     const renderReviewBtn = () => {
