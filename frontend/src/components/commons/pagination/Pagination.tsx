@@ -75,19 +75,17 @@ export const Pagination = ({ currentPage, totalPages, totalAmountOfItems, setCur
 
                 <div className="flex gap-5 p-5">
                     
-                    <button className="btn-main" onClick={handleFirstClick}>First</button>
+                    <button className="custom-btn-1" onClick={handleFirstClick}>First</button>
 
                     {pageNumbers.map(p =>
 
-                        <button className={`${currentPage === p && "bg-teal-700 hover:bg-teal-700 text-teal-100 text-xl font-bold"} + btn-main`} 
-                            onClick={() => handlePageButtonClick(p)} key={p}
-                        >
+                        <button className={currentPage === p ? "custom-btn-2 text-xl font-bold" : "custom-btn-1"} onClick={() => handlePageButtonClick(p)} key={p}>
                             {p}
                         </button>
 
                     )}
 
-                    <button className="btn-main" onClick={handleLastClick}>Last</button>
+                    <button className="custom-btn-1" onClick={handleLastClick}>Last</button>
 
                 </div>
             }

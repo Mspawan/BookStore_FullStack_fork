@@ -31,11 +31,11 @@ export const LatestReviews = ({ bookId, reviews, totalAmountOfReviews, isLoading
 
                     }
 
-                    {!isLoadingReviews ? 
+                    {isLoadingReviews ? <LoadingSpinner /> :
 
                         <>
 
-                            {!reviewsHttpError ?
+                            {reviewsHttpError ? <div className="max-container px-5 py-10">{reviewsHttpError}</div> :
 
                                 <div className="flex flex-col gap-5">
 
@@ -45,17 +45,13 @@ export const LatestReviews = ({ bookId, reviews, totalAmountOfReviews, isLoading
 
                                     )}
 
-                                    <Link to={`/reviews/${bookId}`} className="btn-main self-start">All reviews</Link>
+                                    <Link to={`/reviews/${bookId}`} className="custom-btn-1 self-start">All reviews</Link>
 
                                 </div>
-
-                                : <div className="max-container px-5 py-10">{reviewsHttpError}</div>
 
                             }
 
                         </>
-                        
-                        : <LoadingSpinner />
 
                     }
 

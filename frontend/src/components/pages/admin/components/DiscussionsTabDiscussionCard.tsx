@@ -3,7 +3,6 @@ import avatar from "../../../../assets/icons/avatar.svg";
 import { useState } from "react";
 import { useSubmitDiscussionResponse } from "../../../../utils/useSubmitDiscussionResponse";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
-import { FieldErrors } from "../../../commons/field_errors/FieldErrors";
 import { FormLoader } from "../../../commons/form_loader/FormLoader";
 
 type DiscussionsTabDiscussionCardProps = {
@@ -69,9 +68,9 @@ export const DiscussionsTabDiscussionCard = ({ discussion, setIsDiscussionClosed
 
             <div className="flex flex-col gap-5">
 
-                {httpError && <FieldErrors fieldName="response" httpError={httpError} />}
-
                 <FormLoader isLoading={isLoading} />
+
+                {httpError && <div className="border border-red-500 py-1 px-2 bg-red-100 rounded-md">{httpError}</div>}
 
                 <textarea rows={3} name="response" value={discussionModel.response ? discussionModel.response : ""} 
                 onChange={handleChange} placeholder="Your response here..." className="input shadow-md"/>

@@ -32,11 +32,11 @@ export const Carousel = () => {
 
             </div>
 
-            {!isLoading ? 
+            {isLoading ? <LoadingSpinner /> :
 
                 <>
 
-                    {!httpError ? 
+                    {httpError ? <div>{httpError}</div> :
                 
                         <>
 
@@ -78,17 +78,9 @@ export const Carousel = () => {
 
                         </>
 
-                        :
-
-                        <div>{httpError}</div>
-
                     }
 
                 </>
-
-                :
-
-                <LoadingSpinner />
             
             }
             
