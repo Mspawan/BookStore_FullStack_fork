@@ -14,7 +14,7 @@ export const useSubmitDiscussionResponse = async (authentication: { isAuthentica
 
         if (authentication.isAuthenticated) {
 
-            const url = "http://localhost:8080/api/discussions/secure/add-discussion";
+            const url = "http://localhost:8080/api/admin/secure/close-discussion";
             
             const requestOptions = {
 
@@ -36,11 +36,11 @@ export const useSubmitDiscussionResponse = async (authentication: { isAuthentica
                 throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
             }
 
+            setIsDiscussionClosed(prev => !prev);
         }
 
         setHttpError(null);
         setIsLoading(false);
-        setIsDiscussionClosed(prev => !prev);
 
         console.log("submit discussion fetch");
         console.log("------------------------");
