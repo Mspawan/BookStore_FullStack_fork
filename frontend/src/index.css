@@ -91,7 +91,19 @@ input[type="checkbox"]:checked {
     }
 
     .nav-link {
-        @apply duration-200 text-lg max-lg:w-full px-3 py-1 max-lg:py-4 hover:lg:bg-teal-100  whitespace-nowrap hover:shadow-custom lg:hover:shadow-md lg:rounded-md max-lg:text-center
+        @apply duration-200 text-lg max-lg:w-full px-3 py-1 max-lg:py-4 hover:lg:bg-teal-100 whitespace-nowrap hover:shadow-custom lg:hover:shadow-md lg:rounded-md max-lg:text-center
+    }
+
+    .nav-link-active {
+        @apply duration-200 text-lg max-lg:w-full px-3 py-1 max-lg:py-4 bg-teal-100 whitespace-nowrap shadow-custom lg:shadow-md lg:rounded-md max-lg:text-center
+    }
+
+    .nav-link-2 {
+        @apply duration-200 text-lg px-3 py-1 whitespace-nowrap rounded-md max-lg:w-full max-lg:py-2 hover:lg:bg-teal-100 hover:shadow-custom lg:hover:shadow-md
+    }
+
+    .nav-link-active-2 {
+        @apply duration-200 text-lg px-3 py-1 whitespace-nowrap rounded-md max-lg:w-full max-lg:py-2 bg-teal-100 shadow-custom lg:shadow-md
     }
 
     .nav-menu {
@@ -108,5 +120,9 @@ input[type="checkbox"]:checked {
 
     .custom-form {
         @apply border border-teal-900 rounded-md bg-teal-50 w-full max-w-lg py-10 px-10 shadow-xl flex flex-col items-center gap-10;
+    }
+
+    .divider-1 {
+        @apply absolute bg-teal-600 lg:w-[1px] max-lg:h-[1px] lg:top-0 lg:bottom-0 max-lg:left-5 max-lg:right-5 max-lg:top-20
     }
 }
