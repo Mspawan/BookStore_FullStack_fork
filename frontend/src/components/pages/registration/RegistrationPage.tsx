@@ -4,7 +4,7 @@ import { RegistrationModel } from "../../../models/RegistrationModel";
 import { FieldErrors } from "../../commons/field_errors/FieldErrors";
 import { FormLoader } from "../../commons/form_loader/FormLoader";
 import { useAuthenticationContext } from "../../../authentication/authenticationContext";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const RegistrationPage = () => {
 
@@ -86,7 +86,7 @@ export const RegistrationPage = () => {
 
                         </form>
 
-                        <button className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800" onClick={handleRegisterClick}>Register</button>
+                        <button className="custom-btn-2" onClick={handleRegisterClick}>Register</button>
 
                     </>
 
@@ -102,7 +102,7 @@ export const RegistrationPage = () => {
 
                         </div>
 
-                        <NavLink to={"/home"} className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800">Back to home</NavLink>
+                        <Link to={"/home"} className="custom-btn-2">Back to home</Link>
 
                     </>
 

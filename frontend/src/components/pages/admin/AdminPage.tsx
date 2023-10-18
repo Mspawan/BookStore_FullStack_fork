@@ -43,25 +43,25 @@ export const AdminPage = () => {
 
             <Quote quoteId={5} />
 
-            <div className="max-container w-full p-5 flex max-lg:flex-col gap-14 relative">                
+            <div className="max-container w-full p-5 flex max-lg:flex-col gap-12 relative">
 
                 <div className="flex lg:flex-col gap-5">
 
-                    <button className={`${isAddBookTabSelected && "bg-teal-100 shadow-custom lg:shadow-md"} nav-link`} onClick={handleAddBookTabClick}>
+                    <button className={isAddBookTabSelected ? "nav-link-active-2" : "nav-link-2"} onClick={handleAddBookTabClick}>
                         Add Book
                     </button>
 
-                    <button className={`${isQuantitiesTabSelected && "bg-teal-100 shadow-custom lg:shadow-md"} nav-link`} onClick={handleQuantitiesTabClick}>
+                    <button className={isQuantitiesTabSelected ? "nav-link-active-2" : "nav-link-2"} onClick={handleQuantitiesTabClick}>
                         Quantities
                     </button>
 
-                    <button className={`${isDiscussionsTabSelected && "bg-teal-100 shadow-custom lg:shadow-md"} nav-link`} onClick={handleDiscussionsTabClick}>
+                    <button className={isDiscussionsTabSelected ? "nav-link-active-2" : "nav-link-2"} onClick={handleDiscussionsTabClick}>
                         Discussions
                     </button>
 
                 </div>
 
-                <div className="bg-teal-600 absolute lg:w-[1px] lg:top-0 lg:bottom-0 lg:left-40 max-lg:h-[1px] max-lg:left-5 max-lg:right-5 max-lg:top-24" />
+                <div className="divider-1 lg:left-40" />
 
                 <div className="w-full">
 

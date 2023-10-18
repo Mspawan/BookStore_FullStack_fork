@@ -58,13 +58,13 @@ export const LoginPage = () => {
 
                 <div className="w-full flex justify-between">
                     
-                    <button className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800" onClick={handleSignInClick}>Sign In</button>
+                    <button className="custom-btn-2" onClick={handleSignInClick}>Sign In</button>
 
                     <div className="flex gap-5 items-center">
 
                         Or create an account :
 
-                        <Link to={"/register"} className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800">Register</Link>
+                        <Link to={"/register"} className="custom-btn-2">Register</Link>
 
                     </div>
                 

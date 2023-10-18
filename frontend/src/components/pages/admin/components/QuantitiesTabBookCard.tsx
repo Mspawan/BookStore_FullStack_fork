@@ -46,17 +46,6 @@ export const QuantitiesTabBookCard = ({ book, setIsBookDeleted }: BookCardProps)
                     <p className="font-light lg:text-xl max-lg:text-lg">{book.author}</p>
 
                 </div>
-
-                <div className="max-lg:text-center">
-
-                    {book.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Quos nemo, sunt exercitationem consectetur sint expedita magni beatae placeat 
-                    dolorem assumenda libero nobis impedit rem modi in a illum qui. Porro ad voluptate 
-                    voluptas suscipit, libero facilis cumque? Nulla ut quia ad odio voluptatem autem 
-                    molestiae deleniti corporis voluptas ab distinctio quaerat explicabo repellendus 
-                    perferendis ullam fugit odit dolores porro obcaecati nostrum vero rerum, id laboriosam!
-
-                </div>
             
             </div>
 
@@ -106,11 +95,11 @@ export const QuantitiesTabBookCard = ({ book, setIsBookDeleted }: BookCardProps)
 
                             <div className="flex gap-3 max-xl:flex-col">
 
-                                <button className="btn-main" onClick={() => handleChangeQuantityClick("increase")}>
+                                <button className="custom-btn-1" onClick={() => handleChangeQuantityClick("increase")}>
                                     Increase Quantity
                                 </button>
 
-                                <button className="btn-main" onClick={() => handleChangeQuantityClick("decrease")}>
+                                <button className="custom-btn-1" onClick={() => handleChangeQuantityClick("decrease")}>
                                     Decrease Quantity
                                 </button>
 
@@ -124,7 +113,7 @@ export const QuantitiesTabBookCard = ({ book, setIsBookDeleted }: BookCardProps)
 
                 <div className="h-[1px] w-full bg-teal-800" />
 
-                <button className="btn-main" onClick={handleDeleteBookClick}>
+                <button className="custom-btn-2" onClick={handleDeleteBookClick}>
                     Delete Book
                 </button>
 

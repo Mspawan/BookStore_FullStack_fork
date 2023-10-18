@@ -33,7 +33,7 @@ export const Navbar = () => {
                             
                             link.authRequired ? authentication.isAuthenticated &&
 
-                            <NavLink className={({ isActive }) => (isActive && "bg-teal-100 shadow-custom lg:shadow-md") + " nav-link"}
+                            <NavLink className={({ isActive }) => (isActive ? "nav-link-active" : "nav-link")}
                                 to={link.href} key={link.id} onClick={() => setHamburgerMenuClicked(false)}>
 
                                 {link.title}
@@ -42,7 +42,7 @@ export const Navbar = () => {
 
                             :
 
-                            <NavLink className={({ isActive }) => (isActive && "bg-teal-100 shadow-custom lg:shadow-md") + " nav-link"}
+                            <NavLink className={({ isActive }) => (isActive ? "nav-link-active" : "nav-link")}
                                 to={link.href} key={link.id} onClick={() => setHamburgerMenuClicked(false)}>
 
                                 {link.title}
@@ -55,7 +55,7 @@ export const Navbar = () => {
 
                     {!authentication.isAuthenticated ?
 
-                        <Link to={"/login"} className="custom-btn-3 lg:hidden mt-4">Sign In</Link>
+                        <Link to={"/login"} className="custom-btn-3 lg:hidden mt-4" onClick={() => setHamburgerMenuClicked(false)}>Sign In</Link>
 
                         :
 

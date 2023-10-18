@@ -81,7 +81,7 @@ export const DiscussionsTabDiscussionCard = ({ discussion, setIsDiscussionClosed
 
                 <p className="text-amber-600 text-lg font-semibold">Discussion is open</p>
 
-                <button className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800" onClick={handleSubmitDiscussion}>Submit answer</button>
+                <button className="custom-btn-2" onClick={handleSubmitDiscussion}>Submit answer</button>
 
             </div>
             

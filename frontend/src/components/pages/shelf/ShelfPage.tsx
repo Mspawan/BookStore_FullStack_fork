@@ -19,21 +19,21 @@ export const ShelfPage = () => {
 
             <Quote quoteId={2} />
 
-            <div className="max-container w-full p-5 flex max-lg:flex-col gap-14 relative">                
+            <div className="max-container w-full p-5 flex max-lg:flex-col gap-12 relative">
 
                 <div className="flex lg:flex-col gap-5">
 
-                    <button className={`${!isHistoryTabSelected && "bg-teal-100 shadow-custom lg:shadow-md"} nav-link`} onClick={() => setIsHistoryTabSelected(false)}>
+                    <button className={isHistoryTabSelected ? "nav-link-2" : "nav-link-active-2"} onClick={() => setIsHistoryTabSelected(false)}>
                         Checkouts
                     </button>
 
-                    <button className={`${isHistoryTabSelected && "bg-teal-100 shadow-custom lg:shadow-md"} nav-link`} onClick={() => setIsHistoryTabSelected(true)}>
+                    <button className={isHistoryTabSelected ? "nav-link-active-2" : "nav-link-2"} onClick={() => setIsHistoryTabSelected(true)}>
                         History
                     </button>
 
                 </div>
 
-                <div className="bg-teal-600 absolute lg:w-[1px] lg:top-0 lg:bottom-0 lg:left-36 max-lg:h-[1px] max-lg:left-5 max-lg:right-5 max-lg:top-24" />
+                <div className="divider-1 lg:left-36" />
 
                 <div className="w-full">
 
