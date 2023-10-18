@@ -6,8 +6,6 @@ export const useRenewCheckout = async (bookId: string,
 
     const renewCheckout = async () => {
 
-        console.log("------------------------");
-
         setIsLoading(true);
 
         if (authentication.isAuthenticated) {
@@ -26,8 +24,6 @@ export const useRenewCheckout = async (bookId: string,
             const response = await fetch(url, requestOptions);
 
             const responseJson = await response.json();
-                        
-            console.log(responseJson);
 
             if (!response.ok) {
                 throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
@@ -37,9 +33,6 @@ export const useRenewCheckout = async (bookId: string,
         }
 
         setIsLoading(false);
-
-        console.log("renew checkout fetch");
-        console.log("------------------------");
     }
 
     renewCheckout().catch(

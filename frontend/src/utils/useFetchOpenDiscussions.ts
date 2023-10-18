@@ -36,8 +36,6 @@ export const useFetchOpenDiscussions = (authentication: { isAuthenticated: boole
 
                     const responseJson = await response.json();
 
-                    console.log(responseJson);
-
                     if (!response.ok) {
                         throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
                     }

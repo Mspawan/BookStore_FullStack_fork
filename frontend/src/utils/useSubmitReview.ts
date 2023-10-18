@@ -5,11 +5,10 @@ export const useSubmitReview = async (bookId: string,
                                       review: ReviewModel,
                                       setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
                                       setIsReviewLeft: React.Dispatch<React.SetStateAction<boolean>>,
-                                      setHttpError: React.Dispatch<React.SetStateAction<string | null>>) => {
+                                      setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
+                                      setIsRatingChanged: React.Dispatch<React.SetStateAction<boolean>>) => {
 
     const submitReview = async () => {
-
-        console.log("------------------------");
 
         setIsLoading(true);
 
@@ -30,21 +29,16 @@ export const useSubmitReview = async (bookId: string,
             const response = await fetch(url, requestOptions);
 
             const responseJson = await response.json();
-                        
-            console.log(responseJson);
 
             if (!response.ok) {
                 throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
             }
             
             setIsReviewLeft(true);
-
+            setIsRatingChanged(prev => !prev);
         }
 
         setIsLoading(false);
-
-        console.log("submit review fetch");
-        console.log("------------------------");
     }
 
     submitReview().catch(

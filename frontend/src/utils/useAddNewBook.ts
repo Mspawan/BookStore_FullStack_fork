@@ -9,8 +9,6 @@ export const useAddNewBook= async (authentication: { isAuthenticated: boolean; t
 
     const addNewBook = async () => {
 
-        console.log("------------------------");
-
         setIsLoading(true);
 
         if (authentication.isAuthenticated) {
@@ -30,8 +28,6 @@ export const useAddNewBook= async (authentication: { isAuthenticated: boolean; t
             const response = await fetch(url, requestOptions);
 
             const responseJson = await response.json();
-                        
-            console.log(responseJson);
 
             if (!response.ok) {
                 throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
@@ -44,9 +40,6 @@ export const useAddNewBook= async (authentication: { isAuthenticated: boolean; t
         setNewBook({ title: "", author: "", description: "", copies: 0, copiesAvailable: 0, genres: [], img: "" });
         setHttpError(null);
         setIsLoading(false);
-
-        console.log("add new book fetch");
-        console.log("------------------------");
     }
 
     addNewBook().catch(

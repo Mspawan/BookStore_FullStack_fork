@@ -6,8 +6,6 @@ export const useDeleteBook= async (bookId: string,
 
     const deleteBook = async () => {
 
-        console.log("------------------------");
-
         setIsLoading(true);
 
         if (authentication.isAuthenticated) {
@@ -26,8 +24,6 @@ export const useDeleteBook= async (bookId: string,
             const response = await fetch(url, requestOptions);
 
             const responseJson = await response.json();
-                        
-            console.log(responseJson);
 
             if (!response.ok) {
                 throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
@@ -38,9 +34,6 @@ export const useDeleteBook= async (bookId: string,
 
         setHttpError(null);
         setIsLoading(false);
-
-        console.log("delete book fetch");
-        console.log("------------------------");
     }
 
     deleteBook().catch(

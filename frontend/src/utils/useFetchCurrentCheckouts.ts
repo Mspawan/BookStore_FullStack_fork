@@ -33,8 +33,6 @@ export const useFetchCurrentCheckouts = (authentication: { isAuthenticated: bool
 
                     const responseJson = await response.json();
 
-                    console.log(responseJson);
-
                     if (!response.ok) {
                         throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
                     }
