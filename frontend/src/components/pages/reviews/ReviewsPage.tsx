@@ -13,7 +13,6 @@ export const ReviewsPage = () => {
 
     const [reviews, setReviews] = useState<ReviewModel[]>([]);
     const [totalAmountOfReviews, setTotalAmountOfReviews] = useState(0);
-    const [totalStars, setTotalStars] = useState(0);
     const [isLoadingReviews, setIsLoadingReviews] = useState(true);
     const [reviewsHttpError, setReviewsHttpError] = useState<string | null>(null);
 
@@ -23,7 +22,7 @@ export const ReviewsPage = () => {
 
     const urlPaginationParams = `?page=${currentPage - 1}&reviews-per-page=5`;
 
-    useFetchBookReviews(bookId, setReviews, setTotalStars, setIsLoadingReviews, setReviewsHttpError, setTotalAmountOfReviews, urlPaginationParams, currentPage, setTotlalPages);
+    useFetchBookReviews(bookId, setReviews, setIsLoadingReviews, setReviewsHttpError, setTotalAmountOfReviews, urlPaginationParams, currentPage, setTotlalPages);
 
     return (
 
@@ -33,11 +32,11 @@ export const ReviewsPage = () => {
 
             <div className="w-full max-container p-5 flex flex-col gap-5">
 
-                {!isLoadingReviews ? 
+                {isLoadingReviews ? <LoadingSpinner /> :
 
                     <>
 
-                        {!reviewsHttpError ?
+                        {reviewsHttpError ? <div className="max-container px-5 py-10">{reviewsHttpError}</div> :
 
                             <div className="flex flex-col gap-5">
 
@@ -57,25 +56,21 @@ export const ReviewsPage = () => {
 
                                     </div>
 
-                                    <Link to={`/book/${bookId}`} className="btn-main self-start">Back to book</Link>
+                                    <Link to={`/book/${bookId}`} className="custom-btn-1 self-start">Back to book</Link>
 
                                 </div>
 
                                 {reviews.map(
 
-                                    (review) => <ReviewCard key={review.id} review={review} />
+                                    review => <ReviewCard key={review.id} review={review} />
 
                                 )}
 
                             </div>
 
-                            : <div className="max-container px-5 py-10">{reviewsHttpError}</div>
-
                         }
 
                     </>
-
-                    : <LoadingSpinner />
 
                 }
 

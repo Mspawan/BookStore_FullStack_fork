@@ -10,21 +10,23 @@ export const QuantitiesTab = () => {
     const [books, setBooks] = useState<BookModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState<string | null>(null);
+    const [isBookDeleted, setIsBookDeleted] = useState(false);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [totalAmountOfBooks, setTotalAmountOfBooks] = useState(0);
     const [totalPages, setTotlalPages] = useState(0);
-    const [titleQuery, setTitleQuery] = useState("");
     const [resultRange, setResultRange] = useState({start: 1, end: 5});
+
+    const [titleQuery, setTitleQuery] = useState("");
     const [searchParams, setSearchParams] = useState("");
-    const [isBookDeleted, setIsBookDeleted] = useState(false);
+    
+    const urlPaginationParams = (searchParams === "" ? "?" : "&") + `page=${currentPage - 1}&books-per-page=5`;
 
     const handleSearchClick = () => {
 
         setHttpError(null);
         setSearchParams(`/search/by-title?title-query=${titleQuery}`);
     };
-
-    const urlPaginationParams = (searchParams === "" ? "?" : "&") + `page=${currentPage - 1}&books-per-page=5`;
 
     useFetchBooks(urlPaginationParams, currentPage, setBooks, setIsLoading, setHttpError, setTotalAmountOfBooks, setTotlalPages, searchParams, isBookDeleted);
 
@@ -36,7 +38,7 @@ export const QuantitiesTab = () => {
 
                 <input className="input" placeholder="Search books by title..." value={titleQuery} onChange={event => setTitleQuery(event.target.value)} />
 
-                <button className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800" onClick={() => handleSearchClick()}>
+                <button className="custom-btn-2" onClick={() => handleSearchClick()}>
                     Search
                 </button>
 
@@ -50,7 +52,7 @@ export const QuantitiesTab = () => {
                         
                         <>
 
-                            {totalAmountOfBooks > 0 ?
+                            {totalAmountOfBooks === 0 ? <div>Nothing was found</div> :
                                 
                                 <>
 
@@ -75,8 +77,6 @@ export const QuantitiesTab = () => {
                                     )}
 
                                 </>
-
-                                : <div>Nothing was found</div>
 
                             }
 

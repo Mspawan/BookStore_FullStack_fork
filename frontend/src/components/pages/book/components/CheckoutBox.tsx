@@ -11,9 +11,12 @@ import { ReviewModel } from "../../../../models/ReviewModel";
 import { useCheckOutBook } from "../../../../utils/useCheckOutBook";
 import { BookModel } from "../../../../models/BookModel";
 
-type CheckoutBoxProps = { book: BookModel };
+type CheckoutBoxProps = { 
+    book: BookModel,
+    setIsRatingChanged: React.Dispatch<React.SetStateAction<boolean>>
+};
 
-export const CheckoutBox = ({ book }: CheckoutBoxProps) => {
+export const CheckoutBox = ({ book, setIsRatingChanged }: CheckoutBoxProps) => {
 
     const { authentication } = useAuthenticationContext();
     const bookId: string = `${book.id}`;
@@ -50,7 +53,7 @@ export const CheckoutBox = ({ book }: CheckoutBoxProps) => {
 
     const handleSubmitReviewClick = async (review: ReviewModel) => {
 
-        await useSubmitReview(bookId, authentication, review, setIsLoadingUserReview, setIsReviewLeft, setUserReviewSubmitHttpError);
+        await useSubmitReview(bookId, authentication, review, setIsLoadingUserReview, setIsReviewLeft, setUserReviewSubmitHttpError, setIsRatingChanged);
     };
 
     const renderBooksCheckedOut = () => {

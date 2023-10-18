@@ -88,14 +88,14 @@ export const AddBookTab = () => {
                     
                     <div className="flex flex-col gap-1 lg:w-7/12">
 
-                        {bookSubmitHttpError && <FieldErrors fieldName="title" httpError={bookSubmitHttpError} />}
+                        <FieldErrors fieldName="title" httpError={bookSubmitHttpError} />
                         <input type="text" name="title" value={newBook.title} onChange={handleChange} placeholder="Book title" className="input shadow-md"/>
                     
                     </div>
 
                     <div className="flex flex-col gap-1 lg:w-5/12">
 
-                        {bookSubmitHttpError && <FieldErrors fieldName="author" httpError={bookSubmitHttpError} />}
+                        <FieldErrors fieldName="author" httpError={bookSubmitHttpError} />
                         <input type="text" name="author" value={newBook.author} onChange={handleChange} placeholder="Author" className="input shadow-md"/>
 
                     </div>
@@ -104,16 +104,16 @@ export const AddBookTab = () => {
 
                 <div className="flex flex-col gap-1">
 
-                    {bookSubmitHttpError && <FieldErrors fieldName="description" httpError={bookSubmitHttpError} />}
+                    <FieldErrors fieldName="description" httpError={bookSubmitHttpError} />
                     <textarea rows={3} name="description" value={newBook.description} onChange={handleChange} placeholder="Book description" className="input shadow-md"/>
 
                 </div>
 
-                <div className="flex max-lg:flex-col gap-5 w-full">
+                <div className="flex max-lg:flex-col gap-5 w-full lg:items-center">
                 
                     <div className="flex flex-col gap-1 lg:w-3/12">
 
-                        {bookSubmitHttpError && <FieldErrors fieldName="copies" httpError={bookSubmitHttpError} />}
+                        <FieldErrors fieldName="copies" httpError={bookSubmitHttpError} />
 
                         <div className="flex gap-5 items-center whitespace-nowrap pl-1">
 
@@ -127,7 +127,7 @@ export const AddBookTab = () => {
 
                     <div className="flex flex-col gap-1 lg:w-4/12">
 
-                        {bookSubmitHttpError && <FieldErrors fieldName="copiesAvailable" httpError={bookSubmitHttpError} />}
+                        <FieldErrors fieldName="copiesAvailable" httpError={bookSubmitHttpError} />
 
                         <div className="flex gap-5 items-center whitespace-nowrap pl-1">
 
@@ -141,7 +141,7 @@ export const AddBookTab = () => {
 
                     <div className="flex flex-col gap-1 lg:w-5/12">
 
-                        {bookSubmitHttpError && <FieldErrors fieldName="img" httpError={bookSubmitHttpError} />}
+                        <FieldErrors fieldName="img" httpError={bookSubmitHttpError} />
                         <input type="file" name="img" onChange={base64ImgConversion} className="input shadow-md text-base"/>
                     
                     </div>
@@ -150,7 +150,7 @@ export const AddBookTab = () => {
 
                 <div className="flex flex-col gap-1">
 
-                    {bookSubmitHttpError && <FieldErrors fieldName="genres" httpError={bookSubmitHttpError} />}
+                    <FieldErrors fieldName="genres" httpError={bookSubmitHttpError} />
 
                     <div className="flex max-lg:flex-col items-center gap-5 p-5 rounded-md border-2 border-teal-600 bg-white">
 
@@ -192,7 +192,7 @@ export const AddBookTab = () => {
 
             </form>
 
-            <button className="btn-main bg-teal-800 text-teal-100 hover:text-teal-800" onClick={handleSubmitBookClick}>Submit Book</button>
+            <button className="custom-btn-2" onClick={handleSubmitBookClick}>Submit Book</button>
 
         </div>
 

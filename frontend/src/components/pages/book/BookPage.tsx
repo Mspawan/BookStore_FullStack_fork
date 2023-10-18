@@ -13,14 +13,13 @@ export const BookPage = () => {
     const bookId = (window.location.pathname).split('/')[2];
 
     // Book state
-    const [book, setBook] = useState<BookModel | null>(null);
+    const [book, setBook] = useState<BookModel>({ id: 0, title: "", author: "", description: "", copies: 0, copiesAvailable: 0, genres: [], img: "" });
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState<string | null>(null);
 
     // Book Reviews state
     const [reviews, setReviews] = useState<ReviewModel[]>([]);
     const [totalAmountOfReviews, setTotalAmountOfReviews] = useState(0);
-    const [totalStars, setTotalStars] = useState(0);
     const [isLoadingReviews, setIsLoadingReviews] = useState(true);
     const [reviewsHttpError, setReviewsHttpError] = useState<string | null>(null);
     
@@ -28,7 +27,7 @@ export const BookPage = () => {
 
     useFetchBook(bookId, setBook, setIsLoading, setHttpError);
 
-    useFetchBookReviews(bookId, setReviews, setTotalStars, setIsLoadingReviews, setReviewsHttpError, setTotalAmountOfReviews, urlPaginationParams, 0);
+    useFetchBookReviews(bookId, setReviews, setIsLoadingReviews, setReviewsHttpError, setTotalAmountOfReviews, urlPaginationParams, 0);
 
     return (
 
@@ -44,7 +43,7 @@ export const BookPage = () => {
 
                         <div className="max-container px-5 pt-10 pb-3">
 
-                            <BookPageBookCard book={book} totalStars={totalStars} />
+                            <BookPageBookCard book={book} />
 
                         </div>
 

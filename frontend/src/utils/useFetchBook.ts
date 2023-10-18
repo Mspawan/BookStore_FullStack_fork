@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { BookModel } from "../models/BookModel";
 
 export const useFetchBook = (bookId: string,
-                             setBook: React.Dispatch<React.SetStateAction<BookModel | null>>,
+                             setBook: React.Dispatch<React.SetStateAction<BookModel>>,
                              setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
                              setHttpError: React.Dispatch<React.SetStateAction<string | null>>) => {
 
