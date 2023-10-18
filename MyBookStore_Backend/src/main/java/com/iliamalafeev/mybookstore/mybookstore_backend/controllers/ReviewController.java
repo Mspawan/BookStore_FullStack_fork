@@ -32,6 +32,12 @@ public class ReviewController {
         return reviewService.findAllByBookId(bookId, PageRequest.of(page, reviewsPerPage), latest);
     }
 
+    @GetMapping("/average-rating/{bookId}")
+    public Double getAverageRatingByBookId(@PathVariable("bookId") Long bookId) {
+
+        return reviewService.getAverageRatingByBookId(bookId);
+    }
+
     @ExceptionHandler
     private ResponseEntity<BookErrorResponse> handleException(BookException e) {
         BookErrorResponse response = new BookErrorResponse(e.getMessage(), System.currentTimeMillis());
