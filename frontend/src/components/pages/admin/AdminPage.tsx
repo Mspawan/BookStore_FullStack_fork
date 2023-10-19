@@ -43,7 +43,7 @@ export const AdminPage = () => {
 
             <Quote quoteId={5} />
 
-            <div className="max-container w-full p-5 flex max-lg:flex-col gap-12 relative">
+            <div className="w-full  p-5 flex max-lg:flex-col gap-12 relative">
 
                 <div className="flex lg:flex-col gap-5">
 

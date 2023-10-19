@@ -15,7 +15,7 @@ export const LatestReviews = ({ bookId, reviews, totalAmountOfReviews, isLoading
 
     return (
 
-        <div className="w-full max-container p-5 flex flex-col gap-5">
+        <div className="w-full p-5 flex flex-col gap-5">
 
             {totalAmountOfReviews !== 0 ? 
 
@@ -37,7 +37,7 @@ export const LatestReviews = ({ bookId, reviews, totalAmountOfReviews, isLoading
 
                         <>
 
-                            {reviewsHttpError ? <div className="max-container px-5 py-10">{reviewsHttpError}</div> :
+                            {reviewsHttpError ? <div className="px-5">{reviewsHttpError}</div> :
 
                                 <div className="flex flex-col gap-5">
 

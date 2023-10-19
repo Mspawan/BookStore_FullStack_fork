@@ -2,7 +2,7 @@ export const GrowingCollectionHero = () => {
 
     return (
 
-        <section className="flex max-lg:flex-col w-full max-container max-lg:gap-20 items-stretch bg-teal-50 p-5">
+        <section className="flex max-lg:flex-col w-full max-lg:gap-20 items-stretch bg-teal-50 p-5">
             
             <div className="border border-yellow-500 w-1/2 max-lg:w-full max-lg:h-80 bg-home-hero-3 bg-cover bg-no-repeat bg-bottom" />
 

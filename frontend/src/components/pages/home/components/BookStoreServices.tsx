@@ -7,7 +7,7 @@ export const BookStoreServices = () => {
 
     return (
 
-        <div className="bg-home-hero-4 bg-cover max-lg:bg-right w-full max-container">
+        <div className="bg-home-hero-4 bg-cover max-lg:bg-right w-full">
             
             <div className="bg-white bg-opacity-60 w-full flex items-center justify-end p-5">
 

@@ -39,9 +39,9 @@ export const BookPage = () => {
 
                 <>
 
-                    {httpError ? <div className="max-container px-5 py-10">{httpError}</div> :
+                    {httpError ? <div className="px-5 py-10">{httpError}</div> :
 
-                        <div className="max-container px-5 pt-10 pb-3">
+                        <div className="p-5">
 
                             <BookPageBookCard book={book} />
 

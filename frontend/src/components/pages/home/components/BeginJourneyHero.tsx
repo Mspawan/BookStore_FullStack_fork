@@ -4,7 +4,7 @@ export const BeginJourneyHero = () => {
 
     return (
 
-        <section className="flex max-lg:flex-col lg:justify-between gap-20 w-full max-container items-stretch mt-10 bg-teal-50 p-5">
+        <section className="flex max-lg:flex-col lg:justify-between gap-20 w-full items-stretch mt-10 bg-teal-50 p-5">
 
             <div className="flex flex-col items-start lg:gap-16 gap-10 lg:w-5/12 max-lg:items-center max-lg:text-center">
 

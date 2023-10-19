@@ -31,13 +31,13 @@ export const ReviewsPage = () => {
 
             <Quote quoteId={7} />
 
-            <div className="w-full max-container p-5 flex flex-col gap-5">
+            <div className="w-full p-5 flex flex-col gap-5">
 
                 {isLoadingReviews ? <LoadingSpinner /> :
 
                     <>
 
-                        {reviewsHttpError ? <div className="max-container px-5 py-10">{reviewsHttpError}</div> :
+                        {reviewsHttpError ? <div className="px-5">{reviewsHttpError}</div> :
 
                             <div className="flex flex-col gap-5">
 

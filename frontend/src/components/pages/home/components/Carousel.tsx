@@ -18,7 +18,7 @@ export const Carousel = () => {
 
     return (
 
-        <section className="flex flex-col items-center gap-20 max-container w-full max-lg:px-5">
+        <section className="flex flex-col items-center gap-20 w-full max-lg:px-5">
             
             <div className="flex flex-col items-center gap-5 text-center">
 

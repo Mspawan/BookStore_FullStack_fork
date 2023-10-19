@@ -49,7 +49,7 @@ export const BookPageBookCard = ({ book }: BookCardProps) => {
 
                         <>
 
-                            {averageRatingHttpError ? <div className="max-container px-5 py-10">{averageRatingHttpError}</div> :
+                            {averageRatingHttpError ? <div className="px-5">{averageRatingHttpError}</div> :
 
                                 <ReviewStars ratingProp={averageRating} size={25} />
 

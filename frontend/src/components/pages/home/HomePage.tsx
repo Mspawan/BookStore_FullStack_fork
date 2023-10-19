@@ -9,7 +9,7 @@ export const HomePage = () => {
 
     return (
 
-        <div className="page-container lg:px-10">
+        <div className="page-container lg:px-5">
 
             <Quote quoteId={0} />
 

@@ -8,7 +8,7 @@ export const Footer = () => {
 
         <footer className="w-full bg-teal-800 relative lg:py-10 max-lg:pt-10 max-lg:pb-20">
 
-            <div className="w-full max-container flex max-lg:flex-col max-lg:gap-10 items-center justify-between px-10">
+            <div className="w-full flex max-lg:flex-col max-lg:gap-10 items-center justify-between px-20">
 
                 <div className="flex w-1/3 flex-col gap-10 text-center">
 

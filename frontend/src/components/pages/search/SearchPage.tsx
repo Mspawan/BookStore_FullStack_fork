@@ -43,7 +43,7 @@ export const SearchPage = () => {
 
     return (
 
-        <div className="page-container max-w-[1440px] mx-auto px-5">
+        <div className="page-container px-5">
 
             <Quote quoteId={1} />
 

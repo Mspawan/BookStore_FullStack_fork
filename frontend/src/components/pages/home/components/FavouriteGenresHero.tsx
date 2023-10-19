@@ -4,7 +4,7 @@ export const FavouriteGenresHero = () => {
 
     return (
 
-        <section className="flex max-lg:flex-col w-full max-container max-lg:gap-20 items-stretch bg-amber-50 p-5">
+        <section className="flex max-lg:flex-col w-full max-lg:gap-20 items-stretch bg-amber-50 p-5">
 
             <div className="flex flex-col items-start lg:gap-16 gap-10 lg:w-1/2 max-lg:items-center max-lg:text-center">
 

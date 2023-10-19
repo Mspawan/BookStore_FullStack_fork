@@ -16,7 +16,7 @@ export const Navbar = () => {
 
         <header className="max-lg:bg-teal-200 bg-white z-10 w-full h-[70px] fixed top-0">
 
-            <nav className="flex justify-between items-center max-container h-[100%] px-6 gap-5 ">
+            <nav className="flex justify-between items-center max-w-[1440px] mx-auto px-6 gap-5">
 
                 <NavLink to="/" className="flex items-center gap-3">
 
