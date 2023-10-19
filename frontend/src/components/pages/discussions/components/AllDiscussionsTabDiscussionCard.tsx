@@ -9,7 +9,7 @@ export const AllDiscussionsTabDiscussionCard = ({ discussion }: AllDiscussionsTa
 
     return (
 
-        <div className="flex flex-col gap-5 p-5 rounded-md shadow-custom-2">
+        <div className="flex flex-col gap-5 p-5 rounded-md shadow-custom-2 w-full">
 
             <div className="w-full flex gap-5 max-lg:flex-col justify-between">
             

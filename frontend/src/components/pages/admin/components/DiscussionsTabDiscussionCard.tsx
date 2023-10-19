@@ -30,7 +30,7 @@ export const DiscussionsTabDiscussionCard = ({ discussion, setIsDiscussionClosed
 
     return (
 
-        <div className="flex flex-col gap-5 p-5 rounded-md shadow-custom-2" key={discussion.id}>
+        <div className="flex flex-col gap-5 p-5 rounded-md shadow-custom-2 w-full" key={discussion.id}>
 
             <div className="w-full flex gap-5 max-lg:flex-col justify-between">
             

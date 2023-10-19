@@ -24,11 +24,15 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
                 
                 <div className="flex gap-4 items-center text-lg">
                     
-                    <img src={avatar} alt="avatar" width={60} height={60} />
+                    <img src={avatar} alt="avatar" width={60} height={60}  />
 
-                    <p className="font-bold">{review.personFirstName}</p>
+                    <div className="flex gap-3 max-lg:flex-col max-lg:gap-0">
 
-                    <p className="font-light">{review.personEmail}</p>
+                        <p className="font-bold">{review.personFirstName}</p>
+
+                        <p className="font-light">{review.personEmail}</p>
+
+                    </div>
 
                 </div>
                 
@@ -52,9 +56,9 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
 
             </div>
 
-            <div className="text-base">
+            <div className="text-lg">
                         
-                {review.reviewDescription ? `"${review.reviewDescription}"` : <p>This person did not leave a comment</p>}
+                {review.reviewDescription ? `"${review.reviewDescription}"` : <p className=" opacity-70">This person did not leave a comment</p>}
 
             </div>
 
