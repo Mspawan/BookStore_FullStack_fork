@@ -70,12 +70,7 @@ input[type="checkbox"]:checked {
 @layer components {
 
     .page-container {
-        @apply my-[80px] w-full flex flex-col items-center gap-10
-    }
-  
-    .max-container {
-        max-width: 1440px;
-        margin: 0 auto;
+        @apply w-full max-w-[1440px] flex flex-col items-center gap-10 my-[80px] mx-auto
     }
 
     .custom-btn-1 {
