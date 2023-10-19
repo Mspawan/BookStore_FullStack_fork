@@ -6,6 +6,7 @@ import { LoadingSpinner } from "../../commons/loading_spinner/LoadingSpinner";
 import { SearchPageBookCard } from "./components/SearchPageBookCard";
 import { SearchPanel } from "./components/SearchPanel";
 import { Pagination } from "../../commons/pagination/Pagination";
+import { PaginatedItemsCount } from "../../commons/pagination/PaginatedItemsCount";
 
 export const SearchPage = () => {
 
@@ -60,19 +61,7 @@ export const SearchPage = () => {
                                 
                                 <>
 
-                                    <div className="sm:text-xl flex gap-5 items-center justify-center">
-
-                                        Books: 
-
-                                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">
-                                            {resultRange.start} - {totalAmountOfBooks <= 5 ? totalAmountOfBooks : resultRange.end}
-                                        </p> 
-
-                                        out of 
-
-                                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">{totalAmountOfBooks}</p>
-
-                                    </div>
+                                    <PaginatedItemsCount itemsName={"Books"} totalAmountOfItems={totalAmountOfBooks} resultRange={resultRange} />
                                 
                                     {books.map(book => <SearchPageBookCard key={book.id} book={book} />)}
 

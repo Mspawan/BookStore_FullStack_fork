@@ -6,6 +6,7 @@ import { Pagination } from "../../commons/pagination/Pagination";
 import { ReviewCard } from "../../commons/review_card/ReviewCard";
 import { Link } from "react-router-dom";
 import { LoadingSpinner } from "../../commons/loading_spinner/LoadingSpinner";
+import { PaginatedItemsCount } from "../../commons/pagination/PaginatedItemsCount";
 
 export const ReviewsPage = () => {
 
@@ -40,23 +41,11 @@ export const ReviewsPage = () => {
 
                             <div className="flex flex-col gap-5">
 
-                                <div className="flex items-center justify-between">
+                                <div className="flex items-center justify-between gap-5 max-md:flex-col">
 
-                                    <div className="sm:text-xl flex gap-5 items-center">
+                                    <PaginatedItemsCount itemsName={"Reviews"} totalAmountOfItems={totalAmountOfReviews} resultRange={resultRange} />
 
-                                        Reviews: 
-
-                                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">
-                                            {resultRange.start} - {totalAmountOfReviews <= 5 ? totalAmountOfReviews : resultRange.end}
-                                        </p> 
-
-                                        out of 
-
-                                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">{totalAmountOfReviews}</p>
-
-                                    </div>
-
-                                    <Link to={`/book/${bookId}`} className="custom-btn-1 self-start">Back to book</Link>
+                                    <Link to={`/book/${bookId}`} className="custom-btn-1">Back to book</Link>
 
                                 </div>
 

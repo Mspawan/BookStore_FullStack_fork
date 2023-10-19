@@ -6,6 +6,7 @@ import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner"
 import { Link } from "react-router-dom";
 import { Pagination } from "../../../commons/pagination/Pagination";
 import { AllDiscussionsTabDiscussionCard } from "./AllDiscussionsTabDiscussionCard";
+import { PaginatedItemsCount } from "../../../commons/pagination/PaginatedItemsCount";
 
 export const AllDiscussionsTab = () => {
 
@@ -26,7 +27,7 @@ export const AllDiscussionsTab = () => {
 
     return (
 
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10 lg:items-start">
 
             {isLoading ? <LoadingSpinner /> : 
             
@@ -52,19 +53,7 @@ export const AllDiscussionsTab = () => {
 
                                 <>
 
-                                    <div className="sm:text-xl flex gap-5 items-center justify-start">
-
-                                        Your discussions: 
-
-                                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">
-                                            {resultRange.start} - {totalAmountOfDiscussions <= 5 ? totalAmountOfDiscussions : resultRange.end}
-                                        </p> 
-
-                                        out of 
-
-                                        <p className="sm:text-3xl max-sm:text-xl text-teal-600">{totalAmountOfDiscussions}</p>
-
-                                    </div>
+                                    <PaginatedItemsCount itemsName={"Your discussions"} totalAmountOfItems={totalAmountOfDiscussions} resultRange={resultRange} />
 
                                     {discussions.map(
                                             

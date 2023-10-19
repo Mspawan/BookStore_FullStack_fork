@@ -21,15 +21,17 @@ export const LatestReviews = ({ bookId, reviews, totalAmountOfReviews, isLoading
 
                 <>
 
-                    {totalAmountOfReviews < 3 ? 
-            
-                        <p className="font-semibold lg:text-3xl max-lg:text-2xl">Latest Reviews: {totalAmountOfReviews} out of {totalAmountOfReviews}</p>
-
-                        :
-
-                        <p className="font-semibold lg:text-3xl max-lg:text-2xl">Latest Reviews: 3 out of {totalAmountOfReviews}</p>
-
-                    }
+                    <div className="flex gap-3 items-center font-semibold lg:text-2xl max-lg:text-xl max-lg:self-center">
+                        
+                        Latest Reviews: 
+                        
+                        <span className="text-teal-600 lg:text-3xl max-lg:text-2xl">{totalAmountOfReviews < 3 ? totalAmountOfReviews : 3}</span> 
+                        
+                        out of 
+                        
+                        <span className="text-teal-600 lg:text-3xl max-lg:text-2xl">{totalAmountOfReviews}</span>
+                        
+                    </div>
 
                     {isLoadingReviews ? <LoadingSpinner /> :
 
