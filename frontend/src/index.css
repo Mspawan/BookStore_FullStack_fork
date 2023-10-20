@@ -73,6 +73,14 @@ input[type="checkbox"]:checked {
         @apply w-full max-w-[1440px] flex flex-col items-center gap-10 my-[80px] mx-auto
     }
 
+    .book-card {
+        @apply flex max-lg:flex-col lg:items-start max-lg:items-center rounded-md shadow-custom-2 p-6 gap-7
+    }
+
+    .book-card-options-box {
+        @apply flex-1 flex flex-col items-center border-2 border-teal-800 rounded-md p-4 gap-3 w-full
+    }
+
     .custom-btn-1 {
         @apply rounded-md py-2 px-5 text-lg border border-teal-700 bg-teal-100 whitespace-nowrap duration-200 hover:shadow-lg hover:bg-teal-100 active:shadow-none
     }
