@@ -4,6 +4,7 @@ import { FormLoader } from "../../../commons/form_loader/FormLoader";
 import { useChangeBookQuantity } from "../../../../utils/useChangeBookQuantity";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
 import { useDeleteBook } from "../../../../utils/useDeleteBook";
+import { BookGenres } from "../../../commons/book_genres/BookGenres";
 
 type BookCardProps = {
     book: BookModel,
@@ -34,11 +35,11 @@ export const QuantitiesTabBookCard = ({ book, setIsBookDeleted }: BookCardProps)
 
     return (
 
-        <div className="flex max-lg:flex-col lg:items-start max-lg:items-center gap-10 p-5 rounded-md shadow-custom-2" key={book.id}>
+        <div className="flex max-lg:flex-col lg:items-start max-lg:items-center gap-5 p-5 rounded-md shadow-custom-2" key={book.id}>
 
             <img src={book.img} alt="cover" width={200} height={320} className="shadow-xl max-lg:w-[200px]"/>
             
-            <div className="flex flex-col gap-10 xl:w-5/12 lg:flex-1">
+            <div className="flex flex-col gap-10 max-lg:gap-5 xl:w-5/12 lg:flex-1">
 
                 <div className="max-lg:text-center">
                 
@@ -46,6 +47,8 @@ export const QuantitiesTabBookCard = ({ book, setIsBookDeleted }: BookCardProps)
                     <p className="font-light lg:text-xl max-lg:text-lg">{book.author}</p>
 
                 </div>
+
+                <BookGenres genres={book.genres} />
             
             </div>
 

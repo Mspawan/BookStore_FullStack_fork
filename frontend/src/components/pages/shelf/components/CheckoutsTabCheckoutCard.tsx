@@ -5,6 +5,7 @@ import { useRenewCheckout } from "../../../../utils/useRenewCheckout"
 import { useReturnBook } from "../../../../utils/useReturnBook"
 import { FormLoader } from "../../../commons/form_loader/FormLoader"
 import { Link } from "react-router-dom"
+import { BookGenres } from "../../../commons/book_genres/BookGenres"
 
 type CheckoutsTabCheckoutCardProps = {
     checkout: CheckoutModel,
@@ -62,16 +63,8 @@ export const CheckoutsTabCheckoutCard = ({ checkout, setIsBookReturned, setIsChe
                     <p className="font-light lg:text-xl max-lg:text-lg">{checkout.bookDTO.author}</p>
 
                 </div>
-                
-                <div className="flex gap-5 max-lg:justify-center">
 
-                    {checkout.bookDTO.genres.map(
-
-                        (genre) => <div key={genre.description} className="bg-teal-100 py-1 px-3 rounded-md">{genre.description}</div>
-
-                    )}
-
-                </div>
+                <BookGenres genres={checkout.bookDTO.genres} />
             
             </div>
 

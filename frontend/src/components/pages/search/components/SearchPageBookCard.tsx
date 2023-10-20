@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { BookModel } from "../../../../models/BookModel"
+import { BookGenres } from "../../../commons/book_genres/BookGenres"
 
 type BookCardProps = {
     book: BookModel
@@ -21,16 +22,8 @@ export const SearchPageBookCard = ({ book }: BookCardProps) => {
                     <p className="font-light lg:text-2xl max-lg:text-xl">{book.author}</p>
 
                 </div>
-                
-                <div className="flex gap-5 max-lg:justify-center">
 
-                    {book.genres.map(
-
-                        (genre) => <div key={genre.description} className="bg-teal-100 py-1 px-3 rounded-md">{genre.description}</div>
-
-                    )}
-
-                </div>
+                <BookGenres genres={book.genres} />
 
                 <div className="max-lg:text-center">
 

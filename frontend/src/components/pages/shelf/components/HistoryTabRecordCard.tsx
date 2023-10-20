@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { HistoryRecordModel } from "../../../../models/HistoryRecordModel"
+import { BookGenres } from "../../../commons/book_genres/BookGenres"
 
 type HistoryTabRecordCardProps = {
     record: HistoryRecordModel
@@ -32,16 +33,8 @@ export const HistoryTabRecordCard = ({ record }: HistoryTabRecordCardProps) => {
                     <p className="font-light lg:text-xl max-lg:text-lg">{record.bookDTO.author}</p>
 
                 </div>
-                
-                <div className="flex gap-5 max-lg:justify-center">
 
-                    {record.bookDTO.genres.map(
-
-                        genre => <div key={genre.description} className="bg-teal-100 py-1 px-3 rounded-md">{genre.description}</div>
-
-                    )}
-
-                </div>
+                <BookGenres genres={record.bookDTO.genres} />
             
             </div>
 

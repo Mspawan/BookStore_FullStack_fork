@@ -4,6 +4,7 @@ import { ReviewStars } from "../../../commons/review_stars/ReviewStars"
 import { CheckoutBox } from "./CheckoutBox"
 import { useFetchBookAverageRating } from "../../../../utils/useFetchBookAverageRating"
 import { FormLoader } from "../../../commons/form_loader/FormLoader"
+import { BookGenres } from "../../../commons/book_genres/BookGenres"
 
 type BookCardProps = {
     book: BookModel
@@ -32,16 +33,8 @@ export const BookPageBookCard = ({ book }: BookCardProps) => {
                     <p className="font-light lg:text-2xl max-lg:text-xl">{book.author}</p>
 
                 </div>
-                
-                <div className="flex gap-5 max-lg:justify-center">
 
-                    {book.genres.map(
-
-                        (genre) => <div key={genre.description} className="bg-teal-100 py-1 px-3 rounded-md">{genre.description}</div>
-
-                    )}
-
-                </div>
+                <BookGenres genres={book.genres} />
 
                 <div className="flex max-lg:justify-center">
 
