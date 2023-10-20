@@ -4,7 +4,7 @@ import { CheckoutModel } from "../../../../models/CheckoutModel";
 import { useFetchCurrentCheckouts } from "../../../../utils/useFetchCurrentCheckouts";
 import { Link } from "react-router-dom";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
-import { CheckoutsTabCheckoutCard } from "./CheckoutsTabCheckoutCard";
+import { CheckoutsTabBookCard } from "./CheckoutsTabBookCard";
 
 export const CheckoutsTab = () => {
 
@@ -49,7 +49,7 @@ export const CheckoutsTab = () => {
 
                                     {currentCheckouts.map(
                                             
-                                        checkout => <CheckoutsTabCheckoutCard key={checkout.bookDTO.id} checkout={checkout} setIsBookReturned={setIsBookReturned} setIsCheckoutRenewed={setIsCheckoutRenewed} />
+                                        checkout => <CheckoutsTabBookCard key={checkout.bookDTO.id} checkout={checkout} setIsBookReturned={setIsBookReturned} setIsCheckoutRenewed={setIsCheckoutRenewed} />
 
                                     )}
 

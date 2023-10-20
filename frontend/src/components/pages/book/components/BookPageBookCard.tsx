@@ -21,7 +21,7 @@ export const BookPageBookCard = ({ book }: BookCardProps) => {
 
     return (
 
-        <div className="flex max-lg:flex-col items-start max-lg:items-center gap-10 p-7 rounded-lg w-full shadow-custom-2 relative">
+        <div className="book-card">
 
             <img src={book.img} alt="cover" width={250} height={400} className="shadow-xl"/>
             
@@ -66,12 +66,8 @@ export const BookPageBookCard = ({ book }: BookCardProps) => {
                 </div>
             
             </div>
-
-            <div className="flex-1">
             
-                <CheckoutBox book={book} setIsRatingChanged={setIsRatingChanged} />
-
-            </div>
+            <CheckoutBox book={book} setIsRatingChanged={setIsRatingChanged} />
 
         </div>
 
