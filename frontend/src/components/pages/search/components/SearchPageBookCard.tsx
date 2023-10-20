@@ -10,7 +10,7 @@ export const SearchPageBookCard = ({ book }: BookCardProps) => {
 
     return (
 
-        <div className="flex max-lg:flex-col items-start max-lg:items-center gap-10 p-10 rounded-lg w-full shadow-custom relative" key={book.id}>
+        <div className="book-card relative">
 
             <img src={book.img} alt="cover" width={250} height={400} className="shadow-xl max-lg:w-[200px]"/>
             
@@ -38,7 +38,7 @@ export const SearchPageBookCard = ({ book }: BookCardProps) => {
             
             </div>
 
-            <Link to={`/book/${book.id}`} className="custom-btn-1 max-lg:static lg:absolute bottom-10 right-10">
+            <Link to={`/book/${book.id}`} className="custom-btn-1 max-lg:static lg:absolute lg:bottom-10 lg:right-10">
                 See Details
             </Link>
 

@@ -121,7 +121,7 @@ export const CheckoutBox = ({ book, setIsRatingChanged }: CheckoutBoxProps) => {
 
     return (
 
-        <div className="w-full border-2 border-teal-800 rounded-md p-4 flex flex-col gap-3 items-center">
+        <div className="book-card-options-box">
 
             {renderBooksCheckedOut()}
 
