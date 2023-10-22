@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, EffectCoverflow } from 'swiper/modules';
 import { CarouselBookCard } from "./CarouselBookCard";
 import 'swiper/css/bundle';
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 export const Carousel = () => {
 
@@ -36,7 +37,7 @@ export const Carousel = () => {
 
                 <>
 
-                    {httpError ? <div>{httpError}</div> :
+                    {httpError ? <HttpErrorMessage httpError={httpError} /> :
                 
                         <>
 

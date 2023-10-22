@@ -5,6 +5,7 @@ import { useFetchCurrentCheckouts } from "../../../../utils/useFetchCurrentCheck
 import { Link } from "react-router-dom";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { CheckoutsTabBookCard } from "./CheckoutsTabBookCard";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 export const CheckoutsTab = () => {
 
@@ -27,7 +28,7 @@ export const CheckoutsTab = () => {
             
                 <>
 
-                    {httpError ? <div>{httpError}</div> : 
+                    {httpError ? <HttpErrorMessage httpError={httpError} /> : 
                         
                         <>
 

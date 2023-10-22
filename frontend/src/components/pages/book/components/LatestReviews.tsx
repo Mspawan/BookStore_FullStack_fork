@@ -2,6 +2,7 @@ import { ReviewModel } from "../../../../models/ReviewModel";
 import { ReviewCard } from "../../../commons/review_card/ReviewCard";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { Link } from "react-router-dom";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 type LatestReviewsProps = {
     bookId: string
@@ -37,7 +38,7 @@ export const LatestReviews = ({ bookId, reviews, totalAmountOfReviews, isLoading
 
                         <>
 
-                            {reviewsHttpError ? <div className="px-5">{reviewsHttpError}</div> :
+                            {reviewsHttpError ? <HttpErrorMessage httpError={reviewsHttpError} /> :
 
                                 <div className="flex flex-col gap-5">
 

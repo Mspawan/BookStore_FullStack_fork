@@ -42,14 +42,14 @@ export const LoginPage = () => {
 
                     <div className="flex flex-col gap-1">
 
-                        {httpError && <FieldErrors fieldName="email" httpError={httpError} />}
+                        <FieldErrors fieldName="email" httpError={httpError} />
                         <input type="text" name="email" onChange={handleChange} placeholder="E-mail" className="input shadow-md"/>
 
                     </div>
 
                     <div className="flex flex-col gap-1">
 
-                        {httpError && <FieldErrors fieldName="password" httpError={httpError} />}
+                        <FieldErrors fieldName="password" httpError={httpError} />
                         <input type="password" name="password" onChange={handleChange} placeholder="Password" className="input shadow-md"/>
 
                     </div>

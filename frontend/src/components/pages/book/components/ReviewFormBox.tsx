@@ -30,18 +30,11 @@ export const ReviewFormBox = ({ handleSubmitReviewClick, userReviewSubmitHttpErr
 
     return (
 
-        <div className="flex flex-col gap-5 items-start w-full">
+        <div className="flex flex-col gap-5 items-center w-full">
 
             <p className="w-full text-lg font-semibold text-center">Leave a review here:</p>
 
-            {userReviewSubmitHttpError && 
-
-                <div className="self-center">
-                    
-                    <FieldErrors fieldName={"rating"} httpError={userReviewSubmitHttpError} />
-                
-                </div>
-            }
+            <FieldErrors fieldName={"rating"} httpError={userReviewSubmitHttpError} />
 
             <div className="w-full flex gap-3 items-center justify-center">
 
@@ -61,13 +54,9 @@ export const ReviewFormBox = ({ handleSubmitReviewClick, userReviewSubmitHttpErr
 
             </div>
 
-            <div className="w-full">
+            <textarea className="input" rows={1} placeholder="Leave a comment (optional)..." value={review.reviewDescription} onChange={event => handleCommentChange(event.target.value)} />
 
-                <textarea className="input" rows={1} placeholder="Leave a comment (optional)..." value={review.reviewDescription} onChange={event => handleCommentChange(event.target.value)} />
-
-            </div>
-
-            <button className="custom-btn-2 self-center" onClick={handleSubmit}>
+            <button className="custom-btn-2" onClick={handleSubmit}>
                 Submit a review
             </button>
             

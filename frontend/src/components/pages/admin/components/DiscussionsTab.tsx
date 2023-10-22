@@ -6,6 +6,7 @@ import { Pagination } from "../../../commons/pagination/Pagination";
 import { useFetchOpenDiscussions } from "../../../../utils/useFetchOpenDiscussions";
 import { DiscussionsTabDiscussionCard } from "./DiscussionsTabDiscussionCard";
 import { PaginatedItemsCount } from "../../../commons/pagination/PaginatedItemsCount";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 export const DiscussionsTab = () => {
     
@@ -33,7 +34,7 @@ export const DiscussionsTab = () => {
             
                 <>
 
-                    {httpError ? <div>{httpError}</div> : 
+                    {httpError ? <HttpErrorMessage httpError={httpError} /> : 
                         
                         <>
 

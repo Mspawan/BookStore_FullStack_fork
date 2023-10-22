@@ -7,6 +7,7 @@ import { SearchPageBookCard } from "./components/SearchPageBookCard";
 import { SearchPanel } from "./components/SearchPanel";
 import { Pagination } from "../../commons/pagination/Pagination";
 import { PaginatedItemsCount } from "../../commons/pagination/PaginatedItemsCount";
+import { HttpErrorMessage } from "../../commons/http_error_message/HttpErrorMessage";
 
 export const SearchPage = () => {
 
@@ -53,7 +54,7 @@ export const SearchPage = () => {
 
                 <>
 
-                    {httpError ? <div>{httpError}</div> :
+                    {httpError ? <HttpErrorMessage httpError={httpError} /> :
                         
                         <>
 

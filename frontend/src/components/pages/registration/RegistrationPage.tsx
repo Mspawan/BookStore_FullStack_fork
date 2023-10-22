@@ -44,21 +44,21 @@ export const RegistrationPage = () => {
 
                             <div className="flex flex-col gap-1">
 
-                                {httpError && <FieldErrors fieldName="firstName" httpError={httpError} />}
+                                <FieldErrors fieldName="firstName" httpError={httpError} />
                                 <input type="text" name="firstName" onChange={handleChange} placeholder="First name" className="input shadow-md"/>
                             
                             </div>
 
                             <div className="flex flex-col gap-1">
 
-                                {httpError && <FieldErrors fieldName="lastName" httpError={httpError} />}
+                                <FieldErrors fieldName="lastName" httpError={httpError} />
                                 <input type="text" name="lastName" onChange={handleChange} placeholder="Last name" className="input shadow-md"/>
 
                             </div>
                             
                             <div className="flex flex-col gap-1">
 
-                                {httpError && <FieldErrors fieldName="dateOfBirth" httpError={httpError} />}
+                                <FieldErrors fieldName="dateOfBirth" httpError={httpError} />
 
                                 <div className="flex gap-5 items-center whitespace-nowrap pl-1">
 
@@ -72,14 +72,14 @@ export const RegistrationPage = () => {
 
                             <div className="flex flex-col gap-1">
 
-                                {httpError && <FieldErrors fieldName="email" httpError={httpError} />}
+                                <FieldErrors fieldName="email" httpError={httpError} />
                                 <input type="text" name="email" onChange={handleChange} placeholder="E-mail" className="input shadow-md"/>
                             
                             </div>
 
                             <div className="flex flex-col gap-1">
 
-                                {httpError && <FieldErrors fieldName="password" httpError={httpError} />}
+                                <FieldErrors fieldName="password" httpError={httpError} />
                                 <input type="password" name="password" onChange={handleChange} placeholder="Password" className="input shadow-md"/>
                             
                             </div>

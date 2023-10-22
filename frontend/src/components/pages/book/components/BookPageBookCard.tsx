@@ -5,6 +5,7 @@ import { CheckoutBox } from "./CheckoutBox"
 import { useFetchBookAverageRating } from "../../../../utils/useFetchBookAverageRating"
 import { FormLoader } from "../../../commons/form_loader/FormLoader"
 import { BookGenres } from "../../../commons/book_genres/BookGenres"
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage"
 
 type BookCardProps = {
     book: BookModel
@@ -42,7 +43,7 @@ export const BookPageBookCard = ({ book }: BookCardProps) => {
 
                         <>
 
-                            {averageRatingHttpError ? <div className="px-5">{averageRatingHttpError}</div> :
+                            {averageRatingHttpError ? <HttpErrorMessage httpError={averageRatingHttpError} /> :
 
                                 <ReviewStars ratingProp={averageRating} size={25} />
 

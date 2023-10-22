@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Pagination } from "../../../commons/pagination/Pagination";
 import { HistoryTabRecordCard } from "./HistoryTabRecordCard";
 import { PaginatedItemsCount } from "../../../commons/pagination/PaginatedItemsCount";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 export const HistoryTab = () => {
 
@@ -33,7 +34,7 @@ export const HistoryTab = () => {
             
                 <>
 
-                    {httpError ? <div>{httpError}</div> : 
+                    {httpError ? <HttpErrorMessage httpError={httpError} /> : 
                         
                         <>
 

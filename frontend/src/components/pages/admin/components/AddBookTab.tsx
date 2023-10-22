@@ -7,6 +7,7 @@ import { GenreModel } from "../../../../models/GenreModel";
 import { useAddNewBook } from "../../../../utils/useAddNewBook";
 import { useFetchAllGenres } from "../../../../utils/useFetchAllGenres";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 export const AddBookTab = () => {
 
@@ -160,7 +161,7 @@ export const AddBookTab = () => {
 
                             <>
 
-                                {genresHttpError ? <div>{genresHttpError}</div> : 
+                                {genresHttpError ? <HttpErrorMessage httpError={genresHttpError} /> : 
                             
                                     <div className="grid grid-cols-4 max-lg:grid-cols-2 gap-5">
 

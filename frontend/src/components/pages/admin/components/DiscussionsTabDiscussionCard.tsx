@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSubmitDiscussionResponse } from "../../../../utils/useSubmitDiscussionResponse";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
 import { FormLoader } from "../../../commons/form_loader/FormLoader";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 type DiscussionsTabDiscussionCardProps = {
     discussion: DiscussionModel,
@@ -70,7 +71,7 @@ export const DiscussionsTabDiscussionCard = ({ discussion, setIsDiscussionClosed
 
                 <FormLoader isLoading={isLoading} />
 
-                {httpError && <div className="border border-red-500 py-1 px-2 bg-red-100 rounded-md">{httpError}</div>}
+                {httpError && <HttpErrorMessage httpError={httpError} />}
 
                 <textarea rows={3} name="response" value={discussionModel.response ? discussionModel.response : ""} 
                 onChange={handleChange} placeholder="Your response here..." className="input shadow-md"/>

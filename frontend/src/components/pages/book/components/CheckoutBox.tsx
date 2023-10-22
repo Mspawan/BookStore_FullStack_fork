@@ -10,6 +10,7 @@ import { useSubmitReview } from "../../../../utils/useSubmitReview";
 import { ReviewModel } from "../../../../models/ReviewModel";
 import { useCheckOutBook } from "../../../../utils/useCheckOutBook";
 import { BookModel } from "../../../../models/BookModel";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 type CheckoutBoxProps = { 
     book: BookModel,
@@ -62,7 +63,7 @@ export const CheckoutBox = ({ book, setIsRatingChanged }: CheckoutBoxProps) => {
             
             if (isLoadingCurrentCheckoutsCount) return <FormLoader isLoading={true} />
 
-            if (currentCheckoutsCountHttpError) return <div className="px-5">{currentCheckoutsCountHttpError}</div>
+            if (currentCheckoutsCountHttpError) return <HttpErrorMessage httpError={currentCheckoutsCountHttpError} />
 
             return <p className="text-lg">Books checked out: <span className="text-teal-600 text-xl font-semibold">{currentCheckoutsCount} / 5 </span></p>
         }
@@ -76,7 +77,7 @@ export const CheckoutBox = ({ book, setIsRatingChanged }: CheckoutBoxProps) => {
             
             if (isLoadingBookCheckedOut) return <FormLoader isLoading={true} />
 
-            if (isCheckedOutHttpError) return <div className="px-5">{isCheckedOutHttpError}</div>
+            if (isCheckedOutHttpError) return <HttpErrorMessage httpError={isCheckedOutHttpError} />
 
             if (!isCheckedOut) {
 
@@ -84,7 +85,7 @@ export const CheckoutBox = ({ book, setIsRatingChanged }: CheckoutBoxProps) => {
                     
                     return <div className="flex flex-col items-center gap-1">
 
-                        {checkOutHttpError && <div className="border border-red-500 py-1 px-2 bg-red-100 rounded-md">{checkOutHttpError}</div>}
+                        {checkOutHttpError && <HttpErrorMessage httpError={checkOutHttpError} />}
                     
                         <button className="custom-btn-1" onClick={handleCheckoutClick}>Checkout</button>
 
@@ -108,7 +109,7 @@ export const CheckoutBox = ({ book, setIsRatingChanged }: CheckoutBoxProps) => {
             
             if (isLoadingUserReview) return <FormLoader isLoading={true} />
 
-            if (userReviewLeftHttpError) return <div className="px-5">{userReviewLeftHttpError}</div>
+            if (userReviewLeftHttpError) return <HttpErrorMessage httpError={userReviewLeftHttpError} />
 
             if (isReviewLeft) return <p className="text-lg font-semibold">Thank you for your review!</p>
 

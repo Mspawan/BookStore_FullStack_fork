@@ -4,6 +4,7 @@ import { useChangeBookQuantity } from "../../../../utils/useChangeBookQuantity";
 import { useDeleteBook } from "../../../../utils/useDeleteBook";
 import { FormLoader } from "../../../commons/form_loader/FormLoader";
 import { BookModel } from "../../../../models/BookModel";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 type ManageBookOptionsBoxProps = {
     book: BookModel,
@@ -62,21 +63,9 @@ export const ManageBookOptionsBox = ({ book, setIsBookDeleted }: ManageBookOptio
 
                     <>
 
-                        {changeQuantityHttpError && 
+                        {changeQuantityHttpError && <HttpErrorMessage httpError={changeQuantityHttpError} />}
 
-                            <div className="border border-red-500 py-1 px-2 bg-red-100 rounded-md text-center">
-                                {changeQuantityHttpError}
-                            </div>
-
-                        }
-
-                        {deleteBookHttpError && 
-                        
-                            <div className="border border-red-500 py-1 px-2 bg-red-100 rounded-md text-center">
-                                {deleteBookHttpError}
-                            </div>
-                            
-                        }
+                        {deleteBookHttpError && <HttpErrorMessage httpError={deleteBookHttpError} />}
 
                         <div className="flex gap-3 max-xl:flex-col">
 

@@ -5,6 +5,7 @@ import { useRenewCheckout } from "../../../../utils/useRenewCheckout"
 import { useReturnBook } from "../../../../utils/useReturnBook"
 import { FormLoader } from "../../../commons/form_loader/FormLoader"
 import { Link } from "react-router-dom"
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage"
 
 type CheckoutOptionsBoxProps = {
     checkout: CheckoutModel,
@@ -64,21 +65,9 @@ export const CheckoutOptionsBox = ({ checkout, setIsBookReturned, setIsCheckoutR
 
                     <>
 
-                        {returnBookHttpError && 
+                        {returnBookHttpError && <HttpErrorMessage httpError={returnBookHttpError} />}
 
-                            <div className="border border-red-500 py-1 px-2 bg-red-100 rounded-md text-center">
-                                {returnBookHttpError}
-                            </div>
-
-                        }
-
-                        {renewCheckoutHttpError && 
-                        
-                            <div className="border border-red-500 py-1 px-2 bg-red-100 rounded-md text-center">
-                                {renewCheckoutHttpError}
-                            </div>
-                            
-                        }
+                        {renewCheckoutHttpError && <HttpErrorMessage httpError={renewCheckoutHttpError} /> }
 
                         <div className="flex gap-3 max-xl:flex-col">
 

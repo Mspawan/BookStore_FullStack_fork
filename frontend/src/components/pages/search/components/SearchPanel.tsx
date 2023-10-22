@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useFetchAllGenres } from "../../../../utils/useFetchAllGenres";
 import { GenreModel } from "../../../../models/GenreModel";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 type SearchPanelProps = {
     selectedGenre: string,
@@ -19,6 +20,31 @@ export const SearchPanel = ({ selectedGenre, handleGenreChange, titleQuery, setT
 
     useFetchAllGenres(setAllGenres, setIsLoadingGenres, setGenresHttpError);
 
+    const renderGenresDropdown = () => {
+
+        return <>
+
+            {genresHttpError ? <HttpErrorMessage httpError={genresHttpError} /> : 
+
+                <select className="dropdown" value={selectedGenre} onChange={event => handleGenreChange(event.target.value)}>
+
+                    <option disabled value="">Search by genre</option>
+
+                    {allGenres.map(
+
+                        genre => <option key={genre.id} value={genre.description}>{genre.description}</option>
+
+                    )}
+
+                    <option value="">All genres</option>
+
+                </select>
+
+            }
+
+        </>
+    };
+
     return (
 
         <>
@@ -27,31 +53,7 @@ export const SearchPanel = ({ selectedGenre, handleGenreChange, titleQuery, setT
 
             <div className="flex w-full gap-5 max-sm:hidden">
 
-                {isLoadingGenres ? <LoadingSpinner /> :
-
-                    <>
-
-                        {genresHttpError ? <div>{genresHttpError}</div> : 
-
-                            <select className="dropdown" value={selectedGenre} onChange={event => handleGenreChange(event.target.value)}>
-
-                                <option disabled value="">Search by genre</option>
-
-                                {allGenres.map(
-
-                                    genre => <option key={genre.id} value={genre.description}>{genre.description}</option>
-
-                                )}
-
-                                <option value="">All genres</option>
-
-                            </select>
-
-                        }
-
-                    </>
-
-                }
+                {isLoadingGenres ? <LoadingSpinner /> : renderGenresDropdown()}
 
                 <input className="input" placeholder="Search books by title..." value={titleQuery} onChange={event => setTitleQuery(event.target.value)} />
 
@@ -70,31 +72,7 @@ export const SearchPanel = ({ selectedGenre, handleGenreChange, titleQuery, setT
 
                 <div className="flex w-full justify-between">
 
-                    {isLoadingGenres ? <LoadingSpinner /> :
-
-                        <>
-
-                            {genresHttpError ? <div>{genresHttpError}</div> : 
-
-                                <select className="dropdown" value={selectedGenre} onChange={event => handleGenreChange(event.target.value)}>
-
-                                    <option disabled value="">Search by genre</option>
-
-                                    {allGenres.map(
-
-                                        genre => <option key={genre.id} value={genre.description}>{genre.description}</option>
-
-                                    )}
-
-                                    <option value="">All genres</option>
-
-                                </select>
-
-                            }
-
-                        </>
-
-                    }
+                    {isLoadingGenres ? <LoadingSpinner /> : renderGenresDropdown()}
 
                     <button className="custom-btn-2" onClick={() => handleSearchClick()}>
                         Search

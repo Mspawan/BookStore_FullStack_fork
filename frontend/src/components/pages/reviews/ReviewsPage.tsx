@@ -7,6 +7,7 @@ import { ReviewCard } from "../../commons/review_card/ReviewCard";
 import { Link } from "react-router-dom";
 import { LoadingSpinner } from "../../commons/loading_spinner/LoadingSpinner";
 import { PaginatedItemsCount } from "../../commons/pagination/PaginatedItemsCount";
+import { HttpErrorMessage } from "../../commons/http_error_message/HttpErrorMessage";
 
 export const ReviewsPage = () => {
 
@@ -37,7 +38,7 @@ export const ReviewsPage = () => {
 
                     <>
 
-                        {reviewsHttpError ? <div className="px-5">{reviewsHttpError}</div> :
+                        {reviewsHttpError ? <HttpErrorMessage httpError={reviewsHttpError} /> :
 
                             <div className="flex flex-col gap-5">
 

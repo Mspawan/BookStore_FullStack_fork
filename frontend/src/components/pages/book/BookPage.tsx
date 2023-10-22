@@ -7,6 +7,7 @@ import { LoadingSpinner } from "../../commons/loading_spinner/LoadingSpinner";
 import { useFetchBookReviews } from "../../../utils/useFetchBookReviews";
 import { ReviewModel } from "../../../models/ReviewModel";
 import { LatestReviews } from "./components/LatestReviews";
+import { HttpErrorMessage } from "../../commons/http_error_message/HttpErrorMessage";
 
 export const BookPage = () => {
 
@@ -39,7 +40,7 @@ export const BookPage = () => {
 
                 <>
 
-                    {httpError ? <div className="px-5 py-10">{httpError}</div> :
+                    {httpError ? <HttpErrorMessage httpError={httpError} /> :
 
                         <div className="p-5">
 

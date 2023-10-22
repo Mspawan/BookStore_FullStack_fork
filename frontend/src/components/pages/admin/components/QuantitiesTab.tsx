@@ -5,6 +5,7 @@ import { Pagination } from "../../../commons/pagination/Pagination";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { QuantitiesTabBookCard } from "./QuantitiesTabBookCard";
 import { PaginatedItemsCount } from "../../../commons/pagination/PaginatedItemsCount";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 export const QuantitiesTab = () => {
 
@@ -49,7 +50,7 @@ export const QuantitiesTab = () => {
 
                 <>
 
-                    {httpError ? <div>{httpError}</div> :
+                    {httpError ? <HttpErrorMessage httpError={httpError} /> :
                         
                         <>
 
