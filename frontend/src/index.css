@@ -34,37 +34,15 @@ input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0;
-
-    font: inherit;
-    color: teal;
-    width: 1.15em;
-    height: 1.15em;
-    border: 0.15em solid teal;
-    border-radius: 0.15em;
-    display: grid;
-    place-content: center;
-    opacity: 0.5;
-    cursor: pointer;
 }
 
 input[type="checkbox"]::before {
-    content: "";
-    width: 0.65em;
-    height: 0.65em;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
     transform: scale(0);
-    transform-origin: center;
-    transition: 120ms transform ease-in-out;
-    background-color: rgb(250, 90, 10);
 }
 
 input[type="checkbox"]:checked::before {
     transform: scale(1);
-}
-
-input[type="checkbox"]:checked {
-    opacity: 1;
 }
 
 @layer components {
@@ -119,6 +97,10 @@ input[type="checkbox"]:checked {
 
     .input {
         @apply w-full border-2 rounded-md border-teal-600 py-2 px-5 text-lg outline-custom-outline focus:shadow-lg focus:outline-offset-2 duration-200;
+    }
+
+    .checkbox {
+        @apply m-0 w-5 h-5 border-2 border-teal-700 rounded-sm grid place-content-center opacity-50 cursor-pointer before:content-[""] before:w-3 before:h-3 before:origin-center before:duration-150 before:ease-in-out before:bg-teal-700 checked:opacity-100
     }
 
     .dropdown {

@@ -171,7 +171,7 @@ export const AddBookTab = () => {
 
                                                 <label key={genre.id} className="border-2 border-teal-600 rounded-md p-2 bg-teal-50 flex gap-2 items-center">
 
-                                                    <input type="checkbox" onClick={() => handleGenreClick(genre)} />
+                                                    <input type="checkbox" className="checkbox" onClick={() => handleGenreClick(genre)} />
 
                                                     {genre.description}
 
