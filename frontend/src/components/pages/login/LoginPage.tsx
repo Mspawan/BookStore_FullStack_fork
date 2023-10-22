@@ -5,6 +5,7 @@ import { useState } from "react";
 import { LoginModel } from "../../../models/LoginModel";
 import { useAuthenticationContext } from "../../../authentication/authenticationContext";
 import { FormLoader } from "../../commons/form_loader/FormLoader";
+import { HttpErrorMessage } from "../../commons/http_error_message/HttpErrorMessage";
 
 export const LoginPage = () => {
 
@@ -37,6 +38,8 @@ export const LoginPage = () => {
                 <p className="text-center text-3xl font-semibold">Sign In</p>
 
                 <FormLoader isLoading={isLoading} />
+
+                {(httpError && !httpError.startsWith("Some")) && <HttpErrorMessage httpError={httpError} />}
 
                 <form className="flex flex-col gap-5 w-full">
 
