@@ -13,6 +13,21 @@
     color: rgb(17, 94, 89);
 }
 
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type="checkbox"]::before {
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
 .swiper-button-next {
     right: 0;
 }
@@ -28,21 +43,6 @@
 .swiper-button-prev::after, .swiper-button-next::after {
     font-size: 40px;
     font-weight: 700;
-}
-
-input[type="checkbox"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-input[type="checkbox"]::before {
-    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-    transform: scale(0);
-}
-
-input[type="checkbox"]:checked::before {
-    transform: scale(1);
 }
 
 @layer components {
