@@ -25,7 +25,7 @@ export const AllDiscussionsTabDiscussionCard = ({ discussion }: AllDiscussionsTa
 
             </div>
 
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
 
             <div className="flex flex-col gap-5 w-full rounded-md shadow-custom-3 p-3">
                 

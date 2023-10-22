@@ -24,7 +24,7 @@ export const HistoryRecordInfoBox = ({ record }: HistoryRecordInfoBoxProps) => {
 
             <p className="text-xl font-semibold">History record info</p>
 
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
 
             <div className="flex gap-1 items-center text-lg text-center">
 
@@ -42,7 +42,7 @@ export const HistoryRecordInfoBox = ({ record }: HistoryRecordInfoBoxProps) => {
 
             </div>
 
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
 
             <p className="text-center font-light">Help others find their adventure by reviewing this book or find more exciting books in our collection.</p>
 

@@ -55,7 +55,7 @@ export const CheckoutOptionsBox = ({ checkout, setIsBookReturned, setIsCheckoutR
 
             <p className="text-xl font-semibold">Checkout options</p>
 
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
 
             {renderDueDays()}
 
@@ -91,7 +91,7 @@ export const CheckoutOptionsBox = ({ checkout, setIsBookReturned, setIsCheckoutR
 
             </div>
 
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
 
             <p className="text-center">Help others find their adventure by reviewing this book.</p>
 

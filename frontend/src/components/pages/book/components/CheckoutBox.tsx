@@ -126,7 +126,7 @@ export const CheckoutBox = ({ book, setIsRatingChanged }: CheckoutBoxProps) => {
 
             {renderBooksCheckedOut()}
 
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
 
             {copiesAvailable && copiesAvailable > 0 ?
                         
@@ -147,13 +147,13 @@ export const CheckoutBox = ({ book, setIsRatingChanged }: CheckoutBoxProps) => {
 
             {renderCheckoutBtn()}
 
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
             
             <p className="font-light text-center">
                 Number of books available may change until checkout is complete.
             </p>
             
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
 
             {renderReviewBtn()}
             

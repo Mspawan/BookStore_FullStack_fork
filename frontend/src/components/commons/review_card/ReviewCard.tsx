@@ -46,7 +46,7 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
 
             </div>
 
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
 
             <div className="flex items-center gap-3 max-md:self-center md:hidden">
 

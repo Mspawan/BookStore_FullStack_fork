@@ -39,7 +39,7 @@ export const ManageBookOptionsBox = ({ book, setIsBookDeleted }: ManageBookOptio
 
             <p className="text-xl font-semibold">Manage book options</p>
 
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
 
             <div className="flex gap-2 items-center text-lg text-center">
 
@@ -85,7 +85,7 @@ export const ManageBookOptionsBox = ({ book, setIsBookDeleted }: ManageBookOptio
 
             </div>
 
-            <div className="h-[1px] w-full bg-teal-800" />
+            <div className="divider-2" />
 
             <button className="custom-btn-2" onClick={handleDeleteBookClick}>
                 Delete Book
