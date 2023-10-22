@@ -132,4 +132,8 @@ input[type="checkbox"]:checked {
     .divider-1 {
         @apply absolute bg-teal-600 lg:w-[1px] max-lg:h-[1px] lg:top-0 lg:bottom-0 max-lg:left-5 max-lg:right-5 max-lg:top-20
     }
+
+    .divider-2 {
+        @apply h-[1px] w-full bg-teal-800
+    }
 }
