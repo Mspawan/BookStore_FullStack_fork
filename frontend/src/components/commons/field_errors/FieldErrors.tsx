@@ -24,7 +24,7 @@ export const FieldErrors = ({ fieldName, httpError } : FieldErrorsProps) => {
 
                 error => (
 
-                    <div key={error} className="border border-red-500 py-1 px-2 bg-red-100 rounded-md">
+                    <div key={error} className="error-message">
 
                         {error.replace(RegExp(`${fieldName}: `), "")}
 
