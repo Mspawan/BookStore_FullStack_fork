@@ -10,30 +10,22 @@ public class ErrorsUtil {
 
     public static void returnBookError(String generalMessage, BindingResult bindingResult) {
 
-        String bindingResultMessage = bindingResult == null ? "" : buildErrorMessage(bindingResult);
-        String message = generalMessage + " " + bindingResultMessage;
-        throw new BookException(message);
+        throw new BookException(buildErrorMessage(generalMessage, bindingResult));
     }
 
     public static void returnPersonError(String generalMessage, BindingResult bindingResult) {
 
-        String bindingResultMessage = bindingResult == null ? "" : buildErrorMessage(bindingResult);
-        String message = generalMessage + " " + bindingResultMessage;
-        throw new PersonException(message);
+        throw new PersonException(buildErrorMessage(generalMessage, bindingResult));
     }
 
     public static void returnReviewError(String generalMessage, BindingResult bindingResult) {
 
-        String bindingResultMessage = bindingResult == null ? "" : buildErrorMessage(bindingResult);
-        String message = generalMessage + " " + bindingResultMessage;
-        throw new ReviewException(message);
+        throw new ReviewException(buildErrorMessage(generalMessage, bindingResult));
     }
 
     public static void returnDiscussionError(String generalMessage, BindingResult bindingResult) {
 
-        String bindingResultMessage = bindingResult == null ? "" : buildErrorMessage(bindingResult);
-        String message = generalMessage + " " + bindingResultMessage;
-        throw new DiscussionException(message);
+        throw new DiscussionException(buildErrorMessage(generalMessage, bindingResult));
     }
 
     public static void returnPaymentError(String message) {
@@ -41,19 +33,23 @@ public class ErrorsUtil {
         throw new PaymentException(message);
     }
 
-    private static String buildErrorMessage(BindingResult bindingResult) {
+    private static String buildErrorMessage(String generalMessage, BindingResult bindingResult) {
 
         StringBuilder errorMessage = new StringBuilder();
 
-        List<FieldError> errors = bindingResult.getFieldErrors();
+        if (bindingResult != null) {
 
-        for (FieldError error : errors) {
-            errorMessage.append(error.getField())
-                    .append(": ")
-                    .append(error.getDefaultMessage() == null ? error.getCode() : error.getDefaultMessage())
-                    .append("; ");
+            List<FieldError> errors = bindingResult.getFieldErrors();
+
+            for (FieldError error : errors) {
+                errorMessage.append(error.getField())
+                        .append(": ")
+                        .append(error.getDefaultMessage() == null ? error.getCode() : error.getDefaultMessage())
+                        .append("; ");
+            }
+
         }
 
-        return errorMessage.toString();
+        return generalMessage + " " + errorMessage;
     }
 }
