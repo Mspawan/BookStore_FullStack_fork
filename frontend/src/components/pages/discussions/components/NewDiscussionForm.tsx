@@ -4,6 +4,7 @@ import { DiscussionModel } from "../../../../models/DiscussionModel";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
 import { FormLoader } from "../../../commons/form_loader/FormLoader";
 import { FieldErrors } from "../../../commons/field_errors/FieldErrors";
+import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
 export const NewDiscussionForm = () => {
 
@@ -39,6 +40,8 @@ export const NewDiscussionForm = () => {
             <p className="text-center text-3xl font-semibold">Open discussion</p>
 
             <FormLoader isLoading={isLoading} />
+
+            {(httpError && !httpError.startsWith("Some")) && <HttpErrorMessage httpError={httpError} />}
 
             <form className="flex flex-col gap-5 w-full">
 

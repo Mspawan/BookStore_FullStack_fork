@@ -83,6 +83,8 @@ export const AddBookTab = () => {
 
             <FormLoader isLoading={isLoadingSubmit} />
 
+            {(bookSubmitHttpError && !bookSubmitHttpError.startsWith("Some")) && <HttpErrorMessage httpError={bookSubmitHttpError} />}
+
             <form className="flex flex-col gap-5 w-full">
 
                 <div className="flex max-lg:flex-col gap-5 w-full">
