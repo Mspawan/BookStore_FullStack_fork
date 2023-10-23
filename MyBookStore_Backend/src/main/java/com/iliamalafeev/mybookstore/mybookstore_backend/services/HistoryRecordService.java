@@ -32,6 +32,10 @@ public class HistoryRecordService {
         this.personRepository = personRepository;
     }
 
+//  <------------------------------------------------------------------------------->
+//  <-------------------- Service public methods for controller -------------------->
+//  <------------------------------------------------------------------------------->
+
     public Page<HistoryRecordDTO> findAllByPersonEmail(String personEmail, Pageable pageable) {
 
         Person person = personRepository.findByEmail(personEmail).get();
@@ -48,6 +52,10 @@ public class HistoryRecordService {
 
         return new PageImpl<>(pageContent, historyRecords.getPageable(), historyRecords.getTotalElements());
     }
+
+//  <-------------------------------------------------------------------------------------------->
+//  <-------------------- Service private methods for some code re-usability -------------------->
+//  <-------------------------------------------------------------------------------------------->
 
     private HistoryRecordDTO convertToHistoryRecordDTO(HistoryRecord historyRecord) {
         return modelMapper.map(historyRecord, HistoryRecordDTO.class);
