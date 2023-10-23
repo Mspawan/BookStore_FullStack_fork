@@ -5,10 +5,6 @@ import com.iliamalafeev.mybookstore.mybookstore_backend.dto.DiscussionDTO;
 import com.iliamalafeev.mybookstore.mybookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.mybookstore.mybookstore_backend.services.BookService;
 import com.iliamalafeev.mybookstore.mybookstore_backend.services.DiscussionService;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.error_responses.BookErrorResponse;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.error_responses.DiscussionErrorResponse;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.BookException;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.DiscussionException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -68,8 +64,8 @@ public class AdminController {
     }
 
     @GetMapping("/open-discussions")
-    public Page<DiscussionDTO> findAllUnclosedDiscussions(@RequestParam(value = "page", required = true) Integer page,
-                                                          @RequestParam(value = "discussions-per-page", required = true) Integer discussionsPerPage) {
+    public Page<DiscussionDTO> findAllUnclosedDiscussions(@RequestParam(value = "page") Integer page,
+                                                          @RequestParam(value = "discussions-per-page") Integer discussionsPerPage) {
 
         return discussionService.findAllByClosed(PageRequest.of(page, discussionsPerPage));
     }
@@ -79,17 +75,5 @@ public class AdminController {
                                                        @RequestBody @Valid DiscussionDTO discussionDTO, BindingResult bindingResult) {
         discussionService.updateDiscussion(extractEmail(token), discussionDTO, bindingResult);
         return ResponseEntity.ok(HttpStatus.OK);
-    }
-
-    @ExceptionHandler
-    private ResponseEntity<BookErrorResponse> handleException(BookException e) {
-        BookErrorResponse response = new BookErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler
-    private ResponseEntity<DiscussionErrorResponse> handleException(DiscussionException e) {
-        DiscussionErrorResponse response = new DiscussionErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }

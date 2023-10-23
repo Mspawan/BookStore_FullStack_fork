@@ -4,12 +4,6 @@ import com.iliamalafeev.mybookstore.mybookstore_backend.dto.BookDTO;
 import com.iliamalafeev.mybookstore.mybookstore_backend.dto.ReviewDTO;
 import com.iliamalafeev.mybookstore.mybookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.mybookstore.mybookstore_backend.services.BookService;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.error_responses.BookErrorResponse;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.error_responses.PaymentErrorResponse;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.error_responses.ReviewErrorResponse;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.BookException;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.PaymentException;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.ReviewException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,8 +33,8 @@ public class BookController {
     }
 
     @GetMapping
-    public Page<BookDTO> findAll(@RequestParam(value = "page", required = true) Integer page,
-                                 @RequestParam(value = "books-per-page", required = true) Integer booksPerPage) {
+    public Page<BookDTO> findAll(@RequestParam(value = "page") Integer page,
+                                 @RequestParam(value = "books-per-page") Integer booksPerPage) {
 
         return bookService.findAll(PageRequest.of(page, booksPerPage));
     }
@@ -52,8 +46,8 @@ public class BookController {
     }
 
     @GetMapping("/search/by-title")
-    public Page<BookDTO> findAllByTitle(@RequestParam(value = "page", required = true) Integer page,
-                                        @RequestParam(value = "books-per-page", required = true) Integer booksPerPage,
+    public Page<BookDTO> findAllByTitle(@RequestParam(value = "page") Integer page,
+                                        @RequestParam(value = "books-per-page") Integer booksPerPage,
                                         @RequestParam("title-query") String titleQuery) {
 
         return bookService.findAllByTitle(titleQuery, PageRequest.of(page, booksPerPage));
@@ -61,8 +55,8 @@ public class BookController {
 
     @GetMapping("/search/by-genre")
     public Page<BookDTO> findAllByGenre(@RequestParam("genre-query") String genreQuery,
-                                        @RequestParam(value = "page", required = true) Integer page,
-                                        @RequestParam(value = "books-per-page", required = true) Integer booksPerPage) {
+                                        @RequestParam(value = "page") Integer page,
+                                        @RequestParam(value = "books-per-page") Integer booksPerPage) {
 
         return bookService.findAllByGenre(genreQuery, PageRequest.of(page, booksPerPage));
     }
@@ -103,25 +97,8 @@ public class BookController {
     @PostMapping("/secure/review/{bookId}")
     public ResponseEntity<HttpStatus> reviewBook(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token,
                                                  @RequestBody @Valid ReviewDTO reviewDTO, BindingResult bindingResult) {
+
         bookService.reviewBook(extractEmail(token), bookId, reviewDTO, bindingResult);
         return ResponseEntity.ok(HttpStatus.OK);
-    }
-
-    @ExceptionHandler
-    private ResponseEntity<BookErrorResponse> handleException(BookException e) {
-        BookErrorResponse response = new BookErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler
-    private ResponseEntity<ReviewErrorResponse> handleException(ReviewException e) {
-        ReviewErrorResponse response = new ReviewErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler
-    private ResponseEntity<PaymentErrorResponse> handleException(PaymentException e) {
-        PaymentErrorResponse response = new PaymentErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }

@@ -3,8 +3,6 @@ package com.iliamalafeev.mybookstore.mybookstore_backend.controllers;
 import com.iliamalafeev.mybookstore.mybookstore_backend.dto.DiscussionDTO;
 import com.iliamalafeev.mybookstore.mybookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.mybookstore.mybookstore_backend.services.DiscussionService;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.error_responses.DiscussionErrorResponse;
-import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.DiscussionException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,9 +32,8 @@ public class DiscussionController {
     }
 
     @GetMapping
-    public Page<DiscussionDTO> findAllByPersonEmail(@RequestHeader("Authorization") String token,
-                                                    @RequestParam(value = "page", required = true) Integer page,
-                                                    @RequestParam(value = "discussions-per-page", required = true) Integer discussionsPerPage) {
+    public Page<DiscussionDTO> findAllByPersonEmail(@RequestHeader("Authorization") String token, @RequestParam(value = "page") Integer page,
+                                                    @RequestParam(value = "discussions-per-page") Integer discussionsPerPage) {
 
         return discussionService.findAllByPersonEmail(extractEmail(token), PageRequest.of(page, discussionsPerPage));
     }
@@ -46,11 +43,5 @@ public class DiscussionController {
                                                     @RequestBody @Valid DiscussionDTO discussionDTO, BindingResult bindingResult) {
         discussionService.addDiscussion(extractEmail(token), discussionDTO, bindingResult);
         return ResponseEntity.ok(HttpStatus.OK);
-    }
-
-    @ExceptionHandler
-    private ResponseEntity<DiscussionErrorResponse> handleException(DiscussionException e) {
-        DiscussionErrorResponse response = new DiscussionErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
