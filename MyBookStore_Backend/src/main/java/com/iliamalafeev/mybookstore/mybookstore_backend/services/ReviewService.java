@@ -30,6 +30,10 @@ public class ReviewService {
         this.bookRepository = bookRepository;
     }
 
+//  <------------------------------------------------------------------------------->
+//  <-------------------- Service public methods for controller -------------------->
+//  <------------------------------------------------------------------------------->
+
     public Page<ReviewDTO> findAllByBookId(Long bookId, Pageable pageable, boolean latest) {
 
         Book book = getBookFromRepository(bookId);
@@ -52,6 +56,10 @@ public class ReviewService {
 
         return rating;
     }
+
+//  <-------------------------------------------------------------------------------------------->
+//  <-------------------- Service private methods for some code re-usability -------------------->
+//  <-------------------------------------------------------------------------------------------->
 
     private Book getBookFromRepository(Long bookId) {
 

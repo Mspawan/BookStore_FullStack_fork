@@ -21,7 +21,6 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -39,7 +38,10 @@ public class BookService {
     private final HistoryRecordRepository historyRecordRepository;
 
     @Autowired
-    public BookService(ModelMapper modelMapper, BookValidator bookValidator, ReviewValidator reviewValidator, BookRepository bookRepository, GenreRepository genreRepository, CheckoutRepository checkoutRepository, PersonRepository personRepository, PaymentRepository paymentRepository, ReviewRepository reviewRepository, HistoryRecordRepository historyRecordRepository) {
+    public BookService(ModelMapper modelMapper, BookValidator bookValidator, ReviewValidator reviewValidator, BookRepository bookRepository,
+                       GenreRepository genreRepository, CheckoutRepository checkoutRepository, PersonRepository personRepository,
+                       PaymentRepository paymentRepository, ReviewRepository reviewRepository, HistoryRecordRepository historyRecordRepository) {
+
         this.modelMapper = modelMapper;
         this.bookValidator = bookValidator;
         this.reviewValidator = reviewValidator;
@@ -53,13 +55,8 @@ public class BookService {
     }
 
 //  <------------------------------------------------------------------------------->
-//  <-------------------- Service Public Methods for controller -------------------->
+//  <-------------------- Service public methods for controller -------------------->
 //  <------------------------------------------------------------------------------->
-
-    public List<BookDTO> findAll() {
-
-        return bookRepository.findAll().stream().map(this::convertToBookDTO).collect(Collectors.toList());
-    }
 
     public Page<BookDTO> findAll(Pageable pageable) {
 
@@ -187,7 +184,7 @@ public class BookService {
 
         Optional<Payment> payment = getPaymentOptionalFromRepository(person);
         if (payment.isPresent() && (payment.get().getAmount() > 0 || bookNeedsReturned)) {
-            ErrorsUtil.returnPaymentError("Outstanding fees");
+            ErrorsUtil.returnPaymentError("You have outstanding fees, checkout is unavailable");
         }
 
         if (payment.isEmpty()) {
@@ -292,7 +289,7 @@ public class BookService {
     }
 
 //  <-------------------------------------------------------------------------------------------->
-//  <-------------------- Service Private Methods for some code re-usability -------------------->
+//  <-------------------- Service private methods for some code re-usability -------------------->
 //  <-------------------------------------------------------------------------------------------->
 
     private Book getBookFromRepository(Long bookId) {

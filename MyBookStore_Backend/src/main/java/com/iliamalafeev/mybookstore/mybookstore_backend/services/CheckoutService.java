@@ -34,6 +34,10 @@ public class CheckoutService {
         this.personRepository = personRepository;
     }
 
+//  <------------------------------------------------------------------------------->
+//  <-------------------- Service public methods for controller -------------------->
+//  <------------------------------------------------------------------------------->
+
     public int getCurrentCheckoutsCount(String personEmail) {
 
         Person person = getPersonFromRepository(personEmail);
@@ -67,6 +71,10 @@ public class CheckoutService {
 
         return response;
     }
+
+//  <-------------------------------------------------------------------------------------------->
+//  <-------------------- Service private methods for some code re-usability -------------------->
+//  <-------------------------------------------------------------------------------------------->
 
     private Person getPersonFromRepository(String personEmail) {
 

@@ -8,8 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/api/history-records/secure")
@@ -30,9 +28,8 @@ public class HistoryRecordController {
     }
 
     @GetMapping
-    public Page<HistoryRecordDTO> findAllByPersonEmail(@RequestHeader("Authorization") String token,
-                                                       @RequestParam(value = "page", required = true) Integer page,
-                                                       @RequestParam(value = "records-per-page", required = true) Integer recordsPerPage) {
+    public Page<HistoryRecordDTO> findAllByPersonEmail(@RequestHeader("Authorization") String token, @RequestParam(value = "page") Integer page,
+                                                       @RequestParam(value = "records-per-page") Integer recordsPerPage) {
 
         return historyRecordService.findAllByPersonEmail(extractEmail(token), PageRequest.of(page, recordsPerPage));
     }

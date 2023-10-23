@@ -35,9 +35,13 @@ public class DiscussionService {
         this.personRepository = personRepository;
     }
 
+//  <------------------------------------------------------------------------------->
+//  <-------------------- Service public methods for controller -------------------->
+//  <------------------------------------------------------------------------------->
+
     public Page<DiscussionDTO> findAllByPersonEmail(String personEmail, Pageable pageable) {
 
-        Person person = personRepository.findByEmail(personEmail).get();
+        Person person = getPersonFromRepository(personEmail);
 
         Page<Discussion> discussions = discussionRepository.findByDiscussionHolder(person, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 
@@ -78,7 +82,7 @@ public class DiscussionService {
             ErrorsUtil.returnDiscussionError("Some fields are invalid.", bindingResult);
         }
 
-        Person person = personRepository.findByEmail(personEmail).get();
+        Person person = getPersonFromRepository(personEmail);
 
         Discussion discussion = convertToDiscussion(discussionDTO);
         discussion.setDiscussionHolder(person);
@@ -115,6 +119,15 @@ public class DiscussionService {
         discussion.setClosed(true);
 
         discussionRepository.save(discussion);
+    }
+
+//  <-------------------------------------------------------------------------------------------->
+//  <-------------------- Service private methods for some code re-usability -------------------->
+//  <-------------------------------------------------------------------------------------------->
+
+    private Person getPersonFromRepository(String personEmail) {
+
+        return personRepository.findByEmail(personEmail).get();
     }
 
     private DiscussionDTO convertToDiscussionDTO(Discussion discussion) {

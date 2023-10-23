@@ -32,9 +32,9 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public AuthenticationService(PersonValidator personValidator, PersonRepository personRepository,
-                                 PasswordEncoder passwordEncoder, JwtUtils jwtUtils,
-                                 AuthenticationManager authenticationManager) {
+    public AuthenticationService(PersonValidator personValidator, PersonRepository personRepository, PasswordEncoder passwordEncoder,
+                                 JwtUtils jwtUtils, AuthenticationManager authenticationManager) {
+
         this.personValidator = personValidator;
         this.personRepository = personRepository;
         this.passwordEncoder = passwordEncoder;
@@ -42,8 +42,7 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
 
-    public AuthenticationResponse registerPerson(PersonRegistrationDTO personRegistrationDTO,
-                                                 BindingResult bindingResult) {
+    public AuthenticationResponse registerPerson(PersonRegistrationDTO personRegistrationDTO, BindingResult bindingResult) {
 
         Person person = new Person();
 
@@ -68,8 +67,7 @@ public class AuthenticationService {
         return new AuthenticationResponse(jwtToken);
     }
 
-    public AuthenticationResponse authenticatePerson(PersonLoginDTO personLoginDTO,
-                                                     BindingResult bindingResult) {
+    public AuthenticationResponse authenticatePerson(PersonLoginDTO personLoginDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             ErrorsUtil.returnPersonError("Some fields are invalid.", bindingResult);
