@@ -1,9 +1,10 @@
+import jwtDecode from "jwt-decode";
 import { LoginModel } from "../models/LoginModel";
 
 export const useLogin = async (loginModel: LoginModel, 
                                setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, 
                                setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
-                               setAuthentication: React.Dispatch<React.SetStateAction<{ isAuthenticated: boolean; token: string; }>>) => {
+                               setAuthentication: React.Dispatch<React.SetStateAction<{ isAuthenticated: boolean; token: string; authority: string }>>) => {
 
     const submitLogin = async () => {
 
@@ -29,13 +30,14 @@ export const useLogin = async (loginModel: LoginModel,
         }
 
         const token = responseJson.token;
-        
-        setAuthentication({ isAuthenticated: true, token: token });
 
-        localStorage.setItem("authenticationState", JSON.stringify({ isAuthenticated: true, token: token }));
+        const payload: {role: {authority: string}[], sub: string, iss: string, iat: number, exp: number} = jwtDecode(token);
+        
+        setAuthentication({ isAuthenticated: true, token: token, authority: payload.role[0].authority });
+
+        localStorage.setItem("authenticationState", JSON.stringify({ isAuthenticated: true, token: token, authority: payload.role[0].authority }));
 
         setIsLoading(false);
-
     }
 
     submitLogin().catch(

@@ -32,8 +32,8 @@ export const AuthenticationProvider = ({ children }: AuthenticationProviderProps
 
     const logout = () => {
 
-        setAuthentication({ isAuthenticated: false, token: "" });
-        localStorage.setItem("authenticationState", JSON.stringify({ isAuthenticated: false, token: "" }));
+        setAuthentication({ isAuthenticated: false, token: "", authority: "" });
+        localStorage.setItem("authenticationState", JSON.stringify({ isAuthenticated: false, token: "", authority: "" }));
     }
 
     return (

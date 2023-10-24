@@ -4,7 +4,7 @@ import { RegistrationModel } from "../models/RegistrationModel";
 
 type AuthenticationContextType = {
 
-    authentication: { isAuthenticated: boolean, token: string },
+    authentication: { isAuthenticated: boolean, token: string, authority: string },
 
     register: (personDetails: RegistrationModel, 
                setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, 
