@@ -10,7 +10,7 @@ export const AdminPage = () => {
 
     const { authentication } = useAuthenticationContext();
 
-    if (!authentication.isAuthenticated) return <Navigate to={"/"} />
+    if (!authentication.isAuthenticated || authentication.authority !== "ROLE_ADMIN") return <Navigate to={"/"} />
 
     const [isAddBookTabSelected, setIsAddBookTabSelected] = useState(true);
     const [isQuantitiesTabSelected, setIsQuantitiesTabSelected] = useState(false);

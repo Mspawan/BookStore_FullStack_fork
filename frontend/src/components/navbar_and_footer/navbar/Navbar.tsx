@@ -31,19 +31,29 @@ export const Navbar = () => {
                         
                         (link) => (
                             
-                            link.authRequired ? authentication.isAuthenticated &&
+                            link.authRequired ? authentication.isAuthenticated && (
 
-                            <NavLink className={({ isActive }) => (isActive ? "nav-link-active" : "nav-link")}
-                                to={link.href} key={link.id} onClick={() => setHamburgerMenuClicked(false)}>
+                                link.adminOnly ? authentication.authority === "ROLE_ADMIN" &&
 
-                                {link.title}
+                                <NavLink key={link.id} className={({ isActive }) => (isActive ? "nav-link-active" : "nav-link")} to={link.href} onClick={() => setHamburgerMenuClicked(false)}>
 
-                            </NavLink>
+                                    {link.title}
+
+                                </NavLink>
+
+                                :
+
+                                <NavLink key={link.id} className={({ isActive }) => (isActive ? "nav-link-active" : "nav-link")} to={link.href} onClick={() => setHamburgerMenuClicked(false)}>
+
+                                    {link.title}
+
+                                </NavLink>
+
+                            )
 
                             :
 
-                            <NavLink className={({ isActive }) => (isActive ? "nav-link-active" : "nav-link")}
-                                to={link.href} key={link.id} onClick={() => setHamburgerMenuClicked(false)}>
+                            <NavLink key={link.id} className={({ isActive }) => (isActive ? "nav-link-active" : "nav-link")} to={link.href} onClick={() => setHamburgerMenuClicked(false)}>
 
                                 {link.title}
 
