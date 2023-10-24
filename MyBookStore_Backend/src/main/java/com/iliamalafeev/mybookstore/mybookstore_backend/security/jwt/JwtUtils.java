@@ -1,6 +1,5 @@
 package com.iliamalafeev.mybookstore.mybookstore_backend.security.jwt;
 
-import com.iliamalafeev.mybookstore.mybookstore_backend.security.entities.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -27,11 +26,6 @@ public class JwtUtils {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public String extractPersonAuthority(String token) {
-
-        return (String) extractClaim(token, claims -> claims.get("Authority"));
-    }
-
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
 
         final Claims claims = extractAllClaims(token);
@@ -40,7 +34,7 @@ public class JwtUtils {
 
     public String generateToken(UserDetails userDetails) {
 
-        return generateToken(new HashMap<>(Map.of("role", Role.ROLE_USER.name())), userDetails);
+        return generateToken(new HashMap<>(Map.of("role", userDetails.getAuthorities())), userDetails);
     }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
