@@ -183,8 +183,9 @@ public class BookService {
         }
 
         Optional<Payment> payment = getPaymentOptionalFromRepository(person);
+
         if (payment.isPresent() && (payment.get().getAmount() > 0 || bookNeedsReturned)) {
-            ErrorsUtil.returnPaymentError("You have outstanding fees, checkout is unavailable");
+            ErrorsUtil.returnPaymentError("You have outstanding fees / overdue books, checkout is unavailable");
         }
 
         if (payment.isEmpty()) {
