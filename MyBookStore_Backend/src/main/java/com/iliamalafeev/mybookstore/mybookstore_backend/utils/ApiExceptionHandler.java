@@ -2,6 +2,7 @@ package com.iliamalafeev.mybookstore.mybookstore_backend.utils;
 
 import com.iliamalafeev.mybookstore.mybookstore_backend.utils.error_responses.*;
 import com.iliamalafeev.mybookstore.mybookstore_backend.utils.exceptions.*;
+import com.stripe.exception.StripeException;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,12 @@ public class ApiExceptionHandler {
     @ExceptionHandler(PersonException.class)
     private ResponseEntity<PersonErrorResponse> handleException(PersonException e) {
         PersonErrorResponse response = new PersonErrorResponse(e.getMessage(), System.currentTimeMillis());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(StripeException.class)
+    private ResponseEntity<PaymentErrorResponse> handleException(StripeException e) {
+        PaymentErrorResponse response = new PaymentErrorResponse(e.getMessage(), System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
