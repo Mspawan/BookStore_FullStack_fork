@@ -48,6 +48,7 @@ public class SecurityConfiguration {
                             "/api/reviews/secure/**",
                             "/api/history-records/secure",
                             "/api/discussions/secure/**",
+                            "/api/payment/secure/**",
                             "/api/admin/secure/**")
                     .authenticated()
                     .anyRequest().permitAll());
