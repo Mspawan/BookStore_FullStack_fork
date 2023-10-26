@@ -1,7 +1,6 @@
 package com.iliamalafeev.mybookstore.mybookstore_backend.controllers;
 
 import com.iliamalafeev.mybookstore.mybookstore_backend.dto.PaymentInfoDTO;
-import com.iliamalafeev.mybookstore.mybookstore_backend.entities.Payment;
 import com.iliamalafeev.mybookstore.mybookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.mybookstore.mybookstore_backend.services.PaymentService;
 import com.stripe.exception.StripeException;
