@@ -28,5 +28,9 @@ If you are developing a production application, we recommend updating the config
 
 
 # Libs
-* react router dom
-* swiper
+* npm install react-router-dom
+* npm install swiper
+* npm install jwt-decode
+* npm install stripe
+* npm install @stripe/react-stripe-js
+* npm install @stripe/stripe-js
