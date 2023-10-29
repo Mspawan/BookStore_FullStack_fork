@@ -12,7 +12,9 @@ export const useSubmitDiscussionResponse = async (authentication: { isAuthentica
 
         if (authentication.isAuthenticated) {
 
-            const url = "http://localhost:8080/api/admin/secure/close-discussion";
+            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+            const url = baseUrl + "/admin/secure/close-discussion";
             
             const requestOptions = {
 

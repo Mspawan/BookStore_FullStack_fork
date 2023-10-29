@@ -20,8 +20,10 @@ export const usePayFees = async (authentication: { isAuthenticated: boolean; tok
         setIsLoading(true);
 
         if (authentication.isAuthenticated) {
+
+            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
             
-            const url = "http://localhost:8080/api/payment/secure/payment-intent";
+            const url = baseUrl + "/payment/secure/payment-intent";
 
             const payload: {role: {authority: string}[], sub: string, iss: string, iat: number, exp: number} = jwtDecode(authentication.token);
 
@@ -71,8 +73,10 @@ export const usePayFees = async (authentication: { isAuthenticated: boolean; tok
                         setHttpError(result.error.message);
     
                     } else {
+
+                        const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
     
-                        const url = "http://localhost:8080/api/payment/secure/payment-complete";
+                        const url = baseUrl + "/payment/secure/payment-complete";
     
                         const requestOptions = {
     

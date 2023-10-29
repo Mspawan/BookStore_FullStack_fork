@@ -14,7 +14,9 @@ export const useSubmitReview = async (bookId: string,
 
         if (authentication.isAuthenticated) {
 
-            const url = `http://localhost:8080/api/books/secure/review/${bookId}`;
+            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+            const url = baseUrl + `/books/secure/review/${bookId}`;
             
             const requestOptions = {
 

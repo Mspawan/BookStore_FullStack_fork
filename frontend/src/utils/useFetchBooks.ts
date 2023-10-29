@@ -18,10 +18,10 @@ export const useFetchBooks = (urlPaginationParams: string,
             const fetchBooks = async () => {
 
                 setIsLoading(true);
-                
-                const baseUrl = `http://localhost:8080/api/books`;
 
-                const url: string = baseUrl + (urlSearchParams ? urlSearchParams : "") + urlPaginationParams ;
+                const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+                const url: string = baseUrl + "/books" + (urlSearchParams ? urlSearchParams : "") + urlPaginationParams;
 
                 const response = await fetch(url);
 

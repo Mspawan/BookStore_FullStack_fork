@@ -11,8 +11,10 @@ export const useFetchBookAverageRating = (bookId: string,
         () => {
 
             const fetchAverageRating = async () => {
+
+                const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
                 
-                const url = `http://localhost:8080/api/reviews/average-rating/${bookId}`;
+                const url = baseUrl + `/reviews/average-rating/${bookId}`;
 
                 const response = await fetch(url);
 

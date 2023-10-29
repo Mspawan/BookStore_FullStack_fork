@@ -21,7 +21,9 @@ export const useFetchOpenDiscussions = (authentication: { isAuthenticated: boole
 
                 if (authentication.isAuthenticated) {
 
-                    const url = "http://localhost:8080/api/admin/secure/open-discussions" + urlPaginationParams;
+                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+                    const url = baseUrl + "/admin/secure/open-discussions" + urlPaginationParams;
 
                     const requestOptions = {
 

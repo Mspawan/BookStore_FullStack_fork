@@ -10,7 +10,9 @@ export const useLogin = async (loginModel: LoginModel,
 
         setIsLoading(true);
 
-        const url = "http://localhost:8080/api/auth/authenticate";
+        const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+        const url = baseUrl + "/auth/authenticate";
 
         const requestOptions = {
 

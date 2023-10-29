@@ -15,10 +15,10 @@ export const useFetchBookReviews = (bookId: string,
         () => {
 
             const fetchReviews = async () => {
-                
-                const baseUrl = `http://localhost:8080/api/reviews/${bookId}`;
 
-                const url: string = baseUrl + (urlPaginationParams ? urlPaginationParams : `?page=0&reviews-per-page=5`);
+                const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+                const url: string = baseUrl + `/reviews/${bookId}` + (urlPaginationParams ? urlPaginationParams : `?page=0&reviews-per-page=5`);
 
                 const response = await fetch(url);
 

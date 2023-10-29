@@ -7,12 +7,14 @@ export const useCheckOutBook = async (bookId: string,
                                       setCurrentCheckoutsCount: React.Dispatch<React.SetStateAction<number>>) => {
 
     const checkOutBook = async () => {
+        
+        setIsLoading(true);
 
         if (authentication.isAuthenticated) {
-            
-            setIsLoading(true);
 
-            const url = `http://localhost:8080/api/books/secure/checkout/${bookId}`;
+            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+            const url = baseUrl + `/books/secure/checkout/${bookId}`;
 
             const requestOptions = {
 
@@ -34,8 +36,9 @@ export const useCheckOutBook = async (bookId: string,
             setCopiesAvailable(prev => prev - 1);
             setIsCheckedOut(true);
             setCurrentCheckoutsCount(prev => prev + 1);
-            setIsLoading(false);
         }
+        
+        setIsLoading(false);
     }
 
     checkOutBook().catch(

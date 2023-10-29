@@ -20,7 +20,9 @@ export const useFetchDiscussions = (authentication: { isAuthenticated: boolean; 
 
                 if (authentication.isAuthenticated) {
 
-                    const url = "http://localhost:8080/api/discussions/secure" + urlPaginationParams;
+                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+                    const url = baseUrl + "/discussions/secure" + urlPaginationParams;
 
                     const requestOptions = {
 

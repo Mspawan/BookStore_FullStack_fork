@@ -13,7 +13,9 @@ export const useSubmitDiscussion = async (authentication: { isAuthenticated: boo
 
         if (authentication.isAuthenticated) {
 
-            const url = "http://localhost:8080/api/discussions/secure/add-discussion";
+            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+            const url = baseUrl + "/discussions/secure/add-discussion";
             
             const requestOptions = {
 

@@ -12,7 +12,9 @@ export const useChangeBookQuantity= async (bookId: string,
 
         if (authentication.isAuthenticated) {
 
-            const url = `http://localhost:8080/api/admin/secure/${operation}-quantity/${bookId}`;
+            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+            const url = baseUrl + `/admin/secure/${operation}-quantity/${bookId}`;
             
             const requestOptions = {
 

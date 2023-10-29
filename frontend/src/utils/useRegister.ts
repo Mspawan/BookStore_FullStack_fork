@@ -10,7 +10,9 @@ export const useRegister = async (registrationModel: RegistrationModel,
 
         setIsLoading(true);
 
-        const url = "http://localhost:8080/api/auth/register";
+        const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+        const url = baseUrl + "/auth/register";
 
         const requestOptions = {
 

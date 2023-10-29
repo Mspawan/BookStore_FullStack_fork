@@ -13,7 +13,9 @@ export const useFetchCurrentCheckoutsCount = (authentication: { isAuthenticated:
 
                 if (authentication.isAuthenticated) {
 
-                    const url = "http://localhost:8080/api/checkouts/secure/current-loans-count";
+                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+                    const url = baseUrl + "/checkouts/secure/current-loans-count";
 
                     const requestOptions = {
 

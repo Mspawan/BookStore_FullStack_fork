@@ -13,8 +13,10 @@ export const useCheckIfBookReviewedByUser = (bookId: string,
             const fetchIsBookReviewedByUser = async () => {
 
                 if (authentication.isAuthenticated) {
+
+                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
                 
-                    const url = `http://localhost:8080/api/books/secure/is-reviewed/${bookId}`;
+                    const url = baseUrl + `/books/secure/is-reviewed/${bookId}`;
 
                     const requestOptions = {
 

@@ -18,7 +18,9 @@ export const useFetchCurrentCheckouts = (authentication: { isAuthenticated: bool
 
                 if (authentication.isAuthenticated) {
 
-                    const url = "http://localhost:8080/api/checkouts/secure/current-checkouts";
+                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+                    const url = baseUrl + "/checkouts/secure/current-checkouts";
 
                     const requestOptions = {
 

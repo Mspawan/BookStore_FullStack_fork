@@ -10,7 +10,9 @@ export const useReturnBook = async (bookId: string,
 
         if (authentication.isAuthenticated) {
 
-            const url = `http://localhost:8080/api/books/secure/return/${bookId}`;
+            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+            const url = baseUrl + `/books/secure/return/${bookId}`;
             
             const requestOptions = {
 

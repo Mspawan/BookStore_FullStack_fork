@@ -20,7 +20,9 @@ export const useFetchHistoryRecords = (authentication: { isAuthenticated: boolea
 
                 if (authentication.isAuthenticated) {
 
-                    const url = "http://localhost:8080/api/history-records/secure" + urlPaginationParams;
+                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+                    const url = baseUrl + "/history-records/secure" + urlPaginationParams;
 
                     const requestOptions = {
 

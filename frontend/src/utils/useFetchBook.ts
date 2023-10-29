@@ -11,8 +11,10 @@ export const useFetchBook = (bookId: string,
         () => {
 
             const fetchBook = async () => {
+
+                const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
                 
-                const url = `http://localhost:8080/api/books/${bookId}`;
+                const url = baseUrl + `/books/${bookId}`;
 
                 const response = await fetch(url);
 

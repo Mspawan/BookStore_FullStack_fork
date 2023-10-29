@@ -14,7 +14,9 @@ export const useCheckIfBookCheckedOutByUser = (bookId: string,
 
                 if (authentication.isAuthenticated) {
 
-                    const url = `http://localhost:8080/api/books/secure/is-checked-out/${bookId}`;
+                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+                    const url = baseUrl + `/books/secure/is-checked-out/${bookId}`;
 
                     const requestOptions = {
 

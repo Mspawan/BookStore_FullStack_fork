@@ -13,7 +13,9 @@ export const useAddNewBook= async (authentication: { isAuthenticated: boolean; t
 
         if (authentication.isAuthenticated) {
 
-            const url = "http://localhost:8080/api/admin/secure/add-book";
+            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+
+            const url = baseUrl + "/admin/secure/add-book";
             
             const requestOptions = {
 

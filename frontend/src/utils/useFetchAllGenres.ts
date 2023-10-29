@@ -10,8 +10,10 @@ export const useFetchAllGenres = (setAllGenres: React.Dispatch<React.SetStateAct
         () => {
 
             const fetchGenres = async () => {
+
+                const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
                 
-                const url = "http://localhost:8080/api/genres";
+                const url = baseUrl + "/genres";
 
                 const response = await fetch(url);
 
