@@ -5,6 +5,7 @@ import { FieldErrors } from "../../commons/field_errors/FieldErrors";
 import { FormLoader } from "../../commons/form_loader/FormLoader";
 import { useAuthenticationContext } from "../../../authentication/authenticationContext";
 import { Link } from "react-router-dom";
+import { HttpErrorMessage } from "../../commons/http_error_message/HttpErrorMessage";
 
 export const RegistrationPage = () => {
 
@@ -35,6 +36,8 @@ export const RegistrationPage = () => {
                 <p className="text-center text-3xl font-semibold">Register</p>
 
                 <FormLoader isLoading={isLoading} />
+
+                {(httpError && !httpError.startsWith("Some")) && <HttpErrorMessage httpError={httpError} />}
 
                 {!authentication.isAuthenticated ? 
 
