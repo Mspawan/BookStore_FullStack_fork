@@ -42,8 +42,17 @@ export const Footer = () => {
 
                     <div className="flex gap-5 text-lg items-center justify-center">
 
-                        <img className="w-[60px] h-[60px]" src={gitLogo} alt="gitLogo" />
-                        <img className="w-[60px] h-[60px]"  src={linkedInLogo} alt="linkedInLogo" />
+                        <a href={import.meta.env.VITE_GITHUB_LINK} target="blanc">
+
+                            <img className="w-[60px] h-[60px]" src={gitLogo} alt="gitLogo" />
+
+                        </a>
+
+                        <a href={import.meta.env.VITE_LINKEDIN_LINK} target="blanc">
+
+                            <img className="w-[60px] h-[60px]"  src={linkedInLogo} alt="linkedInLogo" />
+
+                        </a>
 
                     </div>
 
