@@ -165,7 +165,7 @@ export const AddBookTab = () => {
 
                                 {genresHttpError ? <HttpErrorMessage httpError={genresHttpError} /> : 
                             
-                                    <div className="grid grid-cols-4 max-lg:grid-cols-2 gap-5">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
 
                                         {allGenres.map(
 
