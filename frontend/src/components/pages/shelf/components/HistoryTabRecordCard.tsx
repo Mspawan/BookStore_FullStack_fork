@@ -14,7 +14,7 @@ export const HistoryTabRecordCard = ({ record }: HistoryTabRecordCardProps) => {
 
             <img src={record.bookDTO.img} alt="cover" width={200} height={320} className="shadow-xl" />
 
-            <div className="flex flex-col gap-10 max-lg:gap-5 xl:w-5/12 lg:flex-1">
+            <div className="flex flex-col gap-10 max-lg:gap-5 xl:w-5/12 lg:flex-1 w-full">
 
                 <div className="max-lg:text-center">
                 
