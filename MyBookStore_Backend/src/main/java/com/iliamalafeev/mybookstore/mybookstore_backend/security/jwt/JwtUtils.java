@@ -45,7 +45,7 @@ public class JwtUtils {
                 .setSubject(userDetails.getUsername())
                 .setIssuer("BookStore_Backend(by_IM_Dev)")
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 20))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
