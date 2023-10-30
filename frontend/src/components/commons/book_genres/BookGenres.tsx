@@ -8,11 +8,11 @@ export const BookGenres = ({ genres }: BookGenresProps) => {
 
     return (
 
-        <div className="flex gap-3 max-lg:justify-center">
+        <div className="auto-grid gap-2 w-full">
 
             {genres.map(
 
-                (genre) => <div key={genre.description} className="bg-teal-100 py-1 px-3 rounded-md">{genre.description}</div>
+                (genre) => <div key={genre.description} className="bg-teal-100 py-1 px-2 rounded-md text-center">{genre.description}</div>
 
             )}
 
