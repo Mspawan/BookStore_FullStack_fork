@@ -27,12 +27,7 @@ export const SearchPageBookCard = ({ book }: BookCardProps) => {
 
                 <div className="max-lg:text-center">
 
-                    {book.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Quos nemo, sunt exercitationem consectetur sint expedita magni beatae placeat 
-                    dolorem assumenda libero nobis impedit rem modi in a illum qui. Porro ad voluptate 
-                    voluptas suscipit, libero facilis cumque? Nulla ut quia ad odio voluptatem autem 
-                    molestiae deleniti corporis voluptas ab distinctio quaerat explicabo repellendus 
-                    perferendis ullam fugit odit dolores porro obcaecati nostrum vero rerum, id laboriosam!
+                    {book.description}
 
                 </div>
             
