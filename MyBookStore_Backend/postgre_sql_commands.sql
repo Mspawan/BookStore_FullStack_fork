@@ -72,3 +72,13 @@ create table payment (
     person_email varchar(100) unique not null references person (email) on delete cascade,
     amount decimal(10, 2) not null
 );
+
+insert into genre (id, description) values (1, 'Science Fiction');
+insert into genre (id, description) values (2, 'Fantasy');
+insert into genre (id, description) values (3, 'Adventure');
+insert into genre (id, description) values (4, 'Novel');
+insert into genre (id, description) values (5, 'Dystopia');
+insert into genre (id, description) values (6, 'Detective');
+insert into genre (id, description) values (7, 'Short Stories');
+insert into genre (id, description) values (8, 'Romance');
+insert into genre (id, description) values (9, 'LitRPG');
