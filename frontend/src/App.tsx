@@ -17,7 +17,7 @@ import { loadStripe } from "@stripe/stripe-js"
 
 export const App = () => {
 
-    const stripePromise = loadStripe('pk_test_51Nd9rWLDVe2VdpwsC4sms9ZiFlwJiWeg5ogHtlaniWwbIEJxKPISV4C6JH1t6jLzP4OPT4VFWBXJLFj1fajwHQOT001TWVpGTI');
+    const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
     return (
 
