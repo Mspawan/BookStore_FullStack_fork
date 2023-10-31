@@ -80,6 +80,10 @@ input[type="checkbox"]:checked::before {
         @apply rounded-md py-2 px-10 text-lg border border-teal-700 bg-teal-300 whitespace-nowrap duration-200 hover:shadow-lg hover:bg-teal-200 active:shadow-none
     }
 
+    .pagination-btn-small {
+        @apply max-md:py-1 max-md:px-3 max-md:text-base
+    }
+
     .nav-link {
         @apply duration-200 text-lg max-lg:w-full px-3 py-1 max-lg:py-4 hover:lg:bg-teal-100 whitespace-nowrap hover:shadow-custom lg:hover:shadow-md lg:rounded-md max-lg:text-center
     }
