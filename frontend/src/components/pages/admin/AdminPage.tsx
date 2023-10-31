@@ -43,9 +43,9 @@ export const AdminPage = () => {
 
             <Quote quoteId={5} />
 
-            <div className="w-full  p-5 flex max-lg:flex-col gap-12 relative">
+            <div className="w-full p-5 flex max-lg:flex-col gap-12 relative">
 
-                <div className="flex lg:flex-col gap-5">
+                <div className="flex lg:flex-col lg:gap-5 max-lg:gap-1 max-lg:w-full">
 
                     <button className={isAddBookTabSelected ? "nav-link-active-2" : "nav-link-2"} onClick={handleAddBookTabClick}>
                         Add Book
