@@ -3,13 +3,16 @@ import { DiscussionModel } from "../../../../models/DiscussionModel";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
 import { useFetchDiscussions } from "../../../../utils/useFetchDiscussions";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
-import { Link } from "react-router-dom";
 import { Pagination } from "../../../commons/pagination/Pagination";
 import { AllDiscussionsTabDiscussionCard } from "./AllDiscussionsTabDiscussionCard";
 import { PaginatedItemsCount } from "../../../commons/pagination/PaginatedItemsCount";
 import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 
-export const AllDiscussionsTab = () => {
+type AllDiscussionsTabProps = {
+    setIsAllDiscussionsTabSelected: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const AllDiscussionsTab = ({ setIsAllDiscussionsTabSelected }: AllDiscussionsTabProps) => {
 
     const { authentication } = useAuthenticationContext();
 
@@ -44,9 +47,9 @@ export const AllDiscussionsTab = () => {
 
                                     <p className="text-2xl font-semibold">No discussions yet.</p>
 
-                                    <Link to={"/discussions"} type="button" className="custom-btn-2">
+                                    <button className="custom-btn-2" onClick={() => setIsAllDiscussionsTabSelected(false)}>
                                         Open discussion
-                                    </Link>
+                                    </button>
 
                                 </div>
 

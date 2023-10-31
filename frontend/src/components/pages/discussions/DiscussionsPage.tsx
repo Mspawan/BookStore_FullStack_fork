@@ -37,7 +37,7 @@ export const DiscussionsPage = () => {
 
                 <div className="w-full">
 
-                    { isAllDiscussionsTabSelected ? <AllDiscussionsTab /> : <NewDiscussionTab /> }
+                    { isAllDiscussionsTabSelected ? <AllDiscussionsTab setIsAllDiscussionsTabSelected={setIsAllDiscussionsTabSelected} /> : <NewDiscussionTab /> }
 
                 </div>
 
