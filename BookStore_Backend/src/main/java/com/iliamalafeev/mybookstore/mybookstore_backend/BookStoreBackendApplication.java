@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class MyBookStoreBackendApplication {
+public class BookStoreBackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MyBookStoreBackendApplication.class, args);
+        SpringApplication.run(BookStoreBackendApplication.class, args);
     }
 
     @Bean
