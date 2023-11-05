@@ -13,13 +13,13 @@
 
     <groupId>com.iliamalafeev.mybookstore</groupId>
 
-    <artifactId>BookStore_Backend</artifactId>
+    <artifactId>bookstore_backend</artifactId>
 
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>BookStore_Backend</name>
+    <name>bookstore_backend</name>
 
-    <description>BookStore_Backend</description>
+    <description>bookstore_backend</description>
 
     <properties>
         <java.version>17</java.version>

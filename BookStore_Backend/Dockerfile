@@ -4,22 +4,24 @@ WORKDIR /app
 
 COPY ./pom.xml /app/pom.xml
 
-COPY ./src/main/java/com/iliamalafeev/mybookstore/mybookstore_backend/BookStoreBackendApplication.java /app/src/main/java/com/iliamalafeev/mybookstore/mybookstore_backend/BookStoreBackendApplication.java
+COPY ./src/main/java/com/iliamalafeev/bookstore/bookstore_backend/BookStoreBackendApplication.java /app/src/main/java/com/iliamalafeev/bookstore/bookstore_backend/BookStoreBackendApplication.java
 
 RUN mvn -f /app/pom.xml clean package
 
-COPY . /app
+COPY ../.. /app
 
 RUN mvn -f /app/pom.xml clean package
 
 
 FROM openjdk:17-jdk
 
+WORKDIR /app
+
 EXPOSE 8080
 
-COPY --from=build /app/target/BookStore_Backend-0.0.1-SNAPSHOT.jar /app/BookStore_Backend.jar
+COPY --from=build /app/target/bookstore_backend-0.0.1-SNAPSHOT.jar /app/bookstore_backend.jar
 
-ENTRYPOINT ["sh", "-c", "java -jar app/BookStore_Backend.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar bookstore_backend.jar"]
 
 
 #FROM openjdk:17-jdk

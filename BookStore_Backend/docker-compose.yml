@@ -14,7 +14,7 @@ services:
       - bookstore-network
   bookstore-springboot-backend:
     container_name: bookstore-springboot-backend-container
-    image: bookstore-backend
+    image: bookstore-backend-image
     ports:
       - "8080:8080"
     networks:
