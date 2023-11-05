@@ -1,0 +1,30 @@
+services:
+  postgres:
+    container_name: bookstore-postgresql-db-container
+    image: postgres
+    environment:
+      POSTGRES_USER: iliamalafeev
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: BookStore_DB
+    ports:
+      - "5432:5432"
+    volumes:
+      - bookstore_postgres:/var/lib/postgres/data
+    networks:
+      - bookstore-network
+  bookstore-springboot-backend:
+    container_name: bookstore-springboot-backend-container
+    image: bookstore-backend
+    ports:
+      - "8080:8080"
+    networks:
+      - bookstore-network
+    depends_on:
+      - postgres
+
+volumes:
+  bookstore_postgres:
+
+networks:
+  bookstore-network:
+    driver: bridge
