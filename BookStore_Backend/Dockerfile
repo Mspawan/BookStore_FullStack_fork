@@ -22,14 +22,3 @@ EXPOSE 8080
 COPY --from=build /app/target/bookstore_backend-0.0.1-SNAPSHOT.jar /app/bookstore_backend.jar
 
 ENTRYPOINT ["sh", "-c", "java -jar bookstore_backend.jar"]
-
-
-#FROM openjdk:17-jdk
-#
-#WORKDIR /app
-#
-#COPY target/BookStore_Backend-0.0.1-SNAPSHOT.jar /app/BookStore_Backend.jar
-#
-#EXPOSE 8080
-#
-#CMD ["java", "-jar", "BookStore_Backend.jar"]
