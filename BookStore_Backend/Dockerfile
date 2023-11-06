@@ -1,4 +1,4 @@
-FROM maven:3.8.6-openjdk-18 AS build
+FROM maven:3.8.7-openjdk-18-slim AS build
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ COPY ../.. /app
 RUN mvn -f /app/pom.xml clean package
 
 
-FROM openjdk:17-jdk
+FROM openjdk:22-jdk-slim
 
 WORKDIR /app
 
