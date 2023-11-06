@@ -1,4 +1,5 @@
 services:
+
   postgres:
     container_name: bookstore-postgresql-db-container
     image: postgres
@@ -12,6 +13,7 @@ services:
       - bookstore_postgres:/var/lib/postgres/data
     networks:
       - bookstore-network
+  
   bookstore-springboot-backend:
     build: ./BookStore_Backend
     image: bookstore-backend-image
@@ -26,6 +28,7 @@ services:
       - bookstore-network
     depends_on:
       - postgres
+  
   bookstore-react-frontend:
     build: ./BookStore_Frontend
     image: bookstore-frontend-image
