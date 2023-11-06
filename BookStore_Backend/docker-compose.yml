@@ -13,10 +13,14 @@ services:
     networks:
       - bookstore-network
   bookstore-springboot-backend:
+    build: .
     container_name: bookstore-springboot-backend-container
-    image: bookstore-backend-image
     ports:
       - "8080:8080"
+    environment:
+      postgres-url: jdbc:postgresql://postgres:5432/BookStore_DB
+      postgres-username: iliamalafeev
+      postgres-password: postgres
     networks:
       - bookstore-network
     depends_on:
