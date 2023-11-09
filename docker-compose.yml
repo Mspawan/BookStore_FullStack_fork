@@ -2,7 +2,7 @@ services:
 
   postgres:
     container_name: bookstore-postgresql-db-container
-    image: postgres
+    image: postgres:alpine
     environment:
       POSTGRES_USER: iliamalafeev
       POSTGRES_PASSWORD: postgres
