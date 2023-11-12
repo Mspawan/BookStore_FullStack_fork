@@ -29,7 +29,7 @@ export const RegistrationPage = () => {
 
         <div className="page-container px-5">
 
-            <Quote quoteId={1} />
+            <Quote quoteId={8} />
             
             <div className="custom-form">
 

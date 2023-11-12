@@ -5,7 +5,7 @@ export const navLinks = [
     {id: 3, href: "/shelf",       title: "Shelf",        authRequired: true,  adminOnly: false },
     {id: 4, href: "/discussions", title: "Discussions",  authRequired: true,  adminOnly: false },
     {id: 5, href: "/fees",        title: "Pay Fees",     authRequired: true,  adminOnly: false },
-    {id: 6, href: "/admin",       title: "Admin",        authRequired: true,  adminOnly: true  },
+    {id: 6, href: "/admin",       title: "Admin",        authRequired: true,  adminOnly: true  }
     
 ];
 
@@ -19,6 +19,8 @@ export const quotes = [
     {id: 6, text: "I believe there is power in words, power in asserting our existence, our experience, our lives, through words.", author: "Jesmyn Ward"},
     {id: 7, text: "I love the sound of the pages flicking against my fingers. Print against fingerprints. Books make people quiet, yet they are so loud.", author: "Nnedi Okorafor"},
     {id: 8, text: "Reading is an act of civilization; it's one of the greatest acts of civilization because it takes the free raw material of the mind and builds castles of possibilities.", author: "Ben Okri"},
+    {id: 9, text: "The more that you read, the more things you will know. The more that you learn, the more places you'll go.", author: "Dr. Seuss"},
+    {id: 10, text: "You can get lost in any library, no matter the size. But the more lost you are, the more things you'll find.", author: "Millie Florence"}
 
 ];
 

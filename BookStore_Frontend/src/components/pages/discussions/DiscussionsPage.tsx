@@ -17,7 +17,7 @@ export const DiscussionsPage = () => {
 
         <div className="page-container">
 
-            <Quote quoteId={2} />
+            <Quote quoteId={3} />
 
             <div className="w-full p-5 flex max-lg:flex-col gap-12 relative">
 

@@ -31,7 +31,7 @@ export const LoginPage = () => {
 
         <div className="page-container px-5">
 
-            <Quote quoteId={1} />
+            <Quote quoteId={9} />
             
             <div className="custom-form">
 
