@@ -5,9 +5,9 @@
 #--------------------------
 
 spring.datasource.driver-class-name=org.postgresql.Driver
-spring.datasource.url=${postgres-url:jdbc:postgresql://localhost:5432/BookStore_local_DB}
-spring.datasource.username=${postgres-username:adminusername}
-spring.datasource.password=${postgres-password:adminpassword}
+spring.datasource.url=${POSTGRES_URL:jdbc:postgresql://localhost:5432/BookStore_local_DB}
+spring.datasource.username=${POSTGRES_USER:adminusername}
+spring.datasource.password=${POSTGRES_PASSWORD:adminpassword}
 spring.sql.init.mode=always
 
 #----------------------------------------------------------------------------------------------------------------
