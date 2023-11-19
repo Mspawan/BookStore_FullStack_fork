@@ -118,7 +118,20 @@ while rating is required.
   administration are marked as "closed" and have admin reply attached, others are marked as "pending reply".
  
 
-* **Payment service** - 
+* **Payment service** - implemented by using **Stripe Payments** service as payment processor. Functionality 
+allows users to pay outstanding fees. User enters credit card information and payment request with certain 
+amount is created and processed by Stripe system. All **receipts** are available for application owner within 
+his Stripe account and also are automatically sent to users via e-mail by Stripe. As this is a pet project for 
+portfolio, a banner with test credit card info is present right on the payment page allowing user to test payment 
+functionality without entering any valid credit card information.
 
 
-* **Administration tools** - 
+* **Administration tools** - allows **authorized** users access to management instruments, that include
+adding or deleting books, changing item quantities, closing discussions etc.
+  * **Add book tab** - provides a form for administrator to **create a new book item** and add it to the DataBase.
+  Each book must contain "title", "author", "description", "copies", "copies available", "cover image", 
+  "list of genres" fields filled out in order to be added to the database.
+  * **Quantities tab** - displays a list of all book items available in the database and allows authorized admin
+  user to change "copies available" count of any book (increase or decrease) or to delete a book completely.
+  * **Discussions tab** -  displays a list of all open discussions and allows authorized admin user to add 
+  administration response to any discussion and thus close it.
