@@ -85,7 +85,7 @@ access any secured endpoint. **Admin** page and functionality is only available 
 All user information including **authority** is stored in DataBase after registration and encoded into JWT.
 
 
-* **Pagination** - pagination logic is implemented and used on various website pages that fetch / show 
+* **Pagination** - pagination logic is implemented for both frontend and backend, and is used on various website pages that fetch / show 
 big amount of items to make appearance more user-friendly. For example, pagination is used on "Search" page, 
 "History" page, "All book reviews" page and so on.
 
