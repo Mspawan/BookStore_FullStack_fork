@@ -42,6 +42,8 @@ Design of the website is completely done by me as well as the book covers design
 
 </div>
 
+<br>
+
 * Programming and markup languages: **Java, TypeScript, HTML, CSS** \
 * Frameworks and libraries: **Spring Framework, ReactJS, Hibernate, Tailwind** \
 * Database and other tools: **PostgreSQL, Docker, Stripe, Git**
