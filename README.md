@@ -14,30 +14,21 @@ Design of the website is completely done by me as well as the book covers design
 
 ### Technical stack
 
+<br>
+
 <div align="center">
 
 <img src="README_assets/java.svg" width="55" height="55" alt="java">
-
 <img src="README_assets/ts.svg" width="55" height="55" alt="ts">
-
 <img src="README_assets/html.svg" width="55" height="55" alt="html">
-
 <img src="README_assets/css.svg" width="55" height="55" alt="css">
-
 <img src="README_assets/spring.svg" width="55" height="55" alt="spring">
-
 <img src="README_assets/reactjs.svg" width="55" height="55" alt="react">
-
 <img src="README_assets/hibernate.svg" width="55" height="55" alt="hibernate">
-
 <img src="README_assets/postgresql.svg" width="55" height="55" alt="postgresql">
-
 <img src="README_assets/tailwind.svg" width="55" height="55" alt="tw">
-
 <img src="README_assets/docker.svg" width="55" height="55" alt="docker">
-
 <img src="README_assets/stripe.svg" width="55" height="55" alt="stripe">
-
 <img src="README_assets/git.svg" width="55" height="55" alt="git">
 
 </div>
@@ -73,8 +64,7 @@ test run on any environment if required.
 
 In order to follow best practices and to make this project as "real-world-like" 
 as possible I have implemented some common functionalities throughout this project.
-
-Here is a brief description of those functionalities:
+Following is a brief description of those functionalities:
 
 * **Authentication & Authorization** - implemented by using **Spring Security in conjunction with JWT** 
 technologies. Only "Home", "Search" and few other pages are available to unauthenticated users. 
@@ -85,9 +75,9 @@ access any secured endpoint. **Admin** page and functionality is only available 
 All user information including **authority** is stored in DataBase after registration and encoded into JWT.
 
 
-* **Pagination** - pagination logic is implemented for both frontend and backend, and is used on various website pages that fetch / show 
-big amount of items to make appearance more user-friendly. For example, pagination is used on "Search" page, 
-"History" page, "All book reviews" page and so on.
+* **Pagination** - pagination logic is implemented for both frontend and backend, and is used on various website 
+pages that fetch / show big amount of items to make appearance more user-friendly. For example, pagination is used 
+on "Search" page, "History" page, "All book reviews" page and so on.
 
 
 * **Books search** - search mechanism of the application allows users to search through all the books 
@@ -117,7 +107,8 @@ User is encouraged to **rate the book and leave a comment**. A review can be cre
 while rating is required.
   * **Book's rating** will be fetched as an average among all book's reviews and shown on book's specific page
   * **Latest reviews** are shown on the bottom of book's specific page as well
-  * **All book's reviews** are available for the user on a separate page that can be accessed from book's specific page
+  * **All book's reviews** are available for the user on a separate page that can be accessed from book's 
+  specific page
 
 
 * **Discussions service** - allows users to open private discussions with administration. 
