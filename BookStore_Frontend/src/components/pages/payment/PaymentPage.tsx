@@ -64,7 +64,7 @@ export const PaymentPage = () => {
 
                                     <div className="flex flex-col gap-1 items-center text-center border border-teal-800 rounded-md p-3 bg-teal-50 text-lg max-w-4xl">
 
-                                        <p>This is a test page created to show the payment functionality. <span className="font-bold">Do not</span> 
+                                        <p>This is a test page created to show the payment functionality. <span className="font-bold">Do not </span> 
                                         attempt to enter any valid credit card info. To test payment functionality enter card details provided below:</p>
                                         <p><span className="font-bold">Card number:</span> 4242 4242 4242 4242</p>
                                         <p><span className="font-bold">Expiration date:</span> any future date</p>
