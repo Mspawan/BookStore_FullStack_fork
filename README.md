@@ -120,7 +120,7 @@ while rating is required.
   * **All book's reviews** are available for the user on a separate page that can be accessed from book's specific page
 
 
-* **Discussions service page** - allows users to open private discussions with administration. 
+* **Discussions service** - allows users to open private discussions with administration. 
   * **New discussion tab** - user is encouraged to **open a discussion on any topic** and leave a message for 
   administration. This discussion can later be answered and closed by admin.
   * **All discussions tab** - provides a list of all person's discussions. Discussions answered by 
