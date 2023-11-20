@@ -135,3 +135,89 @@ adding or deleting books, changing item quantities, closing discussions etc.
   user to change "copies available" count of any book (increase or decrease) or to delete a book completely.
   * **Discussions tab** -  displays a list of all open discussions and allows authorized admin user to add 
   administration response to any discussion and thus close it.
+
+
+## Additional libraries and APIs
+
+This project is mostly typical full-stack application powered by popular developing tools. For example, backend 
+application is build with **Spring Boot 3** and uses main features of Spring REST, Spring JPA, Spring Security etc. 
+Frontend application is created as **Vite + React + TypeScript** project and mostly uses ReactJS functionality.
+
+However, a few extra libraries / dependencies were used in both frontend and backend applications. Below is a 
+brief description of those libraries.
+
+### Back-end
+
+#### JWT
+
+Backend REST API application uses Spring Security in conjunction with JWT for authentication & authorization.
+
+All logic related to generating, issuing and validating JWTs is written manually with use of:
+* **[io.jsonwebtoken ---> jjwt-api](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api)**;
+* **[io.jsonwebtoken ---> jjwt-impl](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl)**;
+* **[io.jsonwebtoken ---> jjwt-jackson](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson)**
+
+Maven dependencies are available via links above.
+
+#### Stripe
+
+Payment services in this project are powered with **[Stripe](https://stripe.com)**.
+It is one of the biggest and most popular payment processors available with huge variety of services.
+
+Maven dependency is available here:
+**[com.stripe ---> stripe-java](https://mvnrepository.com/artifact/com.stripe/stripe-java)**.
+
+#### Model Mapper
+
+DTO classes are implemented in this project for each entity class that is transferred between REST API 
+and frontend client via HTTP. Model Mapper simplifies conversions between entity classes and dto classes.
+
+Maven dependency is available here: 
+**[org.modelmapper ---> modelmapper](https://mvnrepository.com/artifact/org.modelmapper/modelmapper)**.
+
+#### Project Lombok
+
+Project Lombok is used to reduce the amount of boilerplate code throughout the project. Easy to get into and
+can be included as a maven dependency while building project template with Spring Boot. 
+
+### Front-end
+
+#### React Router
+
+Client side routing is powered by **[React Router](https://reactrouter.com)**.
+Library allows configuration of Route components to provide easy navigation throughout the application web pages.
+
+Quick start with React Router using npm: `npm install react-router-dom`. Additional info is available via link above.
+
+#### Swiper
+
+Books carousel on home page is configured using **[Swiper](https://swiperjs.com/react)**. 
+Easy to use, a lot of configuration options.
+
+Quick start with Swiper using npm: `npm install swiper`. Additional info is available via link above.
+
+#### JWT Decode
+
+JWTs obtained from REST API backend application contain valuable info encoded into payload, for example user's 
+authorities, that allow access to some pages or functions of frontend client application. This jwt-decode npm 
+package provides a number of functions useful when jwt payload info needs to be extracted and decoded.
+
+Quick start with jwt-decode using npm: `npm install jwt-decode`. Additional info is available via link above.
+
+#### Stripe
+
+Payment services in this project are powered with **[Stripe](https://stripe.com)**.
+It is one of the biggest and most popular payment processors available with huge variety of services.
+
+Quick start with Stripe using npm: 
+* `npm install jwt-decode`;
+* `npm install @stripe/react-stripe-js`;
+* `npm install @stripe/stripe-js`
+
+Additional info is available via link above.
+
+#### Styles
+
+All the css styles in this project are configured using **[Tailwind CSS](https://tailwindcss.com)**.
+Powerful & popular framework designed to economize tons of css code and .css files and build designs and layouts
+directly in markup code. Additional info is available via link above.
