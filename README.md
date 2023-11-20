@@ -136,6 +136,78 @@ adding or deleting books, changing item quantities, closing discussions etc.
   * **Discussions tab** -  displays a list of all open discussions and allows authorized admin user to add 
   administration response to any discussion and thus close it.
 
+## REST API endpoints and Client routes
+
+Following is the list of endpoints available within the project with short descriptions.
+
+### Back-end
+
+POST: `/api/admin/secure/add-book`
+
+PUT: `/api/admin/secure/increase-quantity/{bookId}`
+
+PUT: `/api/admin/secure/decrease-quantity/{bookId}`
+
+DELETE: `/api/admin/secure/delete-book/{bookId}`
+
+GET: `/api/admin/secure/open-discussions`
+
+POST: `/api/admin/secure/close-discussion`
+
+
+GET: `/api/books`
+
+GET: `/api/books/{bookId}`
+
+GET: `/api/books/search/by-title`
+
+GET: `/api/books/search/by-genre`
+
+GET: `/api/books/secure/is-checked-out/{bookId}`
+
+PUT: `/api/books/secure/checkout/{bookId}`
+
+PUT: `/api/books/secure/renew-checkout/{bookId}`
+
+PUT: `/api/books/secure/return/{bookId}`
+
+GET: `/api/books/secure/is-reviewed/{bookId}`
+
+POST: `/api/books/secure/review/{bookId}`
+
+
+GET: `api/checkouts/secure/current-loans-count`
+
+GET: `api/checkouts/secure/current-checkouts`
+
+
+GET: `/api/discussions/secure`
+
+POST: `/api/discussions/secure/add-discussion`
+
+
+GET: `/api/genres`
+
+
+GET: `/api/history-records/secure`
+
+
+GET: `/api/payment/secure`
+
+POST: `/api/payment/secure/payment-intent`
+
+PUT: `/api/payment/secure/payment-complete`
+
+
+GET: `/api/reviews/{bookId}`
+
+GET: `/api/reviews/average-rating/{bookId}`
+
+
+POST: `/api/auth/register`
+
+POST: `/api/auth/authenticate`
+
 
 ## Additional libraries and APIs
 
