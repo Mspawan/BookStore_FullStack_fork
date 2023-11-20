@@ -142,6 +142,7 @@ Following is the list of endpoints available within the project with short descr
 
 ### Back-end
 
+
 POST: `/api/admin/secure/add-book`
 
 PUT: `/api/admin/secure/increase-quantity/{bookId}`
