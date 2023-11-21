@@ -2,6 +2,8 @@
 
 ![Snippet screenshot](./README_assets/snippet_for_readme.jpg)
 
+
+
 ## Fully functional web application fullstack project
 
 This project is a part of my personal portfolio and is designed to accumulate and demonstrate 
@@ -11,6 +13,7 @@ It is a fully complete and functional example of online bookstore library and sh
 User can browse through various web app pages in order to search for books, 
 checkout books, leave reviews and ratings and so on.
 Design of the website is completely done by me as well as the book covers design etc.
+
 
 ### Technical stack
 
@@ -41,7 +44,10 @@ Design of the website is completely done by me as well as the book covers design
 
 **Deployed version** - [coming soon]()
 
+
+
 ## Brief overview of functionality and purpose
+
 
 ### General project structure
 
@@ -60,6 +66,7 @@ test run on any environment if required.
 
 **Stripe payment** service is applied for processing payments made by users of the website. 
 
+
 ### General project functionality
 
 In order to follow best practices and to make this project as "real-world-like" 
@@ -75,9 +82,9 @@ access any secured endpoint. **Admin** page and functionality is only available 
 All user information including **authority** is stored in DataBase after registration and encoded into JWT.
 
 
-* **Pagination** - pagination logic is implemented for both frontend and backend, and is used on various website 
-pages that fetch / show big amount of items to make appearance more user-friendly. For example, pagination is used 
-on "Search" page, "History" page, "All book reviews" page and so on.
+* **Pagination** - pagination logic is implemented for both frontend and backend, and is used on various 
+website pages that fetch / show big amount of items to make appearance more user-friendly. For example, 
+pagination is used on "Search" page, "History" page, "All book reviews" page and so on.
 
 
 * **Books search** - search mechanism of the application allows users to search through all the books 
@@ -122,102 +129,250 @@ while rating is required.
 allows users to pay outstanding fees. User enters credit card information and payment request with certain 
 amount is created and processed by Stripe system. All **receipts** are available for application owner within 
 his Stripe account and also are automatically sent to users via e-mail by Stripe. As this is a pet project for 
-portfolio, a banner with test credit card info is present right on the payment page allowing user to test payment 
-functionality without entering any valid credit card information.
+portfolio, a banner with test credit card info is present right on the payment page allowing user to test 
+payment functionality without entering any valid credit card information.
 
 
 * **Administration tools** - allows **authorized** users access to management instruments, that include
 adding or deleting books, changing item quantities, closing discussions etc.
-  * **Add book tab** - provides a form for administrator to **create a new book item** and add it to the DataBase.
-  Each book must contain "title", "author", "description", "copies", "copies available", "cover image", 
-  "list of genres" fields filled out in order to be added to the database.
-  * **Quantities tab** - displays a list of all book items available in the database and allows authorized admin
-  user to change "copies available" count of any book (increase or decrease) or to delete a book completely.
+  * **Add book tab** - provides a form for administrator to **create a new book item** and add it to the 
+  DataBase. Each book must contain "title", "author", "description", "copies", "copies available", 
+  "cover image", "list of genres" fields filled out in order to be added to the database.
+  * **Quantities tab** - displays a list of all book items available in the database and allows authorized 
+  admin user to change "copies available" count of any book (increase or decrease) or to delete a book 
+  completely.
   * **Discussions tab** -  displays a list of all open discussions and allows authorized admin user to add 
   administration response to any discussion and thus close it.
 
+
+
 ## REST API endpoints and Client routes
 
-Following is the list of endpoints available within the project with short descriptions.
+Following is the list of all endpoints available within the project with short descriptions.
+
 
 ### Back-end
 
+#### Open (unauthenticated) endpoints
 
-POST: `/api/admin/secure/add-book`
-
-PUT: `/api/admin/secure/increase-quantity/{bookId}`
-
-PUT: `/api/admin/secure/decrease-quantity/{bookId}`
-
-DELETE: `/api/admin/secure/delete-book/{bookId}`
-
-GET: `/api/admin/secure/open-discussions`
-
-POST: `/api/admin/secure/close-discussion`
+Following is the list of endpoints that **does not require authentication** and are available to all users.
 
 
-GET: `/api/books`
+#### GET
 
-GET: `/api/books/{bookId}`
-
-GET: `/api/books/search/by-title`
-
-GET: `/api/books/search/by-genre`
-
-GET: `/api/books/secure/is-checked-out/{bookId}`
-
-PUT: `/api/books/secure/checkout/{bookId}`
-
-PUT: `/api/books/secure/renew-checkout/{bookId}`
-
-PUT: `/api/books/secure/return/{bookId}`
-
-GET: `/api/books/secure/is-reviewed/{bookId}`
-
-POST: `/api/books/secure/review/{bookId}`
+* `.../api/books?page={pageNumber}&books-per-page={itemsPerPage}` - get paginated list of all books.
 
 
-GET: `api/checkouts/secure/current-loans-count`
-
-GET: `api/checkouts/secure/current-checkouts`
+* `.../api/books/{bookId}` - get a book with `id` passed as a path variable.
 
 
-GET: `/api/discussions/secure`
-
-POST: `/api/discussions/secure/add-discussion`
-
-
-GET: `/api/genres`
+* `.../api/books/search/by-title?page={pageNumber}&books-per-page={itemsPerPage}&title-query={titleQuery}` -
+get paginated list of all books with `title` value containing `titleQuery` value from url param.
 
 
-GET: `/api/history-records/secure`
+* `.../api/books/search/by-genre?page={pageNumber}&books-per-page={itemsPerPage}&genre-query={genreQuery}` -
+get paginated list of all books with `genres` value containing `genreQuery` value from url param.
 
 
-GET: `/api/payment/secure`
-
-POST: `/api/payment/secure/payment-intent`
-
-PUT: `/api/payment/secure/payment-complete`
+* `.../api/genres` - get a list of all genres.
 
 
-GET: `/api/reviews/{bookId}`
+* `.../api/reviews/{bookId}?page={pageNumber}&reviews-per-page={itemsPerPage}&latest={true/false}` - get
+paginated list of all reviews for the book with `id` passed as a path variable. If `latest` is set to `true` then
+returned list is sorted by reviews `id` value in descending order.
 
-GET: `/api/reviews/average-rating/{bookId}`
+
+* `.../api/reviews/average-rating/{bookId}` - get book's average rating, calculated from all book's reviews.
 
 
-POST: `/api/auth/register`
+#### POST
 
-POST: `/api/auth/authenticate`
+* `.../api/auth/register` - register (create) a new user. This request will generate and return **JWT** that
+  is used to access all secure endpoints of the application. Requires a valid personRegistrationDTO passed
+  as a request body:
+
+  ```json
+  {
+    "firstName": "Person first name",
+    "lastName": "Person last name",
+    "dateOfBirth": "1990-11-21",
+    "email": "userEmail@email.com",
+    "password": "userPassword"
+  }
+  ```
+
+
+* `.../api/auth/authenticate` - log in to the service using your credentials. This request will generate
+  and return **JWT** that is used to access all secure endpoints of the application. Requires a valid
+  personLoginDTO passed as a request body:
+
+  ```json
+  {
+    "email": "userEmail@email.com",
+    "password": "userPassword"
+  }
+  ```
+
+
+#### Secured (authenticated) endpoints
+
+Following is the list of endpoints that **require authentication** and are available only to authenticated users.
+
+
+#### GET
+
+* `.../api/admin/secure/open-discussions?page={pageNumber}&discussions-per-page={itemsPerPage}` - get
+  paginated list of all open discussions. Requires JWT passed as `Authorization` header (Bearer token).
+
+
+* `.../api/books/secure/is-checked-out/{bookId}` - check if a book with `id` passed as a path variable is
+  currently checked out by user. Requires JWT passed as `Authorization` header (Bearer token).
+
+
+* `.../api/books/secure/is-reviewed/{bookId}` - check if a book with `id` passed as a path variable is
+  already reviewed by user. Requires JWT passed as `Authorization` header (Bearer token).
+
+
+* `...api/checkouts/secure/current-loans-count` - get the amount of user's current checkouts.
+  Requires JWT passed as `Authorization` header (Bearer token).
+
+
+* `...api/checkouts/secure/current-checkouts` - get a list of all user's current checkouts.
+  Requires JWT passed as `Authorization` header (Bearer token).
+
+
+* `.../api/discussions/secure?page={pageNumber}&discussions-per-page={itemsPerPage}` - get paginated list
+  of all person's discussions. Requires JWT passed as `Authorization` header (Bearer token).
+
+
+* `.../api/history-records/secure?page={pageNumber}&records-per-page={itemsPerPage}` - get paginated list
+  of all person's history records. Requires JWT passed as `Authorization` header (Bearer token).
+
+
+* `.../api/payment/secure` - get the amount of person's current fees pending. Requires JWT passed
+  as `Authorization` header (Bearer token).
+
+
+#### POST
+
+* `.../api/admin/secure/add-book` - add new book to database. Requires JWT passed as `Authorization` header 
+(Bearer token) and a valid bookDTO passed as a request body:
+  ```json
+  { 
+    "title": "Book title",
+    "author": "Author Name",
+    "description": "Book description",
+    "copies": 10,
+    "copiesAvailable": 10,
+    "img": "data:image/jpeg;base64,/9j/4AAQS...",
+    "genres": [
+      {"description": "Science Fiction"},
+      {"description": "Fantasy"},
+      {"description": "Romance"}
+    ]
+  }
+  ```
+
+
+* `.../api/admin/secure/close-discussion` - add an administration response to any open discussion and
+close that discussion. Requires JWT passed as `Authorization` header (Bearer token) and a valid discussionDTO
+passed as a request body:
+
+  ```json
+  { 
+    "id": 1,
+    "personEmail": "Person e-mail",
+    "personFirstName": "Person first name",
+    "personLastName": "Person last name",
+    "title": "Discussion title (subject)",
+    "question": "Discussion question",
+    "adminEmail": "Administrator user e-mail",
+    "response": "Administration response message",
+    "closed": true
+  }
+  ```
+
+
+* `.../api/books/secure/review/{bookId}` - add a review for a book with `id` passed as a path variable.
+Requires JWT passed as `Authorization` header (Bearer token) and a valid reviewDTO passed as a request body:
+
+  ```json
+  {
+    "date": "2023-11-21T12:54:59.841",
+    "rating": 4.5,
+    "reviewDescription": "Comment message"
+  }
+  ```
+
+
+* `.../api/discussions/secure/add-discussion` - add new open discussion. Requires JWT passed
+as `Authorization` header (Bearer token) and a valid discussionDTO passed as a request body:
+
+  ```json
+  {
+    "title": "Discussion title (subject)",
+    "question": "Discussion question"
+  }
+  ```
+
+
+* `.../api/payment/secure/payment-intent` - create payment intent via Stripe. Requires JWT passed
+as `Authorization` header (Bearer token) and a valid paymentInfoDTO passed as a request body:
+
+  ```json
+  {
+    "amount": 23,
+    "currency": "USD",
+    "receiptEmail": "userEmail@email.com"
+  }
+  ```
+
+
+#### PUT
+
+* `.../api/admin/secure/increase-quantity/{bookId}` - increase `copies` & `copiesAvailable` values 
+of the book with `id` passed as a path variable by 1. Requires JWT passed as `Authorization` header
+(Bearer token).
+
+
+* `.../api/admin/secure/decrease-quantity/{bookId}` - decrease `copies` & `copiesAvailable` values
+of the book with `id` passed as a path variable by 1. Requires JWT passed as `Authorization` header
+(Bearer token).
+
+
+* `.../api/books/secure/checkout/{bookId}` - check out the book with `id` passed as a path variable.
+Requires JWT passed as `Authorization` header (Bearer token).
+
+
+* `.../api/books/secure/renew-checkout/{bookId}` - renew existing checkout of a book with `id` passed as
+a path variable. Requires JWT passed as `Authorization` header (Bearer token).
+
+
+* `.../api/books/secure/return/{bookId}` - return the book with `id` passed as a path variable. Requires
+JWT passed as `Authorization` header (Bearer token).
+
+
+* `.../api/payment/secure/payment-complete` - reset user's fees pending amount to 0 after payment is
+successfully complete. Requires JWT passed as `Authorization` header (Bearer token).
+
+
+#### DELETE
+
+* `.../api/admin/secure/delete-book/{bookId}` - delete the book with `id` passed as a path variable 
+from database. Requires JWT passed as `Authorization` header (Bearer token).
+
 
 
 ## Additional libraries and APIs
 
-This project is mostly typical full-stack application powered by popular developing tools. For example, backend 
-application is build with **Spring Boot 3** and uses main features of Spring REST, Spring JPA, Spring Security etc. 
-Frontend application is created as **Vite + React + TypeScript** project and mostly uses ReactJS functionality.
+This project is mostly typical full-stack application powered by popular developing tools. For example, 
+backend application is build with **Spring Boot 3** and uses main features of Spring REST, Spring JPA, 
+Spring Security etc. Frontend application is created as **Vite + React + TypeScript** project and mostly 
+uses ReactJS functionality.
 
-However, a few extra libraries / dependencies were used in both frontend and backend applications. Below is a 
-brief description of those libraries.
+However, a few extra libraries / dependencies were used in both frontend and backend applications. 
+Below is a brief description of those libraries.
+
 
 ### Back-end
 
@@ -253,14 +408,17 @@ Maven dependency is available here:
 Project Lombok is used to reduce the amount of boilerplate code throughout the project. Easy to get into and
 can be included as a maven dependency while building project template with Spring Boot. 
 
+
 ### Front-end
 
 #### React Router
 
 Client side routing is powered by **[React Router](https://reactrouter.com)**.
-Library allows configuration of Route components to provide easy navigation throughout the application web pages.
+Library allows configuration of Route components to provide easy navigation throughout the 
+application web pages.
 
-Quick start with React Router using npm: `npm install react-router-dom`. Additional info is available via link above.
+Quick start with React Router using npm: `npm install react-router-dom`. Additional info is available 
+via link above.
 
 #### Swiper
 
@@ -292,5 +450,5 @@ Additional info is available via link above.
 #### Styles
 
 All the css styles in this project are configured using **[Tailwind CSS](https://tailwindcss.com)**.
-Powerful & popular framework designed to economize tons of css code and .css files and build designs and layouts
-directly in markup code. Additional info is available via link above.
+Powerful & popular framework designed to economize tons of css code and .css files and build designs 
+and layouts directly in markup code. Additional info is available via link above.
