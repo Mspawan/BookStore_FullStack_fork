@@ -220,7 +220,7 @@ Following is the list of endpoints that **require authentication** and are avail
 
 All following endpoints **require JWT** passed as `Authorization` header (Bearer token).
 
-#### GET
+##### GET
 
 * `.../api/admin/secure/open-discussions?page={pageNumber}&discussions-per-page={itemsPerPage}` - get
   paginated list of all open discussions.
@@ -251,7 +251,7 @@ All following endpoints **require JWT** passed as `Authorization` header (Bearer
 * `.../api/payment/secure` - get the amount of person's current fees pending.
 
 
-#### POST
+##### POST
 
 * `.../api/admin/secure/add-book` - add new book to database. Requires a valid bookDTO passed as a request body:
   ```json
@@ -324,7 +324,7 @@ passed as a request body:
   ```
 
 
-#### PUT
+##### PUT
 
 * `.../api/admin/secure/increase-quantity/{bookId}` - increase `copies` & `copiesAvailable` values 
 of the book with `id` passed as a path variable by 1.
@@ -348,7 +348,7 @@ a path variable.
 successfully complete.
 
 
-#### DELETE
+##### DELETE
 
 * `.../api/admin/secure/delete-book/{bookId}` - delete the book with `id` passed as a path variable 
 from database.
