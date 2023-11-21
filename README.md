@@ -158,7 +158,7 @@ Following is the list of all endpoints available within the project with short d
 Following is the list of endpoints that **does not require authentication** and are available to all users.
 
 
-#### GET
+##### GET
 
 * `.../api/books?page={pageNumber}&books-per-page={itemsPerPage}` - get paginated list of all books.
 
@@ -185,7 +185,7 @@ returned list is sorted by reviews `id` value in descending order.
 * `.../api/reviews/average-rating/{bookId}` - get book's average rating, calculated from all book's reviews.
 
 
-#### POST
+##### POST
 
 * `.../api/auth/register` - register (create) a new user. This request will generate and return **JWT** that
   is used to access all secure endpoints of the application. Requires a valid personRegistrationDTO passed
