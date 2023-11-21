@@ -218,45 +218,42 @@ returned list is sorted by reviews `id` value in descending order.
 
 Following is the list of endpoints that **require authentication** and are available only to authenticated users.
 
+All following endpoints **require JWT** passed as `Authorization` header (Bearer token).
 
 #### GET
 
 * `.../api/admin/secure/open-discussions?page={pageNumber}&discussions-per-page={itemsPerPage}` - get
-  paginated list of all open discussions. Requires JWT passed as `Authorization` header (Bearer token).
+  paginated list of all open discussions.
 
 
 * `.../api/books/secure/is-checked-out/{bookId}` - check if a book with `id` passed as a path variable is
-  currently checked out by user. Requires JWT passed as `Authorization` header (Bearer token).
+  currently checked out by user.
 
 
 * `.../api/books/secure/is-reviewed/{bookId}` - check if a book with `id` passed as a path variable is
-  already reviewed by user. Requires JWT passed as `Authorization` header (Bearer token).
+  already reviewed by user.
 
 
 * `...api/checkouts/secure/current-loans-count` - get the amount of user's current checkouts.
-  Requires JWT passed as `Authorization` header (Bearer token).
 
 
 * `...api/checkouts/secure/current-checkouts` - get a list of all user's current checkouts.
-  Requires JWT passed as `Authorization` header (Bearer token).
 
 
 * `.../api/discussions/secure?page={pageNumber}&discussions-per-page={itemsPerPage}` - get paginated list
-  of all person's discussions. Requires JWT passed as `Authorization` header (Bearer token).
+  of all person's discussions.
 
 
 * `.../api/history-records/secure?page={pageNumber}&records-per-page={itemsPerPage}` - get paginated list
-  of all person's history records. Requires JWT passed as `Authorization` header (Bearer token).
+  of all person's history records.
 
 
-* `.../api/payment/secure` - get the amount of person's current fees pending. Requires JWT passed
-  as `Authorization` header (Bearer token).
+* `.../api/payment/secure` - get the amount of person's current fees pending.
 
 
 #### POST
 
-* `.../api/admin/secure/add-book` - add new book to database. Requires JWT passed as `Authorization` header 
-(Bearer token) and a valid bookDTO passed as a request body:
+* `.../api/admin/secure/add-book` - add new book to database. Requires a valid bookDTO passed as a request body:
   ```json
   { 
     "title": "Book title",
@@ -275,8 +272,7 @@ Following is the list of endpoints that **require authentication** and are avail
 
 
 * `.../api/admin/secure/close-discussion` - add an administration response to any open discussion and
-close that discussion. Requires JWT passed as `Authorization` header (Bearer token) and a valid discussionDTO
-passed as a request body:
+close that discussion. Requires a valid discussionDTO passed as a request body:
 
   ```json
   { 
@@ -293,8 +289,8 @@ passed as a request body:
   ```
 
 
-* `.../api/books/secure/review/{bookId}` - add a review for a book with `id` passed as a path variable.
-Requires JWT passed as `Authorization` header (Bearer token) and a valid reviewDTO passed as a request body:
+* `.../api/books/secure/review/{bookId}` - add a review for a book with `id` passed as a path variable. Requires 
+a valid reviewDTO passed as a request body:
 
   ```json
   {
@@ -305,8 +301,8 @@ Requires JWT passed as `Authorization` header (Bearer token) and a valid reviewD
   ```
 
 
-* `.../api/discussions/secure/add-discussion` - add new open discussion. Requires JWT passed
-as `Authorization` header (Bearer token) and a valid discussionDTO passed as a request body:
+* `.../api/discussions/secure/add-discussion` - add new open discussion. Requires a valid discussionDTO passed 
+as a request body:
 
   ```json
   {
@@ -316,8 +312,8 @@ as `Authorization` header (Bearer token) and a valid discussionDTO passed as a r
   ```
 
 
-* `.../api/payment/secure/payment-intent` - create payment intent via Stripe. Requires JWT passed
-as `Authorization` header (Bearer token) and a valid paymentInfoDTO passed as a request body:
+* `.../api/payment/secure/payment-intent` - create payment intent via Stripe. Requires a valid paymentInfoDTO 
+passed as a request body:
 
   ```json
   {
@@ -331,35 +327,31 @@ as `Authorization` header (Bearer token) and a valid paymentInfoDTO passed as a 
 #### PUT
 
 * `.../api/admin/secure/increase-quantity/{bookId}` - increase `copies` & `copiesAvailable` values 
-of the book with `id` passed as a path variable by 1. Requires JWT passed as `Authorization` header
-(Bearer token).
+of the book with `id` passed as a path variable by 1.
 
 
 * `.../api/admin/secure/decrease-quantity/{bookId}` - decrease `copies` & `copiesAvailable` values
-of the book with `id` passed as a path variable by 1. Requires JWT passed as `Authorization` header
-(Bearer token).
+of the book with `id` passed as a path variable by 1.
 
 
 * `.../api/books/secure/checkout/{bookId}` - check out the book with `id` passed as a path variable.
-Requires JWT passed as `Authorization` header (Bearer token).
 
 
 * `.../api/books/secure/renew-checkout/{bookId}` - renew existing checkout of a book with `id` passed as
-a path variable. Requires JWT passed as `Authorization` header (Bearer token).
+a path variable.
 
 
-* `.../api/books/secure/return/{bookId}` - return the book with `id` passed as a path variable. Requires
-JWT passed as `Authorization` header (Bearer token).
+* `.../api/books/secure/return/{bookId}` - return the book with `id` passed as a path variable.
 
 
 * `.../api/payment/secure/payment-complete` - reset user's fees pending amount to 0 after payment is
-successfully complete. Requires JWT passed as `Authorization` header (Bearer token).
+successfully complete.
 
 
 #### DELETE
 
 * `.../api/admin/secure/delete-book/{bookId}` - delete the book with `id` passed as a path variable 
-from database. Requires JWT passed as `Authorization` header (Bearer token).
+from database.
 
 
 
