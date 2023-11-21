@@ -354,6 +354,43 @@ successfully complete.
 from database.
 
 
+### Front-end
+
+Following are the routes available on front-end client application:
+
+* `.../` - base url, redirects user to `.../home`;
+
+
+* `.../home` - navigate to Home page ;
+
+
+* `.../search` - navigate to Search page;
+
+
+* `.../book/:bookId` - navigate to specific Book page;
+
+
+* `.../reviews/:bookId` - navigate to all reviews for specific book page;
+
+
+* `.../shelf` - navigate to Shelf page;
+
+
+* `.../discussions` - navigate to Discussions page;
+
+
+* `.../fees` - navigate to Payment page;
+
+
+* `.../admin` - navigate to Admin page;
+
+
+* `.../login` - navigate to Login page;
+
+
+* `.../register` - navigate to Register page;
+
+
 
 ## Additional libraries and APIs
 
