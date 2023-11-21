@@ -46,7 +46,7 @@ Design of the website is completely done by me as well as the book covers design
 
 
 
-## Brief overview of functionality and purpose
+## Brief overview of structure and functionality
 
 
 ### General project structure
