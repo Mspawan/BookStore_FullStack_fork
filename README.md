@@ -133,7 +133,7 @@ portfolio, a banner with test credit card info is present right on the payment p
 payment functionality without entering any valid credit card information.
 
 
-* **Administration tools** - allows **authorized** users access to management instruments, including adding 
+* **Administration tools** - allows **authorized** users access to management instruments, such as adding 
 or deleting books, changing item quantities, closing discussions etc.
   * **Add book tab** - provides a form for administrator to **create a new book item** and add it to the 
   DataBase. Each book must contain "title", "author", "description", "copies", "copies available", 
