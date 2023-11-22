@@ -136,7 +136,7 @@ payment functionality without entering any valid credit card information.
 * **Administration tools** - allows **authorized** users access to management instruments, such as adding 
 or deleting books, changing item quantities, closing discussions etc.
   * **Add book tab** - provides a form for administrator to **create a new book item** and add it to the 
-  DataBase. Each book must contain "title", "author", "description", "copies", "copies available", 
+  database. Each book must contain "title", "author", "description", "copies", "copies available", 
   "cover image", "list of genres" fields filled out in order to be added to the database.
   * **Quantities tab** - displays a list of all book items available in the database and allows authorized 
   admin user to change "copies available" count of any book (increase or decrease) or to delete a book 
