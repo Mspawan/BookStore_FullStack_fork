@@ -361,7 +361,7 @@ Following are the routes available on front-end client application:
 * `.../` - base url, redirects user to `.../home`;
 
 
-* `.../home` - navigate to Home page ;
+* `.../home` - navigate to Home page;
 
 
 * `.../search` - navigate to Search page;
