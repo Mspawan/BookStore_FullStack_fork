@@ -418,7 +418,7 @@ Maven dependencies are available via links above.
 
 #### Stripe
 
-Payment services in this project are powered with **[Stripe](https://stripe.com)**.
+Payment functionality in this project is powered with **[Stripe](https://stripe.com)**.
 It is one of the biggest and most popular payment processors available with huge variety of services.
 
 Maven dependency is available here:
