@@ -608,3 +608,13 @@ procedure. If you want to test this functionality please access the database cre
 terminal / command line, IDE or pgAdmin 4. Within the database open table `person` and change **ROLE_USER** value 
 of `role` column to **ROLE_ADMIN** for your user entity. Now when you re-login - new JWT will be issued with 
 another authority and admin navigation tab will appear on the navbar of the website. 
+
+
+
+## Contribution
+
+Thank you for reading this file up to this point! I highly appreciate the time you spent on reviewing this 
+document and do hope that you liked this project.
+
+If you have any questions, found any bugs or want to discuss something with me - please feel free to contact 
+me via any option available on my profile page.
