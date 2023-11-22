@@ -462,7 +462,7 @@ JWTs obtained from REST API backend application contain valuable info encoded in
 authorities, that allow access to some pages or functions of frontend client application. This jwt-decode npm 
 package provides a number of functions useful when jwt payload info needs to be extracted and decoded.
 
-Quick start with jwt-decode using npm: `npm install jwt-decode`. Additional info is available via link above.
+Quick start with jwt-decode using npm: `npm install jwt-decode`.
 
 #### Stripe
 
