@@ -466,7 +466,7 @@ Quick start with jwt-decode using npm: `npm install jwt-decode`.
 
 #### Stripe
 
-Payment services in this project are powered with **[Stripe](https://stripe.com)**.
+Payment functionality in this project is powered with **[Stripe](https://stripe.com)**.
 It is one of the biggest and most popular payment processors available with huge variety of services.
 
 Quick start with Stripe using npm: 
