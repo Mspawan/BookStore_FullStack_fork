@@ -500,7 +500,7 @@ Download ZIP from this repository and choose one of the following.
 
 ### Running the code with IDEs
 
-This project is basically a fully prepared for running on local machines, however there are several 
+This project is basically fully prepared for running on local machines, however there are several 
 steps that need to be done in order to run both frontend and backend applications without getting ane errors.
 
 Following are the necessary actions with brief description.
