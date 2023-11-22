@@ -394,7 +394,7 @@ Following are the routes available on front-end client application:
 
 ## Additional libraries and APIs
 
-This project is mostly typical full-stack application powered by popular developing tools. For example, 
+This project is mostly a typical full-stack application powered by popular developing tools. For example, 
 backend application is build with **Spring Boot 3** and uses main features of Spring REST, Spring JPA, 
 Spring Security etc. Frontend application is created as **Vite + React + TypeScript** project and mostly 
 uses ReactJS functionality.
