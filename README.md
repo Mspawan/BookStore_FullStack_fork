@@ -597,7 +597,7 @@ Following is the brief instruction on how to run the application locally with Do
 * Run `docker-compose up` command. This will automatically build necessary docker images and run multi-container 
 based on those images. You will see the logs in your terminal / command line window. If you do not want to occupy 
 your current terminal / command line window, run this command in detached mode instead: `docker-compose up -d`. 
-This procedure might take a little while on first startup since docker will be downloading all required images;
+This procedure might take a little while on first startup since docker will be downloading all required images.
 
 
 If startup goes successfully - application will be up and running on port 5173 and will be accessible through
