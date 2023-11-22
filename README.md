@@ -155,7 +155,7 @@ Following is the list of all endpoints available within the project with short d
 
 #### Open (unauthenticated) endpoints
 
-Following is the list of endpoints that **does not require authentication** and are available to all users.
+Following is the list of endpoints that **do not require authentication** and are available to all users.
 
 
 ##### GET
