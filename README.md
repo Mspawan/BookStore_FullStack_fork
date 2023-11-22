@@ -591,7 +591,7 @@ Following is the brief instruction on how to run the application locally with Do
   * Stripe secret key can be obtained from your Stripe account;
 
 
-* Open new terminal / command line window nad navigate into unarchived project root folder;
+* Open new terminal / command line window and navigate into unarchived project root folder;
 
 
 * Run `docker-compose up` command. This will automatically build necessary docker images and run multi-container 
