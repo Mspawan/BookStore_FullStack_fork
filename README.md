@@ -619,4 +619,4 @@ document and do hope that you liked this project.
 If you have any questions, found any bugs or want to discuss something with me - please feel free to contact 
 me via any option available on my profile page.
 
-Good luck!
+**Good luck!**
