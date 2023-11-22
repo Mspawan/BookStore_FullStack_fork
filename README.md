@@ -481,3 +481,130 @@ Additional info is available via link above.
 All the css styles in this project are configured using **[Tailwind CSS](https://tailwindcss.com)**.
 Powerful & popular framework designed to economize tons of css code and .css files and build designs 
 and layouts directly in markup code. Additional info is available via link above.
+
+
+
+## Implementation and start up
+
+There are currently two ways to run this application locally on your machine: 
+
+* By downloading this repository ZIP on your computer and running the code with your preferable IDEs;
+
+
+* By downloading this repository ZIP on your computer and running docker containers created with 
+docker-compose.yml file available in the root of this project.
+
+  
+Download ZIP from this repository and choose one of the following.
+
+
+### Running the code with IDEs
+
+This project is basically fully prepared for running on local machines, however there are several 
+steps that need to be done in order to run both frontend and backend applications without getting ane errors.
+
+Following are the necessary actions with brief description.
+
+
+#### Back-end REST API start-up
+
+* Firstly, download ZIP from this repository and unarchive it;
+
+
+* Create local PostgreSQL DataBase on your machine either by running a docker container of 
+postgres official image or by creating a DB via pgAdmin 4;
+
+
+* Open `BookStore_Backend` folder in your preferable IDE;
+
+
+* Navigate into `BookStore_FullStack/BookStore_Backend/src/main/resources` directory, remove `.blank` from
+`application.properties.blank` file name and open this file;
+
+
+* Make sure that `spring.datasource.url`, `spring.datasource.username` and `spring.datasource.password` values are 
+matching with the corresponding parameters of the DataBase created earlier;
+
+
+* Enter missing values for `jwt_secret` and `stripe.key.secret` variables.
+  * JWT secret is any string or encoded string of your choice;
+  * Stripe secret key can be obtained from your Stripe account;
+
+
+* Navigate into `BookStore_Backend/src/main/java/com/iliamalafeev/bookstore/bookstore_backend`, open 
+`BookStoreBackendApplication.java` file and run it.
+
+
+If startup goes successfully - application will connect to your database and all required tables will be 
+automatically created using `data.sql` and `schema.sql` files located in `resources` directory. After this 
+backend API should be up and running, ready to accept requests from the backend.
+
+
+#### Front-end Client application start-up
+
+* Open `BookStore_Frontend` folder in your preferable IDE;
+
+
+* Open new terminal / command line window for this folder and run `npm install` command to download and install 
+all project's dependencies. This procedure might take a little while;
+
+
+* Once all the dependencies are installed, simply run `npm run dev` command. This should start the frontend 
+application locally.
+
+
+If startup goes successfully - application will be up and running on port 5173 and will be accessible through 
+your web browser. **Please note**, that in order to access all the functionality of this application it is 
+preferable to keep the backend application running as well.
+
+**Important note:** admin functionality will not be accessible inside the application via regular user register 
+procedure. If you want to test this functionality please access your database via IDE or pgAdmin 4. Within the 
+database open table `person` and change **ROLE_USER** value of `role` column to **ROLE_ADMIN** for your user 
+entity. Now when you re-login - new JWT will be issued with another authority and admin navigation tab will 
+appear on the navbar of the website. 
+
+
+
+### Running the code with Docker
+
+If you are familiar with Docker and have it installed on your computer it should be even easier to test run the 
+application on your local machine.
+
+There are two multi-stage **Dockerfiles** created for this project - one inside `BookStore_Backend` folder and 
+another one inside `BookStore_Frontend` folder. They describe the instructions on how to build separate docker 
+images for Backend and Frontend applications correspondingly. 
+
+There is also a single **docker-compose.yml** file inside the root of this repository. It contains the 
+instructions on how to build all the required images based on those Dockerfiles and runs them as a multi-container.
+
+Following is the brief instruction on how to run the application locally with Docker:
+
+* Firstly, download ZIP from this repository and unarchive it;
+
+
+* Navigate into `BookStore_FullStack/BookStore_Backend/src/main/resources` directory, remove `.blank` from
+`application.properties.blank` file name and open this file in any text editor or IDE;
+
+
+* Enter missing values for `jwt_secret` and `stripe.key.secret` variables.
+  * JWT secret is any string or encoded string of your choice;
+  * Stripe secret key can be obtained from your Stripe account;
+
+
+* Open new terminal / command line window nad navigate into unarchived project root folder;
+
+
+* Run `docker-compose up` command. This will automatically build necessary docker images and run multi-container 
+based on those images. You will see the logs in your terminal / command line window. If you do not want to occupy 
+your current terminal / command line window, run this command in detached mode instead: `docker-compose up -d`. 
+This procedure might take a little while on first startup since docker will be downloading all required images;
+
+
+If startup goes successfully - application will be up and running on port 5173 and will be accessible through
+your web browser.
+
+**Important note:** admin functionality will not be accessible inside the application via regular user register
+procedure. If you want to test this functionality please access the database created with docker container via
+terminal / command line, IDE or pgAdmin 4. Within the database open table `person` and change **ROLE_USER** value 
+of `role` column to **ROLE_ADMIN** for your user entity. Now when you re-login - new JWT will be issued with 
+another authority and admin navigation tab will appear on the navbar of the website. 
