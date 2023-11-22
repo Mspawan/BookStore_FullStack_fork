@@ -537,7 +537,7 @@ matching with the corresponding parameters of the DataBase created earlier;
 
 If startup goes successfully - application will connect to your database and all required tables will be 
 automatically created using `data.sql` and `schema.sql` files located in `resources` directory. After that 
-backend API should be up and running, ready to accept requests from the backend.
+backend API should be up and running, ready to accept requests from the frontend.
 
 
 #### Front-end Client application start-up
