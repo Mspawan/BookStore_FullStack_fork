@@ -79,7 +79,7 @@ Other user-specific pages and application functions are available only after aut
 Users are able to **Log in** and **Register** to the service. **JWTs** are generated via backend API 
 and sent to user's frontend client, and then validated by backend each time a user tries to 
 access any secured endpoint. **Admin** page and functionality is only available for **authorized** users. 
-All user information including **authority** is stored in DataBase after registration and encoded into JWT.
+All user information including **authority** is stored in database after registration and encoded into JWT.
 
 
 * **Pagination** - pagination logic is implemented for both frontend and backend, and is used on various 
@@ -112,10 +112,10 @@ checked out by each user. Management functions are as follows:
 * **Book's reviews and ratings** - functionality that allows users to leave a review for any book.
 User is encouraged to **rate the book and leave a comment**. A review can be created without the comment text
 while rating is required.
-  * **Book's rating** will be fetched as an average among all book's reviews and shown on book's specific page
-  * **Latest reviews** are shown on the bottom of book's specific page as well
+  * **Book's rating** will be fetched as an average among all book's reviews and shown on book's specific page.
+  * **Latest reviews** are shown on the bottom of book's specific page as well.
   * **All book's reviews** are available for the user on a separate page that can be accessed from book's 
-  specific page
+  specific page.
 
 
 * **Discussions service** - allows users to open private discussions with administration. 
