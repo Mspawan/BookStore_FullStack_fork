@@ -558,10 +558,16 @@ your web browser. **Please note**, that in order to access all the functionality
 preferable to keep the backend application running as well.
 
 **Important note:** admin functionality will not be accessible inside the application via regular user register 
-procedure. If you want to test this functionality please access your database via IDE or pgAdmin 4. Within the 
-database open table `person` and change **ROLE_USER** value of `role` column to **ROLE_ADMIN** for your user 
-entity. Now when you re-login - new JWT will be issued with another authority and admin navigation tab will 
-appear on the navbar of the website. 
+procedure. Therefore, I added one default user with **admin** authority to database initialization file. You can 
+log in with these credentials:
+
+* `login`: **admin@email.com** 
+* `password`: **adminpassword**. 
+
+Another option is to register a new user and then access your database via IDE or pgAdmin 4. Within the database 
+open table `person` and change **ROLE_USER** value of `role` column to **ROLE_ADMIN** for your user entity. Now 
+when you re-login - new JWT will be issued with another authority and admin navigation tab will appear on the 
+navbar of the website. 
 
 
 
@@ -604,7 +610,13 @@ If startup goes successfully - application will be up and running on port 5173 a
 your web browser.
 
 **Important note:** admin functionality will not be accessible inside the application via regular user register
-procedure. If you want to test this functionality please access the database created with docker container via
+procedure. Therefore, I added one default user with **admin** authority to database initialization file. You can
+log in with these credentials:
+
+* `login`: **admin@email.com**
+* `password`: **adminpassword**.
+
+Another option is to register a new user and then access the database created with docker container via
 terminal / command line, IDE or pgAdmin 4. Within the database open table `person` and change **ROLE_USER** value 
 of `role` column to **ROLE_ADMIN** for your user entity. Now when you re-login - new JWT will be issued with 
 another authority and admin navigation tab will appear on the navbar of the website. 
