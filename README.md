@@ -545,6 +545,10 @@ backend API should be up and running, ready to accept requests from the frontend
 * Open `BookStore_Frontend` folder in your preferable IDE;
 
 
+* Open `.env` file and replace `VITE_STRIPE_PUBLIC_KEY` variable value with your Stripe public key that can be 
+obtained from your Stripe account;
+
+
 * Open new terminal / command line window for this folder and run `npm install` command to download and install 
 all project's dependencies. This procedure might take a little while;
 
@@ -595,6 +599,13 @@ Following is the brief instruction on how to run the application locally with Do
 * Enter missing values for `jwt_secret` and `stripe.key.secret` variables.
   * JWT secret is any string or encoded string of your choice;
   * Stripe secret key can be obtained from your Stripe account;
+
+
+* Open `BookStore_Frontend` folder in your preferable IDE;
+
+
+* Open `.env` file and replace `VITE_STRIPE_PUBLIC_KEY` variable value with your Stripe public key that can be 
+obtained from your Stripe account;
 
 
 * Open new terminal / command line window and navigate into unarchived project root folder;
