@@ -42,7 +42,7 @@ Design of the website is completely done by me as well as the book covers design
 * Frameworks and libraries: **Spring Framework, ReactJS, Hibernate, Tailwind** 
 * Database and other tools: **PostgreSQL, Docker, Stripe, Git**
 
-**Deployed version** - [coming soon]()
+**Deployed version ** - [coming soon]()
 
 
 
