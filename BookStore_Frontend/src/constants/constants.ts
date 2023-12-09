@@ -1,4 +1,4 @@
-// Navbar links
+// Navbar links 
 
 export const navLinks = [
 
@@ -12,7 +12,7 @@ export const navLinks = [
 ];
 
 
-// Quotes on top of each page
+// Quotes on top of each page 
 
 export const quotes = [
 
@@ -30,7 +30,7 @@ export const quotes = [
 ];
 
 
-// Rating values for review card
+// Rating values for review card 
 
 export const ratings = [
 
