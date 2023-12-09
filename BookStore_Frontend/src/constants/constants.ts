@@ -1,3 +1,5 @@
+// Navbar links
+
 export const navLinks = [
 
     {id: 1, href: "/home",        title: "Home",         authRequired: false, adminOnly: false },
@@ -8,6 +10,9 @@ export const navLinks = [
     {id: 6, href: "/admin",       title: "Admin",        authRequired: true,  adminOnly: true  }
     
 ];
+
+
+// Quotes on top of each page
 
 export const quotes = [
 
@@ -23,6 +28,9 @@ export const quotes = [
     {id: 10, text: "You can get lost in any library, no matter the size. But the more lost you are, the more things you'll find.", author: "Millie Florence"}
 
 ];
+
+
+// Rating values for review card
 
 export const ratings = [
 
