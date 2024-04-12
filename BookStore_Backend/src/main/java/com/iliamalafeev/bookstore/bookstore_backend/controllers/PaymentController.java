@@ -34,20 +34,16 @@ public class PaymentController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
-    @Operation(
-            summary = "Get pending fee amount for authenticated user.",
-            description = "Get pending fee amount for authenticated user. Returns a value of type Double."
-    )
+    @Operation(summary = "Get pending fee amount for authenticated user.",
+            description = "Get pending fee amount for authenticated user. Returns a value of type Double.")
     @GetMapping
     public Double findByPersonEmail(@RequestHeader("Authorization") String token) {
 
         return paymentService.findPaymentFeesByPersonEmail(extractEmail(token));
     }
 
-    @Operation(
-            summary = "Create Stripe PaymentIntent for authenticated user.",
-            description = "Create Stripe PaymentIntent for authenticated user. Returns a json formatted value of Stripe PaymentIntent object."
-    )
+    @Operation(summary = "Create Stripe PaymentIntent for authenticated user.",
+            description = "Create Stripe PaymentIntent for authenticated user. Returns a json formatted value of Stripe PaymentIntent object.")
     @PostMapping("/payment-intent")
     public ResponseEntity<String> createPaymentIntent(@RequestBody PaymentInfoDTO paymentInfoDTO) throws StripeException {
 
