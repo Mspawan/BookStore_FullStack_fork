@@ -4,6 +4,7 @@ import com.iliamalafeev.bookstore.bookstore_backend.security.dto.requests.Person
 import com.iliamalafeev.bookstore.bookstore_backend.security.dto.requests.PersonRegistrationDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.security.dto.responses.AuthenticationResponse;
 import com.iliamalafeev.bookstore.bookstore_backend.security.services.AuthenticationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name = "Authentication Controller")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;

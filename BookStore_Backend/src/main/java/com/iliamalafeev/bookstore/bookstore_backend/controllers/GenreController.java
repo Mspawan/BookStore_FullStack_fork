@@ -2,6 +2,7 @@ package com.iliamalafeev.bookstore.bookstore_backend.controllers;
 
 import com.iliamalafeev.bookstore.bookstore_backend.dto.GenreDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.services.GenreService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import java.util.List;
 @CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/api/genres")
+@Tag(name = "Genre Controller")
 public class GenreController {
 
     private final GenreService genreService;

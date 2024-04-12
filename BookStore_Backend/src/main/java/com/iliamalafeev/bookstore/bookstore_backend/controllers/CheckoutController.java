@@ -4,6 +4,7 @@ import com.iliamalafeev.bookstore.bookstore_backend.dto.CheckoutDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.services.CheckoutService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/checkouts")
 @SecurityRequirement(name = "Bearer Authentication")
+@Tag(name = "Checkout Controller")
 public class CheckoutController {
 
     private final CheckoutService checkoutService;

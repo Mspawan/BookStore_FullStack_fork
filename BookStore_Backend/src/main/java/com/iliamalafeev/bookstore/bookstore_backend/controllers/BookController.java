@@ -5,6 +5,7 @@ import com.iliamalafeev.bookstore.bookstore_backend.dto.ReviewDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.services.BookService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/api/books")
+@Tag(name = "Book Controller")
 public class BookController {
 
     private final BookService bookService;
