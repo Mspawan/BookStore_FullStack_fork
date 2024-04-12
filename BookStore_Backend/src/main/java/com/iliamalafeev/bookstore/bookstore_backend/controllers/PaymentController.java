@@ -5,6 +5,7 @@ import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.services.PaymentService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/api/payment/secure")
+@SecurityRequirement(name = "Bearer Authentication")
 public class PaymentController {
 
     private final PaymentService paymentService;

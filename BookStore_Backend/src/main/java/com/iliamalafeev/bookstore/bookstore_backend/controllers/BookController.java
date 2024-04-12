@@ -4,6 +4,7 @@ import com.iliamalafeev.bookstore.bookstore_backend.dto.BookDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.dto.ReviewDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.services.BookService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -62,12 +63,14 @@ public class BookController {
     }
 
     @GetMapping("/secure/is-checked-out/{bookId}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public Boolean isBookCheckedOutByPerson(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
 
         return bookService.isBookCheckedOutByPerson(extractEmail(token), bookId);
     }
 
     @PutMapping("/secure/checkout/{bookId}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<HttpStatus> checkoutBook(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
 
         bookService.checkoutBook(extractEmail(token), bookId);
@@ -75,6 +78,7 @@ public class BookController {
     }
 
     @PutMapping("/secure/renew-checkout/{bookId}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<HttpStatus> renewCheckout(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
 
         bookService.renewCheckout(extractEmail(token), bookId);
@@ -82,6 +86,7 @@ public class BookController {
     }
 
     @PutMapping("/secure/return/{bookId}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<HttpStatus> returnBook(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
 
         bookService.returnBook(extractEmail(token), bookId);
@@ -89,12 +94,14 @@ public class BookController {
     }
 
     @GetMapping("/secure/is-reviewed/{bookId}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public Boolean isBookReviewedByPerson(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
 
         return bookService.isBookReviewedByPerson(extractEmail(token), bookId);
     }
 
     @PostMapping("/secure/review/{bookId}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<HttpStatus> reviewBook(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token,
                                                  @RequestBody @Valid ReviewDTO reviewDTO, BindingResult bindingResult) {
 

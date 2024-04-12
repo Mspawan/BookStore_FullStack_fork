@@ -3,6 +3,7 @@ package com.iliamalafeev.bookstore.bookstore_backend.controllers;
 import com.iliamalafeev.bookstore.bookstore_backend.dto.DiscussionDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.services.DiscussionService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/api/discussions/secure")
+@SecurityRequirement(name = "Bearer Authentication")
 public class DiscussionController {
 
     private final JwtUtils jwtUtils;
