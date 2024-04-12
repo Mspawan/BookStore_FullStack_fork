@@ -5,6 +5,7 @@ import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.services.PaymentService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +34,20 @@ public class PaymentController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
+    @Operation(
+            summary = "Get pending fee amount for authenticated user.",
+            description = "Get pending fee amount for authenticated user. Returns a value of type Double."
+    )
     @GetMapping
     public Double findByPersonEmail(@RequestHeader("Authorization") String token) {
 
         return paymentService.findPaymentFeesByPersonEmail(extractEmail(token));
     }
 
+    @Operation(
+            summary = "Create Stripe PaymentIntent for authenticated user.",
+            description = "Create Stripe PaymentIntent for authenticated user. Returns a json formatted value of Stripe PaymentIntent object."
+    )
     @PostMapping("/payment-intent")
     public ResponseEntity<String> createPaymentIntent(@RequestBody PaymentInfoDTO paymentInfoDTO) throws StripeException {
 
@@ -48,6 +57,10 @@ public class PaymentController {
         return new ResponseEntity<>(paymentStr, HttpStatus.OK);
     }
 
+    @Operation(
+            summary = "Confirm that payment attempt went successfully.",
+            description = "Confirm that payment attempt went successfully. Updates a value of payment amount for authenticated user."
+    )
     @PutMapping("/payment-complete")
     public ResponseEntity<HttpStatus> stripePaymentComplete(@RequestHeader("Authorization") String token) {
 
