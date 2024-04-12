@@ -36,7 +36,7 @@ public class BookController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
-    @Operation(summary = "Get paginated list of books.", description = "Returns a JSON value of type Page<BookDTO>.")
+    @Operation(summary = "Get paginated list of books.", description = "Returns a Page containing BookDTO objects.")
     @GetMapping
     public Page<BookDTO> findAll(@RequestParam(value = "page") Integer page,
                                  @RequestParam(value = "books-per-page") Integer booksPerPage) {
@@ -51,7 +51,7 @@ public class BookController {
         return bookService.findById(bookId);
     }
 
-    @Operation(summary = "Get paginated list of books, found by title.", description = "Returns a JSON value of type Page<BookDTO>.")
+    @Operation(summary = "Get paginated list of books, found by title.", description = "Returns a Page containing BookDTO objects.")
     @GetMapping("/search/by-title")
     public Page<BookDTO> findAllByTitle(@RequestParam(value = "page") Integer page,
                                         @RequestParam(value = "books-per-page") Integer booksPerPage,
@@ -60,7 +60,7 @@ public class BookController {
         return bookService.findAllByTitle(titleQuery, PageRequest.of(page, booksPerPage));
     }
 
-    @Operation(summary = "Get paginated list of books, found by genre.", description = "Returns a JSON value of type Page<BookDTO>.")
+    @Operation(summary = "Get paginated list of books, found by genre.", description = "Returns a Page containing BookDTO objects.")
     @GetMapping("/search/by-genre")
     public Page<BookDTO> findAllByGenre(@RequestParam("genre-query") String genreQuery,
                                         @RequestParam(value = "page") Integer page,
