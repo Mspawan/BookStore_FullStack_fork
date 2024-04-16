@@ -3,6 +3,7 @@ package com.iliamalafeev.bookstore.bookstore_backend.controllers;
 import com.iliamalafeev.bookstore.bookstore_backend.dto.HistoryRecordDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.services.HistoryRecordService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class HistoryRecordController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
+    @Operation(summary = "Get a paginated list of history records for an authenticated user.", description = "Returns a page containing HistoryRecordDTO objects.")
     @GetMapping
     public Page<HistoryRecordDTO> findAllByPersonEmail(@RequestHeader("Authorization") String token, @RequestParam(value = "page") Integer page,
                                                        @RequestParam(value = "records-per-page") Integer recordsPerPage) {
