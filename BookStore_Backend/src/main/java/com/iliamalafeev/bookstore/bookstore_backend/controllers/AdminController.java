@@ -5,6 +5,7 @@ import com.iliamalafeev.bookstore.bookstore_backend.dto.DiscussionDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.services.BookService;
 import com.iliamalafeev.bookstore.bookstore_backend.services.DiscussionService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -39,6 +40,7 @@ public class AdminController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
+    @Operation(summary = "Add new book to DataBase.", description = "Requires a BookDTO object as a request body.")
     @PostMapping("/add-book")
     public ResponseEntity<HttpStatus> postBook(@RequestBody @Valid BookDTO bookDTO, BindingResult bindingResult) {
 
@@ -46,6 +48,7 @@ public class AdminController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
+    @Operation(summary = "Increase quantity of a specific book by 1.", description = "Changes copies and copies available fields of a selected book.")
     @PutMapping("/increase-quantity/{bookId}")
     public ResponseEntity<HttpStatus> increaseBookQuantity(@PathVariable("bookId") Long bookId) {
 
@@ -53,6 +56,7 @@ public class AdminController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
+    @Operation(summary = "Decrease quantity of a specific book by 1.", description = "Changes copies and copies available fields of a selected book.")
     @PutMapping("/decrease-quantity/{bookId}")
     public ResponseEntity<HttpStatus> decreaseBookQuantity(@PathVariable("bookId") Long bookId) {
 
@@ -60,6 +64,7 @@ public class AdminController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
+    @Operation(summary = "Delete a book from a DataBase.", description = "Permanently deletes a book entity from a DataBase.")
     @DeleteMapping("/delete-book/{bookId}")
     public ResponseEntity<HttpStatus> deleteBook(@PathVariable("bookId") Long bookId) {
 
@@ -67,6 +72,7 @@ public class AdminController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
+    @Operation(summary = "Get a paginated list of all open discussions.", description = "Returns a Page containing DiscussionDTO objects.")
     @GetMapping("/open-discussions")
     public Page<DiscussionDTO> findAllUnclosedDiscussions(@RequestParam(value = "page") Integer page,
                                                           @RequestParam(value = "discussions-per-page") Integer discussionsPerPage) {
@@ -74,6 +80,7 @@ public class AdminController {
         return discussionService.findAllByClosed(PageRequest.of(page, discussionsPerPage));
     }
 
+    @Operation(summary = "Update specific discussion entity.", description = "Sets the administration answer to a selected discussion entity and marks it as closed. Requires a valid DiscussionDTO object as a request body.")
     @PostMapping("/close-discussion")
     public ResponseEntity<HttpStatus> updateDiscussion(@RequestHeader("Authorization") String token,
                                                        @RequestBody @Valid DiscussionDTO discussionDTO, BindingResult bindingResult) {
