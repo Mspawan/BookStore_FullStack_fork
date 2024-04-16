@@ -3,6 +3,7 @@ package com.iliamalafeev.bookstore.bookstore_backend.controllers;
 import com.iliamalafeev.bookstore.bookstore_backend.dto.CheckoutDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.services.CheckoutService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,14 @@ public class CheckoutController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
+    @Operation(summary = "Get a number of current checkouts held by authenticated user.", description = "Returns a number of current checkouts as an int.")
     @GetMapping("/secure/current-loans-count")
     public int getCurrentCheckoutsCount(@RequestHeader(value = "Authorization") String token) {
 
         return checkoutService.getCurrentCheckoutsCount(extractEmail(token));
     }
 
+    @Operation(summary = "Get a list of all current checkouts held by authenticated user.", description = "Returns a list containing CheckoutDTO objects.")
     @GetMapping("/secure/current-checkouts")
     public List<CheckoutDTO> getCurrentCheckouts(@RequestHeader(value = "Authorization") String token) {
 
