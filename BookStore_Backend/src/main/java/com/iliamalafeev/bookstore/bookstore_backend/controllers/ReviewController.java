@@ -2,6 +2,7 @@ package com.iliamalafeev.bookstore.bookstore_backend.controllers;
 
 import com.iliamalafeev.bookstore.bookstore_backend.dto.ReviewDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.services.ReviewService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,7 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
+    @Operation(summary = "Get a paginated list of reviews for a specific book.", description = "Returns a page containing ReviewDTO objects.")
     @GetMapping("/{bookId}")
     public Page<ReviewDTO> findAllByBookId(@PathVariable("bookId") Long bookId, @RequestParam(value = "page") Integer page,
                                            @RequestParam(value = "reviews-per-page") Integer reviewsPerPage,
@@ -29,6 +31,7 @@ public class ReviewController {
         return reviewService.findAllByBookId(bookId, PageRequest.of(page, reviewsPerPage), latest);
     }
 
+    @Operation(summary = "Get an average rating for a specific book.", description = "Counts an average rating across all the reviews related to selected book. Returns a value of type Double.")
     @GetMapping("/average-rating/{bookId}")
     public Double getAverageRatingByBookId(@PathVariable("bookId") Long bookId) {
 
