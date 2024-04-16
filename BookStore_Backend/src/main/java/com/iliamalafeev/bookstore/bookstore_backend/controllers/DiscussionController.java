@@ -3,6 +3,7 @@ package com.iliamalafeev.bookstore.bookstore_backend.controllers;
 import com.iliamalafeev.bookstore.bookstore_backend.dto.DiscussionDTO;
 import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.services.DiscussionService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -35,6 +36,7 @@ public class DiscussionController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
+    @Operation(summary = "Get a paginated list of all discussions.", description = "Returns a Page containing DiscussionDTO objects for authenticated user.")
     @GetMapping
     public Page<DiscussionDTO> findAllByPersonEmail(@RequestHeader("Authorization") String token, @RequestParam(value = "page") Integer page,
                                                     @RequestParam(value = "discussions-per-page") Integer discussionsPerPage) {
@@ -42,6 +44,7 @@ public class DiscussionController {
         return discussionService.findAllByPersonEmail(extractEmail(token), PageRequest.of(page, discussionsPerPage));
     }
 
+    @Operation(summary = "Create a new discussion entity.", description = "Adds a new discussion entity marked as open to a DataBase. Requires a valid DiscussionDTO object as a request body.")
     @PostMapping("add-discussion")
     public ResponseEntity<HttpStatus> addDiscussion(@RequestHeader("Authorization") String token,
                                                     @RequestBody @Valid DiscussionDTO discussionDTO, BindingResult bindingResult) {
