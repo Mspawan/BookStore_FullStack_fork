@@ -53,10 +53,8 @@ public class PaymentController {
         return new ResponseEntity<>(paymentStr, HttpStatus.OK);
     }
 
-    @Operation(
-            summary = "Confirm that payment attempt went successfully.",
-            description = "Confirm that payment attempt went successfully. Updates a value of payment amount for authenticated user."
-    )
+    @Operation(summary = "Confirm that payment attempt went successfully.",
+            description = "Confirm that payment attempt went successfully. Updates a value of payment amount for authenticated user.")
     @PutMapping("/payment-complete")
     public ResponseEntity<HttpStatus> stripePaymentComplete(@RequestHeader("Authorization") String token) {
 
