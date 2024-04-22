@@ -526,8 +526,10 @@ postgres official image or by creating a DB via pgAdmin 4;
 matching with the corresponding parameters of the DataBase created earlier;
 
 
-* Enter missing values for `jwt_secret` and `stripe.key.secret` variables.
-  * JWT secret is any string or encoded string of your choice;
+* Enter missing values for `jwt_secret` and `stripe.key.secret` variables. Project will start up and work without 
+Stripe keys, but payment functionality will not work properly. JWT secret has to be >= 256-bit, otherwise you will get
+  errors trying to access secured endpoints.
+  * JWT secret is any 256-bit string or encoded 256-bit string of your choice;
   * Stripe secret key can be obtained from your Stripe account;
 
 
@@ -596,8 +598,10 @@ Following is the brief instruction on how to run the application locally with Do
 `application.properties.blank` file name and open this file in any text editor or IDE;
 
 
-* Enter missing values for `jwt_secret` and `stripe.key.secret` variables.
-  * JWT secret is any string or encoded string of your choice;
+* Enter missing values for `jwt_secret` and `stripe.key.secret` variables. Project will start up and work without
+Stripe keys, but payment functionality will not work properly. JWT secret has to be >= 256-bit, otherwise you will get 
+errors trying to access secured endpoints.
+  * JWT secret is any 256-bit string or encoded 256-bit string of your choice;
   * Stripe secret key can be obtained from your Stripe account;
 
 
