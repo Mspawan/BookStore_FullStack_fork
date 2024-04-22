@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class DiscussionService {
 
     private final ModelMapper modelMapper;
@@ -76,6 +75,7 @@ public class DiscussionService {
         return new PageImpl<>(pageContent, discussions.getPageable(), discussions.getTotalElements());
     }
 
+    @Transactional
     public void addDiscussion(String personEmail, DiscussionDTO discussionDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -92,6 +92,7 @@ public class DiscussionService {
         discussionRepository.save(discussion);
     }
 
+    @Transactional
     public void updateDiscussion(String adminEmail, DiscussionDTO discussionDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

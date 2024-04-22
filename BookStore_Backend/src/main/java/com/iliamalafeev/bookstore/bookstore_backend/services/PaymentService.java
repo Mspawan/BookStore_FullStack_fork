@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-@Transactional
 public class PaymentService {
 
     private final PaymentRepository paymentRepository;
@@ -42,6 +41,7 @@ public class PaymentService {
         return payment.getAmount();
     }
 
+    @Transactional
     public PaymentIntent createPaymentIntent(PaymentInfoDTO paymentInfoDTO) throws StripeException {
 
         List<String> paymentMethodTypes = new ArrayList<>();
@@ -55,6 +55,7 @@ public class PaymentService {
         return PaymentIntent.create(params);
     }
 
+    @Transactional
     public void stripePayment(String personEmail) {
 
         Person person = getPersonFromRepository(personEmail);

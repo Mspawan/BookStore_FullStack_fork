@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class BookService {
 
     private final ModelMapper modelMapper;
@@ -95,6 +94,7 @@ public class BookService {
         return books.map(this::convertToBookDTO);
     }
 
+    @Transactional
     public void addBook(BookDTO bookDTO, BindingResult bindingResult) {
 
         Book book = convertToBook(bookDTO);
@@ -117,11 +117,13 @@ public class BookService {
         bookRepository.save(book);
     }
 
+    @Transactional
     public void deleteById(Long bookId) {
 
         bookRepository.deleteById(bookId);
     }
 
+    @Transactional
     public void changeQuantity(Long bookId, String operation) {
 
         Book book = getBookFromRepository(bookId);
@@ -154,6 +156,7 @@ public class BookService {
         return checkout.isPresent();
     }
 
+    @Transactional
     public void checkoutBook(String personEmail, Long bookId) {
 
         Person person = getPersonFromRepository(personEmail);
@@ -201,6 +204,7 @@ public class BookService {
         bookRepository.save(book);
     }
 
+    @Transactional
     public void renewCheckout(String personEmail, Long bookId) {
 
         Person person = getPersonFromRepository(personEmail);
@@ -224,6 +228,7 @@ public class BookService {
         }
     }
 
+    @Transactional
     public void returnBook(String personEmail, Long bookId) {
 
         Person person = getPersonFromRepository(personEmail);
@@ -262,6 +267,7 @@ public class BookService {
         return review.isPresent();
     }
 
+    @Transactional
     public void reviewBook(String personEmail, Long bookId, ReviewDTO reviewDTO, BindingResult bindingResult) {
 
         Review newReview = convertToReview(reviewDTO);

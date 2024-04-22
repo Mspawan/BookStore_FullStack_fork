@@ -6,7 +6,6 @@ import com.iliamalafeev.bookstore.bookstore_backend.entities.Review;
 import com.iliamalafeev.bookstore.bookstore_backend.repositories.BookRepository;
 import com.iliamalafeev.bookstore.bookstore_backend.repositories.ReviewRepository;
 import com.iliamalafeev.bookstore.bookstore_backend.utils.ErrorsUtil;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class ReviewService {
 
     private final ModelMapper modelMapper;

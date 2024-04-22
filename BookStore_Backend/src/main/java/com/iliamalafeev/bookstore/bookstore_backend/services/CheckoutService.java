@@ -7,7 +7,6 @@ import com.iliamalafeev.bookstore.bookstore_backend.entities.Checkout;
 import com.iliamalafeev.bookstore.bookstore_backend.entities.Person;
 import com.iliamalafeev.bookstore.bookstore_backend.repositories.CheckoutRepository;
 import com.iliamalafeev.bookstore.bookstore_backend.repositories.PersonRepository;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@Transactional
 public class CheckoutService {
 
     private final ModelMapper modelMapper;
