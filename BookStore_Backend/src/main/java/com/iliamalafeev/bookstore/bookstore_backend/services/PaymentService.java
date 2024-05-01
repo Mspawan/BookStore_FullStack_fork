@@ -41,7 +41,6 @@ public class PaymentService {
         return payment.getAmount();
     }
 
-    @Transactional
     public PaymentIntent createPaymentIntent(PaymentInfoDTO paymentInfoDTO) throws StripeException {
 
         List<String> paymentMethodTypes = new ArrayList<>();
