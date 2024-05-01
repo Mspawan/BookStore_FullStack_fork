@@ -5,13 +5,10 @@ import com.iliamalafeev.bookstore.bookstore_backend.security.entities.Role;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.test.context.jdbc.Sql;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,14 +16,9 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-@Testcontainers
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 @Sql("/schema.sql")
 class PersonRepositoryTest {
-
-    @Container
-    @ServiceConnection
-    static PostgreSQLContainer<?> postgre = new PostgreSQLContainer<>("postgres:alpine");
 
     private Person person;
     private final PersonRepository personRepository;
@@ -47,12 +39,6 @@ class PersonRepositoryTest {
         person.setPassword("password");
         person.setRole(Role.ROLE_USER);
         person.setRegisteredAt(LocalDateTime.now());
-    }
-
-    @Test
-    void connectionEstablished() {
-        assertTrue(postgre.isCreated());
-        assertTrue(postgre.isRunning());
     }
 
     @Test
