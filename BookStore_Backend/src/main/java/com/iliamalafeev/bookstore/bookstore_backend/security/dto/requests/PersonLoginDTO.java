@@ -3,11 +3,15 @@ package com.iliamalafeev.bookstore.bookstore_backend.security.dto.requests;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PersonLoginDTO {
 
     @NotBlank(message = "Email must contain at least 1 character")

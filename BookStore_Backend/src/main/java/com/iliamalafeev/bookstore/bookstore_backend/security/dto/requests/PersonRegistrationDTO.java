@@ -1,13 +1,17 @@
 package com.iliamalafeev.bookstore.bookstore_backend.security.dto.requests;
 
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PersonRegistrationDTO {
 
     @NotBlank(message = "First name must contain at least 1 character")
