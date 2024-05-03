@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class PersonRegistrationDTO {
 
     @NotBlank(message = "First name must contain at least 1 character")
