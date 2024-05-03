@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -25,17 +26,23 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @Operation(summary = "Register a new user.", description = "Creates a new user entity and adds it into a DataBase. Requires a valid PersonRegistrationDTO object as a request body. Returns a valid JWT token for new authenticated user.")
+    @Operation(summary = "Register a new user.",
+            description = "Creates a new user entity and adds it into a DataBase. Requires a valid PersonRegistrationDTO object as a request body. Returns a valid JWT token for new authenticated user.")
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody @Valid PersonRegistrationDTO personRegistrationDTO, BindingResult bindingResult) {
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody @Valid PersonRegistrationDTO personRegistrationDTO,
+                                                           BindingResult bindingResult) {
 
-        return ResponseEntity.ok(authenticationService.registerPerson(personRegistrationDTO, bindingResult));
+        AuthenticationResponse responseBody = authenticationService.registerPerson(personRegistrationDTO, bindingResult);
+        return new ResponseEntity<>(responseBody, HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Authenticate an existing user.", description = "Looks for a provided user credentials in a DataBase. Requires a valid PersonLoginDTO object as a request body. Returns a valid JWT token for authenticated user.")
+    @Operation(summary = "Authenticate an existing user.",
+            description = "Looks for a provided user credentials in a DataBase. Requires a valid PersonLoginDTO object as a request body. Returns a valid JWT token for authenticated user.")
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody @Valid PersonLoginDTO personLoginDTO, BindingResult bindingResult) {
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody @Valid PersonLoginDTO personLoginDTO,
+                                                               BindingResult bindingResult) {
 
-        return ResponseEntity.ok(authenticationService.authenticatePerson(personLoginDTO, bindingResult));
+        AuthenticationResponse responseBody = authenticationService.authenticatePerson(personLoginDTO, bindingResult);
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 }
