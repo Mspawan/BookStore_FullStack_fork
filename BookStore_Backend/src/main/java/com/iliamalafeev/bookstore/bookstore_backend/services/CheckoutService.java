@@ -63,7 +63,12 @@ public class CheckoutService {
 
             long differenceInTime = ChronoUnit.DAYS.between(d2, d1);
 
-            CheckoutDTO checkoutDTO = new CheckoutDTO(convertToBookDTO(entry.getValue()), (int) differenceInTime);
+            BookDTO bookDTO = convertToBookDTO(entry.getValue());
+
+            CheckoutDTO checkoutDTO = new CheckoutDTO();
+            checkoutDTO.setBookDTO(bookDTO);
+            checkoutDTO.setDaysLeft((int) differenceInTime);
+
             response.add(checkoutDTO);
         }
 
