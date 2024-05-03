@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("http://localhost:5173/")
@@ -32,11 +34,14 @@ public class HistoryRecordController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
-    @Operation(summary = "Get a paginated list of history records for an authenticated user.", description = "Returns a page containing HistoryRecordDTO objects.")
+    @Operation(summary = "Get a paginated list of history records for an authenticated user.",
+            description = "Returns a page containing HistoryRecordDTO objects.")
     @GetMapping
-    public Page<HistoryRecordDTO> findAllByPersonEmail(@RequestHeader("Authorization") String token, @RequestParam(value = "page") Integer page,
-                                                       @RequestParam(value = "records-per-page") Integer recordsPerPage) {
+    public ResponseEntity<Page<HistoryRecordDTO>> findAllByPersonEmail(@RequestHeader("Authorization") String token,
+                                                                       @RequestParam(value = "page") Integer page,
+                                                                       @RequestParam(value = "records-per-page") Integer recordsPerPage) {
 
-        return historyRecordService.findAllByPersonEmail(extractEmail(token), PageRequest.of(page, recordsPerPage));
+        Page<HistoryRecordDTO> responseBody = historyRecordService.findAllByPersonEmail(extractEmail(token), PageRequest.of(page, recordsPerPage));
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 }
