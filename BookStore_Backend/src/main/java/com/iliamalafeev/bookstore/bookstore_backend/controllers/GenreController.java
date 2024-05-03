@@ -5,6 +5,8 @@ import com.iliamalafeev.bookstore.bookstore_backend.services.GenreService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +27,12 @@ public class GenreController {
         this.genreService = genreService;
     }
 
-    @Operation(summary = "Get the list of all Genres.", description = "Returns a List of GenreDTO objects.")
+    @Operation(summary = "Get the list of all Genres.",
+            description = "Returns a List of GenreDTO objects.")
     @GetMapping
-    public List<GenreDTO> findAll() {
-        return genreService.findAll();
+    public ResponseEntity<List<GenreDTO>> findAll() {
+
+        List<GenreDTO> responseBody = genreService.findAll();
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 }
