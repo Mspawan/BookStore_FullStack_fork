@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,17 +34,21 @@ public class CheckoutController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
-    @Operation(summary = "Get a number of current checkouts held by authenticated user.", description = "Returns a number of current checkouts as an int.")
+    @Operation(summary = "Get a number of current checkouts held by authenticated user.",
+            description = "Returns a number of current checkouts as an int.")
     @GetMapping("/secure/current-loans-count")
-    public int getCurrentCheckoutsCount(@RequestHeader(value = "Authorization") String token) {
+    public ResponseEntity<Integer> getCurrentCheckoutsCount(@RequestHeader(value = "Authorization") String token) {
 
-        return checkoutService.getCurrentCheckoutsCount(extractEmail(token));
+        Integer responseBody = checkoutService.getCurrentCheckoutsCount(extractEmail(token));
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
-    @Operation(summary = "Get a list of all current checkouts held by authenticated user.", description = "Returns a list containing CheckoutDTO objects.")
+    @Operation(summary = "Get a list of all current checkouts held by authenticated user.",
+            description = "Returns a list containing CheckoutDTO objects.")
     @GetMapping("/secure/current-checkouts")
-    public List<CheckoutDTO> getCurrentCheckouts(@RequestHeader(value = "Authorization") String token) {
+    public ResponseEntity<List<CheckoutDTO>> getCurrentCheckouts(@RequestHeader(value = "Authorization") String token) {
 
-        return checkoutService.getCurrentCheckouts(extractEmail(token));
+        List<CheckoutDTO> responseBody = checkoutService.getCurrentCheckouts(extractEmail(token));
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 }
