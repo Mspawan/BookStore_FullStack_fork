@@ -11,7 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class PersonLoginDTO {
 
     @NotBlank(message = "Email must contain at least 1 character")
