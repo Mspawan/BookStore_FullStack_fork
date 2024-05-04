@@ -36,7 +36,8 @@ public class BookController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
-    @Operation(summary = "Get paginated list of books.", description = "Returns a Page containing BookDTO objects.")
+    @Operation(summary = "Get paginated list of books.",
+            description = "Returns a Page containing BookDTO objects.")
     @GetMapping
     public Page<BookDTO> findAll(@RequestParam(value = "page") Integer page,
                                  @RequestParam(value = "books-per-page") Integer booksPerPage) {
@@ -44,14 +45,16 @@ public class BookController {
         return bookService.findAll(PageRequest.of(page, booksPerPage));
     }
 
-    @Operation(summary = "Get book by it's ID.", description = "Returns a JSON value of type BookDTO.")
+    @Operation(summary = "Get book by it's ID.",
+            description = "Returns a JSON value of type BookDTO.")
     @GetMapping("/{bookId}")
     public BookDTO findById(@PathVariable("bookId") Long bookId) {
 
         return bookService.findById(bookId);
     }
 
-    @Operation(summary = "Get paginated list of books, found by title.", description = "Returns a Page containing BookDTO objects.")
+    @Operation(summary = "Get paginated list of books, found by title.",
+            description = "Returns a Page containing BookDTO objects.")
     @GetMapping("/search/by-title")
     public Page<BookDTO> findAllByTitle(@RequestParam(value = "page") Integer page,
                                         @RequestParam(value = "books-per-page") Integer booksPerPage,
@@ -60,7 +63,8 @@ public class BookController {
         return bookService.findAllByTitle(titleQuery, PageRequest.of(page, booksPerPage));
     }
 
-    @Operation(summary = "Get paginated list of books, found by genre.", description = "Returns a Page containing BookDTO objects.")
+    @Operation(summary = "Get paginated list of books, found by genre.",
+            description = "Returns a Page containing BookDTO objects.")
     @GetMapping("/search/by-genre")
     public Page<BookDTO> findAllByGenre(@RequestParam("genre-query") String genreQuery,
                                         @RequestParam(value = "page") Integer page,
@@ -69,7 +73,8 @@ public class BookController {
         return bookService.findAllByGenre(genreQuery, PageRequest.of(page, booksPerPage));
     }
 
-    @Operation(summary = "Check if the book is checked out by authenticated user.", description = "Returns a Boolean value.")
+    @Operation(summary = "Check if the book is checked out by authenticated user.",
+            description = "Returns a Boolean value.")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/secure/is-checked-out/{bookId}")
     public Boolean isBookCheckedOutByPerson(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
@@ -77,7 +82,8 @@ public class BookController {
         return bookService.isBookCheckedOutByPerson(extractEmail(token), bookId);
     }
 
-    @Operation(summary = "Check out the book.", description = "Creates new Checkout Entity and reduces book's copies available amount.")
+    @Operation(summary = "Check out the book.",
+            description = "Creates new Checkout Entity and reduces book's copies available amount.")
     @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/secure/checkout/{bookId}")
     public ResponseEntity<HttpStatus> checkoutBook(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
@@ -86,7 +92,8 @@ public class BookController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @Operation(summary = "Renew checkout for the book.", description = "Updates related Checkout Entity.")
+    @Operation(summary = "Renew checkout for the book.",
+            description = "Updates related Checkout Entity.")
     @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/secure/renew-checkout/{bookId}")
     public ResponseEntity<HttpStatus> renewCheckout(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
@@ -95,7 +102,8 @@ public class BookController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @Operation(summary = "Return the book back to store.", description = "Updates user's payment amount if the book is outdated. Deletes related Checkout Entity. Creates new History Record Entity. Updates book's copies available amount")
+    @Operation(summary = "Return the book back to store.",
+            description = "Updates user's payment amount if the book is outdated. Deletes related Checkout Entity. Creates new History Record Entity. Updates book's copies available amount")
     @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/secure/return/{bookId}")
     public ResponseEntity<HttpStatus> returnBook(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
@@ -104,7 +112,8 @@ public class BookController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @Operation(summary = "Check if the book is reviewed by authenticated user.", description = "Returns a Boolean value.")
+    @Operation(summary = "Check if the book is reviewed by authenticated user.",
+            description = "Returns a Boolean value.")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/secure/is-reviewed/{bookId}")
     public Boolean isBookReviewedByPerson(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
@@ -112,7 +121,8 @@ public class BookController {
         return bookService.isBookReviewedByPerson(extractEmail(token), bookId);
     }
 
-    @Operation(summary = "Create a Review for the book.", description = "Creates new Review Entity.")
+    @Operation(summary = "Create a Review for the book.",
+            description = "Creates new Review Entity.")
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/secure/review/{bookId}")
     public ResponseEntity<HttpStatus> reviewBook(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token,

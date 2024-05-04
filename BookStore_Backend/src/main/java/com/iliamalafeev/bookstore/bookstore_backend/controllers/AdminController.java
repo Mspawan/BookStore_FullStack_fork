@@ -40,7 +40,8 @@ public class AdminController {
         return jwtUtils.extractPersonEmail(jwt);
     }
 
-    @Operation(summary = "Add new book to DataBase.", description = "Requires a BookDTO object as a request body.")
+    @Operation(summary = "Add new book to DataBase.",
+            description = "Requires a BookDTO object as a request body.")
     @PostMapping("/add-book")
     public ResponseEntity<HttpStatus> postBook(@RequestBody @Valid BookDTO bookDTO, BindingResult bindingResult) {
 
@@ -48,23 +49,26 @@ public class AdminController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @Operation(summary = "Increase quantity of a specific book by 1.", description = "Changes copies and copies available fields of a selected book.")
-    @PutMapping("/increase-quantity/{bookId}")
+    @Operation(summary = "Increase quantity of a specific book by 1.",
+            description = "Changes copies and copies available fields of a selected book.")
+    @PatchMapping("/increase-quantity/{bookId}")
     public ResponseEntity<HttpStatus> increaseBookQuantity(@PathVariable("bookId") Long bookId) {
 
         bookService.changeQuantity(bookId, "increase");
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @Operation(summary = "Decrease quantity of a specific book by 1.", description = "Changes copies and copies available fields of a selected book.")
-    @PutMapping("/decrease-quantity/{bookId}")
+    @Operation(summary = "Decrease quantity of a specific book by 1.",
+            description = "Changes copies and copies available fields of a selected book.")
+    @PatchMapping("/decrease-quantity/{bookId}")
     public ResponseEntity<HttpStatus> decreaseBookQuantity(@PathVariable("bookId") Long bookId) {
 
         bookService.changeQuantity(bookId, "decrease");
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @Operation(summary = "Delete a book from a DataBase.", description = "Permanently deletes a book entity from a DataBase.")
+    @Operation(summary = "Delete a book from a DataBase.",
+            description = "Permanently deletes a book entity from a DataBase.")
     @DeleteMapping("/delete-book/{bookId}")
     public ResponseEntity<HttpStatus> deleteBook(@PathVariable("bookId") Long bookId) {
 
@@ -72,7 +76,8 @@ public class AdminController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @Operation(summary = "Get a paginated list of all open discussions.", description = "Returns a Page containing DiscussionDTO objects.")
+    @Operation(summary = "Get a paginated list of all open discussions.",
+            description = "Returns a Page containing DiscussionDTO objects.")
     @GetMapping("/open-discussions")
     public Page<DiscussionDTO> findAllUnclosedDiscussions(@RequestParam(value = "page") Integer page,
                                                           @RequestParam(value = "discussions-per-page") Integer discussionsPerPage) {
@@ -80,8 +85,9 @@ public class AdminController {
         return discussionService.findAllByClosed(PageRequest.of(page, discussionsPerPage));
     }
 
-    @Operation(summary = "Update specific discussion entity.", description = "Sets the administration answer to a selected discussion entity and marks it as closed. Requires a valid DiscussionDTO object as a request body.")
-    @PostMapping("/close-discussion")
+    @Operation(summary = "Update specific discussion entity.",
+            description = "Sets the administration answer to a selected discussion entity and marks it as closed. Requires a valid DiscussionDTO object as a request body.")
+    @PatchMapping("/close-discussion")
     public ResponseEntity<HttpStatus> updateDiscussion(@RequestHeader("Authorization") String token,
                                                        @RequestBody @Valid DiscussionDTO discussionDTO, BindingResult bindingResult) {
         discussionService.updateDiscussion(extractEmail(token), discussionDTO, bindingResult);
