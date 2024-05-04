@@ -276,14 +276,14 @@ public class BookService {
             ErrorsUtil.returnReviewError("Some fields are invalid.", bindingResult, HttpStatus.FORBIDDEN);
         }
 
+        Person person = getPersonFromRepository(personEmail);
+
         Book book = getBookFromRepository(bookId);
         Optional<Review> review = reviewRepository.findByPersonEmailAndReviewedBook(personEmail, book);
 
         if (review.isPresent()) {
             ErrorsUtil.returnReviewError("This book is already reviewed by this person", null, HttpStatus.FORBIDDEN);
         }
-
-        Person person = getPersonFromRepository(personEmail);
 
         newReview.setPersonEmail(personEmail);
         newReview.setPersonFirstName(person.getFirstName());
@@ -312,7 +312,13 @@ public class BookService {
 
     private Person getPersonFromRepository(String personEmail) {
 
-        return personRepository.findByEmail(personEmail).get();
+        Optional<Person> person = personRepository.findByEmail(personEmail);
+
+        if (person.isEmpty()) {
+            ErrorsUtil.returnPersonError("Person with such email is not found.", null, HttpStatus.NOT_FOUND);
+        }
+
+        return person.get();
     }
 
     private Optional<Checkout> getCheckoutOptionalFromRepository(Person person, Book book) {
