@@ -18,9 +18,9 @@ public class ErrorsUtil {
         throw new DiscussionException(buildErrorMessage(generalMessage, bindingResult), httpStatus);
     }
 
-    public static void returnReviewError(String generalMessage, BindingResult bindingResult) {
+    public static void returnGenreError(String generalMessage, BindingResult bindingResult, HttpStatus httpStatus) {
 
-        throw new ReviewException(buildErrorMessage(generalMessage, bindingResult));
+        throw new GenreException(buildErrorMessage(generalMessage, bindingResult), httpStatus);
     }
 
     public static void returnPaymentError(String message, HttpStatus httpStatus) {
