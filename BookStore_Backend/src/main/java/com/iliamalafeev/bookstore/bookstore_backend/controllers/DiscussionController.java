@@ -39,10 +39,12 @@ public class DiscussionController {
     @Operation(summary = "Get a paginated list of all discussions.",
             description = "Returns a Page containing DiscussionDTO objects for authenticated user.")
     @GetMapping
-    public Page<DiscussionDTO> findAllByPersonEmail(@RequestHeader("Authorization") String token, @RequestParam(value = "page") Integer page,
-                                                    @RequestParam(value = "discussions-per-page") Integer discussionsPerPage) {
+    public ResponseEntity<Page<DiscussionDTO>> findAllByPersonEmail(@RequestHeader("Authorization") String token,
+                                                                    @RequestParam(value = "page") Integer page,
+                                                                    @RequestParam(value = "discussions-per-page") Integer discussionsPerPage) {
 
-        return discussionService.findAllByPersonEmail(extractEmail(token), PageRequest.of(page, discussionsPerPage));
+        Page<DiscussionDTO> responseBody = discussionService.findAllByPersonEmail(extractEmail(token), PageRequest.of(page, discussionsPerPage));
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @Operation(summary = "Create a new discussion entity.",

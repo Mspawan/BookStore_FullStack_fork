@@ -39,47 +39,53 @@ public class BookController {
     @Operation(summary = "Get paginated list of books.",
             description = "Returns a Page containing BookDTO objects.")
     @GetMapping
-    public Page<BookDTO> findAll(@RequestParam(value = "page") Integer page,
-                                 @RequestParam(value = "books-per-page") Integer booksPerPage) {
+    public ResponseEntity<Page<BookDTO>> findAll(@RequestParam(value = "page") Integer page,
+                                                 @RequestParam(value = "books-per-page") Integer booksPerPage) {
 
-        return bookService.findAll(PageRequest.of(page, booksPerPage));
+        Page<BookDTO> responseBody = bookService.findAll(PageRequest.of(page, booksPerPage));
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @Operation(summary = "Get book by it's ID.",
             description = "Returns a JSON value of type BookDTO.")
     @GetMapping("/{bookId}")
-    public BookDTO findById(@PathVariable("bookId") Long bookId) {
+    public ResponseEntity<BookDTO> findById(@PathVariable("bookId") Long bookId) {
 
-        return bookService.findById(bookId);
+        BookDTO responseBody = bookService.findById(bookId);
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @Operation(summary = "Get paginated list of books, found by title.",
             description = "Returns a Page containing BookDTO objects.")
     @GetMapping("/search/by-title")
-    public Page<BookDTO> findAllByTitle(@RequestParam(value = "page") Integer page,
-                                        @RequestParam(value = "books-per-page") Integer booksPerPage,
-                                        @RequestParam("title-query") String titleQuery) {
+    public ResponseEntity<Page<BookDTO>> findAllByTitle(@RequestParam(value = "page") Integer page,
+                                                        @RequestParam(value = "books-per-page") Integer booksPerPage,
+                                                        @RequestParam("title-query") String titleQuery) {
 
-        return bookService.findAllByTitle(titleQuery, PageRequest.of(page, booksPerPage));
+        Page<BookDTO> responseBody = bookService.findAllByTitle(titleQuery, PageRequest.of(page, booksPerPage));
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @Operation(summary = "Get paginated list of books, found by genre.",
             description = "Returns a Page containing BookDTO objects.")
     @GetMapping("/search/by-genre")
-    public Page<BookDTO> findAllByGenre(@RequestParam("genre-query") String genreQuery,
-                                        @RequestParam(value = "page") Integer page,
-                                        @RequestParam(value = "books-per-page") Integer booksPerPage) {
+    public ResponseEntity<Page<BookDTO>> findAllByGenre(@RequestParam("genre-query") String genreQuery,
+                                                        @RequestParam(value = "page") Integer page,
+                                                        @RequestParam(value = "books-per-page") Integer booksPerPage) {
 
-        return bookService.findAllByGenre(genreQuery, PageRequest.of(page, booksPerPage));
+        Page<BookDTO> responseBody = bookService.findAllByGenre(genreQuery, PageRequest.of(page, booksPerPage));
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @Operation(summary = "Check if the book is checked out by authenticated user.",
             description = "Returns a Boolean value.")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/secure/is-checked-out/{bookId}")
-    public Boolean isBookCheckedOutByPerson(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<Boolean> isBookCheckedOutByPerson(@PathVariable("bookId") Long bookId,
+                                                            @RequestHeader("Authorization") String token) {
 
-        return bookService.isBookCheckedOutByPerson(extractEmail(token), bookId);
+        Boolean responseBody = bookService.isBookCheckedOutByPerson(extractEmail(token), bookId);
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @Operation(summary = "Check out the book.",
@@ -119,9 +125,11 @@ public class BookController {
             description = "Returns a Boolean value.")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/secure/is-reviewed/{bookId}")
-    public Boolean isBookReviewedByPerson(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<Boolean> isBookReviewedByPerson(@PathVariable("bookId") Long bookId,
+                                                          @RequestHeader("Authorization") String token) {
 
-        return bookService.isBookReviewedByPerson(extractEmail(token), bookId);
+        Boolean responseBody = bookService.isBookReviewedByPerson(extractEmail(token), bookId);
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @Operation(summary = "Create a Review for the book.",

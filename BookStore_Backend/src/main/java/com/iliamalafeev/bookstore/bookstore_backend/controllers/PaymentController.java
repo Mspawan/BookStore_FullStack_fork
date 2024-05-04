@@ -37,9 +37,10 @@ public class PaymentController {
     @Operation(summary = "Get pending fee amount for authenticated user.",
             description = "Get pending fee amount for authenticated user. Returns a value of type Double.")
     @GetMapping
-    public Double findByPersonEmail(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<Double> findByPersonEmail(@RequestHeader("Authorization") String token) {
 
-        return paymentService.findPaymentFeesByPersonEmail(extractEmail(token));
+        Double responseBody = paymentService.findPaymentFeesByPersonEmail(extractEmail(token));
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @Operation(summary = "Create Stripe PaymentIntent for authenticated user.",
@@ -48,9 +49,8 @@ public class PaymentController {
     public ResponseEntity<String> createPaymentIntent(@RequestBody PaymentInfoDTO paymentInfoDTO) throws StripeException {
 
         PaymentIntent paymentIntent = paymentService.createPaymentIntent(paymentInfoDTO);
-        String paymentStr = paymentIntent.toJson();
-
-        return new ResponseEntity<>(paymentStr, HttpStatus.OK);
+        String responseBody = paymentIntent.toJson();
+        return new ResponseEntity<>(responseBody, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Confirm that payment attempt went successfully.",
