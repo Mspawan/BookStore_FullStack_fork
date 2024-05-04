@@ -4,11 +4,11 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
-public class ReviewException extends RuntimeException {
+public class GenreException extends RuntimeException {
 
     private final HttpStatus httpStatus;
 
-    public ReviewException(String message, HttpStatus httpStatus) {
+    public GenreException(String message, HttpStatus httpStatus) {
         super(message);
         this.httpStatus = httpStatus;
     }
