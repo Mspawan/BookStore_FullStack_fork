@@ -241,7 +241,15 @@ public class BookService {
         LocalDate d2 = LocalDate.now();
 
         if (d1.isBefore(d2)) {
-            Payment payment = getPaymentOptionalFromRepository(person).get();
+
+            Optional<Payment> paymentOptional = getPaymentOptionalFromRepository(person);
+
+            if (paymentOptional.isEmpty()) {
+                ErrorsUtil.returnPaymentError("Payment information is missing", HttpStatus.NOT_FOUND);
+            }
+
+            Payment payment = paymentOptional.get();
+
             payment.setAmount(payment.getAmount() + (int) ChronoUnit.DAYS.between(d1, d2));
             paymentRepository.save(payment);
         }
