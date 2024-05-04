@@ -8,14 +8,14 @@ import java.util.List;
 
 public class ErrorsUtil {
 
-    public static void returnBookError(String generalMessage, BindingResult bindingResult) {
+    public static void returnBookError(String generalMessage, BindingResult bindingResult, HttpStatus httpStatus) {
 
-        throw new BookException(buildErrorMessage(generalMessage, bindingResult));
+        throw new BookException(buildErrorMessage(generalMessage, bindingResult), httpStatus);
     }
 
-    public static void returnPersonError(String generalMessage, BindingResult bindingResult) {
+    public static void returnDiscussionError(String generalMessage, BindingResult bindingResult, HttpStatus httpStatus) {
 
-        throw new PersonException(buildErrorMessage(generalMessage, bindingResult));
+        throw new DiscussionException(buildErrorMessage(generalMessage, bindingResult), httpStatus);
     }
 
     public static void returnReviewError(String generalMessage, BindingResult bindingResult) {
@@ -23,14 +23,19 @@ public class ErrorsUtil {
         throw new ReviewException(buildErrorMessage(generalMessage, bindingResult));
     }
 
-    public static void returnDiscussionError(String generalMessage, BindingResult bindingResult) {
+    public static void returnPaymentError(String message, HttpStatus httpStatus) {
 
-        throw new DiscussionException(buildErrorMessage(generalMessage, bindingResult));
+        throw new PaymentException(message, httpStatus);
     }
 
-    public static void returnPaymentError(String message) {
+    public static void returnPersonError(String generalMessage, BindingResult bindingResult, HttpStatus httpStatus) {
 
-        throw new PaymentException(message);
+        throw new PersonException(buildErrorMessage(generalMessage, bindingResult), httpStatus);
+    }
+
+    public static void returnReviewError(String generalMessage, BindingResult bindingResult, HttpStatus httpStatus) {
+
+        throw new ReviewException(buildErrorMessage(generalMessage, bindingResult), httpStatus);
     }
 
     private static String buildErrorMessage(String generalMessage, BindingResult bindingResult) {
