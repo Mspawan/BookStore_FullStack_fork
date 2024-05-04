@@ -131,7 +131,13 @@ public class DiscussionService {
 
     private Person getPersonFromRepository(String personEmail) {
 
-        return personRepository.findByEmail(personEmail).get();
+        Optional<Person> person = personRepository.findByEmail(personEmail);
+
+        if (person.isEmpty()) {
+            ErrorsUtil.returnPersonError("Person with such email is not found.", null, HttpStatus.NOT_FOUND);
+        }
+
+        return person.get();
     }
 
     private DiscussionDTO convertToDiscussionDTO(Discussion discussion) {
