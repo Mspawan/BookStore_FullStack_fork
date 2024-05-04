@@ -1,6 +1,7 @@
 package com.iliamalafeev.bookstore.bookstore_backend.utils;
 
 import com.iliamalafeev.bookstore.bookstore_backend.utils.exceptions.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
