@@ -4,6 +4,7 @@ import com.iliamalafeev.bookstore.bookstore_backend.utils.error_responses.*;
 import com.iliamalafeev.bookstore.bookstore_backend.utils.exceptions.*;
 import com.stripe.exception.StripeException;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,6 +17,12 @@ public class ApiExceptionHandler {
     public ResponseEntity<ExpiredJwtErrorResponse> handleExpiredJwtException() {
         ExpiredJwtErrorResponse response = new ExpiredJwtErrorResponse("Your authentication token is expired, please re-login.", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(SignatureException.class)
+    public ResponseEntity<SignatureErrorResponse> handleSignatureException() {
+        SignatureErrorResponse response = new SignatureErrorResponse("Your authentication token is invalid or it's signature cannot be trusted, please re-login.", System.currentTimeMillis());
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(BookException.class)
