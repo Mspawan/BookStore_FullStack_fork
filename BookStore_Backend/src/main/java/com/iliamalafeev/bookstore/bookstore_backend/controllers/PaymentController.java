@@ -59,6 +59,6 @@ public class PaymentController {
     public ResponseEntity<HttpStatus> stripePaymentComplete(@RequestHeader("Authorization") String token) {
 
         paymentService.stripePayment(extractEmail(token));
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

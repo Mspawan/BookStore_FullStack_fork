@@ -86,30 +86,33 @@ public class BookController {
             description = "Creates new Checkout Entity and reduces book's copies available amount.")
     @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/secure/checkout/{bookId}")
-    public ResponseEntity<HttpStatus> checkoutBook(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<HttpStatus> checkoutBook(@PathVariable("bookId") Long bookId,
+                                                   @RequestHeader("Authorization") String token) {
 
         bookService.checkoutBook(extractEmail(token), bookId);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Operation(summary = "Renew checkout for the book.",
             description = "Updates related Checkout Entity.")
     @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/secure/renew-checkout/{bookId}")
-    public ResponseEntity<HttpStatus> renewCheckout(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<HttpStatus> renewCheckout(@PathVariable("bookId") Long bookId,
+                                                    @RequestHeader("Authorization") String token) {
 
         bookService.renewCheckout(extractEmail(token), bookId);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Operation(summary = "Return the book back to store.",
             description = "Updates user's payment amount if the book is outdated. Deletes related Checkout Entity. Creates new History Record Entity. Updates book's copies available amount")
     @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/secure/return/{bookId}")
-    public ResponseEntity<HttpStatus> returnBook(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<HttpStatus> returnBook(@PathVariable("bookId") Long bookId,
+                                                 @RequestHeader("Authorization") String token) {
 
         bookService.returnBook(extractEmail(token), bookId);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Operation(summary = "Check if the book is reviewed by authenticated user.",

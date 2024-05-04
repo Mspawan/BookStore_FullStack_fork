@@ -55,7 +55,7 @@ public class AdminController {
     public ResponseEntity<HttpStatus> increaseBookQuantity(@PathVariable("bookId") Long bookId) {
 
         bookService.changeQuantity(bookId, "increase");
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Operation(summary = "Decrease quantity of a specific book by 1.",
@@ -64,7 +64,7 @@ public class AdminController {
     public ResponseEntity<HttpStatus> decreaseBookQuantity(@PathVariable("bookId") Long bookId) {
 
         bookService.changeQuantity(bookId, "decrease");
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Operation(summary = "Delete a book from a DataBase.",
@@ -73,7 +73,7 @@ public class AdminController {
     public ResponseEntity<HttpStatus> deleteBook(@PathVariable("bookId") Long bookId) {
 
         bookService.deleteById(bookId);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Operation(summary = "Get a paginated list of all open discussions.",
@@ -89,8 +89,10 @@ public class AdminController {
             description = "Sets the administration answer to a selected discussion entity and marks it as closed. Requires a valid DiscussionDTO object as a request body.")
     @PatchMapping("/close-discussion")
     public ResponseEntity<HttpStatus> updateDiscussion(@RequestHeader("Authorization") String token,
-                                                       @RequestBody @Valid DiscussionDTO discussionDTO, BindingResult bindingResult) {
+                                                       @RequestBody @Valid DiscussionDTO discussionDTO,
+                                                       BindingResult bindingResult) {
+
         discussionService.updateDiscussion(extractEmail(token), discussionDTO, bindingResult);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
