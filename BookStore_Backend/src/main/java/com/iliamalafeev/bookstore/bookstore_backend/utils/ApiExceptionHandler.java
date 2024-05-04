@@ -16,7 +16,7 @@ public class ApiExceptionHandler {
     @ExceptionHandler(ExpiredJwtException.class)
     public ResponseEntity<ExpiredJwtErrorResponse> handleExpiredJwtException() {
         ExpiredJwtErrorResponse response = new ExpiredJwtErrorResponse("Your authentication token is expired, please re-login.", System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(SignatureException.class)
@@ -26,37 +26,43 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(BookException.class)
-    private ResponseEntity<BookErrorResponse> handleException(BookException e) {
+    private ResponseEntity<BookErrorResponse> handleBookException(BookException e) {
         BookErrorResponse response = new BookErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, e.getHttpStatus());
     }
 
     @ExceptionHandler(DiscussionException.class)
-    private ResponseEntity<DiscussionErrorResponse> handleException(DiscussionException e) {
+    private ResponseEntity<DiscussionErrorResponse> handleDiscussionException(DiscussionException e) {
         DiscussionErrorResponse response = new DiscussionErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, e.getHttpStatus());
     }
 
-    @ExceptionHandler(ReviewException.class)
-    private ResponseEntity<ReviewErrorResponse> handleException(ReviewException e) {
-        ReviewErrorResponse response = new ReviewErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(GenreException.class)
+    private ResponseEntity<GenreErrorResponse> handleGenreException(GenreException e) {
+        GenreErrorResponse response = new GenreErrorResponse(e.getMessage(), System.currentTimeMillis());
+        return new ResponseEntity<>(response, e.getHttpStatus());
     }
 
     @ExceptionHandler(PaymentException.class)
-    private ResponseEntity<PaymentErrorResponse> handleException(PaymentException e) {
+    private ResponseEntity<PaymentErrorResponse> handlePaymentException(PaymentException e) {
         PaymentErrorResponse response = new PaymentErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, e.getHttpStatus());
     }
 
     @ExceptionHandler(PersonException.class)
-    private ResponseEntity<PersonErrorResponse> handleException(PersonException e) {
+    private ResponseEntity<PersonErrorResponse> handlePersonException(PersonException e) {
         PersonErrorResponse response = new PersonErrorResponse(e.getMessage(), System.currentTimeMillis());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, e.getHttpStatus());
+    }
+
+    @ExceptionHandler(ReviewException.class)
+    private ResponseEntity<ReviewErrorResponse> handleReviewException(ReviewException e) {
+        ReviewErrorResponse response = new ReviewErrorResponse(e.getMessage(), System.currentTimeMillis());
+        return new ResponseEntity<>(response, e.getHttpStatus());
     }
 
     @ExceptionHandler(StripeException.class)
-    private ResponseEntity<PaymentErrorResponse> handleException(StripeException e) {
+    private ResponseEntity<PaymentErrorResponse> handleStripeException(StripeException e) {
         PaymentErrorResponse response = new PaymentErrorResponse(e.getMessage(), System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
