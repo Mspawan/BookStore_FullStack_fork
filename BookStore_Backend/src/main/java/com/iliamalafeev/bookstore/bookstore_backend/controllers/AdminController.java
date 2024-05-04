@@ -80,10 +80,11 @@ public class AdminController {
     @Operation(summary = "Get a paginated list of all open discussions.",
             description = "Returns a Page containing DiscussionDTO objects.")
     @GetMapping("/open-discussions")
-    public Page<DiscussionDTO> findAllUnclosedDiscussions(@RequestParam(value = "page") Integer page,
-                                                          @RequestParam(value = "discussions-per-page") Integer discussionsPerPage) {
+    public ResponseEntity<Page<DiscussionDTO>> findAllUnclosedDiscussions(@RequestParam(value = "page") Integer page,
+                                                                          @RequestParam(value = "discussions-per-page") Integer discussionsPerPage) {
 
-        return discussionService.findAllByClosed(PageRequest.of(page, discussionsPerPage));
+        Page<DiscussionDTO> responseBody = discussionService.findAllByClosed(PageRequest.of(page, discussionsPerPage));
+        return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
     @Operation(summary = "Update specific discussion entity.",
