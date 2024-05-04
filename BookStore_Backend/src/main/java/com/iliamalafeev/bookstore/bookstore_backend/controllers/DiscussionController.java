@@ -50,9 +50,11 @@ public class DiscussionController {
     @Operation(summary = "Create a new discussion entity.",
             description = "Adds a new discussion entity marked as open to a DataBase. Requires a valid DiscussionDTO object as a request body.")
     @PostMapping("add-discussion")
-    public ResponseEntity<HttpStatus> addDiscussion(@RequestHeader("Authorization") String token,
-                                                    @RequestBody @Valid DiscussionDTO discussionDTO, BindingResult bindingResult) {
-        discussionService.addDiscussion(extractEmail(token), discussionDTO, bindingResult);
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<DiscussionDTO> addDiscussion(@RequestHeader("Authorization") String token,
+                                                       @RequestBody @Valid DiscussionDTO discussionDTO,
+                                                       BindingResult bindingResult) {
+
+        DiscussionDTO responseBody = discussionService.addDiscussion(extractEmail(token), discussionDTO, bindingResult);
+        return new ResponseEntity<>(responseBody, HttpStatus.CREATED);
     }
 }

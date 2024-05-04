@@ -77,7 +77,7 @@ public class DiscussionService {
     }
 
     @Transactional
-    public void addDiscussion(String personEmail, DiscussionDTO discussionDTO, BindingResult bindingResult) {
+    public DiscussionDTO addDiscussion(String personEmail, DiscussionDTO discussionDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             ErrorsUtil.returnDiscussionError("Some fields are invalid.", bindingResult, HttpStatus.FORBIDDEN);
@@ -90,7 +90,9 @@ public class DiscussionService {
         discussion.setClosed(false);
         person.getDiscussions().add(discussion);
 
-        discussionRepository.save(discussion);
+        Discussion savedDiscussion = discussionRepository.save(discussion);
+
+        return convertToDiscussionDTO(savedDiscussion);
     }
 
     @Transactional
