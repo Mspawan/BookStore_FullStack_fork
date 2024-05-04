@@ -266,7 +266,7 @@ public class BookService {
     }
 
     @Transactional
-    public void reviewBook(String personEmail, Long bookId, ReviewDTO reviewDTO, BindingResult bindingResult) {
+    public ReviewDTO reviewBook(String personEmail, Long bookId, ReviewDTO reviewDTO, BindingResult bindingResult) {
 
         Review newReview = convertToReview(reviewDTO);
 
@@ -290,7 +290,9 @@ public class BookService {
         newReview.setPersonLastName(person.getLastName());
         newReview.setReviewedBook(book);
 
-        reviewRepository.save(newReview);
+        Review savedReview = reviewRepository.save(newReview);
+
+        return convertToReviewDTO(savedReview);
     }
 
 //  <-------------------------------------------------------------------------------------------->
@@ -333,5 +335,9 @@ public class BookService {
 
     private Review convertToReview(ReviewDTO reviewDTO) {
         return modelMapper.map(reviewDTO, Review.class);
+    }
+
+    private ReviewDTO convertToReviewDTO(Review review) {
+        return modelMapper.map(review, ReviewDTO.class);
     }
 }

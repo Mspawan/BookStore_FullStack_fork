@@ -128,10 +128,12 @@ public class BookController {
             description = "Creates new Review Entity.")
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/secure/review/{bookId}")
-    public ResponseEntity<HttpStatus> reviewBook(@PathVariable("bookId") Long bookId, @RequestHeader("Authorization") String token,
-                                                 @RequestBody @Valid ReviewDTO reviewDTO, BindingResult bindingResult) {
+    public ResponseEntity<ReviewDTO> reviewBook(@PathVariable("bookId") Long bookId,
+                                                @RequestHeader("Authorization") String token,
+                                                @RequestBody @Valid ReviewDTO reviewDTO,
+                                                BindingResult bindingResult) {
 
-        bookService.reviewBook(extractEmail(token), bookId, reviewDTO, bindingResult);
-        return ResponseEntity.ok(HttpStatus.OK);
+        ReviewDTO responseBody = bookService.reviewBook(extractEmail(token), bookId, reviewDTO, bindingResult);
+        return new ResponseEntity<>(responseBody, HttpStatus.CREATED);
     }
 }
