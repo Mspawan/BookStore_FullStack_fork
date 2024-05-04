@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -82,7 +83,7 @@ public class BookService {
         Optional<Genre> genre = genreRepository.findByDescription(genreQuery);
 
         if (genre.isEmpty()) {
-            ErrorsUtil.returnBookError("No such genre found", null);
+            ErrorsUtil.returnGenreError("No such genre found", null, HttpStatus.NOT_FOUND);
         }
 
         Page<Book> books = bookRepository.findByGenresContains(genre.get(), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
@@ -102,14 +103,14 @@ public class BookService {
         bookValidator.validate(book, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            ErrorsUtil.returnBookError("Some fields are invalid.", bindingResult);
+            ErrorsUtil.returnBookError("Some fields are invalid.", bindingResult, HttpStatus.FORBIDDEN);
         }
 
         List<String> genreDescriptions = bookDTO.getGenres().stream().map(GenreDTO::getDescription).toList();
         List<Genre> genres = genreRepository.findByDescriptionIn(genreDescriptions);
 
         if (genres.size() != genreDescriptions.size()) {
-            ErrorsUtil.returnBookError("No such genres found", null);
+            ErrorsUtil.returnGenreError("No such genres found", null, HttpStatus.NOT_FOUND);
         }
 
         book.setGenres(genres);
@@ -138,7 +139,7 @@ public class BookService {
         if (operation.equals("decrease")) {
 
             if (book.getCopiesAvailable() <= 0 || book.getCopies() <= 0) {
-                ErrorsUtil.returnBookError("Book quantity is already 0", null);
+                ErrorsUtil.returnBookError("Book quantity is already 0", null, HttpStatus.FORBIDDEN);
             }
 
             book.setCopiesAvailable(book.getCopiesAvailable() - 1);
@@ -164,11 +165,11 @@ public class BookService {
         Optional<Checkout> checkout = getCheckoutOptionalFromRepository(person, book);
 
         if (book.getCopiesAvailable() <= 0 || book.getCopies() <= 0) {
-            ErrorsUtil.returnBookError("Book quantity is already 0", null);
+            ErrorsUtil.returnBookError("Book quantity is already 0", null, HttpStatus.FORBIDDEN);
         }
 
         if (checkout.isPresent()) {
-            ErrorsUtil.returnBookError("Book is already checked out by this user", null);
+            ErrorsUtil.returnBookError("Book is already checked out by this user", null, HttpStatus.FORBIDDEN);
         }
 
         List<Checkout> currentCheckouts = checkoutRepository.findByCheckoutHolder(person);
@@ -188,7 +189,7 @@ public class BookService {
         Optional<Payment> payment = getPaymentOptionalFromRepository(person);
 
         if (payment.isPresent() && (payment.get().getAmount() > 0 || bookNeedsReturned)) {
-            ErrorsUtil.returnPaymentError("You have outstanding fees / overdue books, checkout is unavailable");
+            ErrorsUtil.returnPaymentError("You have outstanding fees / overdue books, checkout is unavailable", HttpStatus.FORBIDDEN);
         }
 
         if (payment.isEmpty()) {
@@ -212,7 +213,7 @@ public class BookService {
         Optional<Checkout> checkout = getCheckoutOptionalFromRepository(person, book);
 
         if (checkout.isEmpty()) {
-            ErrorsUtil.returnBookError("This book is not checked out by this user", null);
+            ErrorsUtil.returnBookError("This book is not checked out by this user", null, HttpStatus.FORBIDDEN);
         }
 
         LocalDate d1 = checkout.get().getReturnDate();
@@ -224,7 +225,7 @@ public class BookService {
         }
 
         if (d1.isBefore(d2)) {
-            ErrorsUtil.returnBookError("This book is overdue", null);
+            ErrorsUtil.returnBookError("This book is overdue", null, HttpStatus.FORBIDDEN);
         }
     }
 
@@ -236,7 +237,7 @@ public class BookService {
         Optional<Checkout> checkout = getCheckoutOptionalFromRepository(person, book);
 
         if (checkout.isEmpty()) {
-            ErrorsUtil.returnBookError("This book is not checked out by this user", null);
+            ErrorsUtil.returnBookError("This book is not checked out by this user", null, HttpStatus.FORBIDDEN);
         }
 
         LocalDate d1 = checkout.get().getReturnDate();
@@ -275,14 +276,14 @@ public class BookService {
         reviewValidator.validate(newReview, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            ErrorsUtil.returnReviewError("Some fields are invalid.", bindingResult);
+            ErrorsUtil.returnReviewError("Some fields are invalid.", bindingResult, HttpStatus.FORBIDDEN);
         }
 
         Book book = getBookFromRepository(bookId);
         Optional<Review> review = reviewRepository.findByPersonEmailAndReviewedBook(personEmail, book);
 
         if (review.isPresent()) {
-            ErrorsUtil.returnBookError("This book is already reviewed by this person", null);
+            ErrorsUtil.returnReviewError("This book is already reviewed by this person", null, HttpStatus.FORBIDDEN);
         }
 
         Person person = getPersonFromRepository(personEmail);
@@ -304,7 +305,7 @@ public class BookService {
         Optional<Book> book = bookRepository.findById(bookId);
 
         if (book.isEmpty()) {
-            ErrorsUtil.returnBookError("Book not found", null);
+            ErrorsUtil.returnBookError("Book not found", null, HttpStatus.NOT_FOUND);
         }
 
         return book.get();

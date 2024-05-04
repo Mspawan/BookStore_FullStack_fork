@@ -11,6 +11,7 @@ import com.iliamalafeev.bookstore.bookstore_backend.security.jwt.JwtUtils;
 import com.iliamalafeev.bookstore.bookstore_backend.utils.ErrorsUtil;
 import com.iliamalafeev.bookstore.bookstore_backend.utils.validators.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -57,7 +58,7 @@ public class AuthenticationService {
         personValidator.validate(person, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            ErrorsUtil.returnPersonError("Some fields are invalid.", bindingResult);
+            ErrorsUtil.returnPersonError("Some fields are invalid.", bindingResult, HttpStatus.FORBIDDEN);
         }
 
         personRepository.save(person);
@@ -70,19 +71,19 @@ public class AuthenticationService {
     public AuthenticationResponse authenticatePerson(PersonLoginDTO personLoginDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            ErrorsUtil.returnPersonError("Some fields are invalid.", bindingResult);
+            ErrorsUtil.returnPersonError("Some fields are invalid.", bindingResult, HttpStatus.FORBIDDEN);
         }
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(personLoginDTO.getEmail(), personLoginDTO.getPassword()));
         } catch (BadCredentialsException e) {
-            ErrorsUtil.returnPersonError("Login or password is incorrect.", bindingResult);
+            ErrorsUtil.returnPersonError("Login or password is incorrect.", bindingResult, HttpStatus.FORBIDDEN);
         }
 
         Optional<Person> person = personRepository.findByEmail(personLoginDTO.getEmail());
 
         if (person.isEmpty()) {
-            ErrorsUtil.returnPersonError("Person with such email is not found. Please check the input fields.", bindingResult);
+            ErrorsUtil.returnPersonError("Person with such email is not found. Please check the input fields.", bindingResult, HttpStatus.NOT_FOUND);
         }
 
         String jwtToken = jwtUtils.generateToken(new PersonDetails(person.get()));

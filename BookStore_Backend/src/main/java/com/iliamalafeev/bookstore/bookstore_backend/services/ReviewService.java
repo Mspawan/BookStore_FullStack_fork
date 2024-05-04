@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -64,7 +65,7 @@ public class ReviewService {
         Optional<Book> book = bookRepository.findById(bookId);
 
         if (book.isEmpty()) {
-            ErrorsUtil.returnBookError("Book not found", null);
+            ErrorsUtil.returnBookError("Book not found", null, HttpStatus.NOT_FOUND);
         }
 
         return book.get();

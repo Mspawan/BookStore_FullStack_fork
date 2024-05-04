@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -79,7 +80,7 @@ public class DiscussionService {
     public void addDiscussion(String personEmail, DiscussionDTO discussionDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            ErrorsUtil.returnDiscussionError("Some fields are invalid.", bindingResult);
+            ErrorsUtil.returnDiscussionError("Some fields are invalid.", bindingResult, HttpStatus.FORBIDDEN);
         }
 
         Person person = getPersonFromRepository(personEmail);
@@ -96,23 +97,23 @@ public class DiscussionService {
     public void updateDiscussion(String adminEmail, DiscussionDTO discussionDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            ErrorsUtil.returnDiscussionError("Some fields are invalid.", bindingResult);
+            ErrorsUtil.returnDiscussionError("Some fields are invalid.", bindingResult, HttpStatus.FORBIDDEN);
         }
 
         if (discussionDTO.getResponse() == null || discussionDTO.getResponse().isEmpty() || discussionDTO.getResponse().replaceAll(" *", "").isEmpty()) {
-            ErrorsUtil.returnDiscussionError("Discussion cannot be closed without administration response", null);
+            ErrorsUtil.returnDiscussionError("Discussion cannot be closed without administration response", null, HttpStatus.FORBIDDEN);
         }
 
         Optional<Discussion> discussionOptional = discussionRepository.findById(discussionDTO.getId());
 
         if (discussionOptional.isEmpty()) {
-            ErrorsUtil.returnDiscussionError("Discussion not found.", null);
+            ErrorsUtil.returnDiscussionError("Discussion not found.", null, HttpStatus.NOT_FOUND);
         }
 
         Discussion discussion = discussionOptional.get();
 
         if (discussion.getClosed()) {
-            ErrorsUtil.returnDiscussionError("This discussion is already closed.", null);
+            ErrorsUtil.returnDiscussionError("This discussion is already closed.", null, HttpStatus.FORBIDDEN);
         }
 
         discussion.setAdminEmail(adminEmail);
