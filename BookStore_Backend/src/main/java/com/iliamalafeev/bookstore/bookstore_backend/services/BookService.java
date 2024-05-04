@@ -86,13 +86,8 @@ public class BookService {
             ErrorsUtil.returnGenreError("No such genre found", null, HttpStatus.NOT_FOUND);
         }
 
-        Page<Book> books = bookRepository.findByGenresContains(genre.get(), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
-
-        if (books.isEmpty()) {
-            ErrorsUtil.returnBookError("No books with such genre found", null);
-        }
-
-        return books.map(this::convertToBookDTO);
+        return bookRepository.findByGenresContains(genre.get(), PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()))
+                .map(this::convertToBookDTO);
     }
 
     @Transactional
