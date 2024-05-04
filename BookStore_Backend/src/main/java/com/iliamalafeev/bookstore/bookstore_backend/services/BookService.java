@@ -96,7 +96,7 @@ public class BookService {
     }
 
     @Transactional
-    public void addBook(BookDTO bookDTO, BindingResult bindingResult) {
+    public BookDTO addBook(BookDTO bookDTO, BindingResult bindingResult) {
 
         Book book = convertToBook(bookDTO);
 
@@ -115,7 +115,9 @@ public class BookService {
 
         book.setGenres(genres);
         genres.forEach(genre -> genre.getBooks().add(book));
-        bookRepository.save(book);
+        Book savedBook = bookRepository.save(book);
+
+        return convertToBookDTO(savedBook);
     }
 
     @Transactional

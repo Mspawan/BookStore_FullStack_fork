@@ -43,10 +43,11 @@ public class AdminController {
     @Operation(summary = "Add new book to DataBase.",
             description = "Requires a BookDTO object as a request body.")
     @PostMapping("/add-book")
-    public ResponseEntity<HttpStatus> postBook(@RequestBody @Valid BookDTO bookDTO, BindingResult bindingResult) {
+    public ResponseEntity<BookDTO> postBook(@RequestBody @Valid BookDTO bookDTO,
+                                            BindingResult bindingResult) {
 
-        bookService.addBook(bookDTO, bindingResult);
-        return ResponseEntity.ok(HttpStatus.OK);
+        BookDTO responseBody = bookService.addBook(bookDTO, bindingResult);
+        return new ResponseEntity<>(responseBody, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Increase quantity of a specific book by 1.",
