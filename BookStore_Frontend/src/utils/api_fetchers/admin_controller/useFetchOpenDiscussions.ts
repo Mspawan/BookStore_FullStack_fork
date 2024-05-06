@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { DiscussionModel } from "../../../models/DiscussionModel";
+import { admin_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useFetchOpenDiscussions = (authentication: { isAuthenticated: boolean; token: string; },
                                         setDiscussions: React.Dispatch<React.SetStateAction<DiscussionModel[]>>,
@@ -7,7 +8,6 @@ export const useFetchOpenDiscussions = (authentication: { isAuthenticated: boole
                                         setTotlalPages: React.Dispatch<React.SetStateAction<number>>,
                                         setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
                                         setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
-                                        urlPaginationParams: string,
                                         currentPage: number,
                                         isDiscussionClosed: boolean) => {
 
@@ -21,13 +21,15 @@ export const useFetchOpenDiscussions = (authentication: { isAuthenticated: boole
 
                 if (authentication.isAuthenticated) {
 
-                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                    const urlPaginationParams = `?page=${currentPage - 1}&discussions-per-page=5`;
 
-                    const url = baseUrl + "/admin/secure/open-discussions" + urlPaginationParams;
+                    const endpoint = admin_controller_endpoints.get_open_discussions;
+
+                    const url = endpoint.url + urlPaginationParams;
 
                     const requestOptions = {
 
-                        method: "GET",
+                        method: endpoint.method,
                         headers: {
                             Authorization: `Bearer ${authentication.token}`,
                             "Content-type": "application/json"
