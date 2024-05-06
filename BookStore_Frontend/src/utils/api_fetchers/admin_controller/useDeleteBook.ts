@@ -1,3 +1,5 @@
+import { admin_controller_endpoints } from "../../apiEndpointsUrlsList";
+
 export const useDeleteBook= async (bookId: string,
                                    authentication: { isAuthenticated: boolean; token: string; },
                                    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
@@ -10,13 +12,15 @@ export const useDeleteBook= async (bookId: string,
 
         if (authentication.isAuthenticated) {
 
-            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+            const urlParams = `/${bookId}`;
 
-            const url = baseUrl + `/admin/secure/delete-book/${bookId}`;
+            const endpoint = admin_controller_endpoints.delete_book;
+
+            const url = endpoint.url + urlParams;
             
             const requestOptions = {
 
-                method: "DELETE",
+                method: endpoint.method,
                 headers: {
                     Authorization: `Bearer ${authentication.token}`,
                     "Content-type": "application/json"
@@ -25,9 +29,9 @@ export const useDeleteBook= async (bookId: string,
 
             const response = await fetch(url, requestOptions);
 
-            const responseJson = await response.json();
-
             if (!response.ok) {
+                
+                const responseJson = await response.json();
                 throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
             }
 
