@@ -1,5 +1,6 @@
 import jwtDecode from "jwt-decode";
 import { LoginModel } from "../../../models/LoginModel";
+import { authentication_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useLogin = async (loginModel: LoginModel, 
                                setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, 
@@ -10,13 +11,13 @@ export const useLogin = async (loginModel: LoginModel,
 
         setIsLoading(true);
 
-        const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+        const endpoint = authentication_controller_endpoints.authenticate_user;
 
-        const url = baseUrl + "/auth/authenticate";
+        const url = endpoint.url;
 
         const requestOptions = {
 
-            method: "POST",
+            method: endpoint.method,
             headers: {
                 "Content-type": "application/json"
             },
