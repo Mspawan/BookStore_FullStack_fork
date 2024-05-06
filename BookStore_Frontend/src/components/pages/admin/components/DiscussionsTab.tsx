@@ -22,9 +22,7 @@ export const DiscussionsTab = () => {
     const [totalPages, setTotlalPages] = useState(0);
     const [resultRange, setResultRange] = useState({start: 1, end: 5});
 
-    const urlPaginationParams = `?page=${currentPage - 1}&discussions-per-page=5`;
-
-    useFetchOpenDiscussions(authentication, setDiscussions, setTotalAmountOfDiscussions, setTotlalPages, setIsLoading, setHttpError, urlPaginationParams, currentPage, isDiscussionClosed);
+    useFetchOpenDiscussions(authentication, setDiscussions, setTotalAmountOfDiscussions, setTotlalPages, setIsLoading, setHttpError, currentPage, isDiscussionClosed);
 
     return (
 
