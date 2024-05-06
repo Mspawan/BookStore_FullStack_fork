@@ -3,7 +3,7 @@ import { useAuthenticationContext } from "../../../../authentication/authenticat
 import { DiscussionModel } from "../../../../models/DiscussionModel";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { Pagination } from "../../../commons/pagination/Pagination";
-import { useFetchOpenDiscussions } from "../../../../utils/useFetchOpenDiscussions";
+import { useFetchOpenDiscussions } from "../../../../utils/api_fetchers/admin_controller/useFetchOpenDiscussions";
 import { DiscussionsTabDiscussionCard } from "./DiscussionsTabDiscussionCard";
 import { PaginatedItemsCount } from "../../../commons/pagination/PaginatedItemsCount";
 import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";

@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
-import { useFetchCurrentCheckoutsCount } from "../../../../utils/useFetchCurrentCheckoutsCount";
-import { useCheckIfBookCheckedOutByUser } from "../../../../utils/useCheckIfBookCheckedOutByUser";
+import { useFetchCurrentCheckoutsCount } from "../../../../utils/api_fetchers/checkout_controller/useFetchCurrentCheckoutsCount";
+import { useCheckIfBookCheckedOutByUser } from "../../../../utils/api_fetchers/book_controller/useCheckIfBookCheckedOutByUser";
 import { Link } from "react-router-dom";
-import { useCheckIfBookReviewedByUser } from "../../../../utils/useCheckIfBookReviewedByUser";
+import { useCheckIfBookReviewedByUser } from "../../../../utils/api_fetchers/book_controller/useCheckIfBookReviewedByUser";
 import { FormLoader } from "../../../commons/form_loader/FormLoader";
 import { ReviewFormBox } from "./ReviewFormBox";
-import { useSubmitReview } from "../../../../utils/useSubmitReview";
+import { useSubmitReview } from "../../../../utils/api_fetchers/book_controller/useSubmitReview";
 import { ReviewModel } from "../../../../models/ReviewModel";
-import { useCheckOutBook } from "../../../../utils/useCheckOutBook";
+import { useCheckOutBook } from "../../../../utils/api_fetchers/book_controller/useCheckOutBook";
 import { BookModel } from "../../../../models/BookModel";
 import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 

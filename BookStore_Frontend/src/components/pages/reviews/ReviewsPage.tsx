@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Quote } from "../../commons/quote/Quote"
 import { ReviewModel } from "../../../models/ReviewModel";
-import { useFetchBookReviews } from "../../../utils/useFetchBookReviews";
+import { useFetchBookReviews } from "../../../utils/api_fetchers/review_controller/useFetchBookReviews";
 import { Pagination } from "../../commons/pagination/Pagination";
 import { ReviewCard } from "../../commons/review_card/ReviewCard";
 import { Link } from "react-router-dom";

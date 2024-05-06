@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Quote } from "../../commons/quote/Quote"
 import { BookModel } from "../../../models/BookModel";
-import { useFetchBook } from "../../../utils/useFetchBook";
+import { useFetchBook } from "../../../utils/api_fetchers/book_controller/useFetchBook";
 import { BookPageBookCard } from "./components/BookPageBookCard";
 import { LoadingSpinner } from "../../commons/loading_spinner/LoadingSpinner";
-import { useFetchBookReviews } from "../../../utils/useFetchBookReviews";
+import { useFetchBookReviews } from "../../../utils/api_fetchers/review_controller/useFetchBookReviews";
 import { ReviewModel } from "../../../models/ReviewModel";
 import { LatestReviews } from "./components/LatestReviews";
 import { HttpErrorMessage } from "../../commons/http_error_message/HttpErrorMessage";

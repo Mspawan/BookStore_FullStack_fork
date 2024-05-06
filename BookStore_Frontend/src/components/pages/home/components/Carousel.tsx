@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { BookModel } from "../../../../models/BookModel";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
-import { useFetchBooks } from "../../../../utils/useFetchBooks";
+import { useFetchBooks } from "../../../../utils/api_fetchers/book_controller/useFetchBooks";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, EffectCoverflow } from 'swiper/modules';
 import { CarouselBookCard } from "./CarouselBookCard";

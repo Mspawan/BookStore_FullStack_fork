@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSubmitDiscussion } from "../../../../utils/useSubmitDiscussion";
+import { useSubmitDiscussion } from "../../../../utils/api_fetchers/discussion_controller/useSubmitDiscussion";
 import { DiscussionModel } from "../../../../models/DiscussionModel";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
 import { FormLoader } from "../../../commons/form_loader/FormLoader";

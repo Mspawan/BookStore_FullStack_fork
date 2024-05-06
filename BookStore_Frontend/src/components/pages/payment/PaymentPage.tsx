@@ -2,11 +2,11 @@ import { Link, Navigate } from "react-router-dom";
 import { useAuthenticationContext } from "../../../authentication/authenticationContext";
 import { Quote } from "../../commons/quote/Quote"
 import { useState } from "react";
-import { useFetchPaymentFee } from "../../../utils/useFetchPaymentFee";
+import { useFetchPaymentFee } from "../../../utils/api_fetchers/payment_controller/useFetchPaymentFee";
 import { LoadingSpinner } from "../../commons/loading_spinner/LoadingSpinner";
 import { HttpErrorMessage } from "../../commons/http_error_message/HttpErrorMessage";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { usePayFees } from "../../../utils/usePayFees";
+import { usePayFees } from "../../../utils/api_fetchers/payment_controller/usePayFees";
 import { FormLoader } from "../../commons/form_loader/FormLoader";
 
 export const PaymentPage = () => {

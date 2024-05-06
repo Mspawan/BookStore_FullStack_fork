@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
 import { HistoryRecordModel } from "../../../../models/HistoryRecordModel";
-import { useFetchHistoryRecords } from "../../../../utils/useFetchHistoryRecords";
+import { useFetchHistoryRecords } from "../../../../utils/api_fetchers/history_record_controller/useFetchHistoryRecords";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { Link } from "react-router-dom";
 import { Pagination } from "../../../commons/pagination/Pagination";

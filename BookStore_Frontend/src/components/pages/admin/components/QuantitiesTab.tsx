@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BookModel } from "../../../../models/BookModel";
-import { useFetchBooks } from "../../../../utils/useFetchBooks";
+import { useFetchBooks } from "../../../../utils/api_fetchers/book_controller/useFetchBooks";
 import { Pagination } from "../../../commons/pagination/Pagination";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { QuantitiesTabBookCard } from "./QuantitiesTabBookCard";

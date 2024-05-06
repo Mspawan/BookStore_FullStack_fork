@@ -1,10 +1,10 @@
 import { ReactNode, useState } from "react";
 import { LoginModel } from "../models/LoginModel";
-import { useLogin } from "../utils/useLogin";
+import { useLogin } from "../utils/api_fetchers/authentication_controller/useLogin";
 import { AuthenticationContext } from "./authenticationContext";
 import { useAuthenticationState } from "./useAuthenticationState";
 import { RegistrationModel } from "../models/RegistrationModel";
-import { useRegister } from "../utils/useRegister";
+import { useRegister } from "../utils/api_fetchers/authentication_controller/useRegister";
 
 type AuthenticationProviderProps = {
     children: ReactNode

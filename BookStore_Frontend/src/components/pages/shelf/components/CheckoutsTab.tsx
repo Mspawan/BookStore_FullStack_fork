@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
 import { CheckoutModel } from "../../../../models/CheckoutModel";
-import { useFetchCurrentCheckouts } from "../../../../utils/useFetchCurrentCheckouts";
+import { useFetchCurrentCheckouts } from "../../../../utils/api_fetchers/checkout_controller/useFetchCurrentCheckouts";
 import { Link } from "react-router-dom";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { CheckoutsTabBookCard } from "./CheckoutsTabBookCard";

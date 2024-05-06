@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DiscussionModel } from "../../../../models/DiscussionModel";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
-import { useFetchDiscussions } from "../../../../utils/useFetchDiscussions";
+import { useFetchDiscussions } from "../../../../utils/api_fetchers/discussion_controller/useFetchDiscussions";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { Pagination } from "../../../commons/pagination/Pagination";
 import { AllDiscussionsTabDiscussionCard } from "./AllDiscussionsTabDiscussionCard";

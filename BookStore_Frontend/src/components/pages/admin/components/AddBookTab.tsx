@@ -4,8 +4,8 @@ import { BookModel } from "../../../../models/BookModel";
 import { FormLoader } from "../../../commons/form_loader/FormLoader";
 import { FieldErrors } from "../../../commons/field_errors/FieldErrors";
 import { GenreModel } from "../../../../models/GenreModel";
-import { useAddNewBook } from "../../../../utils/useAddNewBook";
-import { useFetchAllGenres } from "../../../../utils/useFetchAllGenres";
+import { useAddNewBook } from "../../../../utils/api_fetchers/admin_controller/useAddNewBook";
+import { useFetchAllGenres } from "../../../../utils/api_fetchers/genre_controller/useFetchAllGenres";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
 

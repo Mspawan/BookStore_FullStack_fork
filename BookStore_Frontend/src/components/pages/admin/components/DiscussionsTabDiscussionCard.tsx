@@ -1,7 +1,7 @@
 import { DiscussionModel } from "../../../../models/DiscussionModel";
 import avatar from "../../../../assets/icons/avatar.svg";
 import { useState } from "react";
-import { useSubmitDiscussionResponse } from "../../../../utils/useSubmitDiscussionResponse";
+import { useSubmitDiscussionResponse } from "../../../../utils/api_fetchers/admin_controller/useSubmitDiscussionResponse";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
 import { FormLoader } from "../../../commons/form_loader/FormLoader";
 import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";

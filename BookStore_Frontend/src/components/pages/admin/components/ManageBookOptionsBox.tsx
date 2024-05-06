@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthenticationContext } from "../../../../authentication/authenticationContext";
-import { useChangeBookQuantity } from "../../../../utils/useChangeBookQuantity";
-import { useDeleteBook } from "../../../../utils/useDeleteBook";
+import { useChangeBookQuantity } from "../../../../utils/api_fetchers/admin_controller/useChangeBookQuantity";
+import { useDeleteBook } from "../../../../utils/api_fetchers/admin_controller/useDeleteBook";
 import { FormLoader } from "../../../commons/form_loader/FormLoader";
 import { BookModel } from "../../../../models/BookModel";
 import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";

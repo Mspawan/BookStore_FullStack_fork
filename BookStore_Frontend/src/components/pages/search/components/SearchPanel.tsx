@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useFetchAllGenres } from "../../../../utils/useFetchAllGenres";
+import { useFetchAllGenres } from "../../../../utils/api_fetchers/genre_controller/useFetchAllGenres";
 import { GenreModel } from "../../../../models/GenreModel";
 import { LoadingSpinner } from "../../../commons/loading_spinner/LoadingSpinner";
 import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";

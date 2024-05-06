@@ -1,7 +1,7 @@
 import { Quote } from "../../commons/quote/Quote"
 import { useState } from "react";
 import { BookModel } from "../../../models/BookModel";
-import { useFetchBooks } from "../../../utils/useFetchBooks";
+import { useFetchBooks } from "../../../utils/api_fetchers/book_controller/useFetchBooks";
 import { LoadingSpinner } from "../../commons/loading_spinner/LoadingSpinner";
 import { SearchPageBookCard } from "./components/SearchPageBookCard";
 import { SearchPanel } from "./components/SearchPanel";
