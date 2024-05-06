@@ -1,5 +1,6 @@
 import jwtDecode from "jwt-decode";
 import { RegistrationModel } from "../../../models/RegistrationModel";
+import { authentication_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useRegister = async (registrationModel: RegistrationModel, 
                                   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, 
@@ -10,13 +11,13 @@ export const useRegister = async (registrationModel: RegistrationModel,
 
         setIsLoading(true);
 
-        const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+        const endpoint = authentication_controller_endpoints.register_user;
 
-        const url = baseUrl + "/auth/register";
+        const url = endpoint.url;
 
         const requestOptions = {
 
-            method: "POST",
+            method: endpoint.method,
             headers: {
                 "Content-type": "application/json"
             },
