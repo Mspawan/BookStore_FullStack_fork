@@ -1,4 +1,5 @@
 import { DiscussionModel } from "../../../models/DiscussionModel";
+import { discussion_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useSubmitDiscussion = async (authentication: { isAuthenticated: boolean; token: string; },
                                           discussionModel: DiscussionModel,
@@ -13,13 +14,13 @@ export const useSubmitDiscussion = async (authentication: { isAuthenticated: boo
 
         if (authentication.isAuthenticated) {
 
-            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+            const endpoint = discussion_controller_endpoints.add_discussion;
 
-            const url = baseUrl + "/discussions/secure/add-discussion";
+            const url = endpoint.url;
             
             const requestOptions = {
 
-                method: "POST",
+                method: endpoint.method,
                 headers: {
                     Authorization: `Bearer ${authentication.token}`,
                     "Content-type": "application/json"
