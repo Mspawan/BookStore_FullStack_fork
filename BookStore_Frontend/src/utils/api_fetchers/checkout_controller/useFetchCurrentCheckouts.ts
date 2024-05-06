@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { CheckoutModel } from "../../../models/CheckoutModel";
+import { checkout_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useFetchCurrentCheckouts = (authentication: { isAuthenticated: boolean; token: string; },
                                          setCurrentCheckouts: React.Dispatch<React.SetStateAction<CheckoutModel[]>>,
@@ -18,13 +19,13 @@ export const useFetchCurrentCheckouts = (authentication: { isAuthenticated: bool
 
                 if (authentication.isAuthenticated) {
 
-                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                    const endpoint = checkout_controller_endpoints.current_checkouts;
 
-                    const url = baseUrl + "/checkouts/secure/current-checkouts";
+                    const url = endpoint.url;
 
                     const requestOptions = {
 
-                        method: "GET",
+                        method: endpoint.method,
                         headers: {
                             Authorization: `Bearer ${authentication.token}`,
                             "Content-type": "application/json"
