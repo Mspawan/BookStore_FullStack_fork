@@ -1,11 +1,12 @@
 import { BookModel } from "../../../models/BookModel";
+import { admin_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useAddNewBook= async (authentication: { isAuthenticated: boolean; token: string; },
-                                          bookModel: BookModel,
-                                          setNewBook: React.Dispatch<React.SetStateAction<BookModel>>,
-                                          setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
-                                          setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
-                                          setDisplaySuccess: React.Dispatch<React.SetStateAction<boolean>>) => {
+                                   bookModel: BookModel,
+                                   setNewBook: React.Dispatch<React.SetStateAction<BookModel>>,
+                                   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+                                   setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
+                                   setDisplaySuccess: React.Dispatch<React.SetStateAction<boolean>>) => {
 
     const addNewBook = async () => {
 
@@ -13,13 +14,13 @@ export const useAddNewBook= async (authentication: { isAuthenticated: boolean; t
 
         if (authentication.isAuthenticated) {
 
-            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+            const endpoint = admin_controller_endpoints.add_book;
 
-            const url = baseUrl + "/admin/secure/add-book";
+            const url = endpoint.url;
             
             const requestOptions = {
 
-                method: "POST",
+                method: endpoint.method,
                 headers: {
                     Authorization: `Bearer ${authentication.token}`,
                     "Content-type": "application/json"
