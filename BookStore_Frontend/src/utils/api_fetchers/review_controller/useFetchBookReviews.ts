@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { ReviewModel } from "../../../models/ReviewModel";
+import { review_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useFetchBookReviews = (bookId: string,
                                     setReviews: React.Dispatch<React.SetStateAction<ReviewModel[]>>,
                                     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
                                     setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
                                     setTotalAmountOfReviews: React.Dispatch<React.SetStateAction<number>>,
-                                    urlPaginationParams?: string,
+                                    urlPaginationParams: string,
                                     currentPage?: number,
                                     setTotlalPages?: React.Dispatch<React.SetStateAction<number>>) => {
 
@@ -16,9 +17,11 @@ export const useFetchBookReviews = (bookId: string,
 
             const fetchReviews = async () => {
 
-                const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                const urlParams = `/${bookId}` + urlPaginationParams;
 
-                const url: string = baseUrl + `/reviews/${bookId}` + (urlPaginationParams ? urlPaginationParams : `?page=0&reviews-per-page=5`);
+                const endpoint = review_controller_endpoints.find_all_reviews;
+
+                const url = endpoint.url + urlParams;
 
                 const response = await fetch(url);
 
