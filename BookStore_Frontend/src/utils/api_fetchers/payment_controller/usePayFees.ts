@@ -2,6 +2,7 @@ import { CardElement } from "@stripe/react-stripe-js";
 import { Stripe, StripeElements } from "@stripe/stripe-js";
 import jwtDecode from "jwt-decode";
 import { PaymentInfoModel } from "../../../models/PaymentInfoModel";
+import { payment_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const usePayFees = async (authentication: { isAuthenticated: boolean; token: string;  authority: string; }, 
                                 elements: StripeElements | null, 
@@ -21,9 +22,9 @@ export const usePayFees = async (authentication: { isAuthenticated: boolean; tok
 
         if (authentication.isAuthenticated) {
 
-            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+            const endpoint = payment_controller_endpoints.create_payment_intent;
             
-            const url = baseUrl + "/payment/secure/payment-intent";
+            const url = endpoint.url;
 
             const payload: {role: {authority: string}[], sub: string, iss: string, iat: number, exp: number} = jwtDecode(authentication.token);
 
@@ -33,7 +34,7 @@ export const usePayFees = async (authentication: { isAuthenticated: boolean; tok
 
             const requestOptions = {
 
-                method: "POST",
+                method: endpoint.method,
                 headers: {
                     Authorization: `Bearer ${authentication.token}`,
                     "Content-type": "application/json"
@@ -74,13 +75,13 @@ export const usePayFees = async (authentication: { isAuthenticated: boolean; tok
     
                     } else {
 
-                        const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                        const endpoint = payment_controller_endpoints.complete_payment;
     
-                        const url = baseUrl + "/payment/secure/payment-complete";
+                        const url = endpoint.url;
     
                         const requestOptions = {
     
-                            method: "PUT",
+                            method: endpoint.method,
                             headers: {
                                 Authorization: `Bearer ${authentication.token}`,
                                 "Content-type": "application/json"
