@@ -22,9 +22,7 @@ export const HistoryTab = () => {
     const [totalPages, setTotlalPages] = useState(0);
     const [resultRange, setResultRange] = useState({start: 1, end: 5});
 
-    const urlPaginationParams = `?page=${currentPage - 1}&records-per-page=5`;
-
-    useFetchHistoryRecords(authentication, setHistoryRecords, setTotalAmountOfRecords, setTotlalPages, setIsLoading, setHttpError, urlPaginationParams, currentPage);
+    useFetchHistoryRecords(authentication, setHistoryRecords, setTotalAmountOfRecords, setTotlalPages, setIsLoading, setHttpError, currentPage);
 
     return (
 
