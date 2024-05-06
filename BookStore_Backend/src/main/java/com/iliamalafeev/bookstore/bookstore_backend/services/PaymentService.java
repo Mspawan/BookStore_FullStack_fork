@@ -37,9 +37,13 @@ public class PaymentService {
     public Double findPaymentFeesByPersonEmail(String personEmail) {
 
         Person person = getPersonFromRepository(personEmail);
-        Payment payment = getPaymentFromRepository(person);
+        Optional<Payment> payment = getPaymentOptionalFromRepository(person);
 
-        return payment.getAmount();
+        if (payment.isEmpty()) {
+            return 0.0;
+        }
+
+        return payment.get().getAmount();
     }
 
     public PaymentIntent createPaymentIntent(PaymentInfoDTO paymentInfoDTO) throws StripeException {
@@ -59,7 +63,13 @@ public class PaymentService {
     public void stripePayment(String personEmail) {
 
         Person person = getPersonFromRepository(personEmail);
-        Payment payment = getPaymentFromRepository(person);
+        Optional<Payment> paymentOptional = getPaymentOptionalFromRepository(person);
+
+        if (paymentOptional.isEmpty()) {
+            ErrorsUtil.returnPaymentError("Payment information is missing", HttpStatus.NOT_FOUND);
+        }
+
+        Payment payment = paymentOptional.get();
         payment.setAmount(00.00);
 
         paymentRepository.save(payment);
@@ -80,14 +90,8 @@ public class PaymentService {
         return person.get();
     }
 
-    private Payment getPaymentFromRepository(Person person) {
+    private Optional<Payment> getPaymentOptionalFromRepository(Person person) {
 
-        Optional<Payment> payment = paymentRepository.findByPaymentHolder(person);
-
-        if (payment.isEmpty()) {
-            ErrorsUtil.returnPaymentError("Payment information is missing", HttpStatus.NOT_FOUND);
-        }
-
-        return payment.get();
+        return paymentRepository.findByPaymentHolder(person);
     }
 }
