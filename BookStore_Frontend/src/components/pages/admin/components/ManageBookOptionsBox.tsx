@@ -23,7 +23,7 @@ export const ManageBookOptionsBox = ({ book, setIsBookDeleted }: ManageBookOptio
     const [changeQuantityHttpError, setChangeQuantityHttpError] = useState<string | null>(null);
     const [deleteBookHttpError, setDeleteBookHttpError] = useState<string | null>(null);
 
-    const handleChangeQuantityClick = (operation: string) => {
+    const handleChangeQuantityClick = (operation: "increase" | "decrease") => {
 
         useChangeBookQuantity(`${book.id}`, operation, authentication, setIsLoadingChangeQuantity, setChangeQuantityHttpError, setTotalQuantity, setAvailableQuantity);
     }
