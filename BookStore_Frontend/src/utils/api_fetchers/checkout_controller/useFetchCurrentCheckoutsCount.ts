@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { checkout_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useFetchCurrentCheckoutsCount = (authentication: { isAuthenticated: boolean; token: string; },
                                               setCurrentCheckoutsCount: React.Dispatch<React.SetStateAction<number>>,
@@ -13,13 +14,13 @@ export const useFetchCurrentCheckoutsCount = (authentication: { isAuthenticated:
 
                 if (authentication.isAuthenticated) {
 
-                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                    const endpoint = checkout_controller_endpoints.current_loans_count;
 
-                    const url = baseUrl + "/checkouts/secure/current-loans-count";
+                    const url = endpoint.url;
 
                     const requestOptions = {
 
-                        method: "GET",
+                        method: endpoint.method,
                         headers: {
                             Authorization: `Bearer ${authentication.token}`,
                             "Content-type": "application/json"
