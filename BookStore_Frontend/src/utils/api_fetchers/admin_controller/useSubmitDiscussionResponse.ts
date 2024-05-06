@@ -1,4 +1,5 @@
 import { DiscussionModel } from "../../../models/DiscussionModel";
+import { admin_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useSubmitDiscussionResponse = async (authentication: { isAuthenticated: boolean; token: string; },
                                                   discussionModel: DiscussionModel,
@@ -12,13 +13,13 @@ export const useSubmitDiscussionResponse = async (authentication: { isAuthentica
 
         if (authentication.isAuthenticated) {
 
-            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+            const endpoint = admin_controller_endpoints.close_discussion;
 
-            const url = baseUrl + "/admin/secure/close-discussion";
+            const url = endpoint.url;
             
             const requestOptions = {
 
-                method: "POST",
+                method: endpoint.method,
                 headers: {
                     Authorization: `Bearer ${authentication.token}`,
                     "Content-type": "application/json"
@@ -28,9 +29,9 @@ export const useSubmitDiscussionResponse = async (authentication: { isAuthentica
 
             const response = await fetch(url, requestOptions);
 
-            const responseJson = await response.json();
-
             if (!response.ok) {
+
+                const responseJson = await response.json();
                 throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
             }
 
