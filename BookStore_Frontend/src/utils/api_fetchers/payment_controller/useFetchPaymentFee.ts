@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { payment_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useFetchPaymentFee = (authentication: { isAuthenticated: boolean; token: string; },
                                    setPaymentFees: React.Dispatch<React.SetStateAction<number>>,
@@ -15,13 +16,13 @@ export const useFetchPaymentFee = (authentication: { isAuthenticated: boolean; t
 
                 if (authentication.isAuthenticated) {
 
-                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                    const endpoint = payment_controller_endpoints.get_payment_info;
 
-                    const url = baseUrl + "/payment/secure";
+                    const url = endpoint.url;
 
                     const requestOptions = {
 
-                        method: "GET",
+                        method: endpoint.method,
                         headers: {
                             Authorization: `Bearer ${authentication.token}`,
                             "Content-type": "application/json"
