@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { review_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useFetchBookAverageRating = (bookId: string,
                                           setAverageRating: React.Dispatch<React.SetStateAction<number>>,
@@ -12,9 +13,11 @@ export const useFetchBookAverageRating = (bookId: string,
 
             const fetchAverageRating = async () => {
 
-                const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                const urlParams = `/${bookId}`;
+
+                const endpoint = review_controller_endpoints.get_avg_rating;
                 
-                const url = baseUrl + `/reviews/average-rating/${bookId}`;
+                const url = endpoint.url + urlParams;
 
                 const response = await fetch(url);
 
