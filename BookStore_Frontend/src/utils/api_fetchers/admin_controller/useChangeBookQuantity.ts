@@ -1,5 +1,7 @@
+import { admin_controller_endpoints } from "../../apiEndpointsUrlsList";
+
 export const useChangeBookQuantity= async (bookId: string,
-                                           operation: string,
+                                           operation: "increase" | "decrease",
                                            authentication: { isAuthenticated: boolean; token: string; },
                                            setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
                                            setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
@@ -12,13 +14,16 @@ export const useChangeBookQuantity= async (bookId: string,
 
         if (authentication.isAuthenticated) {
 
-            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+            const urlParams = `/${bookId}`;
 
-            const url = baseUrl + `/admin/secure/${operation}-quantity/${bookId}`;
+            const increase_endpoint = admin_controller_endpoints.increase_quantity;
+            const decrease_endpoint = admin_controller_endpoints.decrease_quantity;
+
+            const url = (operation === "increase" ? increase_endpoint.url : decrease_endpoint.url) + urlParams;
             
             const requestOptions = {
 
-                method: "PUT",
+                method: operation === "increase" ? increase_endpoint.method : decrease_endpoint.method,
                 headers: {
                     Authorization: `Bearer ${authentication.token}`,
                     "Content-type": "application/json"
@@ -27,9 +32,9 @@ export const useChangeBookQuantity= async (bookId: string,
 
             const response = await fetch(url, requestOptions);
 
-            const responseJson = await response.json();
-
             if (!response.ok) {
+
+                const responseJson = await response.json();
                 throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
             }
             
