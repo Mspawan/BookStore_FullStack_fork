@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { HistoryRecordModel } from "../../../models/HistoryRecordModel";
+import { history_record_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useFetchHistoryRecords = (authentication: { isAuthenticated: boolean; token: string; },
                                        setHistoryRecords: React.Dispatch<React.SetStateAction<HistoryRecordModel[]>>,
@@ -7,7 +8,6 @@ export const useFetchHistoryRecords = (authentication: { isAuthenticated: boolea
                                        setTotlalPages: React.Dispatch<React.SetStateAction<number>>,
                                        setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
                                        setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
-                                       urlPaginationParams: string,
                                        currentPage: number) => {
 
     useEffect(
@@ -20,13 +20,15 @@ export const useFetchHistoryRecords = (authentication: { isAuthenticated: boolea
 
                 if (authentication.isAuthenticated) {
 
-                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                    const urlPaginationParams = `?page=${currentPage - 1}&records-per-page=5`;
 
-                    const url = baseUrl + "/history-records/secure" + urlPaginationParams;
+                    const endpoint = history_record_controller_endpoints.find_all_history_records;
+
+                    const url = endpoint.url + urlPaginationParams;
 
                     const requestOptions = {
 
-                        method: "GET",
+                        method: endpoint.method,
                         headers: {
                             Authorization: `Bearer ${authentication.token}`,
                             "Content-type": "application/json"
