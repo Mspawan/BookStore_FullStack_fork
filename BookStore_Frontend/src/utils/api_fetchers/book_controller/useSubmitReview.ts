@@ -1,4 +1,4 @@
-import { ReviewModel } from "../models/ReviewModel";
+import { ReviewModel } from "../../../models/ReviewModel";
 
 export const useSubmitReview = async (bookId: string,
                                       authentication: { isAuthenticated: boolean; token: string; },

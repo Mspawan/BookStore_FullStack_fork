@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { DiscussionModel } from "../models/DiscussionModel";
+import { DiscussionModel } from "../../../models/DiscussionModel";
 
 export const useFetchOpenDiscussions = (authentication: { isAuthenticated: boolean; token: string; },
                                         setDiscussions: React.Dispatch<React.SetStateAction<DiscussionModel[]>>,

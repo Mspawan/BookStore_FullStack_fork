@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CheckoutModel } from "../models/CheckoutModel";
+import { CheckoutModel } from "../../../models/CheckoutModel";
 
 export const useFetchCurrentCheckouts = (authentication: { isAuthenticated: boolean; token: string; },
                                          setCurrentCheckouts: React.Dispatch<React.SetStateAction<CheckoutModel[]>>,

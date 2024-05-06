@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BookModel } from "../models/BookModel";
+import { BookModel } from "../../../models/BookModel";
 
 export const useFetchBook = (bookId: string,
                              setBook: React.Dispatch<React.SetStateAction<BookModel>>,

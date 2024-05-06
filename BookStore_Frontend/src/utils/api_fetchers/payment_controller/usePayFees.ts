@@ -1,7 +1,7 @@
 import { CardElement } from "@stripe/react-stripe-js";
 import { Stripe, StripeElements } from "@stripe/stripe-js";
 import jwtDecode from "jwt-decode";
-import { PaymentInfoModel } from "../models/PaymentInfoModel";
+import { PaymentInfoModel } from "../../../models/PaymentInfoModel";
 
 export const usePayFees = async (authentication: { isAuthenticated: boolean; token: string;  authority: string; }, 
                                 elements: StripeElements | null, 

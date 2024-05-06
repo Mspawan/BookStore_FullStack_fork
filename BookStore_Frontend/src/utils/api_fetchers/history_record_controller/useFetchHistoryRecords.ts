@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { HistoryRecordModel } from "../models/HistoryRecordModel";
+import { HistoryRecordModel } from "../../../models/HistoryRecordModel";
 
 export const useFetchHistoryRecords = (authentication: { isAuthenticated: boolean; token: string; },
                                        setHistoryRecords: React.Dispatch<React.SetStateAction<HistoryRecordModel[]>>,

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { GenreModel } from "../models/GenreModel";
+import { GenreModel } from "../../../models/GenreModel";
 
 export const useFetchAllGenres = (setAllGenres: React.Dispatch<React.SetStateAction<GenreModel[]>>,
                                   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,

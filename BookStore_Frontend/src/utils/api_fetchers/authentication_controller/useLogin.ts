@@ -1,18 +1,18 @@
 import jwtDecode from "jwt-decode";
-import { RegistrationModel } from "../models/RegistrationModel";
+import { LoginModel } from "../../../models/LoginModel";
 
-export const useRegister = async (registrationModel: RegistrationModel, 
-                                  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, 
-                                  setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
-                                  setAuthentication: React.Dispatch<React.SetStateAction<{ isAuthenticated: boolean; token: string; authority: string }>>) => {
+export const useLogin = async (loginModel: LoginModel, 
+                               setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, 
+                               setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
+                               setAuthentication: React.Dispatch<React.SetStateAction<{ isAuthenticated: boolean; token: string; authority: string }>>) => {
 
-    const submitRegister = async () => {
+    const submitLogin = async () => {
 
         setIsLoading(true);
 
         const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
 
-        const url = baseUrl + "/auth/register";
+        const url = baseUrl + "/auth/authenticate";
 
         const requestOptions = {
 
@@ -20,7 +20,7 @@ export const useRegister = async (registrationModel: RegistrationModel,
             headers: {
                 "Content-type": "application/json"
             },
-            body: JSON.stringify(registrationModel)
+            body: JSON.stringify(loginModel)
         };
 
         const response = await fetch(url, requestOptions);
@@ -42,7 +42,7 @@ export const useRegister = async (registrationModel: RegistrationModel,
         setIsLoading(false);
     }
 
-    submitRegister().catch(
+    submitLogin().catch(
 
         (error: any) => {
 

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BookModel } from "../models/BookModel";
+import { BookModel } from "../../../models/BookModel";
 
 export const useFetchBooks = (urlPaginationParams: string, 
                               currentPage: number,

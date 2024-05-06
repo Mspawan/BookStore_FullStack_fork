@@ -1,4 +1,4 @@
-import { BookModel } from "../models/BookModel";
+import { BookModel } from "../../../models/BookModel";
 
 export const useAddNewBook= async (authentication: { isAuthenticated: boolean; token: string; },
                                           bookModel: BookModel,

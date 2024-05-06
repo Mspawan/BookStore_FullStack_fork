@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ReviewModel } from "../models/ReviewModel";
+import { ReviewModel } from "../../../models/ReviewModel";
 
 export const useFetchBookReviews = (bookId: string,
                                     setReviews: React.Dispatch<React.SetStateAction<ReviewModel[]>>,

@@ -1,4 +1,4 @@
-import { DiscussionModel } from "../models/DiscussionModel";
+import { DiscussionModel } from "../../../models/DiscussionModel";
 
 export const useSubmitDiscussionResponse = async (authentication: { isAuthenticated: boolean; token: string; },
                                                   discussionModel: DiscussionModel,
