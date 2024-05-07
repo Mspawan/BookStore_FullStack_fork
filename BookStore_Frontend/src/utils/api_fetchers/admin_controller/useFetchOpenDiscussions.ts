@@ -21,11 +21,11 @@ export const useFetchOpenDiscussions = (authentication: { isAuthenticated: boole
 
                 if (authentication.isAuthenticated) {
 
-                    const urlPaginationParams = `?page=${currentPage - 1}&discussions-per-page=5`;
+                    const urlParams = `?page=${currentPage - 1}&discussions-per-page=5`;
 
                     const endpoint = admin_controller_endpoints.get_open_discussions;
 
-                    const url = endpoint.url + urlPaginationParams;
+                    const url = endpoint.url + urlParams;
 
                     const requestOptions = {
 

@@ -11,7 +11,7 @@ export const useCheckIfBookCheckedOutByUser = (bookId: string,
 
         () => {
 
-            const fetchUserCurrentCheckoutsCount = async () => {
+            const fetchIsBookCheckedOutByUser = async () => {
 
                 if (authentication.isAuthenticated) {
 
@@ -44,7 +44,7 @@ export const useCheckIfBookCheckedOutByUser = (bookId: string,
                 setIsLoading(false);
             };
 
-            fetchUserCurrentCheckoutsCount().catch(
+            fetchIsBookCheckedOutByUser().catch(
 
                 (error: any) => {
 

@@ -20,11 +20,11 @@ export const useFetchDiscussions = (authentication: { isAuthenticated: boolean; 
 
                 if (authentication.isAuthenticated) {
 
-                    const urlPaginationParams = `?page=${currentPage - 1}&discussions-per-page=5`;
+                    const urlParams = `?page=${currentPage - 1}&discussions-per-page=5`;
 
                     const endpoint = discussion_controller_endpoints.find_all_discussions;
 
-                    const url = endpoint.url + urlPaginationParams;
+                    const url = endpoint.url + urlParams;
 
                     const requestOptions = {
 

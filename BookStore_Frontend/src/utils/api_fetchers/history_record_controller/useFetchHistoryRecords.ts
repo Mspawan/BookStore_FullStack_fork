@@ -14,17 +14,17 @@ export const useFetchHistoryRecords = (authentication: { isAuthenticated: boolea
 
         () => {
 
-            const fetchUserCurrentCheckouts = async () => {
+            const fetchUserHistoryRecords = async () => {
 
                 setIsLoading(true);
 
                 if (authentication.isAuthenticated) {
 
-                    const urlPaginationParams = `?page=${currentPage - 1}&records-per-page=5`;
+                    const urlParams = `?page=${currentPage - 1}&records-per-page=5`;
 
                     const endpoint = history_record_controller_endpoints.find_all_history_records;
 
-                    const url = endpoint.url + urlPaginationParams;
+                    const url = endpoint.url + urlParams;
 
                     const requestOptions = {
 
@@ -62,7 +62,7 @@ export const useFetchHistoryRecords = (authentication: { isAuthenticated: boolea
                 setIsLoading(false);
             };
 
-            fetchUserCurrentCheckouts().catch(
+            fetchUserHistoryRecords().catch(
 
                 (error: any) => {
 

@@ -5,12 +5,12 @@ import { PaymentInfoModel } from "../../../models/PaymentInfoModel";
 import { payment_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const usePayFees = async (authentication: { isAuthenticated: boolean; token: string;  authority: string; }, 
-                                elements: StripeElements | null, 
-                                stripe: Stripe | null,
-                                paymentFees: number,
-                                setPaymentFees: React.Dispatch<React.SetStateAction<number>>,
-                                setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, 
-                                setHttpError: React.Dispatch<React.SetStateAction<string | null>>) => {
+                                 elements: StripeElements | null, 
+                                 stripe: Stripe | null,
+                                 paymentFees: number,
+                                 setPaymentFees: React.Dispatch<React.SetStateAction<number>>,
+                                 setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, 
+                                 setHttpError: React.Dispatch<React.SetStateAction<string | null>>) => {
 
     const submitPayFees = async () => {
 
