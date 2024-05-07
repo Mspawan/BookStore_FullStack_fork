@@ -22,15 +22,13 @@ export const QuantitiesTab = () => {
     const [titleQuery, setTitleQuery] = useState("");
     const [searchParams, setSearchParams] = useState("");
     
-    const urlPaginationParams = (searchParams === "" ? "?" : "&") + `page=${currentPage - 1}&books-per-page=5`;
-
     const handleSearchClick = () => {
 
         setHttpError(null);
-        setSearchParams(`/search/by-title?title-query=${titleQuery}`);
+        setSearchParams(`?title-query=${titleQuery}`);
     };
 
-    useFetchBooks(urlPaginationParams, currentPage, setBooks, setIsLoading, setHttpError, setTotalAmountOfBooks, setTotlalPages, searchParams, isBookDeleted);
+    useFetchBooks(currentPage, setBooks, setIsLoading, setHttpError, setTotalAmountOfBooks, setTotlalPages, 5, searchParams, isBookDeleted);
 
     return (
 

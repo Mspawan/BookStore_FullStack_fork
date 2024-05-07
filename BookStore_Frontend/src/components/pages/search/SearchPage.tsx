@@ -26,7 +26,7 @@ export const SearchPage = () => {
         
         setSelectedGenre("");
         setHttpError(null);
-        if (titleQuery !== "") setSearchParams(`/search/by-title?title-query=${titleQuery}`);
+        if (titleQuery !== "") setSearchParams(`?title-query=${titleQuery}`);
     };
 
     const handleGenreChange = (value: string) => {
@@ -35,12 +35,10 @@ export const SearchPage = () => {
         setHttpError(null);
         setSelectedGenre(value);
         if (value === "") setSearchParams("");
-        if (value !== "") setSearchParams(`/search/by-genre?genre-query=${value}`);
+        if (value !== "") setSearchParams(`?genre-query=${value}`);
     };
-    
-    const urlPaginationParams = (searchParams === "" ? "?" : "&") + `page=${currentPage - 1}&books-per-page=5`;
 
-    useFetchBooks(urlPaginationParams, currentPage, setBooks, setIsLoading, setHttpError, setTotalAmountOfBooks, setTotlalPages, searchParams);
+    useFetchBooks(currentPage, setBooks, setIsLoading, setHttpError, setTotalAmountOfBooks, setTotlalPages, 5, searchParams);
 
     return (
 

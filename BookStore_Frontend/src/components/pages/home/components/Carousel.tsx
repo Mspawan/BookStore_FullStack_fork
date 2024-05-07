@@ -5,17 +5,16 @@ import { useFetchBooks } from "../../../../utils/api_fetchers/book_controller/us
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, EffectCoverflow } from 'swiper/modules';
 import { CarouselBookCard } from "./CarouselBookCard";
-import 'swiper/css/bundle';
 import { HttpErrorMessage } from "../../../commons/http_error_message/HttpErrorMessage";
+import 'swiper/css/bundle';
 
 export const Carousel = () => {
 
     const [books, setBooks] = useState<BookModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState<string | null>(null);
-    const urlPaginationParams = "?page=0&books-per-page=9";
 
-    useFetchBooks(urlPaginationParams, 0, setBooks, setIsLoading, setHttpError);
+    useFetchBooks(1, setBooks, setIsLoading, setHttpError);
 
     return (
 
