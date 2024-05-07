@@ -1,4 +1,5 @@
 import { ReviewModel } from "../../../models/ReviewModel";
+import { book_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useSubmitReview = async (bookId: string,
                                       authentication: { isAuthenticated: boolean; token: string; },
@@ -14,13 +15,15 @@ export const useSubmitReview = async (bookId: string,
 
         if (authentication.isAuthenticated) {
 
-            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+            const urlParams = `/${bookId}`;
 
-            const url = baseUrl + `/books/secure/review/${bookId}`;
+            const endpoint = book_controller_endpoints.review_book;
+
+            const url = endpoint.url + urlParams;
             
             const requestOptions = {
 
-                method: "POST",
+                method: endpoint.method,
                 headers: {
                     Authorization: `Bearer ${authentication.token}`,
                     "Content-type": "application/json"
