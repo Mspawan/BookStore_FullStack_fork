@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { BookModel } from "../../../models/BookModel";
+import { book_controller_endpoints } from "../../apiEndpointsUrlsList";
 
-export const useFetchBooks = (urlPaginationParams: string, 
-                              currentPage: number,
+export const useFetchBooks = (currentPage: number,
                               setBooks: React.Dispatch<React.SetStateAction<BookModel[]>>,
                               setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
                               setHttpError: React.Dispatch<React.SetStateAction<string | null>>,
                               setTotalAmountOfBooks?: React.Dispatch<React.SetStateAction<number>>,
                               setTotlalPages?: React.Dispatch<React.SetStateAction<number>>,
+                              booksPerPage?: number,
                               urlSearchParams?: string,
                               isBookDeleted?: boolean) => {
 
@@ -19,9 +20,28 @@ export const useFetchBooks = (urlPaginationParams: string,
 
                 setIsLoading(true);
 
-                const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                const searchParams = urlSearchParams ? (urlSearchParams + "&") : "?";
+                const paginationParams = `page=${currentPage - 1}&books-per-page=${booksPerPage ? booksPerPage : 9}`;
+                const urlParams = searchParams + paginationParams;
 
-                const url: string = baseUrl + "/books" + (urlSearchParams ? urlSearchParams : "") + urlPaginationParams;
+                const find_all_endpoint = book_controller_endpoints.find_all_books;
+                const search_by_title_endpoint = book_controller_endpoints.search_by_title;
+                const search_by_genre_endpoint = book_controller_endpoints.search_by_genre;
+                
+                let url: string;
+
+                if (searchParams.includes("genre-query")) {
+
+                    url = search_by_genre_endpoint.url + urlParams;
+
+                } else if (searchParams.includes("title-query")) {
+
+                    url = search_by_title_endpoint.url + urlParams;
+                    
+                } else {
+
+                    url = find_all_endpoint.url + urlParams;
+                }
 
                 const response = await fetch(url);
 
