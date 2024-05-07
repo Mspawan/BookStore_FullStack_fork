@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { book_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useCheckIfBookCheckedOutByUser = (bookId: string,
                                                authentication: { isAuthenticated: boolean; token: string; },
@@ -14,13 +15,15 @@ export const useCheckIfBookCheckedOutByUser = (bookId: string,
 
                 if (authentication.isAuthenticated) {
 
-                    const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                    const urlParams = `/${bookId}`;
 
-                    const url = baseUrl + `/books/secure/is-checked-out/${bookId}`;
+                    const endpoint = book_controller_endpoints.is_checked_out;
+
+                    const url = endpoint.url + urlParams;
 
                     const requestOptions = {
 
-                        method: "GET",
+                        method: endpoint.method,
                         headers: {
                             Authorization: `Bearer ${authentication.token}`,
                             "Content-type": "application/json"
