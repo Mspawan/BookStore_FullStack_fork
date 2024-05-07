@@ -1,3 +1,5 @@
+import { book_controller_endpoints } from "../../apiEndpointsUrlsList";
+
 export const useCheckOutBook = async (bookId: string,
                                       authentication: { isAuthenticated: boolean; token: string; },
                                       setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
@@ -12,13 +14,15 @@ export const useCheckOutBook = async (bookId: string,
 
         if (authentication.isAuthenticated) {
 
-            const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+            const urlParams = `/${bookId}`;
 
-            const url = baseUrl + `/books/secure/checkout/${bookId}`;
+            const endpoint = book_controller_endpoints.checkout_book;
+
+            const url = endpoint.url + urlParams;
 
             const requestOptions = {
 
-                method: "PUT",
+                method: endpoint.method,
                 headers: {
                     Authorization: `Bearer ${authentication.token}`,
                     "Content-type": "application/json"
@@ -27,9 +31,9 @@ export const useCheckOutBook = async (bookId: string,
 
             const response = await fetch(url, requestOptions);
 
-            const responseJson = await response.json();
-
             if (!response.ok) {
+                
+                const responseJson = await response.json();
                 throw new Error(responseJson.message ? responseJson.message : "Oops, something went wrong!");
             }
 
