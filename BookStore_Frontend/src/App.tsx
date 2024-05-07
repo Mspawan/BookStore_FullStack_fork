@@ -55,6 +55,8 @@ export const App = () => {
 
                             <Route path='/register' element={<RegistrationPage />} />
 
+                            <Route path='/*' element={<Navigate to="/home" />} />
+
                         </Routes>
 
                         <Footer />
