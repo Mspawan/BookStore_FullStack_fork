@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BookModel } from "../../../models/BookModel";
+import { book_controller_endpoints } from "../../apiEndpointsUrlsList";
 
 export const useFetchBook = (bookId: string,
                              setBook: React.Dispatch<React.SetStateAction<BookModel>>,
@@ -12,9 +13,11 @@ export const useFetchBook = (bookId: string,
 
             const fetchBook = async () => {
 
-                const baseUrl = `${import.meta.env.VITE_BACKEND_BASE_URL}`;
+                const urlParams = `/${bookId}`;
+
+                const endpoint = book_controller_endpoints.find_by_id;
                 
-                const url = baseUrl + `/books/${bookId}`;
+                const url = endpoint.url + urlParams;
 
                 const response = await fetch(url);
 
