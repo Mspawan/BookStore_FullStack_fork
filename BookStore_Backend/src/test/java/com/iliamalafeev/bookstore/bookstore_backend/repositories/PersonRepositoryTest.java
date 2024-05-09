@@ -31,12 +31,7 @@ class PersonRepositoryTest {
     @BeforeEach
     void setUp() {
 
-        person = new Person();
-        person.setFirstName("firstName");
-        person.setLastName("lastName");
-        person.setDateOfBirth(LocalDate.of(1990, 1, 1));
-        person.setEmail("email@email.com");
-        person.setPassword("password");
+        person = new Person("First Name", "Last Name", LocalDate.of(1990, 1, 1), "email@email.com", "Password");
         person.setRole(Role.ROLE_USER);
         person.setRegisteredAt(LocalDateTime.now());
     }
