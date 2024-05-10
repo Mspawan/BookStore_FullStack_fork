@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController
-@RequestMapping("api/checkouts")
+@RequestMapping("api/checkouts/secure")
 @SecurityRequirement(name = "Bearer Authentication")
 @Tag(name = "Checkout Controller")
 public class CheckoutController {
@@ -36,7 +36,7 @@ public class CheckoutController {
 
     @Operation(summary = "Get a number of current checkouts held by authenticated user.",
             description = "Returns a number of current checkouts as an int.")
-    @GetMapping("/secure/current-loans-count")
+    @GetMapping("/current-loans-count")
     public ResponseEntity<Integer> getCurrentCheckoutsCount(@RequestHeader(value = "Authorization") String token) {
 
         Integer responseBody = checkoutService.getCurrentCheckoutsCount(extractEmail(token));
@@ -45,7 +45,7 @@ public class CheckoutController {
 
     @Operation(summary = "Get a list of all current checkouts held by authenticated user.",
             description = "Returns a list containing CheckoutDTO objects.")
-    @GetMapping("/secure/current-checkouts")
+    @GetMapping("/current-checkouts")
     public ResponseEntity<List<CheckoutDTO>> getCurrentCheckouts(@RequestHeader(value = "Authorization") String token) {
 
         List<CheckoutDTO> responseBody = checkoutService.getCurrentCheckouts(extractEmail(token));
