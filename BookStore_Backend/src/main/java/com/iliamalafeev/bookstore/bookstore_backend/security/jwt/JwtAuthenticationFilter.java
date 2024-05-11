@@ -2,6 +2,7 @@ package com.iliamalafeev.bookstore.bookstore_backend.security.jwt;
 
 import com.iliamalafeev.bookstore.bookstore_backend.security.services.PersonDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -68,7 +69,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
 
-        } catch (ExpiredJwtException | SignatureException jwtException) {
+        } catch (ExpiredJwtException | SignatureException | MalformedJwtException jwtException) {
 
             handlerExceptionResolver.resolveException(request, response, null, jwtException);
 
