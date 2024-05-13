@@ -82,6 +82,7 @@ public class AuthenticationService {
 
         Optional<Person> person = personRepository.findByEmail(personLoginDTO.getEmail());
 
+        // This case is actually handled by "catch (BadCredentialsException e)" above
         if (person.isEmpty()) {
             ErrorsUtil.returnPersonError("Person with such email is not found. Please check the input fields.", bindingResult, HttpStatus.NOT_FOUND);
         }
