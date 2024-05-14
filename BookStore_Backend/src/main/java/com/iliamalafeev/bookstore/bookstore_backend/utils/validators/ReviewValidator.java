@@ -18,7 +18,7 @@ public class ReviewValidator implements Validator {
 
         Review reviewForValidation = (Review) target;
 
-        if (reviewForValidation.getRating() == 0) {
+        if (reviewForValidation.getRating() == null || reviewForValidation.getRating() == 0) {
             errors.rejectValue("rating", "Rating must be at least 0.5");
         }
     }
