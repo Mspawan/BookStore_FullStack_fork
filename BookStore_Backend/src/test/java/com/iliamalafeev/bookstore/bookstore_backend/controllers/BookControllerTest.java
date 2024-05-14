@@ -588,7 +588,7 @@ class BookControllerTest {
     }
 
     @Test
-    void isBookReviewedByPerson_shouldReturnTrueIfBookIsCheckedOutByPerson() throws Exception {
+    void isBookReviewedByPerson_shouldReturnTrueIfBookIsReviewedByPerson() throws Exception {
 
         String url = baseURL + "/secure/is-reviewed/{bookId}";
         Boolean isBookReviewed = true;
