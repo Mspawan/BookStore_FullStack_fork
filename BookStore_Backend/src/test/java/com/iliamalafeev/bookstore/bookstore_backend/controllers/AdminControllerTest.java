@@ -217,23 +217,6 @@ class AdminControllerTest {
     }
 
     @Test
-    void increaseBookQuantity_shouldReturnForbiddenIfCopiesOrCopiesAvailableIsAlreadyZero() throws Exception {
-
-        String url = baseURL + "/increase-quantity/{bookId}";
-        BookException exception = new BookException("Book quantity is already 0 ", HttpStatus.FORBIDDEN);
-
-        doThrow(exception).when(bookService).changeQuantity(any(Long.class), any(String.class));
-
-        mockMvc.perform(patch(url, bookId)
-                        .with(csrf())
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isForbidden())
-                .andExpect(jsonPath("$.message").value("Book quantity is already 0 "));
-
-        verify(bookService, times(1)).changeQuantity(any(Long.class), any(String.class));
-    }
-
-    @Test
     void decreaseBookQuantity_shouldDecreaseBookQuantity() throws Exception {
 
         String url = baseURL + "/decrease-quantity/{bookId}";
