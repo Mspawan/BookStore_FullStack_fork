@@ -1,4 +1,4 @@
--- Inserting 1 default ROLE_ADMIN user for easy testing, password = adminPassword --
+-- Inserting 1 default ROLE_ADMIN user for easy testing, password = adminpassword --
 insert into person (id, first_name, last_name, date_of_birth, email, password, role, registered_at) values (10000001, 'Admin', 'Admin', '2000-01-01', 'admin@email.com', '$2a$10$rW7AN0KxM4scb/65mKRLsulYZcMNOn3HynGSjSPjLA.9D5eQuQYk.', 'ROLE_ADMIN', '2023-11-23 13:23:05.262') on conflict do nothing;
 
 -- Inserting 3 default ROLE_USER users for easy testing, password = userPassword --
