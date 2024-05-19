@@ -171,7 +171,7 @@ all handled exceptions and most predictable errors (4XX status codes) throughout
 **NOTE:** All integration tests use **Testcontainers** and are marked with `@Disabled` JUnit annotation 
 to avoid running them during Maven build with Docker compose. This is done because Testcontainers require 
 valid running Docker environment to bootstrap postgre container, which is very problematic to achieve from 
-inside another docker container while composing project's Docker image during docker compose script.
+inside another docker container while composing project's Docker image during docker compose script execution.
 
 
 
