@@ -43,7 +43,7 @@ Design of the website is completely done by me as well as the book covers design
 * Programming and markup languages: **Java, TypeScript, HTML, CSS** 
 * Frameworks and libraries: **Spring Framework, ReactJS, Hibernate, Tailwind** 
 * Testing tools: **JUnit, AssertJ, Mockito, Testcontainers**
-* Database and other tools: **PostgreSQL, Docker, Stripe, Git**
+* Database and other tools: **PostgreSQL, Docker, Stripe, Git, OpenAPI, Swagger**
 
 **Deployed version** - [coming soon]()
 
