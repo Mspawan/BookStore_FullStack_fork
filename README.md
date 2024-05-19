@@ -150,7 +150,7 @@ or deleting books, changing item quantities, closing discussions etc.
 
 ## Testing
 
-Backend API part of the project if covered by tests. There are **unit tests** and **integration tests** 
+Backend API part of the project is covered by tests. There are **unit tests** and **integration tests** 
 to cover full API functionality as follows:
 
 * **Unit tests** are written to cover:
