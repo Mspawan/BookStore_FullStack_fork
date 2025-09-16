@@ -1,32 +1,40 @@
 pipeline {
     agent any
+
+    tools {
+        maven 'Maven3'     // You must configure Maven under Jenkins → Manage Jenkins → Global Tool Configuration
+        jdk 'Java21'       // Configure Java 21 the same way
+        nodejs 'Node16'    // Or Node18 (configure in Jenkins tools)
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Mspawan/BookStore_FullStack_fork.git', branch: 'main'
+                git branch: 'main',
+                    url: 'https://github.com/Mspawan/BookStore_FullStack_fork.git'
             }
         }
+
         stage('Build Backend') {
             steps {
-                dir('backend') {
-                    sh 'npm install'
-                    sh 'npm test'
+                dir('BookStore_Backend') {
+                    sh 'mvn clean package -DskipTests'
                 }
             }
         }
+
         stage('Build Frontend') {
             steps {
-                dir('frontend') {
+                dir('BookStore_Frontend') {
                     sh 'npm install'
                     sh 'npm run build'
                 }
             }
         }
-        stage('Deploy') {
+
+        stage('Deploy with Docker') {
             steps {
-                echo 'Deploying app...'
-                // Example: Copy build files to /var/www/html for frontend
-                // Or run "npm start" for backend
+                sh 'docker-compose up -d --build'
             }
         }
     }
