@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     tools {
-        jdk "Java21"         // Uses your Jenkins JDK installation name
-        maven "Maven"        // Uses your Jenkins Maven installation name
-        nodejs "NodeJS"      // Uses your Jenkins NodeJS installation name
+        jdk "Java17"         // Change to the exact name in Jenkins Global Tool Config
+        maven "Maven"        // Jenkins Maven installation name
+        nodejs "NodeJS"      // Jenkins NodeJS installation name
     }
 
     environment {
-        JAVA_HOME = tool name: 'Java21', type: 'jdk'
+        JAVA_HOME = tool name: 'Java17', type: 'jdk'
         PATH = "${JAVA_HOME}/bin:${PATH}"
     }
 
@@ -20,16 +20,16 @@ pipeline {
         }
 
         stage('Build Backend') {
-            dir('BookStore_Backend') {
-                steps {
+            steps {
+                dir('BookStore_Backend') {
                     sh 'mvn clean package -DskipTests'
                 }
             }
         }
 
         stage('Build Frontend') {
-            dir('BookStore_Frontend') {
-                steps {
+            steps {
+                dir('BookStore_Frontend') {
                     sh 'npm install'
                     sh 'npm run build'
                 }
@@ -37,8 +37,8 @@ pipeline {
         }
 
         stage('Run Backend') {
-            dir('BookStore_Backend/target') {
-                steps {
+            steps {
+                dir('BookStore_Backend/target') {
                     sh 'nohup java -jar *.jar > app.log 2>&1 &'
                 }
             }
