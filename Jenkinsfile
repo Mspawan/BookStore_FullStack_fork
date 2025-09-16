@@ -2,29 +2,34 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'   // Make sure Maven is configured in Jenkins global tools
-        jdk 'Java21'    // Java 21 configured under Global Tool Configuration
-        nodejs 'NodeJS' // NodeJS configured in Jenkins global tools
+        jdk "Java21"         // Uses your Jenkins JDK installation name
+        maven "Maven"        // Uses your Jenkins Maven installation name
+        nodejs "NodeJS"      // Uses your Jenkins NodeJS installation name
+    }
+
+    environment {
+        JAVA_HOME = tool name: 'Java21', type: 'jdk'
+        PATH = "${JAVA_HOME}/bin:${PATH}"
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/Mspawan/BookStore_FullStack_fork.git'
             }
         }
 
         stage('Build Backend') {
-            steps {
-                dir('BookStore_Backend') {
-                    sh 'mvn clean install -DskipTests'
+            dir('BookStore_Backend') {
+                steps {
+                    sh 'mvn clean package -DskipTests'
                 }
             }
         }
 
         stage('Build Frontend') {
-            steps {
-                dir('BookStore_Frontend') {
+            dir('BookStore_Frontend') {
+                steps {
                     sh 'npm install'
                     sh 'npm run build'
                 }
@@ -32,19 +37,20 @@ pipeline {
         }
 
         stage('Run Backend') {
-            steps {
-                dir('BookStore_Backend') {
-                    sh 'nohup mvn spring-boot:run &'
+            dir('BookStore_Backend/target') {
+                steps {
+                    sh 'nohup java -jar *.jar > app.log 2>&1 &'
                 }
             }
         }
+    }
 
-        stage('Run Frontend') {
-            steps {
-                dir('BookStore_Frontend') {
-                    sh 'nohup npm start &'
-                }
-            }
+    post {
+        success {
+            echo "✅ BookStore app build & deployment successful!"
+        }
+        failure {
+            echo "❌ Build failed. Please check Jenkins logs."
         }
     }
 }
